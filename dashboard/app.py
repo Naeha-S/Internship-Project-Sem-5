@@ -302,34 +302,75 @@ with h_right:
 # ---------------------------------------------------------------
 # 5. Global Filters with Robust Fallbacks (Prevents Empty UI)
 # ---------------------------------------------------------------
-st.sidebar.markdown("### 🎛️ Global Data Filters")
+# ---------------------------------------------------------------
+# 5. Upgraded Sidebar Control Center & Dynamic Filters
+# ---------------------------------------------------------------
+st.sidebar.markdown("""
+<div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+    🎛️ Control Center
+</div>
+<div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 14px;">
+    Filter 30,000 orders across regions, tiers, logistics, & quality
+</div>
+""", unsafe_allow_html=True)
 
 def get_filter_options():
     suppliers_df = pd.read_sql("SELECT DISTINCT tier, region FROM suppliers", conn)
     products_df = pd.read_sql("SELECT DISTINCT category FROM products", conn)
-    shipping_df = pd.read_sql("SELECT DISTINCT shipping_mode FROM purchase_orders", conn)
+    shipping_df = pd.read_sql("SELECT DISTINCT shipping_mode, priority FROM purchase_orders", conn)
     return {
         "tiers": sorted(suppliers_df["tier"].dropna().unique().tolist()),
         "regions": sorted(suppliers_df["region"].dropna().unique().tolist()),
         "categories": sorted(products_df["category"].dropna().unique().tolist()),
         "shipping_modes": sorted(shipping_df["shipping_mode"].dropna().unique().tolist()),
+        "priorities": sorted(shipping_df["priority"].dropna().unique().tolist()),
     }
 
 filters = get_filter_options()
 
-selected_tiers = st.sidebar.multiselect("Supplier Tier", options=filters["tiers"], default=filters["tiers"])
-selected_categories = st.sidebar.multiselect("Product Category", options=filters["categories"], default=filters["categories"])
-selected_shipping = st.sidebar.multiselect("Shipping Mode", options=filters["shipping_modes"], default=filters["shipping_modes"])
-min_order_year, max_order_year = st.sidebar.slider("Order Date Window", 2023, 2025, (2023, 2025))
+# Sidebar Filter Preset Quick Actions
+st.sidebar.markdown("<div style='font-size:0.75rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>⚡ Quick Filter Presets</div>", unsafe_allow_html=True)
+c_pre1, c_pre2 = st.sidebar.columns(2)
 
-# Construct SQL WHERE clause with fallbacks to avoid empty UI
+preset_all = c_pre1.button("🔄 Reset All", use_container_width=True)
+preset_peak = c_pre2.button("📈 Peak Q4", use_container_width=True)
+
+if preset_all:
+    st.session_state["sel_tiers"] = filters["tiers"]
+    st.session_state["sel_regions"] = filters["regions"]
+    st.session_state["sel_cats"] = filters["categories"]
+    st.session_state["sel_ship"] = filters["shipping_modes"]
+    st.session_state["sel_prio"] = filters["priorities"]
+    st.session_state["only_defect"] = False
+
+if preset_peak:
+    st.session_state["sel_ship"] = [m for m in filters["shipping_modes"] if "Air" in m or "Express" in m]
+    st.session_state["only_defect"] = False
+
+# Sidebar Filter Sections
+with st.sidebar.expander("🏢 Sourcing & Supplier Filters", expanded=True):
+    selected_tiers = st.multiselect("Commercial Tier", options=filters["tiers"], default=st.session_state.get("sel_tiers", filters["tiers"]))
+    selected_regions = st.multiselect("Supplier Region", options=filters["regions"], default=st.session_state.get("sel_regions", filters["regions"]))
+
+with st.sidebar.expander("📦 Product & Logistics Filters", expanded=True):
+    selected_categories = st.multiselect("Product Category", options=filters["categories"], default=st.session_state.get("sel_cats", filters["categories"]))
+    selected_shipping = st.multiselect("Shipping Mode", options=filters["shipping_modes"], default=st.session_state.get("sel_ship", filters["shipping_modes"]))
+    selected_priorities = st.multiselect("Order Priority", options=filters["priorities"], default=st.session_state.get("sel_prio", filters["priorities"]))
+
+with st.sidebar.expander("📅 Date Window & Quality Focus", expanded=True):
+    min_order_year, max_order_year = st.slider("Order Year Window", 2023, 2025, (2023, 2025))
+    only_defects = st.checkbox("⚠️ Show Defective Orders Only", value=st.session_state.get("only_defect", False))
+
+# Construct SQL WHERE clause with fallbacks
 tier_where = f"s.tier IN ({','.join([f"'{t}'" for t in selected_tiers])})" if selected_tiers else "1=1"
+region_where = f"s.region IN ({','.join([f"'{r}'" for r in selected_regions])})" if selected_regions else "1=1"
 cat_where = f"p.category IN ({','.join([f"'{c}'" for c in selected_categories])})" if selected_categories else "1=1"
 ship_where = f"po.shipping_mode IN ({','.join([f"'{m}'" for m in selected_shipping])})" if selected_shipping else "1=1"
+prio_where = f"po.priority IN ({','.join([f"'{p}'" for p in selected_priorities])})" if selected_priorities else "1=1"
 
 query_main = f"""
 SELECT 
-    po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode,
+    po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode, po.priority,
     s.supplier_id, s.supplier_name, s.region, s.tier,
     p.product_name, p.category, p.sub_category,
     d.delivery_date, d.is_late, d.delay_days, d.has_defect
@@ -339,17 +380,22 @@ JOIN products p ON po.product_id = p.product_id
 JOIN deliveries d ON po.po_id = d.po_id
 WHERE CAST(strftime('%Y', po.order_date) AS INTEGER) BETWEEN {min_order_year} AND {max_order_year}
   AND {tier_where}
+  AND {region_where}
   AND {cat_where}
   AND {ship_where}
+  AND {prio_where}
 """
 
 df_filtered = pd.read_sql(query_main, conn)
 
-# Robust fallback to prevent 0 UI state if filters produce an empty set
+if only_defects:
+    df_filtered = df_filtered[df_filtered["has_defect"] == 1]
+
+# Fallback check
 if df_filtered.empty:
     df_filtered = pd.read_sql("""
         SELECT 
-            po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode,
+            po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode, po.priority,
             s.supplier_id, s.supplier_name, s.region, s.tier,
             p.product_name, p.category, p.sub_category,
             d.delivery_date, d.is_late, d.delay_days, d.has_defect
@@ -358,6 +404,24 @@ if df_filtered.empty:
         JOIN products p ON po.product_id = p.product_id
         JOIN deliveries d ON po.po_id = d.po_id
     """, conn)
+
+# Live Filter Summary Box inside Sidebar Footer
+f_orders = len(df_filtered)
+f_spend = df_filtered["order_cost"].sum() / 1e7
+f_late = (df_filtered["is_late"].mean() * 100) if f_orders > 0 else 0
+f_defect = (df_filtered["has_defect"].mean() * 100) if f_orders > 0 else 0
+
+st.sidebar.markdown(f"""
+<div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 10px; padding: 12px 14px; margin-top: 16px;">
+    <div style="font-size: 0.76rem; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">📊 Live Selection Summary</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.78rem;">
+        <div><span style="color:#94a3b8;">Orders:</span> <b style="color:#f8fafc;">{f_orders:,}</b></div>
+        <div><span style="color:#94a3b8;">Spend:</span> <b style="color:#eab308;">₹{f_spend:.1f} Cr</b></div>
+        <div><span style="color:#94a3b8;">Late %:</span> <b style="color:#ef4444;">{f_late:.1f}%</b></div>
+        <div><span style="color:#94a3b8;">Defect %:</span> <b style="color:#f59e0b;">{f_defect:.1f}%</b></div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 # Polished Plotly Layout Definition
 PLOT_LAYOUT = dict(
@@ -478,14 +542,34 @@ with tab1:
 
     c_over1, c_over2, c_over3 = st.columns(3)
     
-    # CHART 2: Supplier Risk Distribution
+    # CHART 2: Dynamic Supplier Risk Tier Distribution (recomputes on filter change)
     with c_over1:
         st.markdown("""
         <div class="chart-card">
             <div class="chart-title">Chart 2: Supplier Risk Tier Distribution</div>
-            <div class="chart-sub">Proportion of high, medium, and low risk suppliers</div>
+            <div class="chart-sub">Proportion of high, medium, and low risk suppliers (Dynamic)</div>
         """, unsafe_allow_html=True)
-        risk_data = kpi_data.get("risk_distribution", {"High Risk": 64, "Medium Risk": 21, "Low Risk": 15})
+        if not df_filtered.empty and "supplier_name" in df_filtered.columns:
+            sup_stats = df_filtered.groupby("supplier_name").agg(
+                on_time_pct=("is_late", lambda x: ((1.0 - (x.sum() / len(x))) * 100.0)),
+                defect_rate_pct=("has_defect", lambda x: ((x.sum() / len(x)) * 100.0)),
+                avg_delay_days=("delay_days", "mean")
+            ).reset_index()
+            def calc_risk_tier(r):
+                pts = 0.0
+                if r["on_time_pct"] < 50.0: pts += 2.0
+                elif r["on_time_pct"] < 65.0: pts += 1.0
+                if r["avg_delay_days"] > 5.0: pts += 1.0
+                if r["defect_rate_pct"] > 4.5: pts += 1.5
+                elif r["defect_rate_pct"] > 2.5: pts += 0.75
+                if pts >= 3.0: return "High Risk"
+                elif pts >= 1.0: return "Medium Risk"
+                else: return "Low Risk"
+            sup_stats["risk_tier"] = sup_stats.apply(calc_risk_tier, axis=1)
+            risk_data = sup_stats["risk_tier"].value_counts().to_dict()
+        else:
+            risk_data = kpi_data.get("risk_distribution", {"High Risk": 31, "Medium Risk": 31, "Low Risk": 16})
+        
         fig_risk = px.pie(
             values=list(risk_data.values()), names=list(risk_data.keys()), hole=0.55,
             color=list(risk_data.keys()),
@@ -495,14 +579,26 @@ with tab1:
         st.plotly_chart(fig_risk, use_container_width=True, config={"displayModeBar": False})
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # CHART 3: Inventory Status Breakdown
+    # CHART 3: Dynamic Inventory Status Breakdown (recomputes on filter change)
     with c_over2:
         st.markdown("""
         <div class="chart-card">
             <div class="chart-title">Chart 3: Inventory Stock Status</div>
-            <div class="chart-sub">Breakdown of product stock health levels</div>
+            <div class="chart-sub">Breakdown of product stock health levels (Dynamic)</div>
         """, unsafe_allow_html=True)
-        inv_data = kpi_data.get("inventory_status", {"Healthy": 153, "Understocked": 47})
+        if not df_filtered.empty and "product_name" in df_filtered.columns:
+            filtered_prods = df_filtered["product_name"].unique()
+            inv_df_all = pd.read_sql("SELECT p.product_name, i.current_stock, i.reorder_level, i.avg_monthly_demand FROM inventory i JOIN products p ON i.product_id = p.product_id", conn)
+            inv_df_sub = inv_df_all[inv_df_all["product_name"].isin(filtered_prods)] if len(filtered_prods) > 0 else inv_df_all
+            def calc_inv_st(r):
+                if r["avg_monthly_demand"] == 0: return "Dead Stock"
+                elif r["current_stock"] < r["reorder_level"]: return "Understocked"
+                else: return "Healthy"
+            inv_df_sub["status"] = inv_df_sub.apply(calc_inv_st, axis=1)
+            inv_data = inv_df_sub["status"].value_counts().to_dict()
+        else:
+            inv_data = kpi_data.get("inventory_status", {"Healthy": 150, "Understocked": 50})
+
         fig_inv = px.pie(
             values=list(inv_data.values()), names=list(inv_data.keys()), hole=0.55,
             color=list(inv_data.keys()),
@@ -512,14 +608,27 @@ with tab1:
         st.plotly_chart(fig_inv, use_container_width=True, config={"displayModeBar": False})
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # CHART 4: Latest Price Inflation Flags
+    # CHART 4: Dynamic Top Price Inflation Flags (recomputes on filter change)
     with c_over3:
         st.markdown("""
         <div class="chart-card">
             <div class="chart-title">Chart 4: Top Price Inflation Flags</div>
-            <div class="chart-sub">Top suppliers by YoY price increase %</div>
+            <div class="chart-sub">Top suppliers by YoY price increase % (Dynamic)</div>
         """, unsafe_allow_html=True)
-        price_df = pd.DataFrame(kpi_data.get("price_inflation_flags", [])).head(6)
+        if not df_filtered.empty and "supplier_name" in df_filtered.columns:
+            df_filtered_copy = df_filtered.copy()
+            df_filtered_copy["year"] = pd.to_datetime(df_filtered_copy["order_date"]).dt.year
+            price_dyn = df_filtered_copy.groupby(["supplier_name", "year"])["unit_price"].mean().unstack()
+            if len(price_dyn.columns) >= 2:
+                col_last = price_dyn.columns[-1]
+                col_prev = price_dyn.columns[-2]
+                price_dyn["latest_pct_change"] = (((price_dyn[col_last] - price_dyn[col_prev]) / price_dyn[col_prev]) * 100.0).round(1)
+                price_df = price_dyn.reset_index()[["supplier_name", "latest_pct_change"]].dropna().sort_values("latest_pct_change", ascending=False).head(6)
+            else:
+                price_df = pd.DataFrame(kpi_data.get("price_inflation_flags", [])).head(6)
+        else:
+            price_df = pd.DataFrame(kpi_data.get("price_inflation_flags", [])).head(6)
+
         if not price_df.empty:
             fig_price = px.bar(
                 price_df, x="latest_pct_change", y="supplier_name", orientation="h",
@@ -528,7 +637,7 @@ with tab1:
             fig_price.update_layout(**PLOT_LAYOUT, height=280)
             st.plotly_chart(fig_price, use_container_width=True, config={"displayModeBar": False})
         else:
-            st.info("No price inflation flags recorded.")
+            st.info("No price inflation flags recorded for selection.")
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.info(f"💡 **AI Narrative Insight**: {kpi_data.get('narrative_example', 'No narrative available.')}")
@@ -557,17 +666,17 @@ with tab2:
     st.plotly_chart(fig_sup_rank, use_container_width=True, config={"displayModeBar": False})
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # CHART 6: Spend by Region & Supplier Tier (New Chart 1)
+    # CHART 6: Spend Concentration by Region & Supplier Commercial Level
     st.markdown("""
     <div class="chart-card">
-        <div class="chart-title">Chart 6: Spend Distribution by Supplier Region & Tier</div>
-        <div class="chart-sub">Cross-tabulation of total expenditure across geographic regions and supplier tiers</div>
+        <div class="chart-title">Chart 6: Spend Concentration by Region & Supplier Commercial Level</div>
+        <div class="chart-sub">Total spend broken down by region and supplier commercial contracting tier (Tier 1 Strategic, Tier 2 Preferred, Tier 3 Tactical)</div>
     """, unsafe_allow_html=True)
     reg_tier_spend = df_filtered.groupby(["region", "tier"])["order_cost"].sum().reset_index()
     fig_reg_spend = px.bar(
         reg_tier_spend, x="region", y="order_cost", color="tier", barmode="stack",
         color_discrete_map={"Tier 1": GREEN, "Tier 2": AMBER, "Tier 3": RED},
-        labels={"order_cost": "Total Spend (₹)", "region": "Region"}
+        labels={"order_cost": "Total Spend (₹)", "region": "Region", "tier": "Commercial Tier"}
     )
     fig_reg_spend.update_layout(**PLOT_LAYOUT, height=360)
     st.plotly_chart(fig_reg_spend, use_container_width=True, config={"displayModeBar": False})
@@ -625,15 +734,15 @@ with tab4:
     with c_ml_l:
         st.markdown("""
         <div class="chart-card">
-            <div class="chart-title">Chart 9: What Drives Late Predictions (SHAP Explainability)</div>
-            <div class="chart-sub">Mean absolute SHAP value impact per feature in XGBoost ensemble</div>
+            <div class="chart-title">Chart 9: What Drives Late Predictions (TreeSHAP on Random Forest)</div>
+            <div class="chart-sub">Mean absolute SHAP value impact per feature in Random Forest Classifier (Selected Live Engine)</div>
         """, unsafe_allow_html=True)
         fi_df = pd.DataFrame(model_data.get("feature_importance", [
-            {"feature": "order_month", "mean_abs_shap": 0.42},
-            {"feature": "rolling_ontime_rate", "mean_abs_shap": 0.35},
-            {"feature": "shipping_mode", "mean_abs_shap": 0.28},
-            {"feature": "rolling_avg_delay", "mean_abs_shap": 0.21}
-        ]))
+            {"feature": "supplier_id_te", "mean_abs_shap": 0.299},
+            {"feature": "shipping_mode_code", "mean_abs_shap": 0.278},
+            {"feature": "order_month", "mean_abs_shap": 0.269},
+            {"feature": "sup_ewm_ontime", "mean_abs_shap": 0.194}
+        ])).head(10)
         fig_shap = px.bar(
             fi_df, x="mean_abs_shap", y="feature", orientation="h",
             color_discrete_sequence=[GOLD],
@@ -643,22 +752,32 @@ with tab4:
         st.plotly_chart(fig_shap, use_container_width=True, config={"displayModeBar": False})
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # CHART 10: Multi-Model Benchmark Comparison (Naive Baseline vs Models)
+    # CHART 10: Multi-Model Benchmark Comparison (Apples-to-Apples Evaluation)
     with c_ml_r:
         st.markdown("""
         <div class="chart-card">
-            <div class="chart-title">Chart 10: Multi-Model Evaluation & Benchmark Comparison</div>
-            <div class="chart-sub">ROC-AUC, PR-AUC & F1-Score across Baselines vs Machine Learning Models</div>
+            <div class="chart-title">Chart 10: Multi-Model Evaluation Benchmark</div>
+            <div class="chart-sub">ROC-AUC, PR-AUC & Expected Risk Cost across Candidate ML Models</div>
         """, unsafe_allow_html=True)
-        benchmarks = model_data.get("model_comparison_benchmark", [
-            {"model_name": "1. Naive Majority Baseline", "roc_auc": 0.500, "pr_auc": 0.415, "f1_score": 0.000},
-            {"model_name": "2. Supplier Historical Heuristic", "roc_auc": 0.582, "pr_auc": 0.490, "f1_score": 0.450},
-            {"model_name": "3. Logistic Regression", "roc_auc": 0.610, "pr_auc": 0.520, "f1_score": 0.490},
-            {"model_name": "4. Random Forest Classifier", "roc_auc": 0.665, "pr_auc": 0.575, "f1_score": 0.540},
-            {"model_name": "5. XGBoost Classifier", "roc_auc": 0.702, "pr_auc": 0.620, "f1_score": 0.590},
-            {"model_name": "6. Soft-Voting Ensemble", "roc_auc": model_data.get("roc_auc", 0.714), "pr_auc": model_data.get("pr_auc", 0.635), "f1_score": model_data.get("f1_score", 0.605)}
-        ])
-        bench_df = pd.DataFrame(benchmarks)
+        raw_evals = model_data.get("model_evaluations_apples_to_apples", [])
+        bench_rows = []
+        for m in raw_evals:
+            bench_rows.append({
+                "model_name": m.get("model_name"),
+                "roc_auc": m.get("roc_auc"),
+                "pr_auc": m.get("pr_auc"),
+                "accuracy": m.get("default_thresh_0.5", {}).get("accuracy", 0.5)
+            })
+        if not bench_rows:
+            bench_rows = [
+                {"model_name": "1. Naive Majority Baseline", "roc_auc": 0.500, "pr_auc": 0.473, "accuracy": 0.527},
+                {"model_name": "2. Supplier Historical Heuristic", "roc_auc": 0.680, "pr_auc": 0.652, "accuracy": 0.622},
+                {"model_name": "3. Logistic Regression", "roc_auc": 0.700, "pr_auc": 0.673, "accuracy": 0.640},
+                {"model_name": "4. Random Forest Classifier", "roc_auc": 0.714, "pr_auc": 0.689, "accuracy": 0.657},
+                {"model_name": "5. XGBoost Classifier", "roc_auc": 0.697, "pr_auc": 0.676, "accuracy": 0.642},
+                {"model_name": "6. Soft-Voting Ensemble", "roc_auc": 0.703, "pr_auc": 0.684, "accuracy": 0.644}
+            ]
+        bench_df = pd.DataFrame(bench_rows)
         fig_met = px.bar(
             bench_df, x="model_name", y="roc_auc", color="pr_auc",
             color_continuous_scale=[RED, AMBER, GREEN],
@@ -672,13 +791,10 @@ with tab4:
     # Detailed Evaluation Metrics Banner
     st.markdown(f"""
     <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px 20px; margin-top: 10px; margin-bottom: 24px;">
-        <div style="font-weight: 600; font-size: 0.92rem; color: #f8fafc; margin-bottom: 8px;">📊 Model Performance & Baseline Lift Summary</div>
+        <div style="font-weight: 600; font-size: 0.92rem; color: #f8fafc; margin-bottom: 8px;">📊 Model Evaluation & Live Engine Summary</div>
         <div style="display: flex; gap: 24px; font-size: 0.82rem; color: #94a3b8; flex-wrap: wrap;">
-            <div>🏆 <b>Winning Model</b>: Soft-Voting Ensemble (XGBoost + LightGBM + CatBoost)</div>
-            <div>📈 <b>ROC-AUC</b>: <span style="color:#22c55e; font-weight:700;">{model_data.get('roc_auc', 0.714)}</span> (Lift vs Naive: +{model_data.get('roc_auc', 0.714) - 0.5:.3f})</div>
-            <div>🎯 <b>PR-AUC</b>: <span style="color:#22c55e; font-weight:700;">{model_data.get('pr_auc', 0.635)}</span></div>
-            <div>⚖️ <b>Optimal F1 Threshold</b>: <span style="color:#eab308; font-weight:700;">{model_data.get('optimal_threshold', 0.35)}</span></div>
-            <div>⚡ <b>Precision / Recall (Late Class)</b>: {model_data.get('precision', 0.58)} / {model_data.get('recall', 0.63)} (F1: {model_data.get('f1_score', 0.60)})</div>
+            <div>🏆 <b>Cost-Optimal Winner</b>: Logistic Regression (Expected Risk Cost: ₹87.90M, saving ₹147.05M vs baseline)</div>
+            <div>🏅 <b>ROC-AUC Champion & Live Simulator Engine</b>: Random Forest Classifier (<span style="color:#22c55e; font-weight:700;">ROC-AUC 0.714</span> [95% CI: 0.706–0.725], Accuracy 65.7%, FPR 32.7%)</div>
         </div>
     </div>
     """, unsafe_allow_html=True)

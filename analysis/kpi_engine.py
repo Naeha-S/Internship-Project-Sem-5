@@ -1,8 +1,11 @@
 """
-kpi_engine.py (v3 — Rigorous Risk Scoring & Inventory-Supplier Linkage)
------------------------------------------------------------------------
-Computes business KPIs, multi-axis risk scoring, inventory stockout linkages,
-and Procurement Health Score from SQLite procurement.db.
+kpi_engine.py (v5 — Advanced Composite Risk Scoring & 3-Year Trajectory Trend Engine)
+---------------------------------------------------------------------------------------
+Computes business KPIs, continuous 4-component composite supplier risk scoring,
+3-year linear delay trend slopes (beta), inventory stockout linkages, and Health Score.
+
+Formula:
+Composite Risk Index = 0.35 * C_late + 0.25 * C_defect + 0.20 * C_price_vol + 0.20 * C_trend_slope
 
 Outputs kpi_summary.json, consumed by dashboard and executive reports.
 """
@@ -34,76 +37,122 @@ inventory_risk = pd.read_sql(INVENTORY_RISK_SQL, conn)
 price_trend = pd.read_sql(PRICE_TREND_SQL, conn)
 
 # ---------------------------------------------------------------
-# 1. MULTI-AXIS SUPPLIER RISK SCORING METHODOLOGY
+# 1. 3-YEAR DELAY TREND SLOPE & PRICE VOLATILITY COMPUTATION
 # ---------------------------------------------------------------
-def classify_supplier_risk_axes(row):
-    """
-    Transparent, weighted point-scoring methodology across 3 risk axes:
-    1. Delivery Reliability Axis: On-time % & delay severity
-    2. Quality Exposure Axis: Defect rate %
-    3. Operational Risk Axis: Tier & Geographic Region
-    """
-    pts = 0.0
-    rel_risk = False
-    qual_risk = False
+monthly_sup_sql = """
+SELECT 
+    s.supplier_id, s.supplier_name,
+    strftime('%Y-%m', po.order_date) AS order_month,
+    COUNT(po.po_id) AS total_pos,
+    SUM(d.is_late) * 1.0 / COUNT(po.po_id) AS monthly_late_rate,
+    AVG(d.delay_days) AS monthly_avg_delay,
+    AVG(po.unit_price) AS monthly_avg_price
+FROM purchase_orders po
+JOIN suppliers s ON po.supplier_id = s.supplier_id
+JOIN deliveries d ON po.po_id = d.po_id
+GROUP BY s.supplier_id, order_month
+ORDER BY s.supplier_id, order_month
+"""
 
-    # Delivery Reliability Axis
-    if row["on_time_pct"] < 75.0:
-        pts += 2.0
-        rel_risk = True
-    elif row["on_time_pct"] < 85.0:
-        pts += 1.0
-        rel_risk = True
+monthly_sup_df = pd.read_sql(monthly_sup_sql, conn)
 
-    if row["avg_delay_days"] > 3.0:
-        pts += 1.0
-        rel_risk = True
-
-    # Quality Exposure Axis
-    if row["defect_rate_pct"] > 5.0:
-        pts += 2.0
-        qual_risk = True
-    elif row["defect_rate_pct"] > 2.0:
-        pts += 1.0
-        qual_risk = True
-
-    # Operational & Structural Risk Axis
-    if row["tier"] == "Tier 3":
-        pts += 1.0
-    if row["region"].startswith("Import"):
-        pts += 0.5
-
-    # Overall Risk Tier Thresholds
-    if pts >= 4.0:
-        overall_tier = "High Risk"
-    elif pts >= 2.0:
-        overall_tier = "Medium Risk"
+trend_slopes = []
+for sup_id, group in monthly_sup_df.groupby("supplier_id"):
+    group = group.sort_values("order_month").reset_index(drop=True)
+    n = len(group)
+    if n >= 6:
+        x = np.arange(n)
+        y_delay = group["monthly_avg_delay"].values
+        slope, _ = np.polyfit(x, y_delay, 1)
+        p_mean = group["monthly_avg_price"].mean()
+        p_std = group["monthly_avg_price"].std()
+        cv = (p_std / p_mean) if p_mean > 0 else 0.0
     else:
-        overall_tier = "Low Risk"
-
-    # Primary Risk Driver Axis Classification
-    if rel_risk and qual_risk:
-        primary_axis = "Dual Risk (Reliability + Quality)"
-    elif rel_risk:
-        primary_axis = "Reliability Risk (Delivery SLA)"
-    elif qual_risk:
-        primary_axis = "Quality Risk (Shipment Defect)"
-    else:
-        primary_axis = "Low Operational Risk"
-
-    return pd.Series({
-        "risk_points": round(pts, 1),
-        "risk_tier": overall_tier,
-        "primary_risk_axis": primary_axis,
-        "is_reliability_risk": rel_risk,
-        "is_quality_risk": qual_risk
+        slope = 0.0
+        cv = 0.0
+        
+    trend_slopes.append({
+        "supplier_id": sup_id,
+        "delay_trend_slope": round(float(slope), 4),
+        "price_volatility_cv": round(float(cv), 4)
     })
 
-risk_details = supplier_perf.apply(classify_supplier_risk_axes, axis=1)
-supplier_perf = pd.concat([supplier_perf, risk_details], axis=1)
+trend_df = pd.DataFrame(trend_slopes)
+
+supplier_perf = supplier_perf.merge(trend_df, on="supplier_id", how="left")
+supplier_perf["delay_trend_slope"].fillna(0.0, inplace=True)
+supplier_perf["price_volatility_cv"].fillna(0.0, inplace=True)
 
 # ---------------------------------------------------------------
-# 2. PRICE INFLATION / VOLATILITY ASSESSMENT
+# 2. CONTINUOUS 4-COMPONENT COMPOSITE RISK SCORE FORMULA
+# ---------------------------------------------------------------
+def min_max_scale(series):
+    s_min, s_max = series.min(), series.max()
+    if s_max == s_min:
+        return np.zeros(len(series))
+    return (series - s_min) / (s_max - s_min)
+
+c1_late = 1.0 - (supplier_perf["on_time_pct"] / 100.0)
+c2_defect = supplier_perf["defect_rate_pct"] / 100.0
+c3_price_vol = min_max_scale(supplier_perf["price_volatility_cv"])
+c4_trend_slope = min_max_scale(supplier_perf["delay_trend_slope"])
+
+# Weighted Continuous Composite Risk Index (0 to 100)
+supplier_perf["composite_risk_index"] = (
+    (0.35 * c1_late) +
+    (0.25 * c2_defect) +
+    (0.20 * c3_price_vol) +
+    (0.20 * c4_trend_slope)
+) * 100.0
+
+supplier_perf["composite_risk_index"] = supplier_perf["composite_risk_index"].round(1)
+
+# Trajectory Direction
+def classify_trajectory(slope):
+    if slope > 0.03:
+        return "📉 Deteriorating (Delay Escalating)"
+    elif slope < -0.03:
+        return "📈 Improving (Delay Declining)"
+    else:
+        return "➡️ Stable Fulfillment"
+
+supplier_perf["trajectory_direction"] = supplier_perf["delay_trend_slope"].apply(classify_trajectory)
+
+# Percentile-Based Relative Tiers (Top 30% High Risk, Middle 45% Medium Risk, Bottom 25% Low Risk)
+q_high_score = supplier_perf["composite_risk_index"].quantile(0.70)
+q_low_score  = supplier_perf["composite_risk_index"].quantile(0.25)
+
+def assign_composite_risk_tier(score):
+    if score >= q_high_score:
+        return "High Risk"
+    elif score >= q_low_score:
+        return "Medium Risk"
+    else:
+        return "Low Risk"
+
+supplier_perf["risk_tier"] = supplier_perf["composite_risk_index"].apply(assign_composite_risk_tier)
+
+# Primary Risk Driver Axis
+def assign_primary_driver(row):
+    late_contrib = 0.35 * (1.0 - row["on_time_pct"]/100.0)
+    qual_contrib = 0.25 * (row["defect_rate_pct"]/100.0)
+    vol_contrib  = 0.20 * row["price_volatility_cv"]
+    trend_contrib = 0.20 * max(row["delay_trend_slope"], 0)
+    
+    max_c = max(late_contrib, qual_contrib, vol_contrib, trend_contrib)
+    if max_c == late_contrib:
+        return "Reliability Risk (Late Delivery)"
+    elif max_c == qual_contrib:
+        return "Quality Risk (High Defect)"
+    elif max_c == trend_contrib:
+        return "Trajectory Risk (Deteriorating Trend)"
+    else:
+        return "Price Volatility Risk"
+
+supplier_perf["primary_risk_axis"] = supplier_perf.apply(assign_primary_driver, axis=1)
+
+# ---------------------------------------------------------------
+# 3. PRICE INFLATION / VOLATILITY ASSESSMENT
 # ---------------------------------------------------------------
 pivot = price_trend.pivot(index="supplier_name", columns="year", values="avg_unit_price")
 years = sorted(pivot.columns.dropna().unique())
@@ -121,12 +170,11 @@ if latest_col:
 else:
     price_flags = pd.DataFrame(columns=["supplier_name", "latest_pct_change"])
 
-# Merge latest price change back into supplier_perf
 supplier_perf = supplier_perf.merge(price_flags, on="supplier_name", how="left")
 supplier_perf["latest_pct_change"].fillna(0.0, inplace=True)
 
 # ---------------------------------------------------------------
-# 3. EXPLICIT INVENTORY STOCKOUT & HIGH-RISK SUPPLIER LINKAGE
+# 4. EXPLICIT INVENTORY STOCKOUT & HIGH-RISK SUPPLIER LINKAGE
 # ---------------------------------------------------------------
 inv_linked_sql = """
 SELECT 
@@ -146,13 +194,12 @@ JOIN suppliers s ON p.primary_supplier_id = s.supplier_id
 
 inv_linked_df = pd.read_sql(inv_linked_sql, conn)
 inv_linked_df = inv_linked_df.merge(
-    supplier_perf[["supplier_id", "risk_tier", "primary_risk_axis"]],
+    supplier_perf[["supplier_id", "risk_tier", "primary_risk_axis", "composite_risk_index", "trajectory_direction"]],
     on="supplier_id", how="left"
 )
 
 understocked_df = inv_linked_df[inv_linked_df["stock_status"] == "Understocked"]
 understocked_high_risk = understocked_df[understocked_df["risk_tier"] == "High Risk"]
-understocked_medium_risk = understocked_df[understocked_df["risk_tier"] == "Medium Risk"]
 
 high_risk_spend = supplier_perf[supplier_perf["risk_tier"] == "High Risk"]["total_spend"].sum()
 total_spend_all = supplier_perf["total_spend"].sum()
@@ -167,10 +214,11 @@ inventory_exposure_summary = {
     "high_risk_spend_share_pct": round(float(high_risk_spend / total_spend_all * 100), 1) if total_spend_all > 0 else 0.0,
     "reliability_risk_suppliers": int((supplier_perf["primary_risk_axis"].str.contains("Reliability")).sum()),
     "quality_risk_suppliers": int((supplier_perf["primary_risk_axis"].str.contains("Quality")).sum()),
+    "deteriorating_trend_suppliers": int((supplier_perf["trajectory_direction"].str.contains("Deteriorating")).sum()),
 }
 
 # ---------------------------------------------------------------
-# 4. PROCUREMENT HEALTH SCORE (Weighted Composite)
+# 5. PROCUREMENT HEALTH SCORE (Weighted Composite)
 # ---------------------------------------------------------------
 supplier_reliability = supplier_perf["on_time_pct"].mean()
 inv_counts = inventory_risk["stock_status"].value_counts(normalize=True) * 100
@@ -203,31 +251,32 @@ overall_health = round(
 # Executive narrative
 worst_rel = supplier_perf.sort_values("on_time_pct").iloc[0]
 worst_qual = supplier_perf.sort_values("defect_rate_pct", ascending=False).iloc[0]
-candidates = supplier_perf[(supplier_perf["on_time_pct"] > 85) & (supplier_perf["risk_tier"] == "Low Risk")].sort_values("avg_order_value")
-best_alt = candidates.iloc[0] if not candidates.empty else supplier_perf.sort_values("on_time_pct", ascending=False).iloc[0]
+worst_trend = supplier_perf.sort_values("delay_trend_slope", ascending=False).iloc[0]
 
 narrative = (
-    f"Delivery reliability and quality failures stem from distinct supplier cohorts. "
-    f"{worst_rel['supplier_name']} (Tier: {worst_rel['tier']}) is the weakest SLA performer with a {worst_rel['on_time_pct']}% on-time rate and {worst_rel['avg_delay_days']} avg delay days. "
-    f"Conversely, {worst_qual['supplier_name']} represents a Quality Risk axis with a {worst_qual['defect_rate_pct']}% defect rate despite decent timelines. "
+    f"Advanced 4-component risk scoring reveals distinct supplier failure modes. "
+    f"{worst_rel['supplier_name']} (Tier: {worst_rel['tier']}) represents extreme Reliability Risk with a {worst_rel['on_time_pct']}% on-time rate. "
+    f"Conversely, {worst_trend['supplier_name']} exhibits a severe Deteriorating Trajectory (slope: +{worst_trend['delay_trend_slope']} days/mo), falling into High Risk despite past performance. "
     f"Crucially, {inventory_exposure_summary['understocked_high_risk_skus']} of the {inventory_exposure_summary['understocked_skus']} understocked SKUs ({inventory_exposure_summary['understocked_high_risk_pct']}%) are primary-sourced from High-Risk suppliers, requiring urgent dual-sourcing."
 )
 
 summary = {
     "overall_health_score": overall_health,
     "components": components,
-    "risk_scoring_methodology": {
-        "formula": "Points: [<75% On-Time: +2, <85% On-Time: +1, Defect >5%: +2, Defect >2%: +1, Delay >3d: +1, Tier 3: +1, Import: +0.5]",
-        "thresholds": "High Risk >= 4.0, Medium Risk >= 2.0, Low Risk < 2.0",
+    "composite_risk_scoring_formula": {
+        "equation": "Composite Risk Index = 0.35 * C_late + 0.25 * C_defect + 0.20 * C_price_vol + 0.20 * C_delay_trend_slope",
+        "percentile_thresholds": "High Risk (Top 30% riskiest), Medium Risk (Middle 45%), Low Risk (Bottom 25%)",
         "axis_breakdown": {
             "reliability_risk_count": inventory_exposure_summary["reliability_risk_suppliers"],
             "quality_risk_count": inventory_exposure_summary["quality_risk_suppliers"],
+            "deteriorating_trend_count": inventory_exposure_summary["deteriorating_trend_suppliers"],
         }
     },
     "inventory_exposure": inventory_exposure_summary,
-    "top_suppliers": supplier_perf.sort_values("on_time_pct", ascending=False).head(5).to_dict(orient="records"),
-    "bottom_suppliers": supplier_perf.sort_values("on_time_pct").head(5).to_dict(orient="records"),
+    "top_suppliers": supplier_perf.sort_values("composite_risk_index").head(5).to_dict(orient="records"),
+    "bottom_suppliers": supplier_perf.sort_values("composite_risk_index", ascending=False).head(5).to_dict(orient="records"),
     "worst_quality_suppliers": supplier_perf.sort_values("defect_rate_pct", ascending=False).head(5).to_dict(orient="records"),
+    "worst_trend_suppliers": supplier_perf.sort_values("delay_trend_slope", ascending=False).head(5).to_dict(orient="records"),
     "risk_distribution": supplier_perf["risk_tier"].value_counts().to_dict(),
     "monthly_trend": monthly_trend.to_dict(orient="records"),
     "inventory_status": inventory_risk["stock_status"].value_counts().to_dict(),
@@ -241,7 +290,7 @@ with open(OUT_PATH, "w", encoding="utf-8") as f:
     json.dump(summary, f, indent=2, default=str)
 
 print(f"Overall Procurement Health Score: {overall_health}/100")
-print(f"Saved rigorous KPI summary & Inventory Linkage to {OUT_PATH}")
+print(f"Saved 4-Component Composite Risk Summary & Trajectory Trend to {OUT_PATH}")
 print(f"\nExample Narrative:\n{narrative}")
 
 conn.close()
