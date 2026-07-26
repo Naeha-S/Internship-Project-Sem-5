@@ -63,7 +63,7 @@ py test_pipeline.py
 ### 2. Launch the Streamlit Interactive BI Dashboard
 ```bash
 # Launch Streamlit BI Studio
-streamlit run dashboard/app.py
+.venv\Scripts\python.exe -m streamlit run dashboard/app.py
 ```
 Open **`http://localhost:8501`** in any web browser to interact with the executive studio.
 

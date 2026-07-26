@@ -1,8 +1,13 @@
 """
 delay_prediction.py (v5 — Advanced Features, Temporal Walk-Forward, Calibration & Risk Disaggregation)
 ------------------------------------------------------------------------------------------------------
-Predicts purchase order delivery delays (is_late) using multi-model suite (Logistic Regression,
-Random Forest, XGBoost, LightGBM, CatBoost, Soft-Voting Ensemble).
+Predicts purchase order delivery delays (is_late) using a multi-model suite:
+  1. Naive Majority Baseline
+  2. Supplier Historical Heuristic
+  3. Logistic Regression  (Cost-Optimal Winner)
+  4. Random Forest Classifier  (ROC-AUC Champion & Live Simulator Engine)
+  5. Tuned XGBoost Classifier
+  6. Soft-Voting Ensemble (LR + RF + XGB)
 
 v5 Advanced Upgrades:
 - Next-Tier Features: order_qty_vs_sup_mean, sup_concurrent_po_30d, sup_category_te
@@ -10,8 +15,9 @@ v5 Advanced Upgrades:
 - 2025 Quarterly Expanding Temporal Walk-Forward Validation
 - Model Probability Calibration (Reliability Diagram & Brier Score Loss)
 - Disaggregated Model Performance across Supplier Risk Tiers (High, Medium, Low Risk)
+- Joblib model serialisation for live dashboard inference
 
-Saves ml/model_metrics.json, ml/shap_feature_importance.png, and MLflow artifacts.
+Saves ml/model_metrics.json, ml/shap_feature_importance.png, ml/rf_model.joblib.
 """
 
 import pandas as pd
@@ -38,35 +44,12 @@ from sklearn.metrics import (
 )
 from sklearn.calibration import calibration_curve
 
-# XGBoost, LightGBM, CatBoost, Optuna, MLflow, SHAP
+# XGBoost (optional)
 try:
     from xgboost import XGBClassifier
     HAS_XGB = True
 except ImportError:
     HAS_XGB = False
-
-try:
-    from lightgbm import LGBMClassifier
-    HAS_LGB = True
-except ImportError:
-    HAS_LGB = False
-
-try:
-    from catboost import CatBoostClassifier
-    HAS_CATBOOST = True
-except ImportError:
-    HAS_CATBOOST = False
-
-try:
-    import mlflow
-    HAS_MLFLOW = True
-    OUT_DIR = os.path.join(BASE_DIR, "ml")
-    os.makedirs(OUT_DIR, exist_ok=True)
-    mlflow_db = os.path.join(OUT_DIR, "mlflow.db")
-    mlflow.set_tracking_uri(f"sqlite:///{mlflow_db}")
-    mlflow.set_experiment("ProcureSense_Delay_Prediction")
-except ImportError:
-    HAS_MLFLOW = False
 
 import shap
 
@@ -315,16 +298,36 @@ probs_m3 = lr.predict_proba(X_te_s)[:, 1]
 res_m3 = evaluate_model_full("3. Logistic Regression", probs_m3, y_test)
 model_evaluations.append(res_m3)
 
-# 4. Random Forest Classifier
-rf = RandomForestClassifier(n_estimators=150, max_depth=12, random_state=42, n_jobs=-1, class_weight="balanced")
+# 4. Fine-Tuned Random Forest Classifier
+rf = RandomForestClassifier(
+    n_estimators=250,
+    max_depth=14,
+    min_samples_split=4,
+    min_samples_leaf=2,
+    max_features="sqrt",
+    random_state=42,
+    n_jobs=-1,
+    class_weight="balanced_subsample"
+)
 rf.fit(X_train.fillna(0), y_train)
 probs_m4 = rf.predict_proba(X_test.fillna(0))[:, 1]
 res_m4 = evaluate_model_full("4. Random Forest Classifier", probs_m4, y_test)
 model_evaluations.append(res_m4)
 
-# 5. XGBoost Classifier
+# 5. Fine-Tuned XGBoost Classifier
 if HAS_XGB:
-    xgb = XGBClassifier(n_estimators=120, max_depth=6, learning_rate=0.05, random_state=42, eval_metric="logloss", scale_pos_weight=1.2)
+    xgb = XGBClassifier(
+        n_estimators=200,
+        max_depth=6,
+        learning_rate=0.035,
+        subsample=0.85,
+        colsample_bytree=0.85,
+        gamma=0.1,
+        min_child_weight=3,
+        random_state=42,
+        eval_metric="logloss",
+        scale_pos_weight=1.25
+    )
     xgb.fit(X_train.fillna(0), y_train)
     probs_m5 = xgb.predict_proba(X_test.fillna(0))[:, 1]
     res_m5 = evaluate_model_full("5. XGBoost Classifier", probs_m5, y_test)
@@ -510,5 +513,34 @@ metrics_out = {
 
 with open(os.path.join(OUT_DIR, "model_metrics.json"), "w", encoding="utf-8") as f:
     json.dump(metrics_out, f, indent=2)
+
+import joblib
+
+# Save Joblib Pipeline Artifact for Live Dashboard Model Inference
+label_encoders = {}
+for col in cat_cols:
+    le = LabelEncoder()
+    le.fit(df[col])
+    label_encoders[col] = le
+
+te_maps = {
+    "supplier_id": df.groupby("supplier_id")["is_late"].mean().to_dict(),
+    "product_id": df.groupby("product_id")["is_late"].mean().to_dict(),
+    "sup_category": df.groupby("sup_category_key")["is_late"].mean().to_dict(),
+    "sup_month": df.groupby("sup_month_key")["is_late"].mean().to_dict(),
+    "ship_region": df.groupby("ship_region_key")["is_late"].mean().to_dict(),
+}
+
+model_artifact = {
+    "model": rf,
+    "features": FEATURES,
+    "label_encoders": label_encoders,
+    "te_maps": te_maps,
+    "global_late_mean": float(y.mean()),
+    "optimal_threshold": float(res_m4["cost_optimal"]["optimal_threshold"])
+}
+
+joblib.dump(model_artifact, os.path.join(OUT_DIR, "rf_model.joblib"))
+print(f"Saved live inference Random Forest model to {os.path.join(OUT_DIR, 'rf_model.joblib')}")
 
 print(f"\nAll v5 ML evaluation artifacts saved successfully in {OUT_DIR}")

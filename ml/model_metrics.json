@@ -1,13 +1,13 @@
 {
   "version": "v5",
   "cost_optimal_model_name": "Logistic Regression",
-  "cost_optimal_expected_cost_inr": 88280000.0,
-  "cost_optimal_recall": 0.668,
-  "cost_optimal_roc_auc": 0.7,
+  "cost_optimal_expected_cost_inr": 84640000.0,
+  "cost_optimal_recall": 0.684,
+  "cost_optimal_roc_auc": 0.701,
   "champion_model_name": "Random Forest Classifier",
-  "champion_roc_auc": 0.709,
-  "champion_accuracy": 0.65,
-  "champion_fpr": 0.325,
+  "champion_roc_auc": 0.714,
+  "champion_accuracy": 0.654,
+  "champion_fpr": 0.283,
   "cost_matrix": {
     "fn_stockout_penalty_inr": 50000.0,
     "fp_expedite_cost_inr": 5000.0
@@ -21,41 +21,41 @@
     {
       "model_name": "1. Naive Majority Baseline",
       "roc_auc": 0.5,
-      "pr_auc": 0.473,
+      "pr_auc": 0.471,
       "default_thresh_0.5": {
-        "accuracy": 0.527,
+        "accuracy": 0.529,
         "precision": 0.0,
         "recall": 0.0,
         "f1_score": 0.0,
         "false_positive_rate": 0.0,
-        "expected_cost_inr": 234950000.0,
+        "expected_cost_inr": 234150000.0,
         "confusion_matrix": [
           [
-            5245,
+            5261,
             0
           ],
           [
-            4699,
+            4683,
             0
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.473,
-        "precision": 0.473,
+        "accuracy": 0.471,
+        "precision": 0.471,
         "recall": 1.0,
-        "f1_score": 0.642,
+        "f1_score": 0.64,
         "false_positive_rate": 1.0,
-        "expected_cost_inr": 26225000.0,
+        "expected_cost_inr": 26305000.0,
         "confusion_matrix": [
           [
             0,
-            5245
+            5261
           ],
           [
             0,
-            4699
+            4683
           ]
         ]
       }
@@ -63,209 +63,209 @@
     {
       "model_name": "2. Supplier Historical Heuristic",
       "roc_auc": 0.68,
-      "pr_auc": 0.652,
+      "pr_auc": 0.651,
       "default_thresh_0.5": {
         "accuracy": 0.622,
-        "precision": 0.666,
+        "precision": 0.665,
         "recall": 0.4,
         "f1_score": 0.5,
         "false_positive_rate": 0.18,
-        "expected_cost_inr": 145710000.0,
+        "expected_cost_inr": 145130000.0,
         "confusion_matrix": [
           [
-            4303,
-            942
+            4315,
+            946
           ],
           [
-            2820,
-            1879
+            2808,
+            1875
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.473,
-        "precision": 0.473,
+        "accuracy": 0.471,
+        "precision": 0.471,
         "recall": 1.0,
-        "f1_score": 0.642,
+        "f1_score": 0.64,
         "false_positive_rate": 1.0,
-        "expected_cost_inr": 26225000.0,
+        "expected_cost_inr": 26305000.0,
         "confusion_matrix": [
           [
             0,
-            5245
+            5261
           ],
           [
             0,
-            4699
-          ]
-        ]
-      }
-    },
-    {
-      "model_name": "3. Logistic Regression",
-      "roc_auc": 0.7,
-      "pr_auc": 0.672,
-      "default_thresh_0.5": {
-        "accuracy": 0.637,
-        "precision": 0.605,
-        "recall": 0.668,
-        "f1_score": 0.635,
-        "false_positive_rate": 0.39,
-        "expected_cost_inr": 88280000.0,
-        "confusion_matrix": [
-          [
-            3199,
-            2046
-          ],
-          [
-            1561,
-            3138
-          ]
-        ]
-      },
-      "cost_optimal": {
-        "optimal_threshold": 0.14,
-        "accuracy": 0.492,
-        "precision": 0.482,
-        "recall": 0.996,
-        "f1_score": 0.649,
-        "false_positive_rate": 0.961,
-        "expected_cost_inr": 26045000.0,
-        "confusion_matrix": [
-          [
-            206,
-            5039
-          ],
-          [
-            17,
-            4682
-          ]
-        ]
-      }
-    },
-    {
-      "model_name": "4. Random Forest Classifier",
-      "roc_auc": 0.709,
-      "pr_auc": 0.681,
-      "default_thresh_0.5": {
-        "accuracy": 0.65,
-        "precision": 0.632,
-        "recall": 0.622,
-        "f1_score": 0.627,
-        "false_positive_rate": 0.325,
-        "expected_cost_inr": 97280000.0,
-        "confusion_matrix": [
-          [
-            3539,
-            1706
-          ],
-          [
-            1775,
-            2924
-          ]
-        ]
-      },
-      "cost_optimal": {
-        "optimal_threshold": 0.11,
-        "accuracy": 0.476,
-        "precision": 0.474,
-        "recall": 1.0,
-        "f1_score": 0.643,
-        "false_positive_rate": 0.994,
-        "expected_cost_inr": 26110000.0,
-        "confusion_matrix": [
-          [
-            33,
-            5212
-          ],
-          [
-            1,
-            4698
-          ]
-        ]
-      }
-    },
-    {
-      "model_name": "5. XGBoost Classifier",
-      "roc_auc": 0.71,
-      "pr_auc": 0.692,
-      "default_thresh_0.5": {
-        "accuracy": 0.648,
-        "precision": 0.629,
-        "recall": 0.621,
-        "f1_score": 0.625,
-        "false_positive_rate": 0.329,
-        "expected_cost_inr": 97625000.0,
-        "confusion_matrix": [
-          [
-            3520,
-            1725
-          ],
-          [
-            1780,
-            2919
-          ]
-        ]
-      },
-      "cost_optimal": {
-        "optimal_threshold": 0.1,
-        "accuracy": 0.488,
-        "precision": 0.48,
-        "recall": 0.997,
-        "f1_score": 0.648,
-        "false_positive_rate": 0.967,
-        "expected_cost_inr": 26170000.0,
-        "confusion_matrix": [
-          [
-            171,
-            5074
-          ],
-          [
-            16,
             4683
           ]
         ]
       }
     },
     {
-      "model_name": "6. Soft-Voting Ensemble",
-      "roc_auc": 0.71,
-      "pr_auc": 0.687,
+      "model_name": "3. Logistic Regression",
+      "roc_auc": 0.701,
+      "pr_auc": 0.672,
       "default_thresh_0.5": {
-        "accuracy": 0.652,
-        "precision": 0.627,
-        "recall": 0.648,
-        "f1_score": 0.638,
-        "false_positive_rate": 0.345,
-        "expected_cost_inr": 91705000.0,
+        "accuracy": 0.638,
+        "precision": 0.602,
+        "recall": 0.684,
+        "f1_score": 0.64,
+        "false_positive_rate": 0.403,
+        "expected_cost_inr": 84640000.0,
         "confusion_matrix": [
           [
-            3434,
-            1811
+            3143,
+            2118
           ],
           [
-            1653,
-            3046
+            1481,
+            3202
+          ]
+        ]
+      },
+      "cost_optimal": {
+        "optimal_threshold": 0.12,
+        "accuracy": 0.477,
+        "precision": 0.474,
+        "recall": 0.999,
+        "f1_score": 0.643,
+        "false_positive_rate": 0.987,
+        "expected_cost_inr": 26120000.0,
+        "confusion_matrix": [
+          [
+            67,
+            5194
+          ],
+          [
+            3,
+            4680
+          ]
+        ]
+      }
+    },
+    {
+      "model_name": "4. Random Forest Classifier",
+      "roc_auc": 0.714,
+      "pr_auc": 0.688,
+      "default_thresh_0.5": {
+        "accuracy": 0.654,
+        "precision": 0.647,
+        "recall": 0.583,
+        "f1_score": 0.614,
+        "false_positive_rate": 0.283,
+        "expected_cost_inr": 104995000.0,
+        "confusion_matrix": [
+          [
+            3772,
+            1489
+          ],
+          [
+            1951,
+            2732
+          ]
+        ]
+      },
+      "cost_optimal": {
+        "optimal_threshold": 0.12,
+        "accuracy": 0.479,
+        "precision": 0.475,
+        "recall": 0.999,
+        "f1_score": 0.644,
+        "false_positive_rate": 0.983,
+        "expected_cost_inr": 26060000.0,
+        "confusion_matrix": [
+          [
+            89,
+            5172
+          ],
+          [
+            4,
+            4679
+          ]
+        ]
+      }
+    },
+    {
+      "model_name": "5. XGBoost Classifier",
+      "roc_auc": 0.717,
+      "pr_auc": 0.696,
+      "default_thresh_0.5": {
+        "accuracy": 0.653,
+        "precision": 0.624,
+        "recall": 0.666,
+        "f1_score": 0.644,
+        "false_positive_rate": 0.358,
+        "expected_cost_inr": 87705000.0,
+        "confusion_matrix": [
+          [
+            3380,
+            1881
+          ],
+          [
+            1566,
+            3117
+          ]
+        ]
+      },
+      "cost_optimal": {
+        "optimal_threshold": 0.1,
+        "accuracy": 0.489,
+        "precision": 0.48,
+        "recall": 0.995,
+        "f1_score": 0.647,
+        "false_positive_rate": 0.961,
+        "expected_cost_inr": 26385000.0,
+        "confusion_matrix": [
+          [
+            204,
+            5057
+          ],
+          [
+            22,
+            4661
+          ]
+        ]
+      }
+    },
+    {
+      "model_name": "6. Soft-Voting Ensemble",
+      "roc_auc": 0.714,
+      "pr_auc": 0.69,
+      "default_thresh_0.5": {
+        "accuracy": 0.652,
+        "precision": 0.625,
+        "recall": 0.653,
+        "f1_score": 0.639,
+        "false_positive_rate": 0.349,
+        "expected_cost_inr": 90335000.0,
+        "confusion_matrix": [
+          [
+            3424,
+            1837
+          ],
+          [
+            1623,
+            3060
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.11,
         "accuracy": 0.479,
-        "precision": 0.476,
-        "recall": 1.0,
+        "precision": 0.475,
+        "recall": 0.999,
         "f1_score": 0.644,
-        "false_positive_rate": 0.988,
-        "expected_cost_inr": 26000000.0,
+        "false_positive_rate": 0.984,
+        "expected_cost_inr": 26045000.0,
         "confusion_matrix": [
           [
-            65,
-            5180
+            82,
+            5179
           ],
           [
-            2,
-            4697
+            3,
+            4680
           ]
         ]
       }
@@ -276,136 +276,136 @@
       "quarter": "2025 Q1",
       "train_size": 20056,
       "test_size": 2482,
-      "roc_auc": 0.72,
-      "pr_auc": 0.657,
-      "accuracy": 0.666
+      "roc_auc": 0.723,
+      "pr_auc": 0.656,
+      "accuracy": 0.669
     },
     {
       "quarter": "2025 Q2",
       "train_size": 22538,
       "test_size": 2477,
-      "roc_auc": 0.727,
-      "pr_auc": 0.691,
+      "roc_auc": 0.728,
+      "pr_auc": 0.694,
       "accuracy": 0.671
     },
     {
       "quarter": "2025 Q3",
       "train_size": 25015,
       "test_size": 2456,
-      "roc_auc": 0.71,
-      "pr_auc": 0.69,
-      "accuracy": 0.648
+      "roc_auc": 0.711,
+      "pr_auc": 0.683,
+      "accuracy": 0.66
     },
     {
       "quarter": "2025 Q4",
       "train_size": 27471,
       "test_size": 2529,
-      "roc_auc": 0.722,
-      "pr_auc": 0.74,
-      "accuracy": 0.624
+      "roc_auc": 0.725,
+      "pr_auc": 0.742,
+      "accuracy": 0.628
     }
   ],
   "calibration_curve_brier_scores": {
     "Random Forest Classifier": {
-      "brier_score_loss": 0.2159,
+      "brier_score_loss": 0.2142,
       "mean_predicted_prob": [
-        0.093,
-        0.161,
-        0.255,
-        0.351,
-        0.45,
+        0.086,
+        0.158,
+        0.257,
+        0.352,
+        0.449,
         0.549,
-        0.648,
+        0.644,
         0.743,
-        0.845,
-        0.927
+        0.837,
+        0.914
       ],
       "fraction_of_positives": [
-        0.059,
-        0.132,
-        0.238,
-        0.33,
-        0.458,
-        0.548,
-        0.614,
-        0.736,
-        0.833,
-        0.941
+        0.051,
+        0.124,
+        0.252,
+        0.345,
+        0.462,
+        0.558,
+        0.66,
+        0.779,
+        0.882,
+        0.971
       ]
     },
     "Logistic Regression": {
-      "brier_score_loss": 0.223,
+      "brier_score_loss": 0.2236,
       "mean_predicted_prob": [
         0.093,
-        0.158,
-        0.252,
-        0.35,
+        0.159,
+        0.253,
+        0.351,
         0.451,
-        0.549,
-        0.65,
-        0.749,
+        0.551,
+        0.651,
+        0.748,
         0.847,
         0.933
       ],
       "fraction_of_positives": [
-        0.074,
-        0.143,
-        0.267,
-        0.337,
-        0.453,
-        0.483,
-        0.577,
-        0.629,
-        0.71,
-        0.886
+        0.059,
+        0.136,
+        0.259,
+        0.329,
+        0.437,
+        0.484,
+        0.562,
+        0.621,
+        0.707,
+        0.889
       ]
     },
     "XGBoost Classifier": {
-      "brier_score_loss": 0.2161,
+      "brier_score_loss": 0.215,
       "mean_predicted_prob": [
         0.079,
-        0.155,
-        0.254,
-        0.352,
-        0.451,
+        0.154,
+        0.255,
+        0.351,
+        0.45,
         0.549,
-        0.647,
-        0.748,
-        0.85,
-        0.938
+        0.649,
+        0.747,
+        0.846,
+        0.935
       ],
       "fraction_of_positives": [
-        0.086,
-        0.19,
-        0.272,
-        0.357,
-        0.448,
-        0.516,
-        0.588,
-        0.674,
-        0.794,
-        0.922
+        0.097,
+        0.156,
+        0.267,
+        0.345,
+        0.421,
+        0.504,
+        0.576,
+        0.677,
+        0.762,
+        0.936
       ]
     },
     "Supplier Heuristic": {
-      "brier_score_loss": 0.2267,
+      "brier_score_loss": 0.2265,
       "mean_predicted_prob": [
-        0.252,
+        0.249,
         0.343,
-        0.444,
-        0.543,
-        0.622,
-        0.729,
-        0.815
+        0.443,
+        0.54,
+        0.621,
+        0.764,
+        0.834
       ],
       "fraction_of_positives": [
-        0.25,
-        0.35,
-        0.515,
-        0.601,
-        0.685,
-        0.776,
-        0.841
+        0.248,
+        0.354,
+        0.512,
+        0.599,
+        0.683,
+        0.78,
+        0.949
       ]
     }
   },
@@ -413,177 +413,177 @@
     {
       "risk_tier": "High Risk",
       "sample_size": 3013,
-      "late_rate": 0.673,
-      "roc_auc": 0.652,
-      "accuracy": 0.674,
-      "precision": 0.706,
-      "recall": 0.884
+      "late_rate": 0.672,
+      "roc_auc": 0.666,
+      "accuracy": 0.679,
+      "precision": 0.712,
+      "recall": 0.878
     },
     {
       "risk_tier": "Medium Risk",
       "sample_size": 4515,
-      "late_rate": 0.448,
+      "late_rate": 0.447,
       "roc_auc": 0.633,
-      "accuracy": 0.6,
-      "precision": 0.561,
-      "recall": 0.495
+      "accuracy": 0.601,
+      "precision": 0.572,
+      "recall": 0.425
     },
     {
       "risk_tier": "Low Risk",
       "sample_size": 2416,
-      "late_rate": 0.267,
-      "roc_auc": 0.663,
-      "accuracy": 0.712,
-      "precision": 0.42,
-      "recall": 0.2
+      "late_rate": 0.265,
+      "roc_auc": 0.66,
+      "accuracy": 0.721,
+      "precision": 0.429,
+      "recall": 0.151
     }
   ],
   "feature_importance": [
     {
       "feature": "sup_ewm_ontime",
-      "mean_abs_shap": 0.07828899601383121
+      "mean_abs_shap": 0.07432818446562953
     },
     {
       "feature": "sup_ewm_delay",
-      "mean_abs_shap": 0.0666535787396833
+      "mean_abs_shap": 0.06203129619299952
     },
     {
       "feature": "ship_region_te",
-      "mean_abs_shap": 0.05723858341167194
+      "mean_abs_shap": 0.05341153782034687
     },
     {
       "feature": "sup_month_te",
-      "mean_abs_shap": 0.05346587504186246
+      "mean_abs_shap": 0.05173541958984223
     },
     {
       "feature": "supplier_health_index",
-      "mean_abs_shap": 0.04975538750437594
+      "mean_abs_shap": 0.04830832502321089
     },
     {
       "feature": "sup_rolling_ontime",
-      "mean_abs_shap": 0.04815669003212713
+      "mean_abs_shap": 0.04687295581991395
     },
     {
       "feature": "sup_rolling_delay",
-      "mean_abs_shap": 0.0442307765104792
-    },
-    {
-      "feature": "order_month",
-      "mean_abs_shap": 0.04302446230325981
+      "mean_abs_shap": 0.04209405995638654
     },
     {
       "feature": "shipping_mode_code",
-      "mean_abs_shap": 0.04106858020947936
-    },
-    {
-      "feature": "supplier_id_te",
-      "mean_abs_shap": 0.037143102229182885
+      "mean_abs_shap": 0.03747729981856595
     },
     {
       "feature": "crude_oil_index",
-      "mean_abs_shap": 0.035518395708632425
+      "mean_abs_shap": 0.03719837563626402
     },
     {
-      "feature": "product_id_te",
-      "mean_abs_shap": 0.03519279907922475
-    },
-    {
-      "feature": "sup_category_te",
-      "mean_abs_shap": 0.033968069905591605
-    },
-    {
-      "feature": "order_qty_vs_sup_mean",
-      "mean_abs_shap": 0.03330727439920091
-    },
-    {
-      "feature": "order_cost",
-      "mean_abs_shap": 0.0331427501405108
-    },
-    {
-      "feature": "quantity",
-      "mean_abs_shap": 0.03273178963196253
-    },
-    {
-      "feature": "logistics_stress_index",
-      "mean_abs_shap": 0.032699127716164414
-    },
-    {
-      "feature": "unit_price",
-      "mean_abs_shap": 0.030574930467202305
-    },
-    {
-      "feature": "sup_rolling_defect",
-      "mean_abs_shap": 0.028919342482563972
+      "feature": "supplier_id_te",
+      "mean_abs_shap": 0.036914574719948294
     },
     {
       "feature": "sup_concurrent_po_30d",
-      "mean_abs_shap": 0.024642391659353863
+      "mean_abs_shap": 0.035865645932891606
     },
     {
-      "feature": "is_peak_season",
-      "mean_abs_shap": 0.02196180566487773
+      "feature": "quantity",
+      "mean_abs_shap": 0.035748620964870186
+    },
+    {
+      "feature": "order_qty_vs_sup_mean",
+      "mean_abs_shap": 0.035512630288507506
+    },
+    {
+      "feature": "order_cost",
+      "mean_abs_shap": 0.03496495009075995
+    },
+    {
+      "feature": "order_month",
+      "mean_abs_shap": 0.034703082663489586
+    },
+    {
+      "feature": "product_id_te",
+      "mean_abs_shap": 0.034380109425644186
+    },
+    {
+      "feature": "logistics_stress_index",
+      "mean_abs_shap": 0.033727886991148745
+    },
+    {
+      "feature": "sup_category_te",
+      "mean_abs_shap": 0.03362992353140319
+    },
+    {
+      "feature": "unit_price",
+      "mean_abs_shap": 0.03318957729065056
+    },
+    {
+      "feature": "sup_rolling_defect",
+      "mean_abs_shap": 0.030941345757227682
     },
     {
       "feature": "unit_cost_base",
-      "mean_abs_shap": 0.018538106018450514
+      "mean_abs_shap": 0.020088855940569104
     },
     {
       "feature": "sub_category_code",
-      "mean_abs_shap": 0.016726347138096804
-    },
-    {
-      "feature": "order_quarter",
-      "mean_abs_shap": 0.015485342480420354
-    },
-    {
-      "feature": "lead_time_days_base",
-      "mean_abs_shap": 0.014954445369978486
+      "mean_abs_shap": 0.017778519556377104
     },
     {
       "feature": "order_day_of_week",
-      "mean_abs_shap": 0.014749983775123664
+      "mean_abs_shap": 0.01720717779421503
+    },
+    {
+      "feature": "lead_time_days_base",
+      "mean_abs_shap": 0.016811722745286552
+    },
+    {
+      "feature": "is_peak_season",
+      "mean_abs_shap": 0.016646998058409274
+    },
+    {
+      "feature": "order_quarter",
+      "mean_abs_shap": 0.015322721597596659
     },
     {
       "feature": "container_shortage_flag",
-      "mean_abs_shap": 0.011986248023027607
+      "mean_abs_shap": 0.012531590956141963
     },
     {
       "feature": "category_code",
-      "mean_abs_shap": 0.010207759128828169
+      "mean_abs_shap": 0.01203572852487263
     },
     {
       "feature": "supplier_age_years",
-      "mean_abs_shap": 0.010038843276123158
+      "mean_abs_shap": 0.010553604180226038
     },
     {
       "feature": "priority_code",
-      "mean_abs_shap": 0.00934514534215824
+      "mean_abs_shap": 0.010143912185051064
     },
     {
       "feature": "region_code",
-      "mean_abs_shap": 0.008434490436529028
+      "mean_abs_shap": 0.00968466327353799
     },
     {
       "feature": "tier_code",
-      "mean_abs_shap": 0.004301352099639715
+      "mean_abs_shap": 0.004869778042832503
     },
     {
       "feature": "is_holiday_order",
-      "mean_abs_shap": 0.0035472280603856764
+      "mean_abs_shap": 0.003288925165183194
     }
   ],
   "winning_model_selection": {
     "cost_optimal_winner": {
       "model_name": "Logistic Regression",
-      "expected_risk_cost_inr": 88280000.0,
-      "roc_auc": 0.7,
-      "recall": 0.668
+      "expected_risk_cost_inr": 84640000.0,
+      "roc_auc": 0.701,
+      "recall": 0.684
     },
     "roc_auc_champion": {
       "model_name": "Random Forest Classifier",
-      "roc_auc": 0.709,
-      "accuracy": 0.65,
-      "fpr": 0.325
+      "roc_auc": 0.714,
+      "accuracy": 0.654,
+      "fpr": 0.283
     }
   }
 }

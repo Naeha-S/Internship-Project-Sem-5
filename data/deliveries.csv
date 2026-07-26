@@ -173,7 +173,7 @@ PO50170,TRK-40644538,FedEx Supply Chain,2025-10-13,11,8,False,0,False,Passed Ins
 PO50171,TRK-33848536,FedEx Supply Chain,2023-05-09,13,32,True,19,False,Passed Inspection,Delivered
 PO50172,TRK-30351845,Blue Dart Cargo,2025-10-16,24,36,True,12,False,Passed Inspection,Delivered
 PO50173,TRK-89073517,Blue Dart Cargo,2023-05-07,5,2,False,0,True,Major Defect - Rejected,Delivered
-PO50174,TRK-94881550,Kuehne+Nagel,2024-10-28,17,26,True,9,True,Major Defect - Rejected,Delivered
+PO50174,TRK-94881550,Kuehne+Nagel,2024-10-17,17,15,False,0,True,Major Defect - Rejected,Delivered
 PO50175,TRK-55492084,Maersk Line,2025-10-29,9,15,True,6,False,Passed Inspection,Delivered
 PO50176,TRK-55043443,Maersk Line,2025-01-21,37,34,False,0,False,Passed Inspection,Delivered
 PO50177,TRK-55790982,Kuehne+Nagel,2025-12-03,30,30,False,0,False,Passed Inspection,Delivered
@@ -507,7 +507,7 @@ PO50504,TRK-19126977,DB Schenker Logistics,2024-04-26,4,3,False,0,False,Passed I
 PO50505,TRK-55065527,DHL Express,2023-07-29,26,45,True,19,False,Passed Inspection,Delivered
 PO50506,TRK-36889228,DHL Express,2024-10-07,22,21,False,0,False,Passed Inspection,Delivered
 PO50507,TRK-27186778,Blue Dart Cargo,2023-01-27,20,17,False,0,False,Passed Inspection,Delivered
-PO50508,TRK-65095356,DHL Express,2023-06-07,31,33,True,2,False,Passed Inspection,Delivered
+PO50508,TRK-65095356,DHL Express,2023-06-02,31,28,False,0,False,Passed Inspection,Delivered
 PO50509,TRK-62373793,Maersk Line,2023-03-16,15,23,True,8,False,Passed Inspection,Delivered
 PO50510,TRK-11275853,Maersk Line,2023-12-01,7,11,True,4,False,Passed Inspection,Delivered
 PO50511,TRK-34439831,DB Schenker Logistics,2025-04-28,17,14,False,0,False,Passed Inspection,Delivered
@@ -1442,7 +1442,7 @@ PO51439,TRK-82574550,Maersk Line,2024-03-05,19,17,False,0,False,Passed Inspectio
 PO51440,TRK-19241180,Blue Dart Cargo,2024-11-28,4,15,True,11,False,Passed Inspection,Delivered
 PO51441,TRK-85987075,Kuehne+Nagel,2024-03-02,10,10,False,0,False,Passed Inspection,Delivered
 PO51442,TRK-41944382,Kuehne+Nagel,2023-12-08,38,38,False,0,False,Passed Inspection,Delivered
-PO51443,TRK-96297546,Kuehne+Nagel,2024-05-19,20,32,True,12,False,Passed Inspection,Delivered
+PO51443,TRK-96297546,Kuehne+Nagel,2024-05-06,20,19,False,0,False,Passed Inspection,Delivered
 PO51444,TRK-53999393,DHL Express,2024-01-09,26,32,True,6,False,Passed Inspection,Delivered
 PO51445,TRK-38494924,Kuehne+Nagel,2025-06-17,7,6,False,0,False,Passed Inspection,Delivered
 PO51446,TRK-44126209,FedEx Supply Chain,2024-04-29,34,34,False,0,False,Passed Inspection,Delivered
@@ -1687,7 +1687,7 @@ PO51684,TRK-87454165,Blue Dart Cargo,2023-10-25,15,20,True,5,False,Passed Inspec
 PO51685,TRK-74083451,DHL Express,2023-07-01,25,41,True,16,False,Passed Inspection,Delivered
 PO51686,TRK-29910044,FedEx Supply Chain,2023-11-07,7,24,True,17,False,Passed Inspection,Delivered
 PO51687,TRK-62802964,DB Schenker Logistics,2025-11-03,13,18,True,5,False,Passed Inspection,Delivered
-PO51688,TRK-67089078,DB Schenker Logistics,2025-10-30,2,10,True,8,False,Passed Inspection,Delivered
+PO51688,TRK-67089078,DB Schenker Logistics,2025-10-21,2,1,False,0,False,Passed Inspection,Delivered
 PO51689,TRK-92394004,Maersk Line,2024-07-23,18,16,False,0,False,Passed Inspection,Delivered
 PO51690,TRK-76407703,FedEx Supply Chain,2024-03-21,10,7,False,0,False,Passed Inspection,Delivered
 PO51691,TRK-11209744,FedEx Supply Chain,2025-07-10,14,24,True,10,False,Passed Inspection,Delivered
@@ -2527,7 +2527,7 @@ PO52524,TRK-19763666,DB Schenker Logistics,2023-10-06,18,15,False,0,False,Passed
 PO52525,TRK-50725187,Blue Dart Cargo,2025-12-24,9,22,True,13,False,Passed Inspection,Delivered
 PO52526,TRK-31988112,DB Schenker Logistics,2025-01-13,22,32,True,10,False,Passed Inspection,Delivered
 PO52527,TRK-88326675,FedEx Supply Chain,2023-02-26,25,25,False,0,False,Passed Inspection,Delivered
-PO52528,TRK-21685264,Maersk Line,2023-10-04,4,6,True,2,False,Passed Inspection,Delivered
+PO52528,TRK-21685264,Maersk Line,2023-09-29,4,1,False,0,False,Passed Inspection,Delivered
 PO52529,TRK-84075223,FedEx Supply Chain,2025-03-22,3,1,False,0,False,Passed Inspection,Delivered
 PO52530,TRK-94776041,Maersk Line,2025-08-16,15,13,False,0,False,Passed Inspection,Delivered
 PO52531,TRK-42780120,Maersk Line,2025-10-12,2,1,False,0,False,Passed Inspection,Delivered
@@ -3047,7 +3047,7 @@ PO53044,TRK-22979071,DHL Express,2025-10-15,22,21,False,0,False,Passed Inspectio
 PO53045,TRK-35396777,Maersk Line,2024-01-04,31,30,False,0,False,Passed Inspection,Delivered
 PO53046,TRK-73660596,Kuehne+Nagel,2024-09-01,20,18,False,0,False,Passed Inspection,Delivered
 PO53047,TRK-82700498,Kuehne+Nagel,2023-08-14,3,3,False,0,False,Passed Inspection,Delivered
-PO53048,TRK-97447320,DHL Express,2025-05-22,25,38,True,13,False,Passed Inspection,Delivered
+PO53048,TRK-97447320,DHL Express,2025-05-08,25,24,False,0,False,Passed Inspection,Delivered
 PO53049,TRK-63082645,DB Schenker Logistics,2024-01-07,24,24,False,0,False,Passed Inspection,Delivered
 PO53050,TRK-85689417,DHL Express,2025-09-16,23,34,True,11,False,Passed Inspection,Delivered
 PO53051,TRK-39491718,Blue Dart Cargo,2023-04-18,18,17,False,0,False,Passed Inspection,Delivered
@@ -6205,7 +6205,7 @@ PO56202,TRK-93578131,FedEx Supply Chain,2023-02-02,5,12,True,7,False,Passed Insp
 PO56203,TRK-47785883,DB Schenker Logistics,2025-11-16,31,48,True,17,False,Passed Inspection,Delivered
 PO56204,TRK-37958874,Kuehne+Nagel,2023-09-05,12,23,True,11,False,Passed Inspection,Delivered
 PO56205,TRK-36724393,DB Schenker Logistics,2024-04-17,11,28,True,17,False,Passed Inspection,Delivered
-PO56206,TRK-10127696,DB Schenker Logistics,2024-01-18,15,24,True,9,True,Minor Defect - Accepted,Delivered
+PO56206,TRK-10127696,DB Schenker Logistics,2024-01-07,15,13,False,0,True,Minor Defect - Accepted,Delivered
 PO56207,TRK-60526971,DB Schenker Logistics,2024-04-14,29,26,False,0,False,Passed Inspection,Delivered
 PO56208,TRK-48599032,Kuehne+Nagel,2025-04-17,7,5,False,0,False,Passed Inspection,Delivered
 PO56209,TRK-22290714,Kuehne+Nagel,2025-03-07,18,16,False,0,False,Passed Inspection,Delivered
@@ -6870,7 +6870,7 @@ PO56867,TRK-63398152,Kuehne+Nagel,2023-08-11,29,31,True,2,False,Passed Inspectio
 PO56868,TRK-69457467,DB Schenker Logistics,2025-10-26,19,17,False,0,False,Passed Inspection,Delivered
 PO56869,TRK-81439365,Blue Dart Cargo,2025-11-16,31,29,False,0,False,Passed Inspection,Delivered
 PO56870,TRK-27949754,DB Schenker Logistics,2025-04-24,18,17,False,0,False,Passed Inspection,Delivered
-PO56871,TRK-51166861,FedEx Supply Chain,2023-10-14,15,16,True,1,False,Passed Inspection,Delivered
+PO56871,TRK-51166861,FedEx Supply Chain,2023-10-10,15,12,False,0,False,Passed Inspection,Delivered
 PO56872,TRK-94346814,DB Schenker Logistics,2025-01-03,37,59,True,22,False,Passed Inspection,Delivered
 PO56873,TRK-83323233,DB Schenker Logistics,2025-01-20,17,25,True,8,False,Passed Inspection,Delivered
 PO56874,TRK-91828071,Maersk Line,2025-09-14,36,36,False,0,False,Passed Inspection,Delivered
@@ -7330,7 +7330,7 @@ PO57327,TRK-42036314,Kuehne+Nagel,2023-05-29,23,23,False,0,False,Passed Inspecti
 PO57328,TRK-26875521,DB Schenker Logistics,2025-09-24,3,14,True,11,False,Passed Inspection,Delivered
 PO57329,TRK-79627840,Kuehne+Nagel,2025-06-11,30,47,True,17,False,Passed Inspection,Delivered
 PO57330,TRK-36414122,Kuehne+Nagel,2023-05-05,7,13,True,6,False,Passed Inspection,Delivered
-PO57331,TRK-88455530,Blue Dart Cargo,2024-12-16,24,31,True,7,False,Passed Inspection,Delivered
+PO57331,TRK-88455530,Blue Dart Cargo,2024-12-06,24,21,False,0,False,Passed Inspection,Delivered
 PO57332,TRK-23131796,Blue Dart Cargo,2025-02-04,29,42,True,13,False,Passed Inspection,Delivered
 PO57333,TRK-29082306,Kuehne+Nagel,2024-08-05,17,14,False,0,False,Passed Inspection,Delivered
 PO57334,TRK-12627475,Blue Dart Cargo,2024-11-10,9,16,True,7,False,Passed Inspection,Delivered
@@ -7538,7 +7538,7 @@ PO57535,TRK-98888965,FedEx Supply Chain,2025-08-13,26,35,True,9,False,Passed Ins
 PO57536,TRK-48229017,Kuehne+Nagel,2024-05-31,28,26,False,0,False,Passed Inspection,Delivered
 PO57537,TRK-78709920,FedEx Supply Chain,2024-08-11,10,9,False,0,False,Passed Inspection,Delivered
 PO57538,TRK-30885229,DB Schenker Logistics,2025-12-12,10,25,True,15,True,Minor Defect - Accepted,Delivered
-PO57539,TRK-15879273,Maersk Line,2023-04-22,38,45,True,7,False,Passed Inspection,Delivered
+PO57539,TRK-15879273,Maersk Line,2023-04-13,38,36,False,0,False,Passed Inspection,Delivered
 PO57540,TRK-98821355,Blue Dart Cargo,2023-08-31,19,17,False,0,False,Passed Inspection,Delivered
 PO57541,TRK-60235277,Kuehne+Nagel,2025-07-20,19,19,False,0,False,Passed Inspection,Delivered
 PO57542,TRK-46462397,FedEx Supply Chain,2024-08-25,13,11,False,0,False,Passed Inspection,Delivered
@@ -7748,7 +7748,7 @@ PO57745,TRK-15724342,DB Schenker Logistics,2024-10-03,18,18,False,0,False,Passed
 PO57746,TRK-56474843,FedEx Supply Chain,2024-09-13,3,14,True,11,False,Passed Inspection,Delivered
 PO57747,TRK-33255032,DB Schenker Logistics,2023-07-01,5,10,True,5,False,Passed Inspection,Delivered
 PO57748,TRK-57438861,DHL Express,2024-07-31,20,19,False,0,False,Passed Inspection,Delivered
-PO57749,TRK-12988739,FedEx Supply Chain,2023-04-13,26,36,True,10,False,Passed Inspection,Delivered
+PO57749,TRK-12988739,FedEx Supply Chain,2023-04-01,26,24,False,0,False,Passed Inspection,Delivered
 PO57750,TRK-37538655,DB Schenker Logistics,2023-06-16,5,9,True,4,False,Passed Inspection,Delivered
 PO57751,TRK-13415348,DHL Express,2024-07-01,3,1,False,0,False,Passed Inspection,Delivered
 PO57752,TRK-96613751,Blue Dart Cargo,2024-12-04,12,28,True,16,False,Passed Inspection,Delivered
@@ -7818,7 +7818,7 @@ PO57815,TRK-96358627,Blue Dart Cargo,2023-11-09,3,1,False,0,False,Passed Inspect
 PO57816,TRK-14322227,DB Schenker Logistics,2025-04-05,18,15,False,0,True,Major Defect - Rejected,Delivered
 PO57817,TRK-19362446,DB Schenker Logistics,2023-09-21,25,22,False,0,False,Passed Inspection,Delivered
 PO57818,TRK-68593509,FedEx Supply Chain,2025-08-03,28,44,True,16,False,Passed Inspection,Delivered
-PO57819,TRK-95338718,DHL Express,2024-05-04,16,23,True,7,False,Passed Inspection,Delivered
+PO57819,TRK-95338718,DHL Express,2024-04-25,16,14,False,0,False,Passed Inspection,Delivered
 PO57820,TRK-22273438,Blue Dart Cargo,2024-04-10,24,23,False,0,False,Passed Inspection,Delivered
 PO57821,TRK-58386879,Kuehne+Nagel,2024-05-30,21,19,False,0,False,Passed Inspection,Delivered
 PO57822,TRK-79954561,FedEx Supply Chain,2025-06-30,21,38,True,17,False,Passed Inspection,Delivered
@@ -8223,7 +8223,7 @@ PO58220,TRK-33578214,FedEx Supply Chain,2025-12-21,30,28,False,0,False,Passed In
 PO58221,TRK-92665915,FedEx Supply Chain,2024-12-09,8,8,False,0,True,Major Defect - Rejected,Delivered
 PO58222,TRK-43299402,Kuehne+Nagel,2023-02-14,22,20,False,0,False,Passed Inspection,Delivered
 PO58223,TRK-80205950,FedEx Supply Chain,2023-08-04,6,21,True,15,False,Passed Inspection,Delivered
-PO58224,TRK-73146029,Blue Dart Cargo,2024-05-31,32,50,True,18,False,Passed Inspection,Delivered
+PO58224,TRK-73146029,Blue Dart Cargo,2024-05-13,32,32,False,0,False,Passed Inspection,Delivered
 PO58225,TRK-35549476,DHL Express,2023-03-02,23,20,False,0,False,Passed Inspection,Delivered
 PO58226,TRK-29712071,Kuehne+Nagel,2023-07-13,11,10,False,0,False,Passed Inspection,Delivered
 PO58227,TRK-55823606,Maersk Line,2025-06-04,16,19,True,3,False,Passed Inspection,Delivered
@@ -8783,7 +8783,7 @@ PO58780,TRK-66355914,Kuehne+Nagel,2023-04-16,18,34,True,16,False,Passed Inspecti
 PO58781,TRK-74558155,Maersk Line,2025-12-19,6,22,True,16,False,Passed Inspection,Delivered
 PO58782,TRK-82134487,Maersk Line,2023-10-20,31,28,False,0,False,Passed Inspection,Delivered
 PO58783,TRK-49470539,Kuehne+Nagel,2024-06-09,37,34,False,0,False,Passed Inspection,Delivered
-PO58784,TRK-62681120,Maersk Line,2024-02-15,15,20,True,5,False,Passed Inspection,Delivered
+PO58784,TRK-62681120,Maersk Line,2024-02-07,15,12,False,0,False,Passed Inspection,Delivered
 PO58785,TRK-29297767,Blue Dart Cargo,2023-03-05,7,15,True,8,False,Passed Inspection,Delivered
 PO58786,TRK-99348733,DHL Express,2025-09-26,10,10,False,0,False,Passed Inspection,Delivered
 PO58787,TRK-32412061,DHL Express,2023-09-07,9,9,False,0,False,Passed Inspection,Delivered
@@ -10001,7 +10001,7 @@ PO59998,TRK-52850851,Kuehne+Nagel,2024-06-02,29,42,True,13,False,Passed Inspecti
 PO59999,TRK-86416623,Blue Dart Cargo,2023-12-04,5,4,False,0,False,Passed Inspection,Delivered
 PO60000,TRK-25986773,DB Schenker Logistics,2026-01-15,29,43,True,14,False,Passed Inspection,Delivered
 PO60001,TRK-28080288,FedEx Supply Chain,2024-05-30,22,22,False,0,False,Passed Inspection,Delivered
-PO60002,TRK-81269998,DHL Express,2024-05-30,25,43,True,18,False,Passed Inspection,Delivered
+PO60002,TRK-81269998,DHL Express,2024-05-12,25,25,False,0,False,Passed Inspection,Delivered
 PO60003,TRK-94961417,DHL Express,2025-01-28,24,30,True,6,False,Passed Inspection,Delivered
 PO60004,TRK-37599750,Maersk Line,2025-10-28,9,6,False,0,False,Passed Inspection,Delivered
 PO60005,TRK-45000907,DB Schenker Logistics,2023-06-14,24,22,False,0,False,Passed Inspection,Delivered
@@ -10293,7 +10293,7 @@ PO60290,TRK-10489579,Maersk Line,2023-10-08,28,27,False,0,False,Passed Inspectio
 PO60291,TRK-20545392,FedEx Supply Chain,2025-05-03,25,25,False,0,False,Passed Inspection,Delivered
 PO60292,TRK-36369989,FedEx Supply Chain,2023-04-04,6,4,False,0,False,Passed Inspection,Delivered
 PO60293,TRK-33201076,Maersk Line,2024-03-06,4,1,False,0,False,Passed Inspection,Delivered
-PO60294,TRK-99739484,FedEx Supply Chain,2024-03-05,26,39,True,13,False,Passed Inspection,Delivered
+PO60294,TRK-99739484,FedEx Supply Chain,2024-02-20,26,25,False,0,False,Passed Inspection,Delivered
 PO60295,TRK-15734286,Maersk Line,2025-01-16,13,27,True,14,False,Passed Inspection,Delivered
 PO60296,TRK-46030991,DHL Express,2024-09-19,25,42,True,17,False,Passed Inspection,Delivered
 PO60297,TRK-44517124,Maersk Line,2024-11-21,23,20,False,0,False,Passed Inspection,Delivered
@@ -10496,11 +10496,11 @@ PO60493,TRK-83782443,FedEx Supply Chain,2023-05-02,38,35,False,0,False,Passed In
 PO60494,TRK-68210095,Maersk Line,2025-12-27,25,41,True,16,False,Passed Inspection,Delivered
 PO60495,TRK-42003899,DB Schenker Logistics,2025-12-04,23,20,False,0,False,Passed Inspection,Delivered
 PO60496,TRK-42960593,Maersk Line,2024-04-23,11,11,False,0,False,Passed Inspection,Delivered
-PO60497,TRK-75967874,Kuehne+Nagel,2024-05-23,28,42,True,14,False,Passed Inspection,Delivered
+PO60497,TRK-75967874,Kuehne+Nagel,2024-05-08,28,27,False,0,False,Passed Inspection,Delivered
 PO60498,TRK-47125780,DB Schenker Logistics,2024-04-21,24,31,True,7,True,Major Defect - Rejected,Delivered
 PO60499,TRK-70857775,Maersk Line,2024-02-21,26,33,True,7,False,Passed Inspection,Delivered
 PO60500,TRK-67140297,Blue Dart Cargo,2024-09-14,23,27,True,4,False,Passed Inspection,Delivered
-PO60501,TRK-50344089,DHL Express,2024-02-18,9,23,True,14,False,Passed Inspection,Delivered
+PO60501,TRK-50344089,DHL Express,2024-02-03,9,8,False,0,False,Passed Inspection,Delivered
 PO60502,TRK-31382818,Kuehne+Nagel,2024-11-06,3,1,False,0,False,Passed Inspection,Delivered
 PO60503,TRK-82639691,Kuehne+Nagel,2024-04-11,33,52,True,19,False,Passed Inspection,Delivered
 PO60504,TRK-30245852,Kuehne+Nagel,2024-12-25,35,35,False,0,False,Passed Inspection,Delivered
@@ -10525,7 +10525,7 @@ PO60522,TRK-60658275,Blue Dart Cargo,2023-09-06,15,29,True,14,False,Passed Inspe
 PO60523,TRK-72690461,Kuehne+Nagel,2023-01-31,16,15,False,0,False,Passed Inspection,Delivered
 PO60524,TRK-33338735,Blue Dart Cargo,2023-06-30,33,35,True,2,False,Passed Inspection,Delivered
 PO60525,TRK-70152100,Blue Dart Cargo,2023-10-10,27,46,True,19,False,Passed Inspection,Delivered
-PO60526,TRK-29355920,Kuehne+Nagel,2023-09-30,20,23,True,3,False,Passed Inspection,Delivered
+PO60526,TRK-29355920,Kuehne+Nagel,2023-09-24,20,17,False,0,False,Passed Inspection,Delivered
 PO60527,TRK-65145223,FedEx Supply Chain,2025-04-13,15,25,True,10,True,Major Defect - Rejected,Delivered
 PO60528,TRK-25879531,DHL Express,2025-10-10,34,42,True,8,False,Passed Inspection,Delivered
 PO60529,TRK-84032361,Maersk Line,2025-08-20,28,26,False,0,False,Passed Inspection,Delivered
@@ -10609,7 +10609,7 @@ PO60606,TRK-40344583,DB Schenker Logistics,2024-12-14,15,14,False,0,False,Passed
 PO60607,TRK-84113525,Maersk Line,2023-07-01,37,35,False,0,False,Passed Inspection,Delivered
 PO60608,TRK-44949264,Maersk Line,2025-09-06,19,16,False,0,False,Passed Inspection,Delivered
 PO60609,TRK-53301332,DHL Express,2023-01-27,16,16,False,0,False,Passed Inspection,Delivered
-PO60610,TRK-16414227,Maersk Line,2024-04-30,5,19,True,14,False,Passed Inspection,Delivered
+PO60610,TRK-16414227,Maersk Line,2024-04-15,5,4,False,0,False,Passed Inspection,Delivered
 PO60611,TRK-17475168,DHL Express,2024-05-16,27,26,False,0,False,Passed Inspection,Delivered
 PO60612,TRK-21410490,FedEx Supply Chain,2026-01-11,18,16,False,0,False,Passed Inspection,Delivered
 PO60613,TRK-19182456,DB Schenker Logistics,2023-04-22,16,13,False,0,False,Passed Inspection,Delivered
@@ -10755,7 +10755,7 @@ PO60752,TRK-60401939,Kuehne+Nagel,2024-02-04,5,3,False,0,False,Passed Inspection
 PO60753,TRK-70578654,DB Schenker Logistics,2026-01-11,29,50,True,21,False,Passed Inspection,Delivered
 PO60754,TRK-24783431,Blue Dart Cargo,2025-02-22,36,44,True,8,False,Passed Inspection,Delivered
 PO60755,TRK-49267369,Blue Dart Cargo,2025-08-02,9,16,True,7,False,Passed Inspection,Delivered
-PO60756,TRK-65918238,Kuehne+Nagel,2025-04-22,16,22,True,6,False,Passed Inspection,Delivered
+PO60756,TRK-65918238,Kuehne+Nagel,2025-04-14,16,14,False,0,False,Passed Inspection,Delivered
 PO60757,TRK-93994927,Blue Dart Cargo,2024-12-06,28,25,False,0,False,Passed Inspection,Delivered
 PO60758,TRK-91182901,Maersk Line,2023-02-22,20,19,False,0,False,Passed Inspection,Delivered
 PO60759,TRK-49966847,Blue Dart Cargo,2024-10-23,21,22,True,1,False,Passed Inspection,Delivered
@@ -10828,7 +10828,7 @@ PO60825,TRK-31188191,DHL Express,2024-12-25,16,14,False,0,False,Passed Inspectio
 PO60826,TRK-69696087,Kuehne+Nagel,2023-11-10,34,36,True,2,False,Passed Inspection,Delivered
 PO60827,TRK-78495168,Kuehne+Nagel,2025-12-24,22,20,False,0,False,Passed Inspection,Delivered
 PO60828,TRK-68141093,Kuehne+Nagel,2024-07-20,23,43,True,20,False,Passed Inspection,Delivered
-PO60829,TRK-99804069,FedEx Supply Chain,2024-09-28,30,33,True,3,False,Passed Inspection,Delivered
+PO60829,TRK-99804069,FedEx Supply Chain,2024-09-22,30,27,False,0,False,Passed Inspection,Delivered
 PO60830,TRK-21515443,DHL Express,2025-09-18,2,2,False,0,False,Passed Inspection,Delivered
 PO60831,TRK-36653914,DB Schenker Logistics,2023-12-11,5,10,True,5,False,Passed Inspection,Delivered
 PO60832,TRK-55485061,DHL Express,2024-06-20,20,20,False,0,False,Passed Inspection,Delivered
@@ -10935,7 +10935,7 @@ PO60932,TRK-15720967,Maersk Line,2025-02-12,29,46,True,17,False,Passed Inspectio
 PO60933,TRK-19610984,FedEx Supply Chain,2023-12-31,38,37,False,0,False,Passed Inspection,Delivered
 PO60934,TRK-71296951,Maersk Line,2024-08-06,15,13,False,0,False,Passed Inspection,Delivered
 PO60935,TRK-24762105,Blue Dart Cargo,2025-02-27,18,18,False,0,False,Passed Inspection,Delivered
-PO60936,TRK-29379701,Kuehne+Nagel,2024-09-07,37,52,True,15,False,Passed Inspection,Delivered
+PO60936,TRK-29379701,Kuehne+Nagel,2024-08-22,37,36,False,0,False,Passed Inspection,Delivered
 PO60937,TRK-73186387,DHL Express,2024-04-29,25,42,True,17,False,Passed Inspection,Delivered
 PO60938,TRK-30839966,FedEx Supply Chain,2024-03-26,9,9,False,0,False,Passed Inspection,Delivered
 PO60939,TRK-46649066,Blue Dart Cargo,2024-10-28,11,10,False,0,False,Passed Inspection,Delivered
@@ -11939,7 +11939,7 @@ PO61936,TRK-64317373,FedEx Supply Chain,2024-01-21,5,3,False,0,False,Passed Insp
 PO61937,TRK-66090190,DHL Express,2024-06-07,29,28,False,0,False,Passed Inspection,Delivered
 PO61938,TRK-62956829,DB Schenker Logistics,2023-10-20,37,46,True,9,True,Minor Defect - Accepted,Delivered
 PO61939,TRK-82267706,FedEx Supply Chain,2025-11-24,39,38,False,0,False,Passed Inspection,Delivered
-PO61940,TRK-91747240,DB Schenker Logistics,2025-06-11,29,30,True,1,False,Passed Inspection,Delivered
+PO61940,TRK-91747240,DB Schenker Logistics,2025-06-07,29,26,False,0,False,Passed Inspection,Delivered
 PO61941,TRK-56317211,Maersk Line,2023-08-20,15,14,False,0,False,Passed Inspection,Delivered
 PO61942,TRK-30320521,Maersk Line,2025-04-11,27,27,False,0,False,Passed Inspection,Delivered
 PO61943,TRK-69404598,Maersk Line,2023-07-26,11,10,False,0,False,Passed Inspection,Delivered
@@ -12073,7 +12073,7 @@ PO62070,TRK-81334749,Kuehne+Nagel,2024-03-29,11,10,False,0,False,Passed Inspecti
 PO62071,TRK-31695449,DB Schenker Logistics,2025-01-26,22,21,False,0,False,Passed Inspection,Delivered
 PO62072,TRK-32572867,Blue Dart Cargo,2025-06-21,23,40,True,17,False,Passed Inspection,Delivered
 PO62073,TRK-83211989,Blue Dart Cargo,2025-03-13,39,49,True,10,False,Passed Inspection,Delivered
-PO62074,TRK-55010242,Maersk Line,2024-09-29,21,34,True,13,False,Passed Inspection,Delivered
+PO62074,TRK-55010242,Maersk Line,2024-09-15,21,20,False,0,False,Passed Inspection,Delivered
 PO62075,TRK-28945575,Maersk Line,2026-01-09,37,36,False,0,False,Passed Inspection,Delivered
 PO62076,TRK-96270467,Maersk Line,2025-09-20,11,8,False,0,False,Passed Inspection,Delivered
 PO62077,TRK-93325578,FedEx Supply Chain,2023-08-26,17,16,False,0,False,Passed Inspection,Delivered
@@ -12196,7 +12196,7 @@ PO62193,TRK-32828058,DB Schenker Logistics,2025-02-25,25,22,False,0,False,Passed
 PO62194,TRK-58201813,Kuehne+Nagel,2023-07-15,6,24,True,18,False,Passed Inspection,Delivered
 PO62195,TRK-49779480,DB Schenker Logistics,2023-07-20,22,22,False,0,False,Passed Inspection,Delivered
 PO62196,TRK-93343276,Blue Dart Cargo,2023-01-31,6,6,False,0,False,Passed Inspection,Delivered
-PO62197,TRK-89467704,DHL Express,2025-12-22,25,47,True,22,False,Passed Inspection,Delivered
+PO62197,TRK-89467704,DHL Express,2025-11-30,25,25,False,0,False,Passed Inspection,Delivered
 PO62198,TRK-16413186,DB Schenker Logistics,2024-05-09,18,17,False,0,False,Passed Inspection,Delivered
 PO62199,TRK-86716872,DHL Express,2025-01-27,33,40,True,7,False,Passed Inspection,Delivered
 PO62200,TRK-50103717,Kuehne+Nagel,2023-07-26,29,42,True,13,False,Passed Inspection,Delivered
@@ -13262,7 +13262,7 @@ PO63259,TRK-85631952,DHL Express,2023-08-17,20,17,False,0,False,Passed Inspectio
 PO63260,TRK-75273242,DB Schenker Logistics,2025-10-23,24,28,True,4,True,Major Defect - Rejected,Delivered
 PO63261,TRK-50706959,DHL Express,2024-11-11,27,28,True,1,True,Major Defect - Rejected,Delivered
 PO63262,TRK-18065076,FedEx Supply Chain,2023-01-20,4,4,False,0,False,Passed Inspection,Delivered
-PO63263,TRK-35937347,DB Schenker Logistics,2023-05-20,16,28,True,12,False,Passed Inspection,Delivered
+PO63263,TRK-35937347,DB Schenker Logistics,2023-05-07,16,15,False,0,False,Passed Inspection,Delivered
 PO63264,TRK-49703167,FedEx Supply Chain,2025-06-27,20,17,False,0,False,Passed Inspection,Delivered
 PO63265,TRK-98693428,Kuehne+Nagel,2023-11-07,17,15,False,0,False,Passed Inspection,Delivered
 PO63266,TRK-16808366,Maersk Line,2023-08-09,37,54,True,17,False,Passed Inspection,Delivered
@@ -13458,7 +13458,7 @@ PO63455,TRK-13832518,DB Schenker Logistics,2025-12-20,37,37,False,0,False,Passed
 PO63456,TRK-39848391,DHL Express,2025-12-24,24,33,True,9,False,Passed Inspection,Delivered
 PO63457,TRK-55998207,FedEx Supply Chain,2023-11-26,34,52,True,18,False,Passed Inspection,Delivered
 PO63458,TRK-73276643,FedEx Supply Chain,2024-02-01,24,45,True,21,False,Passed Inspection,Delivered
-PO63459,TRK-17268039,Blue Dart Cargo,2023-09-16,29,32,True,3,False,Passed Inspection,Delivered
+PO63459,TRK-17268039,Blue Dart Cargo,2023-09-10,29,26,False,0,False,Passed Inspection,Delivered
 PO63460,TRK-46136502,Blue Dart Cargo,2024-09-17,15,12,False,0,False,Passed Inspection,Delivered
 PO63461,TRK-75078784,FedEx Supply Chain,2023-09-29,22,37,True,15,False,Passed Inspection,Delivered
 PO63462,TRK-47732640,Maersk Line,2025-05-18,6,3,False,0,False,Passed Inspection,Delivered
@@ -13521,7 +13521,7 @@ PO63518,TRK-17539745,Blue Dart Cargo,2024-09-06,21,31,True,10,False,Passed Inspe
 PO63519,TRK-51265330,Kuehne+Nagel,2023-03-08,15,27,True,12,False,Passed Inspection,Delivered
 PO63520,TRK-10835195,DHL Express,2023-12-16,17,28,True,11,True,Minor Defect - Accepted,Delivered
 PO63521,TRK-90769783,DB Schenker Logistics,2025-05-16,8,8,False,0,False,Passed Inspection,Delivered
-PO63522,TRK-84968713,Blue Dart Cargo,2023-04-19,3,20,True,17,False,Passed Inspection,Delivered
+PO63522,TRK-84968713,Blue Dart Cargo,2023-04-02,3,3,False,0,False,Passed Inspection,Delivered
 PO63523,TRK-66610974,FedEx Supply Chain,2025-03-20,36,36,False,0,False,Passed Inspection,Delivered
 PO63524,TRK-35589171,DB Schenker Logistics,2025-03-01,20,20,False,0,False,Passed Inspection,Delivered
 PO63525,TRK-24173455,DHL Express,2025-05-08,37,35,False,0,False,Passed Inspection,Delivered
@@ -13725,7 +13725,7 @@ PO63722,TRK-41066937,Kuehne+Nagel,2025-10-22,22,24,True,2,False,Passed Inspectio
 PO63723,TRK-23514241,FedEx Supply Chain,2023-08-08,23,22,False,0,False,Passed Inspection,Delivered
 PO63724,TRK-15594992,FedEx Supply Chain,2025-07-05,10,9,False,0,False,Passed Inspection,Delivered
 PO63725,TRK-88493084,Blue Dart Cargo,2023-06-27,13,23,True,10,False,Passed Inspection,Delivered
-PO63726,TRK-52007668,DB Schenker Logistics,2025-05-24,11,12,True,1,False,Passed Inspection,Delivered
+PO63726,TRK-52007668,DB Schenker Logistics,2025-05-20,11,8,False,0,False,Passed Inspection,Delivered
 PO63727,TRK-91988944,DHL Express,2024-02-28,25,23,False,0,False,Passed Inspection,Delivered
 PO63728,TRK-40032760,DB Schenker Logistics,2023-03-12,21,26,True,5,False,Passed Inspection,Delivered
 PO63729,TRK-32910449,Blue Dart Cargo,2024-05-10,12,27,True,15,False,Passed Inspection,Delivered
@@ -14002,7 +14002,7 @@ PO63999,TRK-60435988,Kuehne+Nagel,2025-01-27,34,46,True,12,False,Passed Inspecti
 PO64000,TRK-70315662,FedEx Supply Chain,2023-03-04,24,24,False,0,True,Minor Defect - Accepted,Delivered
 PO64001,TRK-26869628,Blue Dart Cargo,2023-04-28,14,15,True,1,False,Passed Inspection,Delivered
 PO64002,TRK-51911003,FedEx Supply Chain,2023-03-05,20,17,False,0,True,Major Defect - Rejected,Delivered
-PO64003,TRK-43860624,Kuehne+Nagel,2025-04-30,38,47,True,9,False,Passed Inspection,Delivered
+PO64003,TRK-43860624,Kuehne+Nagel,2025-04-19,38,36,False,0,False,Passed Inspection,Delivered
 PO64004,TRK-96306807,FedEx Supply Chain,2023-02-04,2,2,False,0,False,Passed Inspection,Delivered
 PO64005,TRK-50099575,FedEx Supply Chain,2024-04-28,24,24,False,0,False,Passed Inspection,Delivered
 PO64006,TRK-80339126,Maersk Line,2023-06-11,27,29,True,2,False,Passed Inspection,Delivered
@@ -14216,7 +14216,7 @@ PO64213,TRK-68915222,FedEx Supply Chain,2024-02-04,6,5,False,0,False,Passed Insp
 PO64214,TRK-63817972,FedEx Supply Chain,2023-09-15,20,17,False,0,True,Minor Defect - Accepted,Delivered
 PO64215,TRK-73717515,FedEx Supply Chain,2025-02-16,18,29,True,11,False,Passed Inspection,Delivered
 PO64216,TRK-23001548,Blue Dart Cargo,2023-06-10,29,40,True,11,False,Passed Inspection,Delivered
-PO64217,TRK-15309654,DB Schenker Logistics,2025-06-10,12,29,True,17,False,Passed Inspection,Delivered
+PO64217,TRK-15309654,DB Schenker Logistics,2025-05-24,12,12,False,0,False,Passed Inspection,Delivered
 PO64218,TRK-47318002,Kuehne+Nagel,2025-02-06,38,46,True,8,False,Passed Inspection,Delivered
 PO64219,TRK-47976722,Kuehne+Nagel,2025-12-05,2,17,True,15,False,Passed Inspection,Delivered
 PO64220,TRK-62844817,Maersk Line,2023-01-23,15,15,False,0,False,Passed Inspection,Delivered
@@ -14338,7 +14338,7 @@ PO64335,TRK-71942822,Maersk Line,2025-11-07,20,19,False,0,False,Passed Inspectio
 PO64336,TRK-27232781,Kuehne+Nagel,2023-05-29,8,6,False,0,False,Passed Inspection,Delivered
 PO64337,TRK-47195006,DHL Express,2025-01-28,36,44,True,8,False,Passed Inspection,Delivered
 PO64338,TRK-52745605,DB Schenker Logistics,2024-07-14,5,3,False,0,False,Passed Inspection,Delivered
-PO64339,TRK-51169850,Maersk Line,2023-05-28,26,44,True,18,False,Passed Inspection,Delivered
+PO64339,TRK-51169850,Maersk Line,2023-05-10,26,26,False,0,False,Passed Inspection,Delivered
 PO64340,TRK-20083821,DHL Express,2023-12-12,3,25,True,22,False,Passed Inspection,Delivered
 PO64341,TRK-49855365,DB Schenker Logistics,2025-06-03,3,22,True,19,False,Passed Inspection,Delivered
 PO64342,TRK-93937102,Maersk Line,2025-08-15,6,6,False,0,False,Passed Inspection,Delivered
@@ -14788,7 +14788,7 @@ PO64785,TRK-63747579,Maersk Line,2023-02-05,2,1,False,0,False,Passed Inspection,
 PO64786,TRK-19811226,Maersk Line,2025-07-24,38,41,True,3,False,Passed Inspection,Delivered
 PO64787,TRK-75258876,DHL Express,2024-07-29,18,16,False,0,False,Passed Inspection,Delivered
 PO64788,TRK-87942585,DB Schenker Logistics,2025-11-20,8,5,False,0,False,Passed Inspection,Delivered
-PO64789,TRK-98349324,FedEx Supply Chain,2023-05-03,23,29,True,6,False,Passed Inspection,Delivered
+PO64789,TRK-98349324,FedEx Supply Chain,2023-04-25,23,21,False,0,False,Passed Inspection,Delivered
 PO64790,TRK-11624733,DB Schenker Logistics,2025-10-16,4,1,False,0,False,Passed Inspection,Delivered
 PO64791,TRK-14252554,Maersk Line,2024-10-15,26,25,False,0,False,Passed Inspection,Delivered
 PO64792,TRK-47791814,DB Schenker Logistics,2023-05-27,29,33,True,4,False,Passed Inspection,Delivered
@@ -14998,7 +14998,7 @@ PO64995,TRK-79793768,DB Schenker Logistics,2024-03-17,31,46,True,15,False,Passed
 PO64996,TRK-33351659,Maersk Line,2023-11-17,26,25,False,0,False,Passed Inspection,Delivered
 PO64997,TRK-30795668,DHL Express,2025-12-02,29,27,False,0,False,Passed Inspection,Delivered
 PO64998,TRK-24202870,Kuehne+Nagel,2024-06-08,37,36,False,0,False,Passed Inspection,Delivered
-PO64999,TRK-80043974,Blue Dart Cargo,2025-01-25,22,31,True,9,False,Passed Inspection,Delivered
+PO64999,TRK-80043974,Blue Dart Cargo,2025-01-14,22,20,False,0,False,Passed Inspection,Delivered
 PO65000,TRK-58920313,Kuehne+Nagel,2025-12-28,19,17,False,0,False,Passed Inspection,Delivered
 PO65001,TRK-73818860,Kuehne+Nagel,2025-06-03,23,21,False,0,False,Passed Inspection,Delivered
 PO65002,TRK-32142291,Blue Dart Cargo,2025-04-14,3,14,True,11,False,Passed Inspection,Delivered
@@ -15677,7 +15677,7 @@ PO65674,TRK-33921473,DHL Express,2025-01-13,28,25,False,0,False,Passed Inspectio
 PO65675,TRK-77616708,Maersk Line,2024-12-05,3,25,True,22,False,Passed Inspection,Delivered
 PO65676,TRK-67430349,DB Schenker Logistics,2025-06-09,23,24,True,1,False,Passed Inspection,Delivered
 PO65677,TRK-61214084,DHL Express,2023-08-11,9,26,True,17,False,Passed Inspection,Delivered
-PO65678,TRK-65945883,Kuehne+Nagel,2023-09-05,25,38,True,13,False,Passed Inspection,Delivered
+PO65678,TRK-65945883,Kuehne+Nagel,2023-08-22,25,24,False,0,False,Passed Inspection,Delivered
 PO65679,TRK-17578047,Maersk Line,2024-08-28,22,22,False,0,False,Passed Inspection,Delivered
 PO65680,TRK-33415127,Maersk Line,2025-08-10,3,1,False,0,False,Passed Inspection,Delivered
 PO65681,TRK-86425379,Kuehne+Nagel,2025-03-25,26,23,False,0,False,Passed Inspection,Delivered
@@ -16031,7 +16031,7 @@ PO66028,TRK-38708443,DHL Express,2025-02-10,38,37,False,0,False,Passed Inspectio
 PO66029,TRK-55287862,Maersk Line,2024-08-14,18,24,True,6,False,Passed Inspection,Delivered
 PO66030,TRK-65630920,Kuehne+Nagel,2023-09-02,20,18,False,0,False,Passed Inspection,Delivered
 PO66031,TRK-96620392,Blue Dart Cargo,2025-11-26,38,52,True,14,False,Passed Inspection,Delivered
-PO66032,TRK-20122138,Kuehne+Nagel,2025-05-06,9,18,True,9,False,Passed Inspection,Delivered
+PO66032,TRK-20122138,Kuehne+Nagel,2025-04-25,9,7,False,0,False,Passed Inspection,Delivered
 PO66033,TRK-82059401,Maersk Line,2023-02-07,29,28,False,0,False,Passed Inspection,Delivered
 PO66034,TRK-95795886,DHL Express,2023-05-06,15,30,True,15,False,Passed Inspection,Delivered
 PO66035,TRK-85486110,FedEx Supply Chain,2023-03-13,7,10,True,3,False,Passed Inspection,Delivered
@@ -16591,7 +16591,7 @@ PO66588,TRK-43595183,FedEx Supply Chain,2026-01-04,37,34,False,0,False,Passed In
 PO66589,TRK-71455946,Kuehne+Nagel,2024-11-17,3,11,True,8,False,Passed Inspection,Delivered
 PO66590,TRK-34305437,DHL Express,2024-05-20,28,26,False,0,False,Passed Inspection,Delivered
 PO66591,TRK-57924341,DB Schenker Logistics,2024-07-16,33,31,False,0,False,Passed Inspection,Delivered
-PO66592,TRK-38245673,DB Schenker Logistics,2024-06-24,24,32,True,8,False,Passed Inspection,Delivered
+PO66592,TRK-38245673,DB Schenker Logistics,2024-06-14,24,22,False,0,False,Passed Inspection,Delivered
 PO66593,TRK-75860037,DHL Express,2023-06-05,18,33,True,15,False,Passed Inspection,Delivered
 PO66594,TRK-50806208,Maersk Line,2024-11-21,9,27,True,18,False,Passed Inspection,Delivered
 PO66595,TRK-66618984,DHL Express,2025-06-12,28,34,True,6,False,Passed Inspection,Delivered
@@ -16855,7 +16855,7 @@ PO66852,TRK-40357992,Kuehne+Nagel,2023-08-17,7,5,False,0,False,Passed Inspection
 PO66853,TRK-73189923,Maersk Line,2024-03-25,18,18,False,0,False,Passed Inspection,Delivered
 PO66854,TRK-40959514,DB Schenker Logistics,2024-09-23,19,23,True,4,False,Passed Inspection,Delivered
 PO66855,TRK-43544282,Blue Dart Cargo,2023-03-30,11,8,False,0,False,Passed Inspection,Delivered
-PO66856,TRK-15378307,Kuehne+Nagel,2025-11-06,21,35,True,14,False,Passed Inspection,Delivered
+PO66856,TRK-15378307,Kuehne+Nagel,2025-10-22,21,20,False,0,False,Passed Inspection,Delivered
 PO66857,TRK-23207284,Blue Dart Cargo,2025-06-02,3,2,False,0,False,Passed Inspection,Delivered
 PO66858,TRK-11609499,Kuehne+Nagel,2023-06-28,21,21,False,0,False,Passed Inspection,Delivered
 PO66859,TRK-93418116,DB Schenker Logistics,2025-08-18,25,38,True,13,False,Passed Inspection,Delivered
@@ -17121,7 +17121,7 @@ PO67118,TRK-44139137,FedEx Supply Chain,2023-12-14,18,24,True,6,False,Passed Ins
 PO67119,TRK-62731113,Blue Dart Cargo,2026-02-11,37,58,True,21,False,Passed Inspection,Delivered
 PO67120,TRK-52408690,DHL Express,2025-04-22,35,39,True,4,False,Passed Inspection,Delivered
 PO67121,TRK-12852905,FedEx Supply Chain,2025-09-20,39,36,False,0,False,Passed Inspection,Delivered
-PO67122,TRK-51841516,DHL Express,2024-11-06,23,35,True,12,False,Passed Inspection,Delivered
+PO67122,TRK-51841516,DHL Express,2024-10-24,23,22,False,0,False,Passed Inspection,Delivered
 PO67123,TRK-53486569,DHL Express,2024-09-02,33,52,True,19,False,Passed Inspection,Delivered
 PO67124,TRK-90056119,Kuehne+Nagel,2023-02-14,7,7,False,0,False,Passed Inspection,Delivered
 PO67125,TRK-73969095,Blue Dart Cargo,2023-04-04,21,18,False,0,False,Passed Inspection,Delivered
@@ -17293,7 +17293,7 @@ PO67290,TRK-10122477,FedEx Supply Chain,2023-05-01,37,37,False,0,False,Passed In
 PO67291,TRK-37847848,DB Schenker Logistics,2024-02-05,24,33,True,9,False,Passed Inspection,Delivered
 PO67292,TRK-79430121,Maersk Line,2025-05-01,5,4,False,0,False,Passed Inspection,Delivered
 PO67293,TRK-25545046,Maersk Line,2025-09-13,20,17,False,0,False,Passed Inspection,Delivered
-PO67294,TRK-36911237,DHL Express,2023-05-27,21,35,True,14,False,Passed Inspection,Delivered
+PO67294,TRK-36911237,DHL Express,2023-05-12,21,20,False,0,False,Passed Inspection,Delivered
 PO67295,TRK-35204884,DHL Express,2024-06-27,22,22,False,0,False,Passed Inspection,Delivered
 PO67296,TRK-93502410,DB Schenker Logistics,2024-03-18,8,8,False,0,False,Passed Inspection,Delivered
 PO67297,TRK-11647390,DB Schenker Logistics,2025-04-20,16,26,True,10,False,Passed Inspection,Delivered
@@ -17351,7 +17351,7 @@ PO67348,TRK-93597514,Kuehne+Nagel,2024-04-08,15,19,True,4,False,Passed Inspectio
 PO67349,TRK-31704676,FedEx Supply Chain,2024-09-22,24,28,True,4,False,Passed Inspection,Delivered
 PO67350,TRK-22229076,Maersk Line,2024-09-01,34,32,False,0,False,Passed Inspection,Delivered
 PO67351,TRK-15488990,Blue Dart Cargo,2024-11-08,29,37,True,8,False,Passed Inspection,Delivered
-PO67352,TRK-91328353,DHL Express,2023-02-25,16,30,True,14,False,Passed Inspection,Delivered
+PO67352,TRK-91328353,DHL Express,2023-02-10,16,15,False,0,False,Passed Inspection,Delivered
 PO67353,TRK-58697894,Blue Dart Cargo,2023-12-13,24,28,True,4,False,Passed Inspection,Delivered
 PO67354,TRK-89951154,Blue Dart Cargo,2024-01-13,3,1,False,0,False,Passed Inspection,Delivered
 PO67355,TRK-47790378,DB Schenker Logistics,2023-12-04,13,17,True,4,False,Passed Inspection,Delivered
@@ -17362,7 +17362,7 @@ PO67359,TRK-53184171,Maersk Line,2025-11-08,21,18,False,0,False,Passed Inspectio
 PO67360,TRK-57258583,Maersk Line,2025-01-05,6,12,True,6,False,Passed Inspection,Delivered
 PO67361,TRK-24111031,FedEx Supply Chain,2024-03-16,17,15,False,0,False,Passed Inspection,Delivered
 PO67362,TRK-42221891,DB Schenker Logistics,2024-05-04,13,13,False,0,False,Passed Inspection,Delivered
-PO67363,TRK-54625749,FedEx Supply Chain,2024-10-23,17,21,True,4,False,Passed Inspection,Delivered
+PO67363,TRK-54625749,FedEx Supply Chain,2024-10-16,17,14,False,0,False,Passed Inspection,Delivered
 PO67364,TRK-50444916,FedEx Supply Chain,2025-04-15,29,43,True,14,False,Passed Inspection,Delivered
 PO67365,TRK-73265908,Kuehne+Nagel,2024-01-04,26,38,True,12,False,Passed Inspection,Delivered
 PO67366,TRK-67677043,Blue Dart Cargo,2023-03-15,19,31,True,12,False,Passed Inspection,Delivered
@@ -18853,7 +18853,7 @@ PO68850,TRK-79713049,Maersk Line,2024-12-22,22,21,False,0,False,Passed Inspectio
 PO68851,TRK-22252406,Blue Dart Cargo,2024-05-11,25,24,False,0,False,Passed Inspection,Delivered
 PO68852,TRK-70351078,FedEx Supply Chain,2025-03-13,29,29,False,0,False,Passed Inspection,Delivered
 PO68853,TRK-34552446,FedEx Supply Chain,2023-08-25,15,13,False,0,False,Passed Inspection,Delivered
-PO68854,TRK-90217912,DB Schenker Logistics,2024-01-11,26,45,True,19,False,Passed Inspection,Delivered
+PO68854,TRK-90217912,DB Schenker Logistics,2023-12-23,26,26,False,0,False,Passed Inspection,Delivered
 PO68855,TRK-16447475,Kuehne+Nagel,2025-11-21,4,3,False,0,False,Passed Inspection,Delivered
 PO68856,TRK-97309250,DHL Express,2023-11-10,6,12,True,6,False,Passed Inspection,Delivered
 PO68857,TRK-58851794,FedEx Supply Chain,2025-03-13,4,14,True,10,False,Passed Inspection,Delivered
@@ -20043,7 +20043,7 @@ PO70040,TRK-94067919,DHL Express,2024-09-13,24,23,False,0,False,Passed Inspectio
 PO70041,TRK-52012784,Kuehne+Nagel,2023-03-14,33,32,False,0,False,Passed Inspection,Delivered
 PO70042,TRK-49513262,Maersk Line,2024-05-06,3,2,False,0,False,Passed Inspection,Delivered
 PO70043,TRK-47497254,DB Schenker Logistics,2025-09-29,20,20,False,0,False,Passed Inspection,Delivered
-PO70044,TRK-25443488,FedEx Supply Chain,2023-07-19,3,20,True,17,False,Passed Inspection,Delivered
+PO70044,TRK-25443488,FedEx Supply Chain,2023-07-02,3,3,False,0,False,Passed Inspection,Delivered
 PO70045,TRK-31610673,FedEx Supply Chain,2025-07-22,29,36,True,7,False,Passed Inspection,Delivered
 PO70046,TRK-19606729,DHL Express,2024-05-19,12,15,True,3,False,Passed Inspection,Delivered
 PO70047,TRK-91267016,DHL Express,2024-09-04,20,38,True,18,False,Passed Inspection,Delivered
@@ -20854,7 +20854,7 @@ PO70851,TRK-33229294,Kuehne+Nagel,2024-04-18,25,25,False,0,False,Passed Inspecti
 PO70852,TRK-31828706,DB Schenker Logistics,2025-10-10,2,1,False,0,False,Passed Inspection,Delivered
 PO70853,TRK-38510236,Blue Dart Cargo,2023-05-10,39,39,False,0,True,Major Defect - Rejected,Delivered
 PO70854,TRK-74115440,Kuehne+Nagel,2024-01-17,34,31,False,0,False,Passed Inspection,Delivered
-PO70855,TRK-11335232,DB Schenker Logistics,2024-01-13,30,47,True,17,True,Minor Defect - Accepted,Delivered
+PO70855,TRK-11335232,DB Schenker Logistics,2023-12-26,30,29,False,0,True,Minor Defect - Accepted,Delivered
 PO70856,TRK-79011801,Kuehne+Nagel,2025-03-10,37,36,False,0,False,Passed Inspection,Delivered
 PO70857,TRK-73217410,DHL Express,2024-12-01,37,37,False,0,False,Passed Inspection,Delivered
 PO70858,TRK-72852722,Blue Dart Cargo,2024-07-17,26,46,True,20,False,Passed Inspection,Delivered
@@ -21593,7 +21593,7 @@ PO71590,TRK-18578215,FedEx Supply Chain,2024-05-19,23,21,False,0,False,Passed In
 PO71591,TRK-12681984,FedEx Supply Chain,2023-05-18,30,30,False,0,False,Passed Inspection,Delivered
 PO71592,TRK-18200859,Maersk Line,2025-09-19,21,20,False,0,False,Passed Inspection,Delivered
 PO71593,TRK-39247716,Maersk Line,2024-12-25,20,30,True,10,False,Passed Inspection,Delivered
-PO71594,TRK-30287806,DHL Express,2024-10-12,23,26,True,3,False,Passed Inspection,Delivered
+PO71594,TRK-30287806,DHL Express,2024-10-06,23,20,False,0,False,Passed Inspection,Delivered
 PO71595,TRK-90227787,Blue Dart Cargo,2023-04-15,23,38,True,15,False,Passed Inspection,Delivered
 PO71596,TRK-55796057,Blue Dart Cargo,2025-12-19,22,21,False,0,False,Passed Inspection,Delivered
 PO71597,TRK-68857954,DHL Express,2023-05-10,34,45,True,11,True,Major Defect - Rejected,Delivered
@@ -22334,7 +22334,7 @@ PO72331,TRK-46345325,Kuehne+Nagel,2023-11-18,25,40,True,15,False,Passed Inspecti
 PO72332,TRK-93920487,Maersk Line,2025-06-14,22,20,False,0,False,Passed Inspection,Delivered
 PO72333,TRK-74997521,Maersk Line,2024-04-29,8,8,False,0,False,Passed Inspection,Delivered
 PO72334,TRK-63561568,DB Schenker Logistics,2024-01-26,4,19,True,15,False,Passed Inspection,Delivered
-PO72335,TRK-83156868,Blue Dart Cargo,2023-10-08,26,31,True,5,False,Passed Inspection,Delivered
+PO72335,TRK-83156868,Blue Dart Cargo,2023-09-30,26,23,False,0,False,Passed Inspection,Delivered
 PO72336,TRK-81783344,Blue Dart Cargo,2025-06-29,12,12,False,0,True,Minor Defect - Accepted,Delivered
 PO72337,TRK-53825281,DB Schenker Logistics,2024-08-08,26,23,False,0,False,Passed Inspection,Delivered
 PO72338,TRK-59906058,Maersk Line,2024-06-04,28,28,False,0,False,Passed Inspection,Delivered
@@ -23629,7 +23629,7 @@ PO73626,TRK-93028109,Maersk Line,2024-08-13,25,23,False,0,False,Passed Inspectio
 PO73627,TRK-72828496,DB Schenker Logistics,2023-08-27,8,12,True,4,False,Passed Inspection,Delivered
 PO73628,TRK-50438114,Maersk Line,2023-01-24,9,7,False,0,False,Passed Inspection,Delivered
 PO73629,TRK-47398314,FedEx Supply Chain,2023-03-21,17,16,False,0,False,Passed Inspection,Delivered
-PO73630,TRK-61673849,Kuehne+Nagel,2024-05-16,23,35,True,12,False,Passed Inspection,Delivered
+PO73630,TRK-61673849,Kuehne+Nagel,2024-05-03,23,22,False,0,False,Passed Inspection,Delivered
 PO73631,TRK-44429100,DHL Express,2025-07-03,31,48,True,17,False,Passed Inspection,Delivered
 PO73632,TRK-87312576,Blue Dart Cargo,2025-05-24,10,10,False,0,False,Passed Inspection,Delivered
 PO73633,TRK-97968517,DHL Express,2025-07-04,24,31,True,7,False,Passed Inspection,Delivered
@@ -23880,7 +23880,7 @@ PO73877,TRK-12406870,FedEx Supply Chain,2024-12-23,15,15,False,0,False,Passed In
 PO73878,TRK-71966152,FedEx Supply Chain,2024-09-23,11,19,True,8,False,Passed Inspection,Delivered
 PO73879,TRK-79568921,FedEx Supply Chain,2025-04-21,30,27,False,0,False,Passed Inspection,Delivered
 PO73880,TRK-28441040,DB Schenker Logistics,2024-07-09,34,50,True,16,False,Passed Inspection,Delivered
-PO73881,TRK-22395098,Kuehne+Nagel,2025-03-27,26,29,True,3,False,Passed Inspection,Delivered
+PO73881,TRK-22395098,Kuehne+Nagel,2025-03-21,26,23,False,0,False,Passed Inspection,Delivered
 PO73882,TRK-13385492,FedEx Supply Chain,2023-03-24,9,18,True,9,False,Passed Inspection,Delivered
 PO73883,TRK-10188236,FedEx Supply Chain,2025-02-11,20,17,False,0,False,Passed Inspection,Delivered
 PO73884,TRK-74917370,Kuehne+Nagel,2025-05-23,39,48,True,9,False,Passed Inspection,Delivered
@@ -24262,7 +24262,7 @@ PO74259,TRK-46736910,Kuehne+Nagel,2025-08-03,17,24,True,7,False,Passed Inspectio
 PO74260,TRK-46638215,Maersk Line,2025-12-30,7,27,True,20,False,Passed Inspection,Delivered
 PO74261,TRK-76518857,DB Schenker Logistics,2024-09-13,25,29,True,4,False,Passed Inspection,Delivered
 PO74262,TRK-19519386,FedEx Supply Chain,2023-11-21,22,19,False,0,False,Passed Inspection,Delivered
-PO74263,TRK-39843180,Kuehne+Nagel,2024-12-11,35,41,True,6,False,Passed Inspection,Delivered
+PO74263,TRK-39843180,Kuehne+Nagel,2024-12-03,35,33,False,0,False,Passed Inspection,Delivered
 PO74264,TRK-77546625,FedEx Supply Chain,2024-07-29,16,28,True,12,False,Passed Inspection,Delivered
 PO74265,TRK-71381699,Kuehne+Nagel,2023-08-31,24,21,False,0,True,Minor Defect - Accepted,Delivered
 PO74266,TRK-40239596,Maersk Line,2025-04-08,26,35,True,9,False,Passed Inspection,Delivered
@@ -24446,7 +24446,7 @@ PO74443,TRK-44513999,Maersk Line,2025-04-20,20,18,False,0,True,Major Defect - Re
 PO74444,TRK-49094517,DB Schenker Logistics,2024-11-21,25,42,True,17,False,Passed Inspection,Delivered
 PO74445,TRK-24862515,DB Schenker Logistics,2024-10-10,18,21,True,3,False,Passed Inspection,Delivered
 PO74446,TRK-16484959,Blue Dart Cargo,2025-09-17,15,25,True,10,False,Passed Inspection,Delivered
-PO74447,TRK-81491137,Kuehne+Nagel,2023-05-02,6,18,True,12,False,Passed Inspection,Delivered
+PO74447,TRK-81491137,Kuehne+Nagel,2023-04-19,6,5,False,0,False,Passed Inspection,Delivered
 PO74448,TRK-62461667,DHL Express,2023-04-02,2,1,False,0,False,Passed Inspection,Delivered
 PO74449,TRK-48742459,Blue Dart Cargo,2025-10-19,2,1,False,0,False,Passed Inspection,Delivered
 PO74450,TRK-79757404,FedEx Supply Chain,2024-11-11,16,17,True,1,False,Passed Inspection,Delivered
@@ -25858,7 +25858,7 @@ PO75855,TRK-87145376,DB Schenker Logistics,2025-07-22,18,37,True,19,False,Passed
 PO75856,TRK-28371764,Maersk Line,2026-01-25,23,32,True,9,False,Passed Inspection,Delivered
 PO75857,TRK-12562246,FedEx Supply Chain,2025-10-01,29,41,True,12,False,Passed Inspection,Delivered
 PO75858,TRK-77048168,Kuehne+Nagel,2025-11-06,19,38,True,19,False,Passed Inspection,Delivered
-PO75859,TRK-33895984,Kuehne+Nagel,2023-06-05,20,31,True,11,False,Passed Inspection,Delivered
+PO75859,TRK-33895984,Kuehne+Nagel,2023-05-24,20,19,False,0,False,Passed Inspection,Delivered
 PO75860,TRK-76883358,DHL Express,2024-01-18,6,23,True,17,False,Passed Inspection,Delivered
 PO75861,TRK-88987198,Kuehne+Nagel,2023-12-21,19,34,True,15,False,Passed Inspection,Delivered
 PO75862,TRK-73263460,Maersk Line,2024-07-22,8,6,False,0,False,Passed Inspection,Delivered
@@ -25969,7 +25969,7 @@ PO75966,TRK-93596803,FedEx Supply Chain,2024-11-12,15,12,False,0,True,Minor Defe
 PO75967,TRK-78075621,DHL Express,2025-10-22,17,26,True,9,False,Passed Inspection,Delivered
 PO75968,TRK-81521834,DB Schenker Logistics,2024-09-11,37,36,False,0,False,Passed Inspection,Delivered
 PO75969,TRK-11861266,DB Schenker Logistics,2023-02-21,15,14,False,0,False,Passed Inspection,Delivered
-PO75970,TRK-72536040,Maersk Line,2025-09-16,22,32,True,10,True,Minor Defect - Accepted,Delivered
+PO75970,TRK-72536040,Maersk Line,2025-09-05,22,21,False,0,True,Minor Defect - Accepted,Delivered
 PO75971,TRK-98566108,Maersk Line,2024-08-18,17,15,False,0,False,Passed Inspection,Delivered
 PO75972,TRK-68142411,DHL Express,2023-02-24,9,6,False,0,False,Passed Inspection,Delivered
 PO75973,TRK-69969829,Blue Dart Cargo,2023-04-05,23,23,False,0,False,Passed Inspection,Delivered
@@ -26479,8 +26479,8 @@ PO76476,TRK-56573289,Maersk Line,2025-08-24,23,21,False,0,False,Passed Inspectio
 PO76477,TRK-36505644,DHL Express,2023-12-22,14,30,True,16,False,Passed Inspection,Delivered
 PO76478,TRK-52102933,Kuehne+Nagel,2024-08-26,6,25,True,19,False,Passed Inspection,Delivered
 PO76479,TRK-68139742,Blue Dart Cargo,2023-12-24,20,31,True,11,False,Passed Inspection,Delivered
-PO76480,TRK-83973203,DB Schenker Logistics,2023-05-25,6,20,True,14,False,Passed Inspection,Delivered
-PO76481,TRK-16615306,Kuehne+Nagel,2025-09-17,24,32,True,8,False,Passed Inspection,Delivered
+PO76480,TRK-83973203,DB Schenker Logistics,2023-05-10,6,5,False,0,False,Passed Inspection,Delivered
+PO76481,TRK-16615306,Kuehne+Nagel,2025-09-07,24,22,False,0,False,Passed Inspection,Delivered
 PO76482,TRK-34476572,Maersk Line,2024-07-26,17,28,True,11,False,Passed Inspection,Delivered
 PO76483,TRK-86784631,Blue Dart Cargo,2023-03-26,28,25,False,0,False,Passed Inspection,Delivered
 PO76484,TRK-50008471,Blue Dart Cargo,2025-07-16,25,24,False,0,False,Passed Inspection,Delivered
@@ -27114,8 +27114,8 @@ PO77111,TRK-55802635,Maersk Line,2023-11-22,18,18,False,0,False,Passed Inspectio
 PO77112,TRK-53601159,FedEx Supply Chain,2025-12-18,13,10,False,0,False,Passed Inspection,Delivered
 PO77113,TRK-53104581,Blue Dart Cargo,2025-11-06,5,4,False,0,False,Passed Inspection,Delivered
 PO77114,TRK-21073143,DB Schenker Logistics,2025-08-17,39,57,True,18,False,Passed Inspection,Delivered
-PO77115,TRK-25144256,DHL Express,2023-12-21,3,24,True,21,False,Passed Inspection,Delivered
-PO77116,TRK-17663791,DB Schenker Logistics,2025-09-18,30,33,True,3,False,Passed Inspection,Delivered
+PO77115,TRK-25144256,DHL Express,2023-11-30,3,3,False,0,False,Passed Inspection,Delivered
+PO77116,TRK-17663791,DB Schenker Logistics,2025-09-12,30,27,False,0,False,Passed Inspection,Delivered
 PO77117,TRK-42443223,Blue Dart Cargo,2023-11-30,38,54,True,16,False,Passed Inspection,Delivered
 PO77118,TRK-56559863,Maersk Line,2023-10-03,16,13,False,0,False,Passed Inspection,Delivered
 PO77119,TRK-96249680,DB Schenker Logistics,2026-01-03,21,33,True,12,False,Passed Inspection,Delivered
@@ -27163,7 +27163,7 @@ PO77160,TRK-88360316,FedEx Supply Chain,2024-11-05,29,26,False,0,False,Passed In
 PO77161,TRK-96264567,Blue Dart Cargo,2025-12-24,19,19,False,0,False,Passed Inspection,Delivered
 PO77162,TRK-38103141,FedEx Supply Chain,2023-03-26,33,45,True,12,False,Passed Inspection,Delivered
 PO77163,TRK-98940548,Blue Dart Cargo,2024-04-15,18,17,False,0,False,Passed Inspection,Delivered
-PO77164,TRK-92432223,DB Schenker Logistics,2025-01-10,5,16,True,11,False,Passed Inspection,Delivered
+PO77164,TRK-92432223,DB Schenker Logistics,2024-12-28,5,3,False,0,False,Passed Inspection,Delivered
 PO77165,TRK-41843274,Blue Dart Cargo,2024-05-15,12,29,True,17,False,Passed Inspection,Delivered
 PO77166,TRK-41005683,Maersk Line,2025-01-02,2,20,True,18,False,Passed Inspection,Delivered
 PO77167,TRK-92457236,FedEx Supply Chain,2025-03-06,15,15,False,0,False,Passed Inspection,Delivered
@@ -28681,7 +28681,7 @@ PO78678,TRK-57967774,Blue Dart Cargo,2026-01-09,3,10,True,7,False,Passed Inspect
 PO78679,TRK-47548210,DHL Express,2023-11-18,20,19,False,0,True,Major Defect - Rejected,Delivered
 PO78680,TRK-76204805,Kuehne+Nagel,2025-06-29,31,29,False,0,False,Passed Inspection,Delivered
 PO78681,TRK-66843232,Maersk Line,2024-02-22,5,3,False,0,False,Passed Inspection,Delivered
-PO78682,TRK-42992796,DHL Express,2025-12-01,29,42,True,13,False,Passed Inspection,Delivered
+PO78682,TRK-42992796,DHL Express,2025-11-17,29,28,False,0,False,Passed Inspection,Delivered
 PO78683,TRK-80623344,Maersk Line,2025-05-16,4,10,True,6,False,Passed Inspection,Delivered
 PO78684,TRK-16547941,FedEx Supply Chain,2024-11-01,15,14,False,0,False,Passed Inspection,Delivered
 PO78685,TRK-20572529,Maersk Line,2023-08-27,7,4,False,0,False,Passed Inspection,Delivered
@@ -28948,7 +28948,7 @@ PO78945,TRK-31538840,DHL Express,2023-06-28,21,38,True,17,False,Passed Inspectio
 PO78946,TRK-41402243,DHL Express,2025-02-21,22,22,False,0,False,Passed Inspection,Delivered
 PO78947,TRK-21217002,FedEx Supply Chain,2023-06-17,33,44,True,11,False,Passed Inspection,Delivered
 PO78948,TRK-14011885,DHL Express,2025-08-25,18,16,False,0,False,Passed Inspection,Delivered
-PO78949,TRK-30649390,Kuehne+Nagel,2024-11-25,3,10,True,7,False,Passed Inspection,Delivered
+PO78949,TRK-30649390,Kuehne+Nagel,2024-11-16,3,1,False,0,False,Passed Inspection,Delivered
 PO78950,TRK-92463160,Kuehne+Nagel,2023-03-02,18,16,False,0,False,Passed Inspection,Delivered
 PO78951,TRK-44473197,FedEx Supply Chain,2023-05-14,17,14,False,0,False,Passed Inspection,Delivered
 PO78952,TRK-51642705,FedEx Supply Chain,2023-09-10,34,47,True,13,False,Passed Inspection,Delivered
@@ -29125,7 +29125,7 @@ PO79122,TRK-68547358,Kuehne+Nagel,2025-03-06,39,53,True,14,False,Passed Inspecti
 PO79123,TRK-42260460,Blue Dart Cargo,2025-05-30,12,9,False,0,False,Passed Inspection,Delivered
 PO79124,TRK-92921650,Maersk Line,2025-04-25,25,22,False,0,False,Passed Inspection,Delivered
 PO79125,TRK-29602764,Kuehne+Nagel,2024-10-23,24,23,False,0,False,Passed Inspection,Delivered
-PO79126,TRK-57552986,Maersk Line,2023-04-26,5,19,True,14,False,Passed Inspection,Delivered
+PO79126,TRK-57552986,Maersk Line,2023-04-11,5,4,False,0,False,Passed Inspection,Delivered
 PO79127,TRK-59856207,DHL Express,2023-06-23,11,10,False,0,False,Passed Inspection,Delivered
 PO79128,TRK-24251520,DHL Express,2025-04-29,19,36,True,17,False,Passed Inspection,Delivered
 PO79129,TRK-56807037,DHL Express,2025-08-27,17,19,True,2,False,Passed Inspection,Delivered
@@ -29411,7 +29411,7 @@ PO79408,TRK-44057470,DB Schenker Logistics,2024-11-19,29,33,True,4,False,Passed 
 PO79409,TRK-95206087,Kuehne+Nagel,2025-08-13,8,7,False,0,False,Passed Inspection,Delivered
 PO79410,TRK-65459173,Blue Dart Cargo,2024-08-02,25,23,False,0,False,Passed Inspection,Delivered
 PO79411,TRK-81289339,DB Schenker Logistics,2024-07-18,33,33,False,0,False,Passed Inspection,Delivered
-PO79412,TRK-43698722,DB Schenker Logistics,2025-12-05,20,30,True,10,True,Major Defect - Rejected,Delivered
+PO79412,TRK-43698722,DB Schenker Logistics,2025-11-23,20,18,False,0,True,Major Defect - Rejected,Delivered
 PO79413,TRK-51608859,FedEx Supply Chain,2024-07-28,19,19,False,0,False,Passed Inspection,Delivered
 PO79414,TRK-45748137,Kuehne+Nagel,2023-06-10,9,12,True,3,False,Passed Inspection,Delivered
 PO79415,TRK-59540351,DB Schenker Logistics,2024-04-11,24,26,True,2,False,Passed Inspection,Delivered
