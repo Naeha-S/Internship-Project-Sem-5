@@ -14,6 +14,7 @@ import numpy as np
 import sqlite3
 import json
 import os
+import base64
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -23,7 +24,7 @@ from plotly.subplots import make_subplots
 # ---------------------------------------------------------------
 st.set_page_config(
     page_title="ProcureSense AI — Procurement Studio",
-    page_icon="📦",
+    page_icon=None,
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -38,6 +39,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(BASE_DIR, "db", "procurement.db")
 KPI_PATH = os.path.join(BASE_DIR, "analysis", "kpi_summary.json")
 MODEL_PATH = os.path.join(BASE_DIR, "ml", "model_metrics.json")
+LOGO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
+
+@st.cache_data
+def get_logo_base64():
+    if os.path.exists(LOGO_PATH):
+        with open(LOGO_PATH, "rb") as f:
+            return base64.b64encode(f.read()).decode("utf-8")
+    return ""
+
+logo_b64 = get_logo_base64()
+logo_img_tag = f'<img src="data:image/png;base64,{logo_b64}" style="height:42px; width:42px; border-radius:8px; object-fit:cover; margin-right:14px; border:1px solid rgba(108,142,245,0.4); flex-shrink:0;">' if logo_b64 else '<div class="brand-logo">&#9672;</div>'
 
 @st.cache_data
 def load_kpi_summary():
@@ -95,8 +107,8 @@ st.markdown(f"""
     }}
 
     .block-container {{
-        padding: 2.25rem 3.5rem 5rem !important;
-        max-width: 1480px !important;
+        padding: 2.0rem 2.5rem 5rem !important;
+        max-width: 1600px !important;
     }}
 
     #MainMenu, footer, [data-testid="stDecoration"], .stDeployButton {{
@@ -107,7 +119,7 @@ st.markdown(f"""
     [data-testid="stSidebar"] {{
         background-color: #090d1a !important;
         border-right: 1px solid {BORDER} !important;
-        width: 280px !important;
+        width: 300px !important;
     }}
     [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {{
         margin-bottom: 1.15rem !important;
@@ -137,8 +149,8 @@ st.markdown(f"""
         border-top: 2px solid transparent;
         border-image: linear-gradient(90deg, {ACCENT}, {GREEN}) 1;
         border-radius: 14px;
-        padding: 22px 30px;
-        margin-bottom: 34px;
+        padding: 20px 28px;
+        margin-bottom: 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -150,11 +162,6 @@ st.markdown(f"""
         inset: 0;
         background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236C8EF5' fill-opacity='0.03'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         pointer-events: none;
-    }}
-    .brand-logo {{
-        font-size: 22px;
-        margin-right: 14px;
-        opacity: 0.85;
     }}
     .brand-title {{
         font-size: 22px;
@@ -245,41 +252,49 @@ st.markdown(f"""
         display: inline-block;
     }}
 
-    /* ─── Tab Navigation (Spacious & Modern) ─────────────── */
+    /* ─── Upgraded Modern Navbar Tabs (Spacious & Glowing) ─── */
     [data-baseweb="tab-list"] {{
-        gap: 10px !important;
-        background: rgba(15,20,34,0.85) !important;
+        gap: 12px !important;
+        background: rgba(13, 17, 32, 0.95) !important;
         border: 1px solid {BORDER} !important;
         border-radius: 14px !important;
-        padding: 7px 10px !important;
-        margin-bottom: 38px !important;
+        padding: 8px 12px !important;
+        margin-bottom: 34px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.40) !important;
     }}
     button[data-baseweb="tab"] {{
         background: transparent !important;
         color: {TEXT_MUTED} !important;
-        font-size: 0.88rem !important;
+        font-size: 0.96rem !important;
         font-weight: 600 !important;
-        padding: 0.70rem 1.60rem !important;
+        padding: 0.80rem 1.60rem !important;
         border: 1px solid transparent !important;
-        border-radius: 9px !important;
-        transition: all 0.20s ease !important;
+        border-radius: 10px !important;
+        transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
         letter-spacing: -0.01em !important;
+        flex: 1 1 auto !important;
+        text-align: center !important;
     }}
     button[data-baseweb="tab"]:hover {{
-        color: {TEXT} !important;
-        background: rgba(108,142,245,0.09) !important;
+        color: #ffffff !important;
+        background: rgba(108,142,245,0.12) !important;
+        border-color: rgba(108,142,245,0.25) !important;
+        transform: translateY(-1px) !important;
     }}
     button[data-baseweb="tab"][aria-selected="true"] {{
         color: #ffffff !important;
-        background: linear-gradient(135deg, rgba(108,142,245,0.22) 0%, rgba(108,142,245,0.10) 100%) !important;
-        border: 1px solid rgba(108,142,245,0.40) !important;
-        box-shadow: 0 4px 14px rgba(108,142,245,0.20) !important;
+        background: linear-gradient(135deg, rgba(108,142,245,0.30) 0%, rgba(108,142,245,0.15) 100%) !important;
+        border: 1px solid rgba(108,142,245,0.55) !important;
+        box-shadow: 0 4px 18px rgba(108,142,245,0.28) !important;
     }}
     [data-baseweb="tab-highlight"], [data-baseweb="tab-border"] {{
         display: none !important;
     }}
 
-    /* ─── Chart Containers ───────────────────────────────── */
+    /* ─── Chart Containers & Toolbar Customization ──────── */
     .chart-card {{
         background: #0d1525;
         border: 1px solid {BORDER};
@@ -309,36 +324,6 @@ st.markdown(f"""
         padding-left: 13px;
     }}
 
-    /* ─── Section Dividers ───────────────────────────────── */
-    .section-divider {{
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin: 3.5rem 0 2.2rem;
-    }}
-    .section-divider-line {{
-        flex: 1;
-        height: 1px;
-        background: {BORDER};
-    }}
-    .section-divider-label {{
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.11em;
-        color: {ACCENT};
-        text-transform: uppercase;
-        padding: 4px 12px;
-        border: 1px solid rgba(108,142,245,0.25);
-        border-radius: 20px;
-        white-space: nowrap;
-    }}
-
-    /* ─── Badges ─────────────────────────────────────────── */
-    .badge {{ display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.72rem; font-weight: 600; }}
-    .badge-green {{ color: {GREEN}; background: {GREEN_BG}; }}
-    .badge-red   {{ color: {RED};   background: {RED_BG};   }}
-    .badge-amber {{ color: {AMBER}; background: {AMBER_BG}; }}
-
     /* ─── Data Tables ────────────────────────────────────── */
     .data-table {{ width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.82rem; }}
     .data-table th {{
@@ -351,6 +336,27 @@ st.markdown(f"""
         padding: 0.72rem 1rem; color: {TEXT};
         border-bottom: 1px solid rgba(99,120,200,0.07);
     }}
+
+    /* ─── Responsive Layout Media Queries ───────────────── */
+    @media (max-width: 992px) {{
+        .block-container {{
+            padding: 1.25rem 1.0rem 3.5rem !important;
+        }}
+        [data-testid="stSidebar"] {{
+            width: 100% !important;
+        }}
+        .brand-header {{
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 14px !important;
+        }}
+        [data-baseweb="tab-list"] {{
+            flex-direction: column !important;
+        }}
+        button[data-baseweb="tab"] {{
+            width: 100% !important;
+        }}
+    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -362,7 +368,7 @@ _hdr_orders = pd.read_sql("SELECT COUNT(*) AS n FROM purchase_orders", conn).ilo
 st.markdown(f"""
 <div class="brand-header">
     <div style="display:flex; align-items:center; gap:0;">
-        <div class="brand-logo">&#9672;</div>
+        {logo_img_tag}
         <div>
             <div class="brand-title">Procure<span>Sense</span> AI</div>
             <div class="brand-sub">Procurement Intelligence &nbsp;&middot;&nbsp; SHAP Explainability &nbsp;&middot;&nbsp; Live ML Risk Simulation</div>
@@ -376,13 +382,12 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
-# 5. Upgraded Sidebar Control Center & Dynamic Filters
+# 5. Sidebar Control Center & Dynamic Filters
 # ---------------------------------------------------------------
-# Pull live total PO count for the sidebar subtitle
 _total_pos = pd.read_sql("SELECT COUNT(*) AS n FROM purchase_orders", conn).iloc[0]["n"]
 st.sidebar.markdown(f"""
 <div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
-    f39b️ Control Center
+    Control Center
 </div>
 <div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 14px;">
     Filter {_total_pos:,} orders across regions, tiers, logistics, & quality
@@ -404,11 +409,11 @@ def get_filter_options():
 filters = get_filter_options()
 
 # Sidebar Filter Preset Quick Actions
-st.sidebar.markdown("<div style='font-size:0.75rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>⚡ Quick Filter Presets</div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div style='font-size:0.75rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>Quick Filter Presets</div>", unsafe_allow_html=True)
 c_pre1, c_pre2 = st.sidebar.columns(2)
 
-preset_all = c_pre1.button("🔄 Reset All", use_container_width=True)
-preset_peak = c_pre2.button("📈 Peak Q4", use_container_width=True)
+preset_all = c_pre1.button("Reset All", use_container_width=True)
+preset_peak = c_pre2.button("Peak Q4", use_container_width=True)
 
 if preset_all:
     st.session_state["sel_tiers"] = filters["tiers"]
@@ -423,18 +428,18 @@ if preset_peak:
     st.session_state["only_defect"] = False
 
 # Sidebar Filter Sections
-with st.sidebar.expander("🏢 Sourcing & Supplier Filters", expanded=True):
+with st.sidebar.expander("Sourcing & Supplier Filters", expanded=True):
     selected_tiers = st.multiselect("Commercial Tier", options=filters["tiers"], default=st.session_state.get("sel_tiers", filters["tiers"]))
     selected_regions = st.multiselect("Supplier Region", options=filters["regions"], default=st.session_state.get("sel_regions", filters["regions"]))
 
-with st.sidebar.expander("📦 Product & Logistics Filters", expanded=True):
+with st.sidebar.expander("Product & Logistics Filters", expanded=True):
     selected_categories = st.multiselect("Product Category", options=filters["categories"], default=st.session_state.get("sel_cats", filters["categories"]))
     selected_shipping = st.multiselect("Shipping Mode", options=filters["shipping_modes"], default=st.session_state.get("sel_ship", filters["shipping_modes"]))
     selected_priorities = st.multiselect("Order Priority", options=filters["priorities"], default=st.session_state.get("sel_prio", filters["priorities"]))
 
-with st.sidebar.expander("📅 Date Window & Quality Focus", expanded=True):
+with st.sidebar.expander("Date Window & Quality Focus", expanded=True):
     min_order_year, max_order_year = st.slider("Order Year Window", 2023, 2025, (2023, 2025))
-    only_defects = st.checkbox("⚠️ Show Defective Orders Only", value=st.session_state.get("only_defect", False))
+    only_defects = st.checkbox("Show Defective Orders Only", value=st.session_state.get("only_defect", False))
 
 # Build SQL IN-clause strings without nested f-strings (Python <3.12 safe)
 def _sql_in(vals):
@@ -473,7 +478,7 @@ if only_defects:
 # Fallback check — warn the user rather than silently showing full data
 if df_filtered.empty:
     st.warning(
-        "⚠️ No orders match this filter combination — showing all data instead. "
+        "No orders match this filter combination — showing all data instead. "
         "Try widening the Tier, Region, or Category selections."
     )
     df_filtered = pd.read_sql("""
@@ -496,7 +501,7 @@ f_defect = (df_filtered["has_defect"].mean() * 100) if f_orders > 0 else 0
 
 st.sidebar.markdown(f"""
 <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 10px; padding: 12px 14px; margin-top: 16px;">
-    <div style="font-size: 0.76rem; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">📊 Live Selection Summary</div>
+    <div style="font-size: 0.76rem; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Live Selection Summary</div>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.78rem;">
         <div><span style="color:#94a3b8;">Orders:</span> <b style="color:#f8fafc;">{f_orders:,}</b></div>
         <div><span style="color:#94a3b8;">Spend:</span> <b style="color:#eab308;">₹{f_spend:.1f} Cr</b></div>
@@ -506,7 +511,29 @@ st.sidebar.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Polished Plotly Layout Definition (v2 — Spaced Navy-Indigo system)
+# Sidebar Dataset Export Hub
+with st.sidebar.expander("Export Core Datasets", expanded=False):
+    st.markdown("<div style='font-size:0.75rem; color:#94a3b8; margin-bottom:8px;'>Download normalized database tables or current filtered subset as CSV files:</div>", unsafe_allow_html=True)
+    
+    csv_filtered_data = df_filtered.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label=f"Filtered Selection ({len(df_filtered):,} POs)",
+        data=csv_filtered_data,
+        file_name="procuresense_filtered_orders.csv",
+        mime="text/csv",
+        use_container_width=True
+    )
+    
+    def _get_table_csv(tbl_name):
+        return pd.read_sql(f"SELECT * FROM {tbl_name}", conn).to_csv(index=False).encode('utf-8')
+    
+    st.download_button("Purchase Orders (30k)", data=_get_table_csv("purchase_orders"), file_name="purchase_orders_30k.csv", mime="text/csv", use_container_width=True)
+    st.download_button("Suppliers Catalog", data=_get_table_csv("suppliers"), file_name="suppliers_catalog.csv", mime="text/csv", use_container_width=True)
+    st.download_button("Products Catalog", data=_get_table_csv("products"), file_name="products_catalog.csv", mime="text/csv", use_container_width=True)
+    st.download_button("Deliveries Log", data=_get_table_csv("deliveries"), file_name="deliveries_log.csv", mime="text/csv", use_container_width=True)
+    st.download_button("Inventory Stock", data=_get_table_csv("inventory"), file_name="inventory_stock.csv", mime="text/csv", use_container_width=True)
+
+# Polished Plotly Layout Definition & High-Res PNG Export Configuration
 PLOT_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
@@ -530,15 +557,28 @@ PLOT_LAYOUT = dict(
     )
 )
 
+PLOTLY_CONFIG = {
+    "displayModeBar": True,
+    "displaylogo": False,
+    "modeBarButtonsToRemove": ["lasso2d", "select2d"],
+    "toImageButtonOptions": {
+        "format": "png",
+        "filename": "procuresense_chart_export",
+        "height": 1080,
+        "width": 1920,
+        "scale": 2
+    }
+}
+
 # ---------------------------------------------------------------
-# 6. Tab Navigation (5 Tabs)
+# 6. Tab Navigation (5 Modern Navbar Tabs)
 # ---------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "Overview",
-    "Suppliers",
-    "Inventory",
-    "ML Engine",
-    "SQL Portfolio",
+    "📊 Executive Overview",
+    "🏭 Supplier & Region SLAs",
+    "📦 Inventory Control",
+    "🤖 ML Risk Simulator",
+    "💻 SQL Analytics Studio",
 ])
 
 # ---------------------------------------------------------------
@@ -635,7 +675,7 @@ with tab1:
         <div class="chart-title">Monthly Procurement Spend vs Late Delivery Rate</div>
         <div class="chart-sub">Monthly expenditure volume against late shipment percentage across selection</div>
     """, unsafe_allow_html=True)
-    st.plotly_chart(fig_trend, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_trend, use_container_width=True, config=PLOTLY_CONFIG)
     st.markdown("</div>", unsafe_allow_html=True)
 
     c_over1, c_over2, c_over3 = st.columns([1, 1, 1], gap="medium")
@@ -674,7 +714,7 @@ with tab1:
             color_discrete_map={"High Risk": RED, "Medium Risk": AMBER, "Low Risk": GREEN}
         )
         fig_risk.update_layout(**PLOT_LAYOUT, height=280)
-        st.plotly_chart(fig_risk, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_risk, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # CHART 3: Dynamic Inventory Status
@@ -703,7 +743,7 @@ with tab1:
             color_discrete_map={"Healthy": GREEN, "Understocked": AMBER, "Overstocked": TEXT_MUTED, "Dead Stock": RED}
         )
         fig_inv.update_layout(**PLOT_LAYOUT, height=280)
-        st.plotly_chart(fig_inv, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_inv, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # CHART 4: Dynamic Top Price Inflation Flags
@@ -733,7 +773,7 @@ with tab1:
                 color="latest_pct_change", color_continuous_scale=[GREEN, AMBER, RED]
             )
             fig_price.update_layout(**PLOT_LAYOUT, height=280)
-            st.plotly_chart(fig_price, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig_price, use_container_width=True, config=PLOTLY_CONFIG)
         else:
             st.info("No price inflation flags recorded for selection.")
         st.markdown("</div>", unsafe_allow_html=True)
@@ -767,7 +807,7 @@ with tab2:
         <div class="chart-title">Supplier On-Time Delivery Ranking</div>
         <div class="chart-sub">Reliability benchmarking across top and bottom performing suppliers</div>
     """, unsafe_allow_html=True)
-    st.plotly_chart(fig_sup_rank, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_sup_rank, use_container_width=True, config=PLOTLY_CONFIG)
     st.markdown("</div>", unsafe_allow_html=True)
 
     # CHART 6: Spend Concentration by Region & Tier
@@ -783,7 +823,7 @@ with tab2:
         labels={"order_cost": "Total Spend (&#8377;)", "region": "Region", "tier": "Commercial Tier"}
     )
     fig_reg_spend.update_layout(**PLOT_LAYOUT, height=360)
-    st.plotly_chart(fig_reg_spend, use_container_width=True, config={"displayModeBar": False})
+    st.plotly_chart(fig_reg_spend, use_container_width=True, config=PLOTLY_CONFIG)
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
@@ -908,7 +948,7 @@ with tab3:
             labels={"product_id": "SKU Count", "category": "Product Category", "stock_status": "Stock Status"}
         )
         fig_cat_h.update_layout(**PLOT_LAYOUT, height=320)
-        st.plotly_chart(fig_cat_h, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_cat_h, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # CHART B (Top-Right): Defective Spend Exposure by Sub-category
@@ -926,7 +966,7 @@ with tab3:
                 labels={"order_cost": "Defective Spend (&#8377;)", "sub_category": "Sub-category"}
             )
             fig_def.update_layout(**PLOT_LAYOUT, height=320)
-            st.plotly_chart(fig_def, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig_def, use_container_width=True, config=PLOTLY_CONFIG)
         else:
             st.info("No defective spend recorded in current filter selection.")
         st.markdown("</div>", unsafe_allow_html=True)
@@ -949,7 +989,7 @@ with tab3:
                 labels={"shipping_mode": "Shipping Mode", "delay_days": "Delay Days"}
             )
             fig_box.update_layout(**PLOT_LAYOUT, height=320)
-            st.plotly_chart(fig_box, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig_box, use_container_width=True, config=PLOTLY_CONFIG)
         else:
             st.info("No late orders in current filter selection — box plot unavailable.")
         st.markdown("</div>", unsafe_allow_html=True)
@@ -975,7 +1015,7 @@ with tab3:
             labels={"base_lead_time": "Contracted Lead Time (Days)", "avg_delay": "Avg Delay (Days)", "supplier_tier": "Supplier Tier"}
         )
         fig_scat.update_layout(**PLOT_LAYOUT, height=320)
-        st.plotly_chart(fig_scat, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_scat, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # 3. INTERACTIVE CRITICAL SKUs & STOCKOUT MONITOR TABLE
@@ -1130,7 +1170,7 @@ with tab4:
             labels={"mean_abs_shap": "Mean |SHAP Value|", "display_feature": "Feature Driver"}
         )
         fig_shap.update_layout(**PLOT_LAYOUT, height=330, coloraxis_showscale=False)
-        st.plotly_chart(fig_shap, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_shap, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # CHART 10: Multi-Model Benchmark Comparison
@@ -1166,7 +1206,7 @@ with tab4:
             text_auto=".3f"
         )
         fig_met.update_layout(**PLOT_LAYOUT, height=330, xaxis_tickangle=-20)
-        st.plotly_chart(fig_met, use_container_width=True, config={"displayModeBar": False})
+        st.plotly_chart(fig_met, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
     # Detailed Evaluation Metrics Banner
@@ -1802,12 +1842,29 @@ ORDER BY severe_delays_gt7d DESC;"""
         }
     }
 
+    # Interactive Database Schema Inspector
+    with st.expander("🗄️ Database Schema & Column Inspector", expanded=False):
+        st.markdown("<div style='font-size:0.80rem; color:#94a3b8; margin-bottom:12px;'>Inspect tables, column names, and data types in procurement.db:</div>", unsafe_allow_html=True)
+        schema_cols = st.columns(5)
+        tables_info = {
+            "purchase_orders": [("po_id", "TEXT (PK)"), ("order_date", "TEXT"), ("supplier_id", "TEXT (FK)"), ("product_id", "TEXT (FK)"), ("unit_price", "REAL"), ("quantity", "INT"), ("order_cost", "REAL"), ("shipping_mode", "TEXT"), ("priority", "TEXT")],
+            "suppliers": [("supplier_id", "TEXT (PK)"), ("supplier_name", "TEXT"), ("region", "TEXT"), ("tier", "TEXT"), ("contract_start_date", "TEXT")],
+            "products": [("product_id", "TEXT (PK)"), ("sku", "TEXT"), ("product_name", "TEXT"), ("category", "TEXT"), ("sub_category", "TEXT"), ("unit_cost_base", "REAL"), ("lead_time_days_base", "INT")],
+            "deliveries": [("delivery_id", "TEXT (PK)"), ("po_id", "TEXT (FK)"), ("delivery_date", "TEXT"), ("is_late", "INT"), ("delay_days", "REAL"), ("has_defect", "INT")],
+            "inventory": [("product_id", "TEXT (PK)"), ("warehouse", "TEXT"), ("current_stock", "INT"), ("reorder_level", "INT"), ("avg_monthly_demand", "REAL"), ("months_of_cover", "REAL")]
+        }
+        for idx, (tbl, cols) in enumerate(tables_info.items()):
+            with schema_cols[idx]:
+                st.markdown(f"<div style='font-weight:700; font-size:0.82rem; color:{ACCENT}; margin-bottom:6px;'>📋 {tbl}</div>", unsafe_allow_html=True)
+                for cname, ctype in cols:
+                    st.markdown(f"<div style='font-size:0.73rem; color:{TEXT_MUTED}; font-family:monospace;'>• <b>{cname}</b> <span style='color:{TEXT_DIM};'>({ctype})</span></div>", unsafe_allow_html=True)
+
     selected_query_name = st.selectbox("💻 Select Portfolio SQL Query to Inspect & Execute:", list(queries_meta.keys()))
     q_info = queries_meta[selected_query_name]
 
     # Query Info Card
     st.markdown(f"""
-    <div style="background:{CARD_BG}; border:1px solid {BORDER}; border-radius:10px; padding:16px 20px; margin-top:8px; margin-bottom:20px;">
+    <div style="background:{CARD_BG}; border:1px solid {BORDER}; border-radius:10px; padding:16px 20px; margin-top:8px; margin-bottom:14px;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
             <span style="font-size:0.92rem; font-weight:700; color:{TEXT};">{selected_query_name}</span>
             <span style="background:{q_info['badge_bg']}; color:{q_info['badge_color']}; padding:3px 10px; border-radius:6px; font-size:0.74rem; font-weight:600;">
@@ -1823,14 +1880,32 @@ ORDER BY severe_delays_gt7d DESC;"""
     </div>
     """, unsafe_allow_html=True)
 
+    # Quick Snippet Builder
+    st.markdown("<div style='font-size:0.76rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>⚡ Quick SQL Snippet Builder</div>", unsafe_allow_html=True)
+    snip_c1, snip_c2, snip_c3, snip_c4, snip_c5, snip_c6 = st.columns(6)
+    
+    if snip_c1.button("SELECT *", use_container_width=True):
+        st.session_state["active_sql_script"] = "SELECT * FROM purchase_orders LIMIT 15;"
+    if snip_c2.button("JOIN Tables", use_container_width=True):
+        st.session_state["active_sql_script"] = "SELECT po.po_id, s.supplier_name, p.product_name, d.delay_days\nFROM purchase_orders po\nJOIN suppliers s ON po.supplier_id = s.supplier_id\nJOIN products p ON po.product_id = p.product_id\nJOIN deliveries d ON po.po_id = d.po_id\nLIMIT 25;"
+    if snip_c3.button("GROUP Spend", use_container_width=True):
+        st.session_state["active_sql_script"] = "SELECT p.category, SUM(po.order_cost) AS total_spend, COUNT(po.po_id) AS po_count\nFROM purchase_orders po\nJOIN products p ON po.product_id = p.product_id\nGROUP BY p.category\nORDER BY total_spend DESC;"
+    if snip_c4.button("Window Rank", use_container_width=True):
+        st.session_state["active_sql_script"] = "SELECT supplier_name, region,\n       DENSE_RANK() OVER (PARTITION BY region ORDER BY on_time_pct DESC) AS regional_rank\nFROM (\n  SELECT s.supplier_name, s.region, ROUND(100.0 * AVG(1 - d.is_late), 1) AS on_time_pct\n  FROM suppliers s JOIN purchase_orders po ON s.supplier_id = po.supplier_id\n  JOIN deliveries d ON po.po_id = d.po_id\n  GROUP BY s.supplier_id\n)\nLIMIT 20;"
+    if snip_c5.button("Defects Loss", use_container_width=True):
+        st.session_state["active_sql_script"] = "SELECT s.supplier_name, COUNT(po.po_id) AS total_pos,\n       SUM(d.has_defect) AS defective_pos,\n       ROUND(100.0 * SUM(d.has_defect) / COUNT(po.po_id), 2) AS defect_rate_pct\nFROM suppliers s JOIN purchase_orders po ON s.supplier_id = po.supplier_id\nJOIN deliveries d ON po.po_id = d.po_id\nGROUP BY s.supplier_id HAVING defective_pos > 0\nORDER BY defect_rate_pct DESC;"
+    if snip_c6.button("Reset Query", use_container_width=True):
+        st.session_state["active_sql_script"] = q_info["sql"]
+
     # Editable SQL Code Area
-    user_sql = st.text_area("SQL Script Editor (Edit or Run Custom SQL):", value=q_info["sql"], height=230)
+    default_sql_val = st.session_state.get("active_sql_script", q_info["sql"])
+    user_sql = st.text_area("SQL Script Editor (Edit or Run Custom SQL):", value=default_sql_val, height=230)
 
     c_exec1, c_exec2 = st.columns([1, 4])
     with c_exec1:
-        run_btn = st.button("▶️ Run Query Live", use_container_width=True)
+        run_btn = st.button("▶️ Execute Query Live", use_container_width=True)
 
-    if run_btn:
+    if run_btn or "sql_run_df" in st.session_state:
         import time
         t_start = time.time()
         try:
@@ -1838,20 +1913,68 @@ ORDER BY severe_delays_gt7d DESC;"""
             t_elapsed = (time.time() - t_start) * 1000.0
 
             st.markdown(f"""
-            <div style="background:rgba(16,217,140,0.06); border:1px solid rgba(16,217,140,0.22); border-radius:8px; padding:10px 14px; margin-top:14px; margin-bottom:14px; font-size:0.80rem; color:{GREEN};">
-                ✅ <b>Query Executed Successfully</b> &nbsp;&middot;&nbsp; <b>{len(res_df):,} Rows Returned</b> &nbsp;&middot;&nbsp; Latency: <b>{t_elapsed:.1f} ms</b>
+            <div style="background:rgba(16,217,140,0.06); border:1px solid rgba(16,217,140,0.22); border-radius:8px; padding:10px 16px; margin-top:14px; margin-bottom:14px; font-size:0.82rem; color:{GREEN}; display:flex; align-items:center; justify-content:space-between;">
+                <div>✅ <b>Query Executed Successfully</b> &nbsp;&middot;&nbsp; <b>{len(res_df):,} Rows Returned</b> &nbsp;&middot;&nbsp; <b>{len(res_df.columns)} Columns</b></div>
+                <div>Execution Latency: <b style="color:{GOLD};">{t_elapsed:.1f} ms</b></div>
             </div>
             """, unsafe_allow_html=True)
 
-            st.dataframe(res_df, use_container_width=True)
+            res_tab1, res_tab2, res_tab3 = st.tabs(["📊 Interactive Data Table", "📈 Auto-Generated Visualizer", "📄 Raw JSON View"])
+            
+            with res_tab1:
+                st.dataframe(res_df, use_container_width=True, height=350)
 
-            csv_data = res_df.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                label="📥 Download Query Result CSV",
-                data=csv_data,
-                file_name=f"{selected_query_name.replace(' ', '_').lower()}.csv",
-                mime="text/csv"
-            )
+            with res_tab2:
+                # Auto-generate chart from query results
+                num_cols = res_df.select_dtypes(include=[np.number]).columns.tolist()
+                cat_cols = res_df.select_dtypes(include=["object", "category", "string"]).columns.tolist()
+                
+                if len(cat_cols) >= 1 and len(num_cols) >= 1:
+                    chart_x = cat_cols[0]
+                    chart_y = num_cols[0]
+                    st.markdown(f"<div style='font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:8px;'>Auto-plotted Bar Chart: <b>{chart_y}</b> by <b>{chart_x}</b></div>", unsafe_allow_html=True)
+                    fig_auto = px.bar(
+                        res_df.head(25), x=chart_x, y=chart_y,
+                        color=chart_y, color_continuous_scale=[ACCENT, GOLD, GREEN],
+                        labels={chart_x: chart_x.replace("_", " ").title(), chart_y: chart_y.replace("_", " ").title()}
+                    )
+                    fig_auto.update_layout(**PLOT_LAYOUT, height=350)
+                    st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
+                elif len(num_cols) >= 2:
+                    chart_x = num_cols[0]
+                    chart_y = num_cols[1]
+                    st.markdown(f"<div style='font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:8px;'>Auto-plotted Scatter Plot: <b>{chart_y}</b> vs <b>{chart_x}</b></div>", unsafe_allow_html=True)
+                    fig_auto = px.scatter(
+                        res_df.head(50), x=chart_x, y=chart_y,
+                        color=chart_y, color_continuous_scale=[AMBER, GREEN]
+                    )
+                    fig_auto.update_layout(**PLOT_LAYOUT, height=350)
+                    st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
+                else:
+                    st.info("💡 Auto-visualizer requires at least one numeric and one categorical column in query output.")
+
+            with res_tab3:
+                st.json(res_df.head(50).to_dict(orient="records"))
+
+            dl_col1, dl_col2 = st.columns(2)
+            with dl_col1:
+                csv_data = res_df.to_csv(index=False).encode('utf-8')
+                st.download_button(
+                    label="📥 Download Result CSV",
+                    data=csv_data,
+                    file_name=f"{selected_query_name.replace(' ', '_').lower()}.csv",
+                    mime="text/csv",
+                    use_container_width=True
+                )
+            with dl_col2:
+                json_data = res_df.to_json(orient="records", indent=2).encode('utf-8')
+                st.download_button(
+                    label="📥 Download Result JSON",
+                    data=json_data,
+                    file_name=f"{selected_query_name.replace(' ', '_').lower()}.json",
+                    mime="application/json",
+                    use_container_width=True
+                )
         except Exception as e:
             st.error(f"❌ SQL Execution Error: {str(e)}")
 
