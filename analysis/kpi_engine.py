@@ -117,11 +117,11 @@ candidates = supplier_perf[(supplier_perf["on_time_pct"] > 90) & (supplier_perf[
 best_alt = candidates.iloc[0] if not candidates.empty else supplier_perf.sort_values("on_time_pct", ascending=False).iloc[0]
 
 narrative = (
-    f"Supplier {worst["supplier_name"]} (Tier: {worst["tier"]}) has an on-time delivery rate of {worst["on_time_pct"]}%, "
-    f"the lowest among active suppliers, with an average delay of {worst["avg_delay_days"]} days "
-    f"across {worst["total_orders"]} orders (₹{worst["total_spend"]:,.0f} total spend). "
-    f"Consider shifting high-priority orders to {best_alt["supplier_name"]} (Tier: {best_alt["tier"]}), which maintains a "
-    f"{best_alt["on_time_pct"]}% on-time rate with an average order value of ₹{best_alt["avg_order_value"]:,.0f}."
+    f"{worst['supplier_name']} (Tier: {worst['tier']}) has an on-time delivery rate of {worst['on_time_pct']}%, "
+    f"the lowest among active suppliers, with an average delay of {worst['avg_delay_days']} days "
+    f"across {worst['total_orders']} orders (₹{worst['total_spend']:,.0f} total spend). "
+    f"Consider shifting high-priority orders to {best_alt['supplier_name']} (Tier: {best_alt['tier']}), which maintains a "
+    f"{best_alt['on_time_pct']}% on-time rate with an average order value of ₹{best_alt['avg_order_value']:,.0f}."
 )
 
 summary = {

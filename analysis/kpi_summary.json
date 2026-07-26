@@ -1,367 +1,367 @@
 {
-  "overall_health_score": 49.7,
+  "overall_health_score": 49.6,
   "components": {
-    "supplier_reliability": 54.0,
+    "supplier_reliability": 55.0,
     "inventory_efficiency": 81.2,
-    "cost_optimisation": 45.6,
-    "delivery_performance": 54.0,
+    "cost_optimisation": 43.0,
+    "delivery_performance": 55.0,
     "risk_score": 0.0
   },
   "top_suppliers": [
     {
-      "supplier_id": "SUP1087",
-      "supplier_name": "Supplier 88",
+      "supplier_id": "SUP1021",
+      "supplier_name": "Shanghai Industrial Silicon",
+      "region": "East India",
+      "tier": "Tier 1",
+      "total_orders": 450,
+      "total_spend": 841977838.07,
+      "avg_order_value": 1871061.86,
+      "on_time_pct": 79.8,
+      "avg_delay_days": 2.45,
+      "defect_rate_pct": 4.67,
+      "risk_tier": "Medium Risk"
+    },
+    {
+      "supplier_id": "SUP1019",
+      "supplier_name": "Alpha Tool & Die Works",
+      "region": "West India",
+      "tier": "Tier 1",
+      "total_orders": 158,
+      "total_spend": 1450242649.8,
+      "avg_order_value": 9178750.95,
+      "on_time_pct": 78.5,
+      "avg_delay_days": 2.3,
+      "defect_rate_pct": 1.9,
+      "risk_tier": "Low Risk"
+    },
+    {
+      "supplier_id": "SUP1043",
+      "supplier_name": "Bengal Chemical Reagents",
       "region": "East India",
       "tier": "Tier 2",
-      "total_orders": 321,
-      "total_spend": 4527133035.26,
-      "avg_order_value": 14103218.18,
-      "on_time_pct": 84.1,
-      "avg_delay_days": 1.78,
-      "defect_rate_pct": 10.28,
-      "risk_tier": "Medium Risk"
+      "total_orders": 1073,
+      "total_spend": 1607782188.04,
+      "avg_order_value": 1498399.06,
+      "on_time_pct": 76.4,
+      "avg_delay_days": 2.67,
+      "defect_rate_pct": 1.3,
+      "risk_tier": "Low Risk"
     },
     {
-      "supplier_id": "SUP1044",
-      "supplier_name": "Supplier 45",
-      "region": "North India",
-      "tier": "Tier 2",
-      "total_orders": 296,
-      "total_spend": 1669937888.59,
-      "avg_order_value": 5641682.06,
-      "on_time_pct": 80.1,
-      "avg_delay_days": 2.04,
-      "defect_rate_pct": 8.78,
-      "risk_tier": "Medium Risk"
-    },
-    {
-      "supplier_id": "SUP1077",
-      "supplier_name": "Supplier 78",
-      "region": "South India",
-      "tier": "Tier 1",
-      "total_orders": 301,
-      "total_spend": 2193716413.04,
-      "avg_order_value": 7288094.4,
-      "on_time_pct": 79.4,
-      "avg_delay_days": 2.43,
-      "defect_rate_pct": 4.98,
-      "risk_tier": "Medium Risk"
-    },
-    {
-      "supplier_id": "SUP1008",
-      "supplier_name": "Supplier 9",
-      "region": "South India",
-      "tier": "Tier 1",
-      "total_orders": 134,
-      "total_spend": 1404148513.71,
-      "avg_order_value": 10478720.25,
-      "on_time_pct": 78.4,
-      "avg_delay_days": 2.22,
-      "defect_rate_pct": 2.99,
-      "risk_tier": "Medium Risk"
-    },
-    {
-      "supplier_id": "SUP1086",
-      "supplier_name": "Supplier 87",
-      "region": "North India",
+      "supplier_id": "SUP1003",
+      "supplier_name": "Mahindra Industrial Logistics",
+      "region": "West India",
       "tier": "Tier 3",
-      "total_orders": 602,
-      "total_spend": 9238397386.91,
-      "avg_order_value": 15346175.06,
-      "on_time_pct": 77.2,
-      "avg_delay_days": 2.53,
-      "defect_rate_pct": 6.98,
-      "risk_tier": "High Risk"
+      "total_orders": 318,
+      "total_spend": 1347894354.55,
+      "avg_order_value": 4238661.49,
+      "on_time_pct": 76.1,
+      "avg_delay_days": 2.75,
+      "defect_rate_pct": 2.52,
+      "risk_tier": "Medium Risk"
+    },
+    {
+      "supplier_id": "SUP1026",
+      "supplier_name": "Pinnacle Precision Castings",
+      "region": "West India",
+      "tier": "Tier 2",
+      "total_orders": 291,
+      "total_spend": 159309090.59,
+      "avg_order_value": 547453.92,
+      "on_time_pct": 75.6,
+      "avg_delay_days": 2.74,
+      "defect_rate_pct": 18.21,
+      "risk_tier": "Medium Risk"
     }
   ],
   "bottom_suppliers": [
     {
-      "supplier_id": "SUP1011",
-      "supplier_name": "Supplier 12",
+      "supplier_id": "SUP1094",
+      "supplier_name": "Komatsu Earthmoving Parts",
       "region": "Import - North America",
       "tier": "Tier 2",
-      "total_orders": 302,
-      "total_spend": 1995192857.36,
-      "avg_order_value": 6606598.87,
-      "on_time_pct": 14.9,
-      "avg_delay_days": 9.37,
-      "defect_rate_pct": 13.91,
+      "total_orders": 420,
+      "total_spend": 671105590.69,
+      "avg_order_value": 1597870.45,
+      "on_time_pct": 11.7,
+      "avg_delay_days": 10.09,
+      "defect_rate_pct": 9.29,
       "risk_tier": "High Risk"
     },
     {
-      "supplier_id": "SUP1079",
-      "supplier_name": "Supplier 80",
+      "supplier_id": "SUP1042",
+      "supplier_name": "AeroTech Composite Systems",
       "region": "Import - China",
       "tier": "Tier 2",
-      "total_orders": 165,
-      "total_spend": 1194649918.4,
-      "avg_order_value": 7240302.54,
-      "on_time_pct": 16.4,
-      "avg_delay_days": 8.88,
-      "defect_rate_pct": 2.42,
+      "total_orders": 764,
+      "total_spend": 761829640.99,
+      "avg_order_value": 997159.22,
+      "on_time_pct": 19.9,
+      "avg_delay_days": 8.63,
+      "defect_rate_pct": 5.24,
       "risk_tier": "High Risk"
     },
     {
-      "supplier_id": "SUP1078",
-      "supplier_name": "Supplier 79",
-      "region": "Import - SE Asia",
-      "tier": "Tier 1",
-      "total_orders": 156,
-      "total_spend": 461377415.75,
-      "avg_order_value": 2957547.54,
-      "on_time_pct": 17.3,
-      "avg_delay_days": 8.6,
-      "defect_rate_pct": 3.85,
-      "risk_tier": "High Risk"
-    },
-    {
-      "supplier_id": "SUP1025",
-      "supplier_name": "Supplier 26",
-      "region": "Import - China",
+      "supplier_id": "SUP1080",
+      "supplier_name": "Wipro Infrastructure Eng",
+      "region": "Import - North America",
       "tier": "Tier 2",
-      "total_orders": 146,
-      "total_spend": 1155195771.11,
-      "avg_order_value": 7912299.8,
-      "on_time_pct": 21.9,
-      "avg_delay_days": 9.05,
-      "defect_rate_pct": 4.11,
+      "total_orders": 124,
+      "total_spend": 165861927.59,
+      "avg_order_value": 1337596.19,
+      "on_time_pct": 21.8,
+      "avg_delay_days": 9.65,
+      "defect_rate_pct": 12.1,
       "risk_tier": "High Risk"
     },
     {
-      "supplier_id": "SUP1097",
-      "supplier_name": "Supplier 98",
-      "region": "Import - China",
+      "supplier_id": "SUP1055",
+      "supplier_name": "Federal Mogul Auto Parts",
+      "region": "North India",
+      "tier": "Tier 3",
+      "total_orders": 614,
+      "total_spend": 823979780.09,
+      "avg_order_value": 1341986.61,
+      "on_time_pct": 25.4,
+      "avg_delay_days": 8.15,
+      "defect_rate_pct": 2.12,
+      "risk_tier": "High Risk"
+    },
+    {
+      "supplier_id": "SUP1064",
+      "supplier_name": "Hindalco Aluminum Extrusions",
+      "region": "West India",
       "tier": "Tier 2",
-      "total_orders": 438,
-      "total_spend": 2656846845.79,
-      "avg_order_value": 6065860.38,
-      "on_time_pct": 22.4,
-      "avg_delay_days": 8.77,
-      "defect_rate_pct": 0.46,
-      "risk_tier": "Medium Risk"
+      "total_orders": 598,
+      "total_spend": 1247941924.04,
+      "avg_order_value": 2086859.4,
+      "on_time_pct": 29.8,
+      "avg_delay_days": 7.57,
+      "defect_rate_pct": 2.34,
+      "risk_tier": "High Risk"
     }
   ],
   "risk_distribution": {
-    "High Risk": 63,
-    "Medium Risk": 24,
-    "Low Risk": 1
+    "High Risk": 59,
+    "Medium Risk": 17,
+    "Low Risk": 2
   },
   "monthly_trend": [
     {
       "month": "2023-01",
-      "order_count": 857,
-      "total_spend": 5067889233.17,
-      "late_pct": 54.3
+      "order_count": 855,
+      "total_spend": 1369035572.71,
+      "late_pct": 49.9
     },
     {
       "month": "2023-02",
       "order_count": 783,
-      "total_spend": 4957252369.36,
-      "late_pct": 38.8
+      "total_spend": 1284148026.5,
+      "late_pct": 34.2
     },
     {
       "month": "2023-03",
-      "order_count": 827,
-      "total_spend": 5494191334.29,
-      "late_pct": 39.5
+      "order_count": 831,
+      "total_spend": 1388546120.12,
+      "late_pct": 33.5
     },
     {
       "month": "2023-04",
-      "order_count": 812,
-      "total_spend": 5591924905.34,
-      "late_pct": 40.0
+      "order_count": 810,
+      "total_spend": 1422212155.96,
+      "late_pct": 34.0
     },
     {
       "month": "2023-05",
-      "order_count": 837,
-      "total_spend": 5512767482.68,
-      "late_pct": 37.2
+      "order_count": 835,
+      "total_spend": 1334043055.95,
+      "late_pct": 38.6
     },
     {
       "month": "2023-06",
       "order_count": 843,
-      "total_spend": 5476296523.6,
-      "late_pct": 46.4
+      "total_spend": 1582304115.71,
+      "late_pct": 44.1
     },
     {
       "month": "2023-07",
-      "order_count": 825,
-      "total_spend": 5316847784.73,
-      "late_pct": 47.6
+      "order_count": 823,
+      "total_spend": 1447161143.8,
+      "late_pct": 45.7
     },
     {
       "month": "2023-08",
-      "order_count": 881,
-      "total_spend": 5520964977.36,
-      "late_pct": 35.4
+      "order_count": 876,
+      "total_spend": 1537600209.6,
+      "late_pct": 34.1
     },
     {
       "month": "2023-09",
-      "order_count": 822,
-      "total_spend": 5564606279.57,
-      "late_pct": 39.4
+      "order_count": 823,
+      "total_spend": 1437267312.24,
+      "late_pct": 34.4
     },
     {
       "month": "2023-10",
-      "order_count": 867,
-      "total_spend": 5639627633.94,
-      "late_pct": 46.6
+      "order_count": 862,
+      "total_spend": 1493589512.27,
+      "late_pct": 46.3
     },
     {
       "month": "2023-11",
-      "order_count": 830,
-      "total_spend": 5344780954.51,
-      "late_pct": 70.2
+      "order_count": 832,
+      "total_spend": 1282428448.34,
+      "late_pct": 67.8
     },
     {
       "month": "2023-12",
-      "order_count": 867,
-      "total_spend": 5614938598.46,
-      "late_pct": 66.3
+      "order_count": 864,
+      "total_spend": 1513032234.52,
+      "late_pct": 70.3
     },
     {
       "month": "2024-01",
-      "order_count": 884,
-      "total_spend": 5697128238.63,
-      "late_pct": 55.2
+      "order_count": 873,
+      "total_spend": 1474784926.68,
+      "late_pct": 52.2
     },
     {
       "month": "2024-02",
-      "order_count": 731,
-      "total_spend": 4532281064.86,
-      "late_pct": 35.3
+      "order_count": 734,
+      "total_spend": 1179538466.2,
+      "late_pct": 31.2
     },
     {
       "month": "2024-03",
       "order_count": 848,
-      "total_spend": 4562609910.95,
-      "late_pct": 29.0
+      "total_spend": 1199178393.29,
+      "late_pct": 27.4
     },
     {
       "month": "2024-04",
       "order_count": 858,
-      "total_spend": 4457557500.77,
-      "late_pct": 31.9
+      "total_spend": 1176852750.2,
+      "late_pct": 26.2
     },
     {
       "month": "2024-05",
-      "order_count": 802,
-      "total_spend": 4490405414.54,
-      "late_pct": 30.0
+      "order_count": 800,
+      "total_spend": 996371277.59,
+      "late_pct": 23.4
     },
     {
       "month": "2024-06",
-      "order_count": 787,
-      "total_spend": 4152521351.4,
-      "late_pct": 41.2
+      "order_count": 784,
+      "total_spend": 1050262690.41,
+      "late_pct": 42.5
     },
     {
       "month": "2024-07",
-      "order_count": 915,
-      "total_spend": 4972404033.1,
-      "late_pct": 41.3
+      "order_count": 910,
+      "total_spend": 1276958867.73,
+      "late_pct": 46.6
     },
     {
       "month": "2024-08",
-      "order_count": 826,
-      "total_spend": 4680868304.27,
-      "late_pct": 33.1
+      "order_count": 820,
+      "total_spend": 1233182905.48,
+      "late_pct": 36.1
     },
     {
       "month": "2024-09",
-      "order_count": 807,
-      "total_spend": 4738491867.06,
-      "late_pct": 35.2
+      "order_count": 814,
+      "total_spend": 1244206018.73,
+      "late_pct": 38.6
     },
     {
       "month": "2024-10",
-      "order_count": 871,
-      "total_spend": 5118154401.63,
-      "late_pct": 45.2
+      "order_count": 876,
+      "total_spend": 1443614317.96,
+      "late_pct": 47.9
     },
     {
       "month": "2024-11",
       "order_count": 802,
-      "total_spend": 4996692958.38,
-      "late_pct": 66.8
+      "total_spend": 1225842079.01,
+      "late_pct": 65.5
     },
     {
       "month": "2024-12",
-      "order_count": 898,
-      "total_spend": 5534028947.76,
-      "late_pct": 65.5
+      "order_count": 900,
+      "total_spend": 1372638485.22,
+      "late_pct": 69.2
     },
     {
       "month": "2025-01",
       "order_count": 858,
-      "total_spend": 5728236270.41,
-      "late_pct": 53.1
+      "total_spend": 1355825739.98,
+      "late_pct": 54.4
     },
     {
       "month": "2025-02",
       "order_count": 782,
-      "total_spend": 5430690223.92,
-      "late_pct": 36.7
+      "total_spend": 1327712627.4,
+      "late_pct": 35.2
     },
     {
       "month": "2025-03",
-      "order_count": 845,
-      "total_spend": 5922455234.21,
-      "late_pct": 40.5
+      "order_count": 842,
+      "total_spend": 1517161647.22,
+      "late_pct": 40.6
     },
     {
       "month": "2025-04",
       "order_count": 830,
-      "total_spend": 6214742115.2,
-      "late_pct": 40.1
+      "total_spend": 1588761056.47,
+      "late_pct": 41.7
     },
     {
       "month": "2025-05",
-      "order_count": 862,
-      "total_spend": 6748934277.35,
-      "late_pct": 38.5
+      "order_count": 872,
+      "total_spend": 1696331395.92,
+      "late_pct": 43.1
     },
     {
       "month": "2025-06",
-      "order_count": 770,
-      "total_spend": 6112979751.85,
-      "late_pct": 51.7
+      "order_count": 775,
+      "total_spend": 1715299162.26,
+      "late_pct": 51.5
     },
     {
       "month": "2025-07",
-      "order_count": 819,
-      "total_spend": 6283619080.45,
-      "late_pct": 54.9
+      "order_count": 816,
+      "total_spend": 1727093338.23,
+      "late_pct": 56.3
     },
     {
       "month": "2025-08",
-      "order_count": 856,
-      "total_spend": 6902206375.53,
-      "late_pct": 38.7
+      "order_count": 860,
+      "total_spend": 1735958494.92,
+      "late_pct": 47.3
     },
     {
       "month": "2025-09",
-      "order_count": 776,
-      "total_spend": 5610537967.05,
-      "late_pct": 39.2
+      "order_count": 780,
+      "total_spend": 1595884705.49,
+      "late_pct": 43.2
     },
     {
       "month": "2025-10",
-      "order_count": 862,
-      "total_spend": 6248772433.9,
-      "late_pct": 42.6
+      "order_count": 861,
+      "total_spend": 1690038548.43,
+      "late_pct": 36.9
     },
     {
       "month": "2025-11",
-      "order_count": 809,
-      "total_spend": 5825298218.21,
-      "late_pct": 60.7
+      "order_count": 813,
+      "total_spend": 1577908361.32,
+      "late_pct": 58.9
     },
     {
       "month": "2025-12",
-      "order_count": 851,
-      "total_spend": 5889073658.89,
-      "late_pct": 58.2
+      "order_count": 855,
+      "total_spend": 1501295548.22,
+      "late_pct": 57.8
     }
   ],
   "inventory_status": {
@@ -370,359 +370,319 @@
   },
   "price_inflation_flags": [
     {
-      "supplier_name": "Supplier 64",
-      "latest_pct_change": 54.9
+      "supplier_name": "Bharat Heavy Metallics",
+      "latest_pct_change": 57.3
     },
     {
-      "supplier_name": "Supplier 3",
-      "latest_pct_change": 50.7
+      "supplier_name": "Hyundai Heavy Industries",
+      "latest_pct_change": 52.2
     },
     {
-      "supplier_name": "Supplier 99",
-      "latest_pct_change": 50.6
+      "supplier_name": "Hindalco Aluminum Extrusions",
+      "latest_pct_change": 51.6
     },
     {
-      "supplier_name": "Supplier 47",
-      "latest_pct_change": 48.8
+      "supplier_name": "Silicon Valley Micro Hardware",
+      "latest_pct_change": 51.1
     },
     {
-      "supplier_name": "Supplier 74",
-      "latest_pct_change": 48.6
+      "supplier_name": "Delta Power Electronics",
+      "latest_pct_change": 45.2
     },
     {
-      "supplier_name": "Supplier 88",
-      "latest_pct_change": 44.5
+      "supplier_name": "Aegis Defense Equipment",
+      "latest_pct_change": 41.9
     },
     {
-      "supplier_name": "Supplier 52",
-      "latest_pct_change": 41.2
+      "supplier_name": "Federal Mogul Auto Parts",
+      "latest_pct_change": 41.8
     },
     {
-      "supplier_name": "Supplier 10",
-      "latest_pct_change": 40.8
+      "supplier_name": "Yokohama Industrial Polymers",
+      "latest_pct_change": 41.8
     },
     {
-      "supplier_name": "Supplier 68",
+      "supplier_name": "Mahindra Industrial Logistics",
+      "latest_pct_change": 41.7
+    },
+    {
+      "supplier_name": "Honeywell Control Systems",
+      "latest_pct_change": 41.5
+    },
+    {
+      "supplier_name": "Pinnacle Precision Castings",
+      "latest_pct_change": 41.0
+    },
+    {
+      "supplier_name": "SANY Heavy Machinery",
       "latest_pct_change": 40.4
     },
     {
-      "supplier_name": "Supplier 2",
-      "latest_pct_change": 40.0
+      "supplier_name": "Pacific Rim Semiconductor Corp",
+      "latest_pct_change": 39.5
     },
     {
-      "supplier_name": "Supplier 41",
-      "latest_pct_change": 39.8
+      "supplier_name": "Bavaria Automotive Forgings",
+      "latest_pct_change": 39.1
     },
     {
-      "supplier_name": "Supplier 66",
-      "latest_pct_change": 39.2
+      "supplier_name": "Ashok Leyland Logistics",
+      "latest_pct_change": 38.8
     },
     {
-      "supplier_name": "Supplier 4",
+      "supplier_name": "Doosan Industrial Equipment",
       "latest_pct_change": 37.8
     },
     {
-      "supplier_name": "Supplier 22",
-      "latest_pct_change": 37.0
-    },
-    {
-      "supplier_name": "Supplier 70",
+      "supplier_name": "ABB Automation Systems",
       "latest_pct_change": 36.8
     },
     {
-      "supplier_name": "Supplier 79",
+      "supplier_name": "Indus Valley Packaging",
+      "latest_pct_change": 36.4
+    },
+    {
+      "supplier_name": "Ganga Hydraulics & Valves",
+      "latest_pct_change": 36.0
+    },
+    {
+      "supplier_name": "Bengal Chemical Reagents",
       "latest_pct_change": 35.5
     },
     {
-      "supplier_name": "Supplier 6",
-      "latest_pct_change": 35.2
-    },
-    {
-      "supplier_name": "Supplier 53",
+      "supplier_name": "Texas Instrument Distributors",
       "latest_pct_change": 34.9
     },
     {
-      "supplier_name": "Supplier 11",
-      "latest_pct_change": 34.4
+      "supplier_name": "Sundaram Fasteners Ltd",
+      "latest_pct_change": 34.3
     },
     {
-      "supplier_name": "Supplier 40",
-      "latest_pct_change": 33.4
+      "supplier_name": "Siemens Industrial Automation",
+      "latest_pct_change": 34.2
     },
     {
-      "supplier_name": "Supplier 34",
-      "latest_pct_change": 33.4
+      "supplier_name": "Stuttgart Auto Components",
+      "latest_pct_change": 34.0
     },
     {
-      "supplier_name": "Supplier 17",
+      "supplier_name": "BASF Chemical Solutions",
+      "latest_pct_change": 33.1
+    },
+    {
+      "supplier_name": "DynaFlex Rubber & Elastomers",
+      "latest_pct_change": 32.8
+    },
+    {
+      "supplier_name": "Apex Precision Components Ltd",
       "latest_pct_change": 32.4
     },
     {
-      "supplier_name": "Supplier 87",
+      "supplier_name": "Hitachi Industrial Machinery",
+      "latest_pct_change": 32.0
+    },
+    {
+      "supplier_name": "Thermax Boilers & Heat Systems",
       "latest_pct_change": 31.9
     },
     {
-      "supplier_name": "Supplier 19",
-      "latest_pct_change": 31.0
+      "supplier_name": "Alpha Tool & Die Works",
+      "latest_pct_change": 31.8
     },
     {
-      "supplier_name": "Supplier 58",
-      "latest_pct_change": 31.0
+      "supplier_name": "Prabhat Fastener Industries",
+      "latest_pct_change": 31.6
     },
     {
-      "supplier_name": "Supplier 32",
-      "latest_pct_change": 30.9
+      "supplier_name": "Sonata Acoustic Sensors",
+      "latest_pct_change": 31.2
     },
     {
-      "supplier_name": "Supplier 1",
-      "latest_pct_change": 30.5
+      "supplier_name": "Hindustan Fasteners & Hardware",
+      "latest_pct_change": 31.2
     },
     {
-      "supplier_name": "Supplier 75",
-      "latest_pct_change": 30.4
+      "supplier_name": "3M Industrial Science",
+      "latest_pct_change": 30.8
     },
     {
-      "supplier_name": "Supplier 78",
-      "latest_pct_change": 30.3
+      "supplier_name": "Murata Manufacturing Co",
+      "latest_pct_change": 30.2
     },
     {
-      "supplier_name": "Supplier 63",
-      "latest_pct_change": 30.3
-    },
-    {
-      "supplier_name": "Supplier 14",
+      "supplier_name": "Zenith Electronics Mfg",
       "latest_pct_change": 30.0
     },
     {
-      "supplier_name": "Supplier 49",
+      "supplier_name": "SKF Precision Bearings",
       "latest_pct_change": 29.8
     },
     {
-      "supplier_name": "Supplier 50",
-      "latest_pct_change": 29.3
+      "supplier_name": "Sterling Chemical Synthetics",
+      "latest_pct_change": 29.7
     },
     {
-      "supplier_name": "Supplier 31",
-      "latest_pct_change": 28.9
+      "supplier_name": "Molex Interconnect Systems",
+      "latest_pct_change": 29.4
     },
     {
-      "supplier_name": "Supplier 8",
-      "latest_pct_change": 28.9
-    },
-    {
-      "supplier_name": "Supplier 23",
+      "supplier_name": "Yaskawa Electric Drives",
       "latest_pct_change": 28.7
     },
     {
-      "supplier_name": "Supplier 90",
-      "latest_pct_change": 28.1
-    },
-    {
-      "supplier_name": "Supplier 25",
-      "latest_pct_change": 28.1
-    },
-    {
-      "supplier_name": "Supplier 81",
-      "latest_pct_change": 27.9
-    },
-    {
-      "supplier_name": "Supplier 33",
-      "latest_pct_change": 27.7
-    },
-    {
-      "supplier_name": "Supplier 62",
+      "supplier_name": "Fanuc Robotics Supplies",
       "latest_pct_change": 27.5
     },
     {
-      "supplier_name": "Supplier 86",
-      "latest_pct_change": 27.0
+      "supplier_name": "Wipro Infrastructure Eng",
+      "latest_pct_change": 27.4
     },
     {
-      "supplier_name": "Supplier 9",
-      "latest_pct_change": 27.0
+      "supplier_name": "Titanium Tech Aerospace",
+      "latest_pct_change": 25.6
     },
     {
-      "supplier_name": "Supplier 38",
-      "latest_pct_change": 26.2
-    },
-    {
-      "supplier_name": "Supplier 92",
-      "latest_pct_change": 26.2
-    },
-    {
-      "supplier_name": "Supplier 71",
-      "latest_pct_change": 26.1
-    },
-    {
-      "supplier_name": "Supplier 7",
-      "latest_pct_change": 26.0
-    },
-    {
-      "supplier_name": "Supplier 16",
-      "latest_pct_change": 25.7
-    },
-    {
-      "supplier_name": "Supplier 15",
+      "supplier_name": "Swastik Cardboard & Packaging",
       "latest_pct_change": 25.5
     },
     {
-      "supplier_name": "Supplier 44",
+      "supplier_name": "Rockwell Automation Gear",
       "latest_pct_change": 25.1
     },
     {
-      "supplier_name": "Supplier 100",
-      "latest_pct_change": 24.5
+      "supplier_name": "Amphenol Cable Systems",
+      "latest_pct_change": 25.0
     },
     {
-      "supplier_name": "Supplier 27",
+      "supplier_name": "Shenzhen Microelectronics Co",
+      "latest_pct_change": 24.3
+    },
+    {
+      "supplier_name": "Kirloskar Pumps & Compressors",
       "latest_pct_change": 24.2
     },
     {
-      "supplier_name": "Supplier 95",
-      "latest_pct_change": 23.9
-    },
-    {
-      "supplier_name": "Supplier 94",
-      "latest_pct_change": 23.9
-    },
-    {
-      "supplier_name": "Supplier 54",
+      "supplier_name": "Mitsubishi Heavy Industries",
       "latest_pct_change": 23.6
     },
     {
-      "supplier_name": "Supplier 80",
-      "latest_pct_change": 23.6
+      "supplier_name": "Danfoss Climate Solutions",
+      "latest_pct_change": 23.0
     },
     {
-      "supplier_name": "Supplier 13",
-      "latest_pct_change": 23.3
-    },
-    {
-      "supplier_name": "Supplier 39",
+      "supplier_name": "Kyoto Precision Instruments",
       "latest_pct_change": 22.8
     },
     {
-      "supplier_name": "Supplier 20",
-      "latest_pct_change": 22.4
+      "supplier_name": "Shree Ram Textiles & Weaving",
+      "latest_pct_change": 22.0
     },
     {
-      "supplier_name": "Supplier 12",
-      "latest_pct_change": 22.2
-    },
-    {
-      "supplier_name": "Supplier 55",
-      "latest_pct_change": 22.1
-    },
-    {
-      "supplier_name": "Supplier 57",
+      "supplier_name": "Schneider Electric Gear",
       "latest_pct_change": 21.9
     },
     {
-      "supplier_name": "Supplier 83",
-      "latest_pct_change": 21.8
+      "supplier_name": "Atlas Heavy Machinery Supplies",
+      "latest_pct_change": 20.9
     },
     {
-      "supplier_name": "Supplier 36",
-      "latest_pct_change": 21.2
+      "supplier_name": "Komatsu Earthmoving Parts",
+      "latest_pct_change": 20.9
     },
     {
-      "supplier_name": "Supplier 96",
+      "supplier_name": "Jindal Stainless & Alloy",
+      "latest_pct_change": 20.9
+    },
+    {
+      "supplier_name": "Kavita Packaging Solutions",
       "latest_pct_change": 20.8
     },
     {
-      "supplier_name": "Supplier 60",
-      "latest_pct_change": 20.5
+      "supplier_name": "Evergreen Shipping Lines",
+      "latest_pct_change": 20.7
     },
     {
-      "supplier_name": "Supplier 42",
+      "supplier_name": "L&T Heavy Engineering",
+      "latest_pct_change": 20.4
+    },
+    {
+      "supplier_name": "Hanover Precision Bearings",
+      "latest_pct_change": 20.0
+    },
+    {
+      "supplier_name": "TVS Auto Accessories",
+      "latest_pct_change": 20.0
+    },
+    {
+      "supplier_name": "Vertex Microchip Fab",
       "latest_pct_change": 19.9
     },
     {
-      "supplier_name": "Supplier 73",
+      "supplier_name": "Panasonic Battery Industrial",
+      "latest_pct_change": 19.6
+    },
+    {
+      "supplier_name": "Parker Hannifin Pneumatics",
       "latest_pct_change": 19.4
     },
     {
-      "supplier_name": "Supplier 89",
+      "supplier_name": "Deccan Mining & Metals",
       "latest_pct_change": 19.4
     },
     {
-      "supplier_name": "Supplier 51",
-      "latest_pct_change": 19.3
-    },
-    {
-      "supplier_name": "Supplier 98",
+      "supplier_name": "Samsung Component Solutions",
       "latest_pct_change": 19.2
     },
     {
-      "supplier_name": "Supplier 35",
-      "latest_pct_change": 18.8
+      "supplier_name": "Krupp Heavy Metallics GmbH",
+      "latest_pct_change": 19.0
     },
     {
-      "supplier_name": "Supplier 61",
-      "latest_pct_change": 18.6
-    },
-    {
-      "supplier_name": "Supplier 59",
+      "supplier_name": "Dow Petrochemical Corp",
       "latest_pct_change": 18.3
     },
     {
-      "supplier_name": "Supplier 77",
-      "latest_pct_change": 18.1
+      "supplier_name": "Gujarat Petrochem Synthetics",
+      "latest_pct_change": 17.1
     },
     {
-      "supplier_name": "Supplier 82",
-      "latest_pct_change": 18.0
+      "supplier_name": "Shanghai Industrial Silicon",
+      "latest_pct_change": 16.7
     },
     {
-      "supplier_name": "Supplier 48",
-      "latest_pct_change": 17.7
+      "supplier_name": "Nippon Steel Logistics",
+      "latest_pct_change": 16.3
     },
     {
-      "supplier_name": "Supplier 84",
-      "latest_pct_change": 17.5
+      "supplier_name": "Taiwan Semiconductor Foundry",
+      "latest_pct_change": 16.0
     },
     {
-      "supplier_name": "Supplier 45",
-      "latest_pct_change": 17.5
+      "supplier_name": "Tokyo Electronic Wire Ltd",
+      "latest_pct_change": 14.2
     },
     {
-      "supplier_name": "Supplier 26",
-      "latest_pct_change": 17.4
+      "supplier_name": "Larsen Structural Engineers",
+      "latest_pct_change": 12.2
     },
     {
-      "supplier_name": "Supplier 65",
-      "latest_pct_change": 14.7
+      "supplier_name": "Nordic Polymer Materials",
+      "latest_pct_change": 12.1
     },
     {
-      "supplier_name": "Supplier 21",
-      "latest_pct_change": 13.0
+      "supplier_name": "AeroTech Composite Systems",
+      "latest_pct_change": 12.0
     },
     {
-      "supplier_name": "Supplier 24",
-      "latest_pct_change": 13.0
+      "supplier_name": "TE Connectivity Products",
+      "latest_pct_change": 11.3
     },
     {
-      "supplier_name": "Supplier 97",
-      "latest_pct_change": 12.3
-    },
-    {
-      "supplier_name": "Supplier 18",
-      "latest_pct_change": 10.0
-    },
-    {
-      "supplier_name": "Supplier 37",
-      "latest_pct_change": 10.0
-    },
-    {
-      "supplier_name": "Supplier 56",
-      "latest_pct_change": 7.3
-    },
-    {
-      "supplier_name": "Supplier 43",
-      "latest_pct_change": 5.3
+      "supplier_name": "Eaton Hydraulic Systems",
+      "latest_pct_change": -2.7
     }
   ],
-  "narrative_example": "Supplier Supplier 12 (Tier: Tier 2) has an on-time delivery rate of 14.9%, the lowest among active suppliers, with an average delay of 9.37 days across 302 orders (\u20b91,995,192,857 total spend). Consider shifting high-priority orders to Supplier 88 (Tier: Tier 2), which maintains a 84.1% on-time rate with an average order value of \u20b914,103,218.",
-  "total_spend": 195952777677.33,
+  "narrative_example": "Komatsu Earthmoving Parts (Tier: Tier 2) has an on-time delivery rate of 11.7%, the lowest among active suppliers, with an average delay of 10.09 days across 420 orders (\u20b9671,105,591 total spend). Consider shifting high-priority orders to Shanghai Industrial Silicon (Tier: Tier 1), which maintains a 79.8% on-time rate with an average order value of \u20b91,871,062.",
+  "total_spend": 50994069712.08,
   "total_orders": 30000
 }
