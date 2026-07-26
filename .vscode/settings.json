@@ -1,0 +1,18 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\NAEHA\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}",
+    "${workspaceFolder}\\db",
+    "${workspaceFolder}\\data",
+    "${workspaceFolder}\\analysis",
+    "${workspaceFolder}\\ml",
+    "${workspaceFolder}\\dashboard"
+  ],
+  "python.analysis.ignore": [
+    "c:\\__pyrefly_virtual__\\**"
+  ],
+  "pyrefly.pythonInterpreter": "C:\\Users\\NAEHA\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+  "pyrefly.exclude": [
+    "**/__pyrefly_virtual__/**"
+  ]
+}

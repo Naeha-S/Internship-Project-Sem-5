@@ -1,0 +1,728 @@
+{
+  "overall_health_score": 49.8,
+  "components": {
+    "supplier_reliability": 54.2,
+    "inventory_efficiency": 81.2,
+    "cost_optimisation": 45.6,
+    "delivery_performance": 54.2,
+    "risk_score": 0.0
+  },
+  "top_suppliers": [
+    {
+      "supplier_id": "SUP1087",
+      "supplier_name": "Supplier 88",
+      "region": "East India",
+      "tier": "Tier 2",
+      "total_orders": 321,
+      "total_spend": 4527133035.26,
+      "avg_order_value": 14103218.18,
+      "on_time_pct": 84.1,
+      "avg_delay_days": 1.78,
+      "defect_rate_pct": 10.28,
+      "risk_tier": "Medium Risk"
+    },
+    {
+      "supplier_id": "SUP1044",
+      "supplier_name": "Supplier 45",
+      "region": "North India",
+      "tier": "Tier 2",
+      "total_orders": 296,
+      "total_spend": 1669937888.59,
+      "avg_order_value": 5641682.06,
+      "on_time_pct": 81.1,
+      "avg_delay_days": 1.93,
+      "defect_rate_pct": 8.78,
+      "risk_tier": "Medium Risk"
+    },
+    {
+      "supplier_id": "SUP1077",
+      "supplier_name": "Supplier 78",
+      "region": "South India",
+      "tier": "Tier 1",
+      "total_orders": 301,
+      "total_spend": 2193716413.04,
+      "avg_order_value": 7288094.4,
+      "on_time_pct": 79.4,
+      "avg_delay_days": 2.43,
+      "defect_rate_pct": 4.98,
+      "risk_tier": "Medium Risk"
+    },
+    {
+      "supplier_id": "SUP1008",
+      "supplier_name": "Supplier 9",
+      "region": "South India",
+      "tier": "Tier 1",
+      "total_orders": 134,
+      "total_spend": 1404148513.71,
+      "avg_order_value": 10478720.25,
+      "on_time_pct": 79.1,
+      "avg_delay_days": 2.16,
+      "defect_rate_pct": 2.99,
+      "risk_tier": "Medium Risk"
+    },
+    {
+      "supplier_id": "SUP1086",
+      "supplier_name": "Supplier 87",
+      "region": "North India",
+      "tier": "Tier 3",
+      "total_orders": 602,
+      "total_spend": 9238397386.91,
+      "avg_order_value": 15346175.06,
+      "on_time_pct": 77.4,
+      "avg_delay_days": 2.5,
+      "defect_rate_pct": 6.98,
+      "risk_tier": "High Risk"
+    }
+  ],
+  "bottom_suppliers": [
+    {
+      "supplier_id": "SUP1011",
+      "supplier_name": "Supplier 12",
+      "region": "Import - North America",
+      "tier": "Tier 2",
+      "total_orders": 302,
+      "total_spend": 1995192857.36,
+      "avg_order_value": 6606598.87,
+      "on_time_pct": 14.9,
+      "avg_delay_days": 9.37,
+      "defect_rate_pct": 13.91,
+      "risk_tier": "High Risk"
+    },
+    {
+      "supplier_id": "SUP1079",
+      "supplier_name": "Supplier 80",
+      "region": "Import - China",
+      "tier": "Tier 2",
+      "total_orders": 165,
+      "total_spend": 1194649918.4,
+      "avg_order_value": 7240302.54,
+      "on_time_pct": 16.4,
+      "avg_delay_days": 8.88,
+      "defect_rate_pct": 2.42,
+      "risk_tier": "High Risk"
+    },
+    {
+      "supplier_id": "SUP1078",
+      "supplier_name": "Supplier 79",
+      "region": "Import - SE Asia",
+      "tier": "Tier 1",
+      "total_orders": 156,
+      "total_spend": 461377415.75,
+      "avg_order_value": 2957547.54,
+      "on_time_pct": 17.9,
+      "avg_delay_days": 8.47,
+      "defect_rate_pct": 3.85,
+      "risk_tier": "High Risk"
+    },
+    {
+      "supplier_id": "SUP1025",
+      "supplier_name": "Supplier 26",
+      "region": "Import - China",
+      "tier": "Tier 2",
+      "total_orders": 146,
+      "total_spend": 1155195771.11,
+      "avg_order_value": 7912299.8,
+      "on_time_pct": 21.9,
+      "avg_delay_days": 9.05,
+      "defect_rate_pct": 4.11,
+      "risk_tier": "High Risk"
+    },
+    {
+      "supplier_id": "SUP1097",
+      "supplier_name": "Supplier 98",
+      "region": "Import - China",
+      "tier": "Tier 2",
+      "total_orders": 438,
+      "total_spend": 2656846845.79,
+      "avg_order_value": 6065860.38,
+      "on_time_pct": 23.1,
+      "avg_delay_days": 8.7,
+      "defect_rate_pct": 0.46,
+      "risk_tier": "Medium Risk"
+    }
+  ],
+  "risk_distribution": {
+    "High Risk": 63,
+    "Medium Risk": 24,
+    "Low Risk": 1
+  },
+  "monthly_trend": [
+    {
+      "month": "2023-01",
+      "order_count": 857,
+      "total_spend": 5067889233.17,
+      "late_pct": 54.1
+    },
+    {
+      "month": "2023-02",
+      "order_count": 783,
+      "total_spend": 4957252369.36,
+      "late_pct": 38.8
+    },
+    {
+      "month": "2023-03",
+      "order_count": 827,
+      "total_spend": 5494191334.29,
+      "late_pct": 38.9
+    },
+    {
+      "month": "2023-04",
+      "order_count": 812,
+      "total_spend": 5591924905.34,
+      "late_pct": 38.8
+    },
+    {
+      "month": "2023-05",
+      "order_count": 837,
+      "total_spend": 5512767482.68,
+      "late_pct": 37.2
+    },
+    {
+      "month": "2023-06",
+      "order_count": 843,
+      "total_spend": 5476296523.6,
+      "late_pct": 46.1
+    },
+    {
+      "month": "2023-07",
+      "order_count": 825,
+      "total_spend": 5316847784.73,
+      "late_pct": 47.6
+    },
+    {
+      "month": "2023-08",
+      "order_count": 881,
+      "total_spend": 5520964977.36,
+      "late_pct": 35.4
+    },
+    {
+      "month": "2023-09",
+      "order_count": 822,
+      "total_spend": 5564606279.57,
+      "late_pct": 39.3
+    },
+    {
+      "month": "2023-10",
+      "order_count": 867,
+      "total_spend": 5639627633.94,
+      "late_pct": 46.4
+    },
+    {
+      "month": "2023-11",
+      "order_count": 830,
+      "total_spend": 5344780954.51,
+      "late_pct": 70.1
+    },
+    {
+      "month": "2023-12",
+      "order_count": 867,
+      "total_spend": 5614938598.46,
+      "late_pct": 66.2
+    },
+    {
+      "month": "2024-01",
+      "order_count": 884,
+      "total_spend": 5697128238.63,
+      "late_pct": 55.2
+    },
+    {
+      "month": "2024-02",
+      "order_count": 731,
+      "total_spend": 4532281064.86,
+      "late_pct": 35.3
+    },
+    {
+      "month": "2024-03",
+      "order_count": 848,
+      "total_spend": 4562609910.95,
+      "late_pct": 28.7
+    },
+    {
+      "month": "2024-04",
+      "order_count": 858,
+      "total_spend": 4457557500.77,
+      "late_pct": 31.5
+    },
+    {
+      "month": "2024-05",
+      "order_count": 802,
+      "total_spend": 4490405414.54,
+      "late_pct": 30.0
+    },
+    {
+      "month": "2024-06",
+      "order_count": 787,
+      "total_spend": 4152521351.4,
+      "late_pct": 40.9
+    },
+    {
+      "month": "2024-07",
+      "order_count": 915,
+      "total_spend": 4972404033.1,
+      "late_pct": 41.2
+    },
+    {
+      "month": "2024-08",
+      "order_count": 826,
+      "total_spend": 4680868304.27,
+      "late_pct": 32.8
+    },
+    {
+      "month": "2024-09",
+      "order_count": 807,
+      "total_spend": 4738491867.06,
+      "late_pct": 35.2
+    },
+    {
+      "month": "2024-10",
+      "order_count": 871,
+      "total_spend": 5118154401.63,
+      "late_pct": 44.2
+    },
+    {
+      "month": "2024-11",
+      "order_count": 802,
+      "total_spend": 4996692958.38,
+      "late_pct": 66.6
+    },
+    {
+      "month": "2024-12",
+      "order_count": 898,
+      "total_spend": 5534028947.76,
+      "late_pct": 65.5
+    },
+    {
+      "month": "2025-01",
+      "order_count": 858,
+      "total_spend": 5728236270.41,
+      "late_pct": 53.1
+    },
+    {
+      "month": "2025-02",
+      "order_count": 782,
+      "total_spend": 5430690223.92,
+      "late_pct": 36.4
+    },
+    {
+      "month": "2025-03",
+      "order_count": 845,
+      "total_spend": 5922455234.21,
+      "late_pct": 39.9
+    },
+    {
+      "month": "2025-04",
+      "order_count": 830,
+      "total_spend": 6214742115.2,
+      "late_pct": 39.8
+    },
+    {
+      "month": "2025-05",
+      "order_count": 862,
+      "total_spend": 6748934277.35,
+      "late_pct": 38.3
+    },
+    {
+      "month": "2025-06",
+      "order_count": 770,
+      "total_spend": 6112979751.85,
+      "late_pct": 51.6
+    },
+    {
+      "month": "2025-07",
+      "order_count": 819,
+      "total_spend": 6283619080.45,
+      "late_pct": 54.9
+    },
+    {
+      "month": "2025-08",
+      "order_count": 856,
+      "total_spend": 6902206375.53,
+      "late_pct": 38.1
+    },
+    {
+      "month": "2025-09",
+      "order_count": 776,
+      "total_spend": 5610537967.05,
+      "late_pct": 39.2
+    },
+    {
+      "month": "2025-10",
+      "order_count": 862,
+      "total_spend": 6248772433.9,
+      "late_pct": 42.2
+    },
+    {
+      "month": "2025-11",
+      "order_count": 809,
+      "total_spend": 5825298218.21,
+      "late_pct": 60.6
+    },
+    {
+      "month": "2025-12",
+      "order_count": 851,
+      "total_spend": 5889073658.89,
+      "late_pct": 57.7
+    }
+  ],
+  "inventory_status": {
+    "Healthy": 150,
+    "Understocked": 50
+  },
+  "price_inflation_flags": [
+    {
+      "supplier_name": "Supplier 64",
+      "latest_pct_change": 54.9
+    },
+    {
+      "supplier_name": "Supplier 3",
+      "latest_pct_change": 50.7
+    },
+    {
+      "supplier_name": "Supplier 99",
+      "latest_pct_change": 50.6
+    },
+    {
+      "supplier_name": "Supplier 47",
+      "latest_pct_change": 48.8
+    },
+    {
+      "supplier_name": "Supplier 74",
+      "latest_pct_change": 48.6
+    },
+    {
+      "supplier_name": "Supplier 88",
+      "latest_pct_change": 44.5
+    },
+    {
+      "supplier_name": "Supplier 52",
+      "latest_pct_change": 41.2
+    },
+    {
+      "supplier_name": "Supplier 10",
+      "latest_pct_change": 40.8
+    },
+    {
+      "supplier_name": "Supplier 68",
+      "latest_pct_change": 40.4
+    },
+    {
+      "supplier_name": "Supplier 2",
+      "latest_pct_change": 40.0
+    },
+    {
+      "supplier_name": "Supplier 41",
+      "latest_pct_change": 39.8
+    },
+    {
+      "supplier_name": "Supplier 66",
+      "latest_pct_change": 39.2
+    },
+    {
+      "supplier_name": "Supplier 4",
+      "latest_pct_change": 37.8
+    },
+    {
+      "supplier_name": "Supplier 22",
+      "latest_pct_change": 37.0
+    },
+    {
+      "supplier_name": "Supplier 70",
+      "latest_pct_change": 36.8
+    },
+    {
+      "supplier_name": "Supplier 79",
+      "latest_pct_change": 35.5
+    },
+    {
+      "supplier_name": "Supplier 6",
+      "latest_pct_change": 35.2
+    },
+    {
+      "supplier_name": "Supplier 53",
+      "latest_pct_change": 34.9
+    },
+    {
+      "supplier_name": "Supplier 11",
+      "latest_pct_change": 34.4
+    },
+    {
+      "supplier_name": "Supplier 40",
+      "latest_pct_change": 33.4
+    },
+    {
+      "supplier_name": "Supplier 34",
+      "latest_pct_change": 33.4
+    },
+    {
+      "supplier_name": "Supplier 17",
+      "latest_pct_change": 32.4
+    },
+    {
+      "supplier_name": "Supplier 87",
+      "latest_pct_change": 31.9
+    },
+    {
+      "supplier_name": "Supplier 19",
+      "latest_pct_change": 31.0
+    },
+    {
+      "supplier_name": "Supplier 58",
+      "latest_pct_change": 31.0
+    },
+    {
+      "supplier_name": "Supplier 32",
+      "latest_pct_change": 30.9
+    },
+    {
+      "supplier_name": "Supplier 1",
+      "latest_pct_change": 30.5
+    },
+    {
+      "supplier_name": "Supplier 75",
+      "latest_pct_change": 30.4
+    },
+    {
+      "supplier_name": "Supplier 78",
+      "latest_pct_change": 30.3
+    },
+    {
+      "supplier_name": "Supplier 63",
+      "latest_pct_change": 30.3
+    },
+    {
+      "supplier_name": "Supplier 14",
+      "latest_pct_change": 30.0
+    },
+    {
+      "supplier_name": "Supplier 49",
+      "latest_pct_change": 29.8
+    },
+    {
+      "supplier_name": "Supplier 50",
+      "latest_pct_change": 29.3
+    },
+    {
+      "supplier_name": "Supplier 31",
+      "latest_pct_change": 28.9
+    },
+    {
+      "supplier_name": "Supplier 8",
+      "latest_pct_change": 28.9
+    },
+    {
+      "supplier_name": "Supplier 23",
+      "latest_pct_change": 28.7
+    },
+    {
+      "supplier_name": "Supplier 90",
+      "latest_pct_change": 28.1
+    },
+    {
+      "supplier_name": "Supplier 25",
+      "latest_pct_change": 28.1
+    },
+    {
+      "supplier_name": "Supplier 81",
+      "latest_pct_change": 27.9
+    },
+    {
+      "supplier_name": "Supplier 33",
+      "latest_pct_change": 27.7
+    },
+    {
+      "supplier_name": "Supplier 62",
+      "latest_pct_change": 27.5
+    },
+    {
+      "supplier_name": "Supplier 86",
+      "latest_pct_change": 27.0
+    },
+    {
+      "supplier_name": "Supplier 9",
+      "latest_pct_change": 27.0
+    },
+    {
+      "supplier_name": "Supplier 38",
+      "latest_pct_change": 26.2
+    },
+    {
+      "supplier_name": "Supplier 92",
+      "latest_pct_change": 26.2
+    },
+    {
+      "supplier_name": "Supplier 71",
+      "latest_pct_change": 26.1
+    },
+    {
+      "supplier_name": "Supplier 7",
+      "latest_pct_change": 26.0
+    },
+    {
+      "supplier_name": "Supplier 16",
+      "latest_pct_change": 25.7
+    },
+    {
+      "supplier_name": "Supplier 15",
+      "latest_pct_change": 25.5
+    },
+    {
+      "supplier_name": "Supplier 44",
+      "latest_pct_change": 25.1
+    },
+    {
+      "supplier_name": "Supplier 100",
+      "latest_pct_change": 24.5
+    },
+    {
+      "supplier_name": "Supplier 27",
+      "latest_pct_change": 24.2
+    },
+    {
+      "supplier_name": "Supplier 95",
+      "latest_pct_change": 23.9
+    },
+    {
+      "supplier_name": "Supplier 94",
+      "latest_pct_change": 23.9
+    },
+    {
+      "supplier_name": "Supplier 54",
+      "latest_pct_change": 23.6
+    },
+    {
+      "supplier_name": "Supplier 80",
+      "latest_pct_change": 23.6
+    },
+    {
+      "supplier_name": "Supplier 13",
+      "latest_pct_change": 23.3
+    },
+    {
+      "supplier_name": "Supplier 39",
+      "latest_pct_change": 22.8
+    },
+    {
+      "supplier_name": "Supplier 20",
+      "latest_pct_change": 22.4
+    },
+    {
+      "supplier_name": "Supplier 12",
+      "latest_pct_change": 22.2
+    },
+    {
+      "supplier_name": "Supplier 55",
+      "latest_pct_change": 22.1
+    },
+    {
+      "supplier_name": "Supplier 57",
+      "latest_pct_change": 21.9
+    },
+    {
+      "supplier_name": "Supplier 83",
+      "latest_pct_change": 21.8
+    },
+    {
+      "supplier_name": "Supplier 36",
+      "latest_pct_change": 21.2
+    },
+    {
+      "supplier_name": "Supplier 96",
+      "latest_pct_change": 20.8
+    },
+    {
+      "supplier_name": "Supplier 60",
+      "latest_pct_change": 20.5
+    },
+    {
+      "supplier_name": "Supplier 42",
+      "latest_pct_change": 19.9
+    },
+    {
+      "supplier_name": "Supplier 73",
+      "latest_pct_change": 19.4
+    },
+    {
+      "supplier_name": "Supplier 89",
+      "latest_pct_change": 19.4
+    },
+    {
+      "supplier_name": "Supplier 51",
+      "latest_pct_change": 19.3
+    },
+    {
+      "supplier_name": "Supplier 98",
+      "latest_pct_change": 19.2
+    },
+    {
+      "supplier_name": "Supplier 35",
+      "latest_pct_change": 18.8
+    },
+    {
+      "supplier_name": "Supplier 61",
+      "latest_pct_change": 18.6
+    },
+    {
+      "supplier_name": "Supplier 59",
+      "latest_pct_change": 18.3
+    },
+    {
+      "supplier_name": "Supplier 77",
+      "latest_pct_change": 18.1
+    },
+    {
+      "supplier_name": "Supplier 82",
+      "latest_pct_change": 18.0
+    },
+    {
+      "supplier_name": "Supplier 48",
+      "latest_pct_change": 17.7
+    },
+    {
+      "supplier_name": "Supplier 84",
+      "latest_pct_change": 17.5
+    },
+    {
+      "supplier_name": "Supplier 45",
+      "latest_pct_change": 17.5
+    },
+    {
+      "supplier_name": "Supplier 26",
+      "latest_pct_change": 17.4
+    },
+    {
+      "supplier_name": "Supplier 65",
+      "latest_pct_change": 14.7
+    },
+    {
+      "supplier_name": "Supplier 21",
+      "latest_pct_change": 13.0
+    },
+    {
+      "supplier_name": "Supplier 24",
+      "latest_pct_change": 13.0
+    },
+    {
+      "supplier_name": "Supplier 97",
+      "latest_pct_change": 12.3
+    },
+    {
+      "supplier_name": "Supplier 18",
+      "latest_pct_change": 10.0
+    },
+    {
+      "supplier_name": "Supplier 37",
+      "latest_pct_change": 10.0
+    },
+    {
+      "supplier_name": "Supplier 56",
+      "latest_pct_change": 7.3
+    },
+    {
+      "supplier_name": "Supplier 43",
+      "latest_pct_change": 5.3
+    }
+  ],
+  "narrative_example": "Supplier Supplier 12 (Tier: Tier 2) has an on-time delivery rate of 14.9%, the lowest among active suppliers, with an average delay of 9.37 days across 302 orders (\u20b91,995,192,857 total spend). Consider shifting high-priority orders to Supplier 88 (Tier: Tier 2), which maintains a 84.1% on-time rate with an average order value of \u20b914,103,218.",
+  "total_spend": 195952777677.33,
+  "total_orders": 30000
+}

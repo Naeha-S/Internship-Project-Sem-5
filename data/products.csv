@@ -1,0 +1,201 @@
+product_id,product_name,category,sub_category,unit_cost_base,primary_supplier_id,reorder_level,lead_time_days_base
+PRD2000,Tubing Item 1,Rubber & Plastics,Tubing,4704.86,SUP1083,486,25
+PRD2001,Saws Item 2,Tools & Equipment,Saws,2159.63,SUP1005,484,18
+PRD2002,Screws Item 3,Fasteners & Hardware,Screws,6798.47,SUP1002,229,26
+PRD2003,Aluminum Item 4,Raw Metals,Aluminum,4233.11,SUP1020,531,6
+PRD2004,Steel Item 5,Raw Metals,Steel,8604.22,SUP1018,333,11
+PRD2005,Cardboard Item 6,Packaging,Cardboard,3580.12,SUP1005,355,9
+PRD2006,Saws Item 7,Tools & Equipment,Saws,2061.85,SUP1080,890,2
+PRD2007,Hand Tools Item 8,Tools & Equipment,Hand Tools,1082.96,SUP1009,69,5
+PRD2008,Bolts Item 9,Fasteners & Hardware,Bolts,1228.47,SUP1019,855,28
+PRD2009,O-Rings Item 10,Rubber & Plastics,O-Rings,5265.34,SUP1081,160,29
+PRD2010,Screws Item 11,Fasteners & Hardware,Screws,4018.64,SUP1006,337,15
+PRD2011,Drills Item 12,Tools & Equipment,Drills,8063.85,SUP1057,926,6
+PRD2012,Tubing Item 13,Rubber & Plastics,Tubing,4991.41,SUP1053,503,10
+PRD2013,Hand Tools Item 14,Tools & Equipment,Hand Tools,3981.27,SUP1038,798,18
+PRD2014,Screws Item 15,Fasteners & Hardware,Screws,3217.65,SUP1021,209,29
+PRD2015,Copper Item 16,Raw Metals,Copper,5897.42,SUP1086,585,12
+PRD2016,Thread Item 17,Textiles,Thread,4320.87,SUP1080,640,12
+PRD2017,Hand Tools Item 18,Tools & Equipment,Hand Tools,3921.0,SUP1093,777,11
+PRD2018,Plastic Wrap Item 19,Packaging,Plastic Wrap,5683.66,SUP1038,472,10
+PRD2019,Thread Item 20,Textiles,Thread,3213.95,SUP1055,970,11
+PRD2020,Aluminum Item 21,Raw Metals,Aluminum,955.45,SUP1030,182,16
+PRD2021,Labels Item 22,Textiles,Labels,2153.24,SUP1038,784,17
+PRD2022,Tubing Item 23,Rubber & Plastics,Tubing,2581.65,SUP1052,830,29
+PRD2023,Drills Item 24,Tools & Equipment,Drills,6692.79,SUP1059,992,3
+PRD2024,Labels Item 25,Textiles,Labels,3930.92,SUP1010,925,27
+PRD2025,Lubricants Item 26,Chemicals,Lubricants,395.03,SUP1000,936,21
+PRD2026,Saws Item 27,Tools & Equipment,Saws,275.06,SUP1033,748,6
+PRD2027,O-Rings Item 28,Rubber & Plastics,O-Rings,4662.92,SUP1049,463,2
+PRD2028,Lubricants Item 29,Chemicals,Lubricants,3313.85,SUP1088,881,29
+PRD2029,Pallets Item 30,Packaging,Pallets,2710.71,SUP1056,678,6
+PRD2030,Brackets Item 31,Fasteners & Hardware,Brackets,4970.94,SUP1021,545,8
+PRD2031,Drills Item 32,Tools & Equipment,Drills,8557.86,SUP1096,854,7
+PRD2032,Saws Item 33,Tools & Equipment,Saws,8782.69,SUP1057,386,5
+PRD2033,Aluminum Item 34,Raw Metals,Aluminum,4822.82,SUP1081,259,17
+PRD2034,Labels Item 35,Textiles,Labels,6076.04,SUP1091,436,28
+PRD2035,Cardboard Item 36,Packaging,Cardboard,1192.81,SUP1041,883,24
+PRD2036,Connectors Item 37,Electronics,Connectors,2851.13,SUP1070,317,22
+PRD2037,O-Rings Item 38,Rubber & Plastics,O-Rings,5209.37,SUP1002,516,14
+PRD2038,Brackets Item 39,Fasteners & Hardware,Brackets,1642.28,SUP1062,674,5
+PRD2039,Brackets Item 40,Fasteners & Hardware,Brackets,410.55,SUP1061,589,14
+PRD2040,Saws Item 41,Tools & Equipment,Saws,2151.12,SUP1044,156,18
+PRD2041,Microcontrollers Item 42,Electronics,Microcontrollers,977.13,SUP1034,521,28
+PRD2042,Microcontrollers Item 43,Electronics,Microcontrollers,8091.61,SUP1041,974,8
+PRD2043,Aluminum Item 44,Raw Metals,Aluminum,8715.38,SUP1065,886,19
+PRD2044,Plastic Wrap Item 45,Packaging,Plastic Wrap,4316.45,SUP1036,55,7
+PRD2045,Adhesives Item 46,Chemicals,Adhesives,9587.49,SUP1099,667,3
+PRD2046,Connectors Item 47,Electronics,Connectors,3024.63,SUP1052,904,12
+PRD2047,Steel Item 48,Raw Metals,Steel,8376.38,SUP1093,913,5
+PRD2048,Cardboard Item 49,Packaging,Cardboard,8348.73,SUP1093,172,22
+PRD2049,Solvents Item 50,Chemicals,Solvents,5678.81,SUP1091,713,13
+PRD2050,Gaskets Item 51,Rubber & Plastics,Gaskets,640.54,SUP1017,969,10
+PRD2051,Pallets Item 52,Packaging,Pallets,2867.61,SUP1018,213,29
+PRD2052,Sensors Item 53,Electronics,Sensors,8674.36,SUP1012,713,17
+PRD2053,O-Rings Item 54,Rubber & Plastics,O-Rings,8423.13,SUP1097,374,28
+PRD2054,Fabric Item 55,Textiles,Fabric,7959.93,SUP1030,554,12
+PRD2055,Lubricants Item 56,Chemicals,Lubricants,9718.32,SUP1089,449,21
+PRD2056,Gaskets Item 57,Rubber & Plastics,Gaskets,4569.47,SUP1086,398,9
+PRD2057,Cardboard Item 58,Packaging,Cardboard,906.63,SUP1039,729,4
+PRD2058,Lubricants Item 59,Chemicals,Lubricants,4466.27,SUP1019,932,25
+PRD2059,Solvents Item 60,Chemicals,Solvents,1583.66,SUP1003,863,7
+PRD2060,Pallets Item 61,Packaging,Pallets,2194.86,SUP1038,525,20
+PRD2061,Hand Tools Item 62,Tools & Equipment,Hand Tools,2371.24,SUP1097,571,3
+PRD2062,Cardboard Item 63,Packaging,Cardboard,642.65,SUP1014,211,6
+PRD2063,Adhesives Item 64,Chemicals,Adhesives,5376.82,SUP1091,666,19
+PRD2064,O-Rings Item 65,Rubber & Plastics,O-Rings,8007.83,SUP1086,625,20
+PRD2065,Gaskets Item 66,Rubber & Plastics,Gaskets,3485.53,SUP1094,129,4
+PRD2066,Screws Item 67,Fasteners & Hardware,Screws,4384.04,SUP1062,946,25
+PRD2067,Screws Item 68,Fasteners & Hardware,Screws,5409.36,SUP1077,434,7
+PRD2068,Solvents Item 69,Chemicals,Solvents,6535.39,SUP1017,679,6
+PRD2069,Brackets Item 70,Fasteners & Hardware,Brackets,7221.85,SUP1022,904,6
+PRD2070,Labels Item 71,Textiles,Labels,1887.16,SUP1082,125,18
+PRD2071,Bolts Item 72,Fasteners & Hardware,Bolts,5086.85,SUP1051,938,14
+PRD2072,Pallets Item 73,Packaging,Pallets,4867.94,SUP1051,488,27
+PRD2073,Brackets Item 74,Fasteners & Hardware,Brackets,5933.64,SUP1006,255,8
+PRD2074,Thread Item 75,Textiles,Thread,517.83,SUP1059,981,2
+PRD2075,Bolts Item 76,Fasteners & Hardware,Bolts,4760.86,SUP1089,722,3
+PRD2076,Tubing Item 77,Rubber & Plastics,Tubing,6485.36,SUP1074,786,27
+PRD2077,Bolts Item 78,Fasteners & Hardware,Bolts,8563.73,SUP1063,775,19
+PRD2078,Plastic Wrap Item 79,Packaging,Plastic Wrap,6628.67,SUP1077,678,28
+PRD2079,Hand Tools Item 80,Tools & Equipment,Hand Tools,4256.57,SUP1037,636,24
+PRD2080,Plastic Wrap Item 81,Packaging,Plastic Wrap,7368.37,SUP1048,470,16
+PRD2081,Microcontrollers Item 82,Electronics,Microcontrollers,1320.24,SUP1074,399,7
+PRD2082,Plastic Wrap Item 83,Packaging,Plastic Wrap,7475.23,SUP1022,896,22
+PRD2083,Plastic Wrap Item 84,Packaging,Plastic Wrap,9560.91,SUP1011,806,6
+PRD2084,Cardboard Item 85,Packaging,Cardboard,2920.38,SUP1032,538,7
+PRD2085,Hand Tools Item 86,Tools & Equipment,Hand Tools,7084.49,SUP1076,839,6
+PRD2086,Gaskets Item 87,Rubber & Plastics,Gaskets,4789.27,SUP1080,164,12
+PRD2087,Cardboard Item 88,Packaging,Cardboard,1281.49,SUP1030,712,17
+PRD2088,Tubing Item 89,Rubber & Plastics,Tubing,708.62,SUP1042,491,8
+PRD2089,Gaskets Item 90,Rubber & Plastics,Gaskets,8152.58,SUP1074,221,14
+PRD2090,Brackets Item 91,Fasteners & Hardware,Brackets,2415.12,SUP1033,373,7
+PRD2091,Sensors Item 92,Electronics,Sensors,3926.68,SUP1046,724,8
+PRD2092,Hand Tools Item 93,Tools & Equipment,Hand Tools,3145.33,SUP1018,287,12
+PRD2093,Sensors Item 94,Electronics,Sensors,3036.62,SUP1043,863,12
+PRD2094,Drills Item 95,Tools & Equipment,Drills,7633.92,SUP1005,931,12
+PRD2095,Bolts Item 96,Fasteners & Hardware,Bolts,8673.05,SUP1064,631,29
+PRD2096,Bolts Item 97,Fasteners & Hardware,Bolts,8898.9,SUP1083,910,16
+PRD2097,Gaskets Item 98,Rubber & Plastics,Gaskets,820.73,SUP1046,716,2
+PRD2098,Adhesives Item 99,Chemicals,Adhesives,4948.2,SUP1049,419,14
+PRD2099,Lubricants Item 100,Chemicals,Lubricants,8367.76,SUP1055,989,5
+PRD2100,Fabric Item 101,Textiles,Fabric,7932.12,SUP1006,850,23
+PRD2101,Hand Tools Item 102,Tools & Equipment,Hand Tools,8900.09,SUP1087,177,10
+PRD2102,Microcontrollers Item 103,Electronics,Microcontrollers,2688.17,SUP1082,614,19
+PRD2103,Saws Item 104,Tools & Equipment,Saws,5574.45,SUP1034,622,10
+PRD2104,Sensors Item 105,Electronics,Sensors,1959.9,SUP1074,76,19
+PRD2105,Hand Tools Item 106,Tools & Equipment,Hand Tools,8342.87,SUP1040,23,21
+PRD2106,Fabric Item 107,Textiles,Fabric,1762.87,SUP1022,815,29
+PRD2107,Pallets Item 108,Packaging,Pallets,1409.15,SUP1091,313,20
+PRD2108,Hand Tools Item 109,Tools & Equipment,Hand Tools,2360.21,SUP1096,290,11
+PRD2109,Saws Item 110,Tools & Equipment,Saws,4305.27,SUP1026,986,14
+PRD2110,Fabric Item 111,Textiles,Fabric,7760.15,SUP1060,776,18
+PRD2111,Brackets Item 112,Fasteners & Hardware,Brackets,2138.62,SUP1083,683,2
+PRD2112,Adhesives Item 113,Chemicals,Adhesives,9940.84,SUP1088,57,7
+PRD2113,Connectors Item 114,Electronics,Connectors,8101.31,SUP1051,772,4
+PRD2114,Microcontrollers Item 115,Electronics,Microcontrollers,7473.29,SUP1015,384,8
+PRD2115,Sensors Item 116,Electronics,Sensors,4106.39,SUP1019,446,15
+PRD2116,Labels Item 117,Textiles,Labels,6426.1,SUP1073,696,5
+PRD2117,Drills Item 118,Tools & Equipment,Drills,4039.51,SUP1041,258,27
+PRD2118,Steel Item 119,Raw Metals,Steel,7300.85,SUP1008,759,29
+PRD2119,Aluminum Item 120,Raw Metals,Aluminum,2013.62,SUP1046,190,7
+PRD2120,Bolts Item 121,Fasteners & Hardware,Bolts,2901.4,SUP1019,800,7
+PRD2121,Saws Item 122,Tools & Equipment,Saws,2667.65,SUP1080,609,9
+PRD2122,Steel Item 123,Raw Metals,Steel,1359.03,SUP1002,944,16
+PRD2123,Brackets Item 124,Fasteners & Hardware,Brackets,8468.24,SUP1022,639,13
+PRD2124,Cardboard Item 125,Packaging,Cardboard,1627.8,SUP1078,646,14
+PRD2125,O-Rings Item 126,Rubber & Plastics,O-Rings,9174.78,SUP1021,621,25
+PRD2126,Connectors Item 127,Electronics,Connectors,2284.33,SUP1052,69,26
+PRD2127,Gaskets Item 128,Rubber & Plastics,Gaskets,6192.97,SUP1030,546,23
+PRD2128,Solvents Item 129,Chemicals,Solvents,7810.58,SUP1015,939,4
+PRD2129,Labels Item 130,Textiles,Labels,8768.01,SUP1044,203,16
+PRD2130,Hand Tools Item 131,Tools & Equipment,Hand Tools,8206.85,SUP1016,754,19
+PRD2131,Plastic Wrap Item 132,Packaging,Plastic Wrap,2391.0,SUP1011,322,16
+PRD2132,Thread Item 133,Textiles,Thread,5830.62,SUP1085,407,25
+PRD2133,Tubing Item 134,Rubber & Plastics,Tubing,2474.78,SUP1091,778,22
+PRD2134,Pallets Item 135,Packaging,Pallets,5235.67,SUP1079,204,11
+PRD2135,Gaskets Item 136,Rubber & Plastics,Gaskets,7221.14,SUP1096,817,27
+PRD2136,Connectors Item 137,Electronics,Connectors,3526.99,SUP1035,645,20
+PRD2137,Screws Item 138,Fasteners & Hardware,Screws,947.14,SUP1098,605,13
+PRD2138,Lubricants Item 139,Chemicals,Lubricants,2847.67,SUP1051,792,18
+PRD2139,Bolts Item 140,Fasteners & Hardware,Bolts,8836.46,SUP1097,784,10
+PRD2140,Connectors Item 141,Electronics,Connectors,3375.2,SUP1023,614,10
+PRD2141,Labels Item 142,Textiles,Labels,254.26,SUP1082,466,8
+PRD2142,Hand Tools Item 143,Tools & Equipment,Hand Tools,5639.6,SUP1060,505,15
+PRD2143,Aluminum Item 144,Raw Metals,Aluminum,8652.35,SUP1034,755,2
+PRD2144,Gaskets Item 145,Rubber & Plastics,Gaskets,9452.03,SUP1086,69,12
+PRD2145,Thread Item 146,Textiles,Thread,8667.42,SUP1025,238,22
+PRD2146,Labels Item 147,Textiles,Labels,2167.09,SUP1054,540,13
+PRD2147,Tubing Item 148,Rubber & Plastics,Tubing,2315.16,SUP1024,419,2
+PRD2148,Pallets Item 149,Packaging,Pallets,7103.07,SUP1010,642,12
+PRD2149,Labels Item 150,Textiles,Labels,4766.58,SUP1053,140,14
+PRD2150,Aluminum Item 151,Raw Metals,Aluminum,2023.33,SUP1001,890,25
+PRD2151,O-Rings Item 152,Rubber & Plastics,O-Rings,5790.31,SUP1034,145,5
+PRD2152,Pallets Item 153,Packaging,Pallets,9029.9,SUP1067,923,25
+PRD2153,Pallets Item 154,Packaging,Pallets,2125.6,SUP1016,150,4
+PRD2154,Sensors Item 155,Electronics,Sensors,722.33,SUP1006,990,4
+PRD2155,Steel Item 156,Raw Metals,Steel,8274.27,SUP1013,740,18
+PRD2156,Copper Item 157,Raw Metals,Copper,6312.81,SUP1040,884,10
+PRD2157,Thread Item 158,Textiles,Thread,7130.37,SUP1052,426,14
+PRD2158,Thread Item 159,Textiles,Thread,4681.85,SUP1006,186,13
+PRD2159,Tubing Item 160,Rubber & Plastics,Tubing,1543.78,SUP1026,760,8
+PRD2160,Tubing Item 161,Rubber & Plastics,Tubing,3308.71,SUP1095,692,20
+PRD2161,Tubing Item 162,Rubber & Plastics,Tubing,7652.59,SUP1007,222,10
+PRD2162,O-Rings Item 163,Rubber & Plastics,O-Rings,6892.13,SUP1065,911,5
+PRD2163,Pallets Item 164,Packaging,Pallets,2905.44,SUP1056,352,17
+PRD2164,Plastic Wrap Item 165,Packaging,Plastic Wrap,6107.25,SUP1015,631,27
+PRD2165,Sensors Item 166,Electronics,Sensors,6750.76,SUP1069,568,21
+PRD2166,Solvents Item 167,Chemicals,Solvents,4473.92,SUP1005,420,14
+PRD2167,Copper Item 168,Raw Metals,Copper,4415.22,SUP1022,835,22
+PRD2168,O-Rings Item 169,Rubber & Plastics,O-Rings,8299.2,SUP1046,554,3
+PRD2169,Tubing Item 170,Rubber & Plastics,Tubing,4996.95,SUP1047,100,19
+PRD2170,Labels Item 171,Textiles,Labels,4923.21,SUP1095,538,19
+PRD2171,Lubricants Item 172,Chemicals,Lubricants,727.78,SUP1073,421,16
+PRD2172,Thread Item 173,Textiles,Thread,9217.63,SUP1033,503,17
+PRD2173,Brackets Item 174,Fasteners & Hardware,Brackets,4511.26,SUP1096,597,7
+PRD2174,Screws Item 175,Fasteners & Hardware,Screws,960.92,SUP1058,20,20
+PRD2175,Bolts Item 176,Fasteners & Hardware,Bolts,7337.33,SUP1076,715,2
+PRD2176,Microcontrollers Item 177,Electronics,Microcontrollers,1551.29,SUP1010,942,29
+PRD2177,Microcontrollers Item 178,Electronics,Microcontrollers,3269.12,SUP1062,407,19
+PRD2178,Plastic Wrap Item 179,Packaging,Plastic Wrap,7598.83,SUP1015,246,8
+PRD2179,Hand Tools Item 180,Tools & Equipment,Hand Tools,7563.37,SUP1050,502,25
+PRD2180,Pallets Item 181,Packaging,Pallets,2247.22,SUP1072,301,11
+PRD2181,Pallets Item 182,Packaging,Pallets,5828.62,SUP1026,755,29
+PRD2182,Copper Item 183,Raw Metals,Copper,5272.46,SUP1034,646,22
+PRD2183,Gaskets Item 184,Rubber & Plastics,Gaskets,2046.57,SUP1093,391,16
+PRD2184,Labels Item 185,Textiles,Labels,3038.99,SUP1093,451,8
+PRD2185,Saws Item 186,Tools & Equipment,Saws,9062.01,SUP1098,590,24
+PRD2186,Drills Item 187,Tools & Equipment,Drills,3215.29,SUP1063,556,4
+PRD2187,Solvents Item 188,Chemicals,Solvents,6370.34,SUP1050,424,13
+PRD2188,Labels Item 189,Textiles,Labels,3342.16,SUP1042,344,16
+PRD2189,Microcontrollers Item 190,Electronics,Microcontrollers,8506.7,SUP1018,985,14
+PRD2190,Steel Item 191,Raw Metals,Steel,7595.82,SUP1098,562,6
+PRD2191,Copper Item 192,Raw Metals,Copper,1778.24,SUP1031,270,20
+PRD2192,Drills Item 193,Tools & Equipment,Drills,658.82,SUP1001,73,27
+PRD2193,Lubricants Item 194,Chemicals,Lubricants,8489.43,SUP1002,120,6
+PRD2194,Adhesives Item 195,Chemicals,Adhesives,4452.43,SUP1067,453,12
+PRD2195,Aluminum Item 196,Raw Metals,Aluminum,8931.59,SUP1080,143,2
+PRD2196,Solvents Item 197,Chemicals,Solvents,9040.0,SUP1033,558,21
+PRD2197,Connectors Item 198,Electronics,Connectors,6603.26,SUP1020,158,22
+PRD2198,Microcontrollers Item 199,Electronics,Microcontrollers,9531.95,SUP1087,504,17
+PRD2199,Pallets Item 200,Packaging,Pallets,3603.07,SUP1047,745,8

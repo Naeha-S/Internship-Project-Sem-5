@@ -1,0 +1,150 @@
+{
+  "version": "v2",
+  "accuracy": 0.531,
+  "roc_auc": 0.682,
+  "optimal_threshold": 0.241,
+  "n_models_in_ensemble": 1,
+  "has_lightgbm": false,
+  "has_catboost": false,
+  "has_optuna": false,
+  "confusion_matrix": [
+    [
+      1024,
+      4336
+    ],
+    [
+      318,
+      4242
+    ]
+  ],
+  "n_train": 20080,
+  "n_test": 9920,
+  "feature_importance": [
+    {
+      "feature": "supplier_id_te",
+      "mean_abs_shap": 0.4124065041542053
+    },
+    {
+      "feature": "shipping_mode_code",
+      "mean_abs_shap": 0.2967245578765869
+    },
+    {
+      "feature": "order_month",
+      "mean_abs_shap": 0.24534988403320312
+    },
+    {
+      "feature": "is_peak_season",
+      "mean_abs_shap": 0.21330532431602478
+    },
+    {
+      "feature": "quantity",
+      "mean_abs_shap": 0.11829812824726105
+    },
+    {
+      "feature": "sup_ewm_delay",
+      "mean_abs_shap": 0.10154687613248825
+    },
+    {
+      "feature": "sup_rolling_ontime",
+      "mean_abs_shap": 0.09078914672136307
+    },
+    {
+      "feature": "sup_ewm_ontime",
+      "mean_abs_shap": 0.08911781758069992
+    },
+    {
+      "feature": "crude_oil_index",
+      "mean_abs_shap": 0.08767510950565338
+    },
+    {
+      "feature": "sup_rolling_delay",
+      "mean_abs_shap": 0.07868316769599915
+    },
+    {
+      "feature": "product_id_te",
+      "mean_abs_shap": 0.0753057524561882
+    },
+    {
+      "feature": "order_cost",
+      "mean_abs_shap": 0.07025910913944244
+    },
+    {
+      "feature": "unit_price",
+      "mean_abs_shap": 0.07008872926235199
+    },
+    {
+      "feature": "order_day_of_week",
+      "mean_abs_shap": 0.06175922974944115
+    },
+    {
+      "feature": "sup_rolling_defect",
+      "mean_abs_shap": 0.05789697542786598
+    },
+    {
+      "feature": "region_code",
+      "mean_abs_shap": 0.04884888604283333
+    },
+    {
+      "feature": "unit_cost_base",
+      "mean_abs_shap": 0.0399320125579834
+    },
+    {
+      "feature": "lead_time_days_base",
+      "mean_abs_shap": 0.032057229429483414
+    },
+    {
+      "feature": "sub_category_code",
+      "mean_abs_shap": 0.030540259554982185
+    },
+    {
+      "feature": "supplier_age_years",
+      "mean_abs_shap": 0.025394102558493614
+    },
+    {
+      "feature": "category_code",
+      "mean_abs_shap": 0.024082833901047707
+    },
+    {
+      "feature": "priority_code",
+      "mean_abs_shap": 0.021179746836423874
+    },
+    {
+      "feature": "is_holiday_order",
+      "mean_abs_shap": 0.01334838755428791
+    },
+    {
+      "feature": "tier_code",
+      "mean_abs_shap": 0.011411773972213268
+    },
+    {
+      "feature": "order_quarter",
+      "mean_abs_shap": 0.0073113287799060345
+    },
+    {
+      "feature": "container_shortage_flag",
+      "mean_abs_shap": 0.0010189994936808944
+    }
+  ],
+  "class_balance_test": {
+    "late": 4560,
+    "on_time": 5360
+  },
+  "delay_regressor": {
+    "mae_days": 4.813,
+    "n_late_test": 4560,
+    "mean_actual_delay": 11.09,
+    "mean_predicted_delay": 11.43
+  },
+  "best_xgb_params": {
+    "n_estimators": 500,
+    "max_depth": 6,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 3,
+    "gamma": 0.1,
+    "random_state": 42,
+    "eval_metric": "logloss",
+    "verbosity": 0
+  }
+}
