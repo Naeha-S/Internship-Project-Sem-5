@@ -574,11 +574,11 @@ PLOTLY_CONFIG = {
 # 6. Tab Navigation (5 Modern Navbar Tabs)
 # ---------------------------------------------------------------
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📊 Executive Overview",
-    "🏭 Supplier & Region SLAs",
-    "📦 Inventory Control",
-    "🤖 ML Risk Simulator",
-    "💻 SQL Analytics Studio",
+    "Executive Overview",
+    "Supplier & Region SLAs",
+    "Inventory Control",
+    "ML Risk Simulator",
+    "SQL Analytics Studio",
 ])
 
 # ---------------------------------------------------------------
@@ -593,7 +593,7 @@ with tab1:
     defect_pct = (defect_orders / total_orders * 100) if total_orders > 0 else 0
     health_score = kpi_data.get("overall_health_score")
     if health_score is None:
-        st.error("⚠️ kpi_summary.json missing — run `py analysis/kpi_engine.py` to regenerate.")
+        st.error("kpi_summary.json missing — run `py analysis/kpi_engine.py` to regenerate.")
         health_score = 0.0
 
     _late_colour  = RED   if late_pct  > 40 else (AMBER if late_pct  > 25 else GREEN)
@@ -1030,7 +1030,7 @@ with tab3:
     # Table Controls
     col_t1, col_t2 = st.columns([3, 1])
     with col_t1:
-        inv_search = st.text_input("🔍 Search SKU or Product Name", placeholder="Type product name or SKU...", key="inv_search_key")
+        inv_search = st.text_input("Search SKU or Product Name", placeholder="Type product name or SKU...", key="inv_search_key")
     with col_t2:
         inv_filter_status = st.selectbox("Stock Status Filter", ["All SKUs", "Understocked Only", "Dead Stock Only", "Healthy Only"], key="inv_filter_status_key")
 
@@ -1051,13 +1051,13 @@ with tab3:
     # Format table for display
     def _risk_badge(r):
         if r["stock_status"] == "Understocked" and r["is_high_risk_sup"]:
-            return "🚨 Critical (High Risk Sup)"
+            return "Critical (High Risk Supplier)"
         elif r["stock_status"] == "Understocked":
-            return "⚠️ Understocked Below ROP"
+            return "Understocked (Below ROP)"
         elif r["stock_status"] == "Dead Stock":
-            return "💀 Dead Stock"
+            return "Dead Stock"
         else:
-            return "✅ Healthy"
+            return "Healthy"
 
     inv_display["Risk Status"] = inv_display.apply(_risk_badge, axis=1)
 
@@ -1080,7 +1080,7 @@ with tab3:
     # Download Button
     csv_inv = table_df.to_csv(index=False).encode('utf-8')
     st.download_button(
-        label="📥 Download Inventory Stockout Risk Audit CSV",
+        label="Download Inventory Stockout Risk Audit CSV",
         data=csv_inv,
         file_name="inventory_stockout_risk_audit.csv",
         mime="text/csv"
@@ -1213,10 +1213,10 @@ with tab4:
     st.markdown(f"""
     <div style="background:rgba(108,142,245,0.06); border:1px solid rgba(108,142,245,0.18); border-left:3px solid {GOLD};
                 border-radius:10px; padding:15px 20px; margin-bottom:28px;">
-        <div style="font-weight:600; font-size:0.88rem; color:{TEXT}; margin-bottom:6px;">🏆 Model Evaluation Summary & Architectural Trade-off</div>
+        <div style="font-weight:600; font-size:0.88rem; color:{TEXT}; margin-bottom:6px;">Model Evaluation Summary & Architectural Trade-off</div>
         <div style="display:flex; gap:24px; font-size:0.80rem; color:{TEXT_MUTED}; flex-wrap:wrap; line-height:1.5;">
-            <div>🏆 <b>Cost-Optimal Winner</b>: Logistic Regression (Expected Cost: &#8377;87.90M, saving &#8377;147.05M vs baseline)</div>
-            <div>🏅 <b>ROC-AUC Champion & Live Engine</b>: Random Forest (<span style="color:{GREEN}; font-weight:700;">ROC-AUC 0.714</span> [95% CI: 0.706–0.725], Accuracy 65.7%, FPR 32.7%)</div>
+            <div><b>Cost-Optimal Winner</b>: Logistic Regression (Expected Cost: &#8377;87.90M, saving &#8377;147.05M vs baseline)</div>
+            <div><b>ROC-AUC Champion & Live Engine</b>: Random Forest (<span style="color:{GREEN}; font-weight:700;">ROC-AUC 0.714</span> [95% CI: 0.706–0.725], Accuracy 65.7%, FPR 32.7%)</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -1258,7 +1258,7 @@ with tab4:
             sim_qty = st.number_input("Order Quantity", min_value=1, max_value=10000, value=250, step=50)
             sim_unit_price = st.number_input("Unit Price (&#8377;)", min_value=1.0, max_value=100000.0, value=750.0, step=50.0)
 
-        submitted = st.form_submit_button("⚡ Execute ML Inference & Risk Audit", use_container_width=True)
+        submitted = st.form_submit_button("Execute ML Inference & Risk Audit", use_container_width=True)
 
     # Perform real-time ML inference
     import joblib
@@ -1339,7 +1339,7 @@ with tab4:
     res1.markdown(f"""
     <div class="metric-card metric-card-stripe" style="border-left-color:{RED if pred_late else GREEN};">
         <div class="metric-label">Predicted Risk Status</div>
-        <div class="metric-value" style="color:{RED if pred_late else GREEN};">{'⚠️ LATE RISK' if pred_late else '✅ ON TIME'}</div>
+        <div class="metric-value" style="color:{RED if pred_late else GREEN};">{'LATE RISK' if pred_late else 'ON TIME'}</div>
         <div class="metric-badge" style="background:{RED_BG if pred_late else GREEN_BG}; color:{RED if pred_late else GREEN};">
             {'Cutoff Threshold &ge; {:.0f}%'.format(threshold*100) if pred_late else 'Within Safe Limit'}
         </div>
@@ -1374,7 +1374,7 @@ with tab4:
     st.markdown(f"""
     <div style="background:{CARD_BG}; border:1px solid {BORDER}; border-radius:10px; padding:16px 20px; margin-top:16px; margin-bottom:28px;">
         <div style="font-size:0.75rem; font-weight:700; color:{ACCENT}; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">
-            🔍 Local Order Risk Drivers (SHAP Local Explanation)
+            Local Order Risk Drivers (SHAP Local Explanation)
         </div>
         <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; font-size:0.80rem; color:{TEXT_MUTED};">
             <div style="background:rgba(245,96,74,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {RED};">
@@ -1431,7 +1431,7 @@ with tab4:
     tgt_row = sup_details_df[sup_details_df["supplier_name"] == tgt_sup_name].iloc[0]
 
     if src_sup_name == tgt_sup_name:
-        st.warning("⚠️ Source and destination supplier are the same — reallocation has no effect. Please choose two different suppliers.")
+        st.warning("Source and destination supplier are the same — reallocation has no effect. Please choose two different suppliers.")
     else:
         src_base_pos = max(src_row["total_pos"], 1)
         tgt_base_pos = max(tgt_row["total_pos"], 1)
@@ -1484,7 +1484,7 @@ with tab4:
         <div class="metric-card metric-card-stripe" style="border-left-color:{RED if capacity_strained else GREEN};">
             <div class="metric-label">Target Capacity Expansion</div>
             <div class="metric-value" style="color:{RED if capacity_strained else GREEN};">{capacity_expansion_pct:.1f}%</div>
-            <div class="metric-badge" style="background:{RED_BG if capacity_strained else GREEN_BG}; color:{RED if capacity_strained else GREEN};">{'⚠️ Capacity Strained' if capacity_strained else '✅ Within Capacity'}</div>
+            <div class="metric-badge" style="background:{RED_BG if capacity_strained else GREEN_BG}; color:{RED if capacity_strained else GREEN};">{'Capacity Strained' if capacity_strained else 'Within Capacity'}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1540,7 +1540,7 @@ with tab5:
     # 2. QUERY METADATA & SELECTOR
     queries_meta = {
         "Query 1: MoM Spend & Cumulative Running Spend": {
-            "tag": "⚡ Window Functions",
+            "tag": "Window Functions",
             "badge_color": ACCENT,
             "badge_bg": ACCENT_GLOW,
             "desc": "Calculates monthly spend per category alongside cumulative running spend using window aggregations.",
@@ -1572,7 +1572,7 @@ ORDER BY category, order_month
 LIMIT 20;"""
         },
         "Query 2: Regional Supplier SLA Ranking": {
-            "tag": "🏆 Performance Ranking",
+            "tag": "Performance Ranking",
             "badge_color": GREEN,
             "badge_bg": GREEN_BG,
             "desc": "Ranks active suppliers within their geographic region based on on-time delivery percentage and average delay days.",
@@ -1608,7 +1608,7 @@ ORDER BY region, regional_rank
 LIMIT 20;"""
         },
         "Query 3: Year-over-Year Unit Price Drift": {
-            "tag": "📈 Price Inflation OLS",
+            "tag": "Price Inflation OLS",
             "badge_color": GOLD,
             "badge_bg": GOLD_BG,
             "desc": "Detects price inflation per supplier by measuring year-over-year unit price percentage changes using LAG().",
@@ -1647,7 +1647,7 @@ ORDER BY yoy_price_change_pct DESC
 LIMIT 20;"""
         },
         "Query 4: Lead Time Variance & Reliability Cohorts": {
-            "tag": "🚚 Logistics SLA Cohorts",
+            "tag": "Logistics SLA Cohorts",
             "badge_color": AMBER,
             "badge_bg": AMBER_BG,
             "desc": "Measures variance between contracted lead time and actual delivery days across shipping modes and supplier tiers.",
@@ -1667,7 +1667,7 @@ GROUP BY po.shipping_mode, s.tier
 ORDER BY mean_delay_days DESC;"""
         },
         "Query 5: Inventory Stockout Risk Matrix": {
-            "tag": "📦 Stockout Risk Evaluation",
+            "tag": "Stockout Risk Evaluation",
             "badge_color": RED,
             "badge_bg": RED_BG,
             "desc": "Evaluates stock coverage, months of cover, and flags understocked SKUs breaching reorder thresholds.",
@@ -1692,7 +1692,7 @@ ORDER BY i.months_of_cover ASC
 LIMIT 20;"""
         },
         "Query 6: Quality Defect Rate & Spend Exposure": {
-            "tag": "🚨 Quality Rejection Loss",
+            "tag": "Quality Rejection Loss",
             "badge_color": RED,
             "badge_bg": RED_BG,
             "desc": "Quantifies financial loss and rejection percentages resulting from defective PO shipments per sub-category.",
@@ -1714,7 +1714,7 @@ ORDER BY defective_spend_exposure DESC
 LIMIT 20;"""
         },
         "Query 7: Predictive ML Feature Engineering": {
-            "tag": "🤖 Feature Extraction",
+            "tag": "Feature Extraction",
             "badge_color": ACCENT,
             "badge_bg": ACCENT_GLOW,
             "desc": "Extracts normalized order rows, temporal features, and target labels to feed machine learning models.",
@@ -1739,7 +1739,7 @@ ORDER BY po.order_date ASC
 LIMIT 20;"""
         },
         "Query 8: Supplier Spend Pareto 80/20 Analysis": {
-            "tag": "📊 Pareto 80/20 Rule",
+            "tag": "Pareto 80/20 Rule",
             "badge_color": GOLD,
             "badge_bg": GOLD_BG,
             "desc": "Classifies suppliers into Class A (Top 80% spend), Class B (Next 15%), and Class C (Tail spend) using running cumulative totals.",
@@ -1783,7 +1783,7 @@ ORDER BY total_spend DESC
 LIMIT 20;"""
         },
         "Query 9: Monthly Order Volume MoM Growth": {
-            "tag": "📈 Time-Series MoM Growth",
+            "tag": "Time-Series MoM Growth",
             "badge_color": GREEN,
             "badge_bg": GREEN_BG,
             "desc": "Computes month-over-month percentage growth in order volume and tracks late delivery rate point changes.",
@@ -1820,7 +1820,7 @@ ORDER BY order_month
 LIMIT 20;"""
         },
         "Query 10: Fulfillment Bottleneck & Delay Severity": {
-            "tag": "⏱️ Delay Severity Bucket",
+            "tag": "Delay Severity Bucket",
             "badge_color": AMBER,
             "badge_bg": AMBER_BG,
             "desc": "Categorizes delivery delay severity into on-time, minor (1-3d), moderate (4-7d), and severe (>7d) delay buckets.",
@@ -1843,7 +1843,7 @@ ORDER BY severe_delays_gt7d DESC;"""
     }
 
     # Interactive Database Schema Inspector
-    with st.expander("🗄️ Database Schema & Column Inspector", expanded=False):
+    with st.expander("Database Schema & Column Inspector", expanded=False):
         st.markdown("<div style='font-size:0.80rem; color:#94a3b8; margin-bottom:12px;'>Inspect tables, column names, and data types in procurement.db:</div>", unsafe_allow_html=True)
         schema_cols = st.columns(5)
         tables_info = {
@@ -1855,11 +1855,11 @@ ORDER BY severe_delays_gt7d DESC;"""
         }
         for idx, (tbl, cols) in enumerate(tables_info.items()):
             with schema_cols[idx]:
-                st.markdown(f"<div style='font-weight:700; font-size:0.82rem; color:{ACCENT}; margin-bottom:6px;'>📋 {tbl}</div>", unsafe_allow_html=True)
+                st.markdown(f"<div style='font-weight:700; font-size:0.82rem; color:{ACCENT}; margin-bottom:6px;'>{tbl}</div>", unsafe_allow_html=True)
                 for cname, ctype in cols:
                     st.markdown(f"<div style='font-size:0.73rem; color:{TEXT_MUTED}; font-family:monospace;'>• <b>{cname}</b> <span style='color:{TEXT_DIM};'>({ctype})</span></div>", unsafe_allow_html=True)
 
-    selected_query_name = st.selectbox("💻 Select Portfolio SQL Query to Inspect & Execute:", list(queries_meta.keys()))
+    selected_query_name = st.selectbox("Select Portfolio SQL Query to Inspect & Execute:", list(queries_meta.keys()))
     q_info = queries_meta[selected_query_name]
 
     # Query Info Card
@@ -1881,7 +1881,7 @@ ORDER BY severe_delays_gt7d DESC;"""
     """, unsafe_allow_html=True)
 
     # Quick Snippet Builder
-    st.markdown("<div style='font-size:0.76rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>⚡ Quick SQL Snippet Builder</div>", unsafe_allow_html=True)
+    st.markdown("<div style='font-size:0.76rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>Quick SQL Snippet Builder</div>", unsafe_allow_html=True)
     snip_c1, snip_c2, snip_c3, snip_c4, snip_c5, snip_c6 = st.columns(6)
     
     if snip_c1.button("SELECT *", use_container_width=True):
@@ -1903,7 +1903,7 @@ ORDER BY severe_delays_gt7d DESC;"""
 
     c_exec1, c_exec2 = st.columns([1, 4])
     with c_exec1:
-        run_btn = st.button("▶️ Execute Query Live", use_container_width=True)
+        run_btn = st.button("Execute Query Live", use_container_width=True)
 
     if run_btn or "sql_run_df" in st.session_state:
         import time
@@ -1914,12 +1914,12 @@ ORDER BY severe_delays_gt7d DESC;"""
 
             st.markdown(f"""
             <div style="background:rgba(16,217,140,0.06); border:1px solid rgba(16,217,140,0.22); border-radius:8px; padding:10px 16px; margin-top:14px; margin-bottom:14px; font-size:0.82rem; color:{GREEN}; display:flex; align-items:center; justify-content:space-between;">
-                <div>✅ <b>Query Executed Successfully</b> &nbsp;&middot;&nbsp; <b>{len(res_df):,} Rows Returned</b> &nbsp;&middot;&nbsp; <b>{len(res_df.columns)} Columns</b></div>
+                <div><b>Query Executed Successfully</b> &nbsp;&middot;&nbsp; <b>{len(res_df):,} Rows Returned</b> &nbsp;&middot;&nbsp; <b>{len(res_df.columns)} Columns</b></div>
                 <div>Execution Latency: <b style="color:{GOLD};">{t_elapsed:.1f} ms</b></div>
             </div>
             """, unsafe_allow_html=True)
 
-            res_tab1, res_tab2, res_tab3 = st.tabs(["📊 Interactive Data Table", "📈 Auto-Generated Visualizer", "📄 Raw JSON View"])
+            res_tab1, res_tab2, res_tab3 = st.tabs(["Interactive Data Table", "Auto-Generated Visualizer", "Raw JSON View"])
             
             with res_tab1:
                 st.dataframe(res_df, use_container_width=True, height=350)
@@ -1951,7 +1951,7 @@ ORDER BY severe_delays_gt7d DESC;"""
                     fig_auto.update_layout(**PLOT_LAYOUT, height=350)
                     st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
                 else:
-                    st.info("💡 Auto-visualizer requires at least one numeric and one categorical column in query output.")
+                    st.info("Auto-visualizer requires at least one numeric and one categorical column in query output.")
 
             with res_tab3:
                 st.json(res_df.head(50).to_dict(orient="records"))
@@ -1960,7 +1960,7 @@ ORDER BY severe_delays_gt7d DESC;"""
             with dl_col1:
                 csv_data = res_df.to_csv(index=False).encode('utf-8')
                 st.download_button(
-                    label="📥 Download Result CSV",
+                    label="Download Result CSV",
                     data=csv_data,
                     file_name=f"{selected_query_name.replace(' ', '_').lower()}.csv",
                     mime="text/csv",
@@ -1969,14 +1969,14 @@ ORDER BY severe_delays_gt7d DESC;"""
             with dl_col2:
                 json_data = res_df.to_json(orient="records", indent=2).encode('utf-8')
                 st.download_button(
-                    label="📥 Download Result JSON",
+                    label="Download Result JSON",
                     data=json_data,
                     file_name=f"{selected_query_name.replace(' ', '_').lower()}.json",
                     mime="application/json",
                     use_container_width=True
                 )
         except Exception as e:
-            st.error(f"❌ SQL Execution Error: {str(e)}")
+            st.error(f"SQL Execution Error: {str(e)}")
 
 # Footer
 st.markdown(f"""
