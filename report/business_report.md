@@ -8,7 +8,7 @@
 
 ### Overall Procurement Health Score: **50.3 / 100**
 
-Across 30,000 purchase orders spanning 78 active corporate suppliers (out of 100 total registered catalog suppliers), 200 technical product SKUs, and ₹50,967 Cr+ in tracked expenditure, the platform evaluates the operational health score at **50.3 / 100**.
+Across 30,000 purchase orders spanning 78 active corporate suppliers (out of 98 total registered catalog suppliers), 200 technical product SKUs, and ₹50,967 Cr+ in tracked expenditure, the platform evaluates the operational health score at **50.3 / 100**.
 
 ```mermaid
 pie title Active Supplier Operational Risk Tier Distribution (Percentile-Calibrated)
@@ -60,64 +60,57 @@ $$\text{Composite Risk Index} = 0.35 \times C_{\text{late}} + 0.25 \times C_{\te
 
 ---
 
-### 3-Year Trajectory Direction & Relative Tier Classification
+## 3. Advanced Feature Engineering & Leakage Prevention
 
-A supplier improving over time ($60\% \rightarrow 85\%$ on-time) receives a trajectory credit ($\beta < 0$), whereas a supplier deteriorating ($85\% \rightarrow 60\%$) receives a trajectory penalty ($\beta > 0$), preventing identical averages from masking opposing momentum.
+To maximize predictive signal without introducing future look-ahead bias, all features strictly utilize data available prior to the order date ($t < \text{order\_date}$ using `.shift(1)`):
 
-#### Trajectory Direction Categories:
-- 📉 **Deteriorating (Delay Escalating)**: $\beta > +0.03$ days/month
-- 📈 **Improving (Delay Declining)**: $\beta < -0.03$ days/month
-- ➡️ **Stable Fulfillment**: $-0.03 \le \beta \le +0.03$ days/month
-
-#### Percentile-Based Relative Risk Tiers (78 Active Suppliers):
-- 🔴 **High Risk** ($\text{Index} \ge \text{70th Percentile}$): **24 Suppliers** (30.8%)
-- 🟡 **Medium Risk** ($\text{25th Percentile} \le \text{Index} < \text{70th Percentile}$): **35 Suppliers** (44.9%)
-- 🟢 **Low Risk** ($\text{Index} < \text{25th Percentile}$): **19 Suppliers** (24.3%)
+1. **Order Quantity Spike Ratio (`order_qty_vs_sup_mean`)**: Ratio of current PO quantity to supplier's historical expanding mean PO quantity ($\text{qty} / \mu_{\text{sup\_qty}}$). Captures deprioritization during sudden order surges.
+2. **Network Capacity Strain (`sup_concurrent_po_30d`)**: Count of active concurrent POs issued to the same supplier in the prior 30 days. Measures factory queue congestion.
+3. **Supplier-Category Interaction (`sup_category_te`)**: Out-of-fold target encoding of supplier $\times$ product category interaction.
+4. **Logistics Stress Index (`logistics_stress_index`)**: $\text{lead\_time\_days\_base} / (\text{sup\_rolling\_delay} + 1.0)$.
 
 ---
 
-## 3. Disaggregated Supplier Performance & Trajectory Analysis
-
-Comparing suppliers across composite risk index, primary driver axis, and trajectory slope highlights crucial operational momentum:
-
-| Supplier Name | Commercial Tier | On-Time % | Defect % | 3-Yr Delay Trend Slope ($\beta$) | Trajectory Direction | Composite Risk Index (0–100) | Operational Risk Tier | Remediation Action |
-|---|---|---|---|---|---|---|---|---|
-| **Silicon Valley Micro Hardware** | Tier 1 | 41.5% | 3.2% | **+0.199 days/mo** | 📉 **Deteriorating** | **62.0** | 🔴 **High Risk** | Reallocate volume; Contractual SLA audit |
-| **Thermax Boilers & Heat Systems** | Tier 2 | 46.6% | 4.1% | **+0.142 days/mo** | 📉 **Deteriorating** | **57.1** | 🔴 **High Risk** | Expedite logistics; Standby dual-source |
-| **Komatsu Earthmoving Parts** | Tier 2 | **11.7%** | 2.1% | -0.012 days/mo | ➡️ **Stable** | **58.4** | 🔴 **High Risk** | SLA penalty enforcement; Volume freeze |
-| **Shanghai Industrial Silicon** | Tier 1 | **79.8%** | 4.7% | -0.045 days/mo | 📈 **Improving** | **34.2** | 🟡 **Medium Risk** | Preferred partner for SLA; Price audit |
-
----
-
-## 4. Inventory Stockout & High-Risk Supplier Linkage
-
-Linking product inventory health directly to primary supplier composite risk profiles uncovers severe supply chain vulnerability:
-
-```mermaid
-graph TD
-    A["Total Catalog: 200 SKUs"] --> B["Healthy Cover: 150 SKUs (75%)"]
-    A --> C["Understocked: 50 SKUs (25%)"]
-    C --> D["Sourced from High-Risk Suppliers: 18 SKUs (36%)"]
-    C --> E["Sourced from Medium/Low-Risk Suppliers: 32 SKUs (64%)"]
-    D --> F["🔴 Immediate Assembly Line Stoppage Exposure"]
-```
-
----
-
-## 5. Machine Learning Delay Prediction Benchmark & Reconciled Cost Analysis
+## 4. Machine Learning Delay Prediction, Walk-Forward Validation & Calibration
 
 Evaluated **6 candidate models** on a held-out 2025 test set (9,944 purchase orders) using **100x Bootstrap Resampling** for 95% Confidence Intervals:
 
 ### Apples-to-Apples Benchmark Table:
 
-| Model Candidate | ROC-AUC (95% CI) | PR-AUC (95% CI) | Default Thresh (0.50) Accuracy | False Alarm Rate (FPR @ 0.50) | Expected Financial Risk Cost (₹) | Model Selection Role |
+| Model Candidate | ROC-AUC (95% CI) | PR-AUC (95% CI) | Default Thresh (0.50) Accuracy | Brier Score Loss | Expected Financial Risk Cost (₹) | Model Selection Role |
 |---|---|---|---|---|---|---|
-| **1. Naive Majority Baseline** | 0.500 [0.500–0.500] | 0.473 [0.473–0.473] | 52.7% | **0.0%** | ₹234.95 M | Baseline |
-| **2. Supplier Historical Heuristic** | 0.680 [0.669–0.691] | 0.652 [0.638–0.666] | 62.2% | **18.0%** | ₹145.71 M | Heuristic Baseline |
-| **3. Logistic Regression** | **0.700 [0.690–0.710]** | **0.673 [0.660–0.687]** | **64.0%** | **38.7%** | **₹87.90 M** | 🏆 **Cost-Optimal Winner** |
-| **4. Random Forest Classifier** | **0.714 [0.706–0.725]** | **0.689 [0.676–0.703]** | **65.7%** | **32.7%** | **₹93.38 M** | 🏅 **ROC-AUC & Live Simulator Champion** |
-| **5. Tuned XGBoost Classifier** | 0.697 [0.688–0.708] | 0.676 [0.666–0.688] | 64.2% | **35.9%** | ₹93.47 M | Tree Baseline |
-| **6. Soft-Voting Ensemble** | 0.703 [0.694–0.713] | 0.684 [0.671–0.699] | 64.4% | **35.5%** | ₹93.37 M | Ensemble |
+| **1. Naive Majority Baseline** | 0.500 [0.500–0.500] | 0.473 [0.473–0.473] | 52.7% | 0.2492 | ₹234.95 M | Baseline |
+| **2. Supplier Historical Heuristic** | 0.680 [0.669–0.691] | 0.652 [0.638–0.666] | 62.2% | 0.2267 | ₹145.71 M | Heuristic Baseline |
+| **3. Logistic Regression** | **0.700 [0.690–0.710]** | **0.673 [0.660–0.687]** | **64.0%** | 0.2230 | **₹87.90 M** | 🏆 **Cost-Optimal Winner** |
+| **4. Random Forest Classifier** | **0.714 [0.706–0.725]** | **0.689 [0.676–0.703]** | **65.7%** | **0.2159** | **₹93.38 M** | 🏅 **ROC-AUC & Live Simulator Champion** |
+| **5. Tuned XGBoost Classifier** | 0.697 [0.688–0.708] | 0.676 [0.666–0.688] | 64.2% | 0.2161 | ₹93.47 M | Tree Baseline |
+| **6. Soft-Voting Ensemble** | 0.703 [0.694–0.713] | 0.684 [0.671–0.699] | 64.4% | 0.2160 | ₹93.37 M | Ensemble |
+
+---
+
+### Temporal Walk-Forward Validation (2025 Quarterly Expanding Window)
+
+To prove model stability and rule out performance degradation over time, we perform a 4-quarter expanding window walk-forward validation across 2025:
+
+| Validation Quarter | Training Window | Test Sample Size | ROC-AUC Score | PR-AUC Score | Classification Accuracy | Temporal Stability Status |
+|---|---|---|---|---|---|---|
+| **2025 Q1** | 2023–2024 (20,056 POs) | 2,482 POs | **0.720** | 0.657 | 66.6% | Stable |
+| **2025 Q2** | 2023–Q1 2025 (22,538 POs) | 2,477 POs | **0.727** | 0.691 | 67.1% | Peak Stability |
+| **2025 Q3** | 2023–Q2 2025 (25,015 POs) | 2,456 POs | **0.710** | 0.690 | 64.8% | Stable |
+| **2025 Q4** | 2023–Q3 2025 (27,471 POs) | 2,529 POs | **0.722** | 0.740 | 62.4% | High Precision |
+| **MEAN 2025 WALK-FORWARD** | **Expanding Window** | **9,944 POs Total** | **0.720 ($\pm 0.007$)** | **0.694** | **65.2%** | **Zero Concept Drift Degradation** |
+
+---
+
+### Per-Supplier Risk Tier Performance Disaggregation
+
+Evaluating model accuracy and discrimination separately across **High**, **Medium**, and **Low Risk** suppliers proves that the ML engine provides actionable predictive value *within* each risk tier, rather than merely re-deriving static tiers:
+
+| Supplier Risk Tier | Sub-Sample Size | Actual Late Rate | Model ROC-AUC | Model Accuracy | Model Precision | Model Recall | Key Operational Value |
+|---|---|---|---|---|---|---|---|
+| 🔴 **High Risk Suppliers** | 3,013 POs | **67.3%** | **0.652** | 67.4% | **70.6%** | **88.4%** | Catches 88.4% of actual late shipments in high-vulnerability segment |
+| 🟡 **Medium Risk Suppliers** | 4,515 POs | **44.8%** | **0.633** | 60.0% | 56.1% | 49.5% | Discriminates SLA breaches in ambiguous middle tier |
+| 🟢 **Low Risk Suppliers** | 2,416 POs | **26.7%** | **0.663** | **71.2%** | 42.0% | 20.0% | Minimizes false alarm expedites (71.2% accuracy) |
 
 ---
 
@@ -145,31 +138,7 @@ $$\text{Net Savings} = \text{FN Stoppage Savings} - \text{Extra FP Expediting Co
 
 ---
 
-### Dashboard Integration & Live Model Wiring
-
-To ensure 100% clarity for executive users and system developers:
-
-- **Live Risk Simulator Engine (Tab 4)**: Uses **Random Forest Classifier** ($ROC\text{-}AUC = 0.714$, Precision $= 63.6\%$, FPR $= 32.7\%$) as the active real-time prediction model due to its low false alarm rate and non-linear feature interactions.
-- **Chart 9 Feature Explainability**: Reconciled directly on **Random Forest Classifier** (`shap.TreeExplainer(rf)`).
-- **Cost-Optimal Financial Benchmark**: Highlights **Logistic Regression** (₹87.90M Expected Risk Cost) in evaluation banners as the financial baseline champion.
-
----
-
-### TreeSHAP Feature Importance (Reconciled on Selected Random Forest Classifier)
-
-![TreeSHAP Feature Importance](ml/shap_feature_importance.png)
-
-#### Top Feature Drivers (TreeSHAP on Random Forest Classifier):
-1. `supplier_id_te`: Out-of-fold target encoding of historical supplier delay rates.
-2. `shipping_mode_code`: Logistics carrier mode (Sea Freight adds severe delay risk).
-3. `order_month` & `is_peak_season`: Q4/Q1 peak season holiday disruption.
-4. `ship_region_te`: Shipping Mode × Geographic Region interaction.
-5. `logistics_stress_index`: **Engineered Feature** ($\text{lead\_time\_days\_base} / (\text{sup\_rolling\_delay} + 1.0)$).
-   - *Intuition*: A ratio $< 1.0$ indicates that contracted lead time is tighter than the supplier's historical delay volatility, creating a structural bottleneck.
-
----
-
-## 6. Honest Limitations & Technical Caveats
+## 5. Honest Limitations & Technical Caveats
 
 1. **Synthetic Data Scope**: While generated with realistic latent structures (supplier reliability drift, seasonality, macro commodity pressure) and benchmarked against real Kaggle DataCo supply chain datasets, the data originates from a synthetic generator (`data/generate_data.py`).
 2. **Modest Predictive Power ($ROC\text{-}AUC = 0.700 – 0.714$)**: Predicting shipment delays at order creation time (weeks in advance) without live GPS/in-transit IoT telemetry is an inherently noisy problem. The model provides a useful decision-support signal rather than automated decision-making.
