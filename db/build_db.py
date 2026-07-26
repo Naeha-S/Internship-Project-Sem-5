@@ -17,9 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(BASE_DIR, "data")
 DB_PATH = os.path.join(BASE_DIR, "db", "procurement.db")
 
-if os.path.exists(DB_PATH):
-    os.remove(DB_PATH)
-
 conn = sqlite3.connect(DB_PATH)
 
 tables = ["suppliers", "products", "purchase_orders", "deliveries", "inventory"]
@@ -29,9 +26,12 @@ for t in tables:
          ["delivery_date"] if t == "deliveries" else [])])
     df.to_sql(t, conn, index=False, if_exists="replace")
 
-conn.execute("CREATE INDEX idx_po_supplier ON purchase_orders(supplier_id)")
-conn.execute("CREATE INDEX idx_po_product ON purchase_orders(product_id)")
-conn.execute("CREATE INDEX idx_del_po ON deliveries(po_id)")
+conn.execute("DROP INDEX IF EXISTS idx_po_supplier")
+conn.execute("DROP INDEX IF EXISTS idx_po_product")
+conn.execute("DROP INDEX IF EXISTS idx_del_po")
+conn.execute("CREATE INDEX IF NOT EXISTS idx_po_supplier ON purchase_orders(supplier_id)")
+conn.execute("CREATE INDEX IF NOT EXISTS idx_po_product ON purchase_orders(product_id)")
+conn.execute("CREATE INDEX IF NOT EXISTS idx_del_po ON deliveries(po_id)")
 conn.commit()
 
 # ---------------------------------------------------------------

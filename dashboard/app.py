@@ -67,22 +67,22 @@ kpi_data = load_kpi_summary()
 model_data = load_model_metrics()
 
 # ---------------------------------------------------------------
-# 3. Dynamic CSS Styling
+# 3. Dynamic CSS Styling & Visual Refinements
 # ---------------------------------------------------------------
-BG = "#09090b" if IS_DARK else "#f8fafc"
-BG_SUBTLE = "#121217" if IS_DARK else "#f1f5f9"
-CARD_BG = "#13131a" if IS_DARK else "#ffffff"
-BORDER = "#272730" if IS_DARK else "#e2e8f0"
-TEXT = "#fafafa" if IS_DARK else "#0f172a"
-TEXT_MUTED = "#94a3b8" if IS_DARK else "#64748b"
+BG = "#09090d"
+BG_SUBTLE = "#121219"
+CARD_BG = "#121219"
+BORDER = "rgba(255, 255, 255, 0.08)"
+TEXT = "#f8fafc"
+TEXT_MUTED = "#94a3b8"
 ACCENT = "#3b82f6"
 GOLD = "#eab308"
 GREEN = "#22c55e"
-GREEN_BG = "rgba(34,197,94,0.15)" if IS_DARK else "rgba(22,163,74,0.10)"
+GREEN_BG = "rgba(34,197,94,0.15)"
 RED = "#ef4444"
-RED_BG = "rgba(239,68,68,0.15)" if IS_DARK else "rgba(220,38,38,0.10)"
+RED_BG = "rgba(239,68,68,0.15)"
 AMBER = "#f59e0b"
-AMBER_BG = "rgba(245,158,11,0.15)" if IS_DARK else "rgba(217,119,6,0.10)"
+AMBER_BG = "rgba(245,158,11,0.15)"
 
 st.markdown(f"""
 <style>
@@ -95,28 +95,49 @@ st.markdown(f"""
     }}
     
     .block-container {{
-        padding: 1.5rem 2rem 3rem !important;
-        max-width: 1400px !important;
+        padding: 1.75rem 2.25rem 3.5rem !important;
+        max-width: 1440px !important;
     }}
     
     #MainMenu, footer, [data-testid="stDecoration"], .stDeployButton {{
         display: none !important;
     }}
-    
+
+    /* Sidebar Refinements */
+    [data-testid="stSidebar"] {{
+        background-color: #0c0c12 !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.07) !important;
+    }}
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {{
+        margin-bottom: 1.1rem !important;
+    }}
+
+    /* Multiselect Tag/Chip Styling */
+    span[data-baseweb="tag"] {{
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 8px !important;
+        padding: 2px 8px !important;
+        color: #f8fafc !important;
+        font-size: 0.78rem !important;
+    }}
+
+    /* Header Bar */
     .brand-header {{
         display: flex;
         align-items: center;
         justify-content: space-between;
         background: {CARD_BG};
         border: 1px solid {BORDER};
-        border-radius: 12px;
-        padding: 18px 24px;
-        margin-bottom: 24px;
+        border-radius: 14px;
+        padding: 20px 26px;
+        margin-bottom: 26px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     }}
     .brand-title {{
-        font-size: 24px;
+        font-size: 23px;
         font-weight: 700;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.025em;
         color: {TEXT};
     }}
     .brand-title span {{
@@ -125,89 +146,110 @@ st.markdown(f"""
     .brand-sub {{
         font-size: 13px;
         color: {TEXT_MUTED};
-        margin-top: 2px;
+        margin-top: 3px;
     }}
 
+    /* KPI Metric Cards */
     .metric-card {{
         background: {CARD_BG};
         border: 1px solid {BORDER};
-        border-radius: 10px;
-        padding: 1.1rem 1.3rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        border-radius: 14px;
+        padding: 1.2rem 1.4rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transition: all 0.22s ease-in-out;
+    }}
+    .metric-card:hover {{
+        transform: translateY(-2px);
+        border-color: rgba(234, 179, 8, 0.3);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     }}
     .metric-label {{
-        font-size: 0.78rem;
+        font-size: 0.73rem;
         color: {TEXT_MUTED};
-        font-weight: 500;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
     }}
     .metric-value {{
-        font-size: 1.7rem;
+        font-size: 1.75rem;
         font-weight: 700;
         color: {TEXT};
         margin-top: 4px;
         letter-spacing: -0.03em;
     }}
     .metric-badge {{
-        font-size: 0.75rem;
-        font-weight: 500;
-        margin-top: 6px;
-        padding: 3px 8px;
-        border-radius: 6px;
+        font-size: 0.74rem;
+        font-weight: 600;
+        margin-top: 8px;
+        padding: 3px 9px;
+        border-radius: 7px;
         display: inline-block;
     }}
     
+    /* Modern Tabs */
     button[data-baseweb="tab"] {{
         background: transparent !important;
         color: {TEXT_MUTED} !important;
-        font-size: 0.88rem !important;
+        font-size: 0.86rem !important;
         font-weight: 600 !important;
-        padding: 0.55rem 1.1rem !important;
+        padding: 0.6rem 1.2rem !important;
         border: 1px solid transparent !important;
-        border-radius: 8px !important;
+        border-radius: 10px !important;
+        transition: all 0.2s ease !important;
+    }}
+    button[data-baseweb="tab"]:hover {{
+        color: {TEXT} !important;
+        background: rgba(255, 255, 255, 0.04) !important;
     }}
     button[data-baseweb="tab"][aria-selected="true"] {{
-        color: {TEXT} !important;
-        background: {CARD_BG} !important;
-        border-color: {BORDER} !important;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        color: #ffffff !important;
+        background: #181824 !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
     }}
     [data-baseweb="tab-highlight"], [data-baseweb="tab-border"] {{
         display: none !important;
     }}
     [data-baseweb="tab-list"] {{
         gap: 6px !important;
-        background: {BG_SUBTLE} !important;
+        background: rgba(255, 255, 255, 0.03) !important;
         border: 1px solid {BORDER} !important;
-        border-radius: 12px !important;
-        padding: 4px !important;
-        margin-bottom: 24px !important;
+        border-radius: 14px !important;
+        padding: 5px !important;
+        margin-bottom: 26px !important;
     }}
 
+    /* Chart Containers */
     .chart-card {{
         background: {CARD_BG};
         border: 1px solid {BORDER};
-        border-radius: 12px;
-        padding: 1.25rem;
+        border-radius: 14px;
+        padding: 1.4rem 1.5rem;
         margin-bottom: 1.5rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transition: border-color 0.2s ease;
+    }}
+    .chart-card:hover {{
+        border-color: rgba(255, 255, 255, 0.14);
     }}
     .chart-title {{
-        font-size: 0.95rem;
+        font-size: 0.96rem;
         font-weight: 600;
         color: {TEXT};
-        margin-bottom: 2px;
+        letter-spacing: -0.01em;
+        margin-bottom: 3px;
     }}
     .chart-sub {{
         font-size: 0.78rem;
         color: {TEXT_MUTED};
-        margin-bottom: 12px;
+        margin-bottom: 14px;
     }}
 
+    /* Badges */
     .badge {{
         display: inline-block;
         padding: 3px 10px;
-        border-radius: 6px;
+        border-radius: 7px;
         font-size: 0.74rem;
         font-weight: 600;
     }}
@@ -215,6 +257,7 @@ st.markdown(f"""
     .badge-red {{ color: {RED}; background: {RED_BG}; }}
     .badge-amber {{ color: {AMBER}; background: {AMBER_BG}; }}
 
+    /* Data Tables */
     .data-table {{
         width: 100%;
         border-collapse: separate;
@@ -223,7 +266,7 @@ st.markdown(f"""
     }}
     .data-table th {{
         text-align: left;
-        padding: 0.7rem 0.9rem;
+        padding: 0.75rem 1rem;
         color: {TEXT_MUTED};
         font-weight: 600;
         font-size: 0.72rem;
@@ -232,9 +275,9 @@ st.markdown(f"""
         border-bottom: 1px solid {BORDER};
     }}
     .data-table td {{
-        padding: 0.7rem 0.9rem;
+        padding: 0.75rem 1rem;
         color: {TEXT};
-        border-bottom: 1px solid {BORDER};
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }}
 </style>
 """, unsafe_allow_html=True)
@@ -303,14 +346,28 @@ WHERE CAST(strftime('%Y', po.order_date) AS INTEGER) BETWEEN {min_order_year} AN
 
 df_filtered = pd.read_sql(query_main, conn)
 
-# Helper Plotly Layout
+# Polished Plotly Layout Definition
 PLOT_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
     font=dict(family="DM Sans, sans-serif", color=TEXT_MUTED, size=11),
     margin=dict(l=10, r=10, t=20, b=20),
-    xaxis=dict(gridcolor="rgba(255,255,255,0.06)" if IS_DARK else "rgba(0,0,0,0.06)"),
-    yaxis=dict(gridcolor="rgba(255,255,255,0.06)" if IS_DARK else "rgba(0,0,0,0.06)"),
+    xaxis=dict(
+        gridcolor="rgba(255,255,255,0.04)",
+        zerolinecolor="rgba(255,255,255,0.04)",
+        tickfont=dict(size=10, color=TEXT_MUTED)
+    ),
+    yaxis=dict(
+        gridcolor="rgba(255,255,255,0.04)",
+        zerolinecolor="rgba(255,255,255,0.04)",
+        tickfont=dict(size=10, color=TEXT_MUTED)
+    ),
+    hoverlabel=dict(
+        bgcolor="#181824",
+        font_size=12,
+        font_family="DM Sans, sans-serif",
+        bordercolor="rgba(255,255,255,0.12)"
+    )
 )
 
 # ---------------------------------------------------------------

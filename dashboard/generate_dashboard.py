@@ -19,5 +19,9 @@ if not os.path.exists(MODEL_PATH):
 if not os.path.exists(APP_PATH):
     raise FileNotFoundError(f"Missing {APP_PATH}")
 
-print("✅ Dashboard artifacts verified successfully!")
+import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
+print("[OK] Dashboard artifacts verified successfully!")
 print("ProcureSense AI BI Studio is ready. Run using: streamlit run dashboard/app.py")
