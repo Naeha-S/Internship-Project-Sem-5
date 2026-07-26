@@ -653,45 +653,110 @@ with tab4:
     # AI Order Simulator
     st.markdown("---")
     st.markdown("<h4>🔮 Live Purchase Order Late-Delivery Risk Simulator</h4>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #94a3b8; font-size: 0.85rem;'>Adjust order parameters and submit to run real-time risk evaluation using trained ML factors.</p>", unsafe_allow_html=True)
 
-    sim1, sim2 = st.columns(2)
-    with sim1:
-        sim_supplier = st.selectbox("Supplier", options=sorted(df_filtered["supplier_name"].unique()))
-        sim_category = st.selectbox("Product Category", options=filters["categories"])
-        sim_mode = st.selectbox("Shipping Mode", options=filters["shipping_modes"])
-    with sim2:
-        sim_month = st.slider("Order Month", 1, 12, 6)
-        sim_qty = st.number_input("Quantity", min_value=1, max_value=5000, value=250)
-        sim_unit_price = st.number_input("Unit Price (₹)", min_value=10.0, max_value=10000.0, value=750.0)
+    # Fetch all suppliers directly from DB to prevent empty selection or fallback issues
+    all_suppliers_df = pd.read_sql("""
+        SELECT s.supplier_id, s.supplier_name, s.tier, s.region,
+               COALESCE(AVG(d.is_late), 0.20) as late_rate
+        FROM suppliers s
+        LEFT JOIN purchase_orders po ON s.supplier_id = po.supplier_id
+        LEFT JOIN deliveries d ON po.po_id = d.po_id
+        GROUP BY s.supplier_id
+    """, conn)
 
-    sup_info = df_filtered[df_filtered["supplier_name"] == sim_supplier].iloc[0]
-    on_time_hist = df_filtered[df_filtered["supplier_name"] == sim_supplier]["is_late"].mean()
+    supplier_options = sorted(all_suppliers_df["supplier_name"].tolist())
 
-    base_risk = 0.38
-    if sim_mode == "Standard Ground": base_risk += 0.12
-    if sim_month in [11, 12, 1]: base_risk += 0.14
-    if sup_info["tier"] == "Tier 3": base_risk += 0.10
-    base_risk += (on_time_hist - 0.4) * 0.4
-    prob = float(np.clip(base_risk, 0.05, 0.95))
-    pred_late = prob >= model_data.get("optimal_threshold", 0.5)
+    with st.form(key="order_risk_simulator_form"):
+        sim1, sim2 = st.columns(2)
+        with sim1:
+            sim_supplier = st.selectbox("Supplier", options=supplier_options)
+            sim_category = st.selectbox("Product Category", options=filters["categories"])
+            sim_mode = st.selectbox("Shipping Mode", options=filters["shipping_modes"])
+        with sim2:
+            sim_month = st.slider("Order Month", 1, 12, 6)
+            sim_qty = st.number_input("Quantity", min_value=1, max_value=10000, value=250, step=50)
+            sim_unit_price = st.number_input("Unit Price (₹)", min_value=1.0, max_value=100000.0, value=750.0, step=50.0)
+
+        submitted = st.form_submit_button("🔍 Simulate & Predict Risk", use_container_width=True)
+
+    # Perform prediction calculation
+    sup_row = all_suppliers_df[all_suppliers_df["supplier_name"] == sim_supplier].iloc[0]
+    sup_tier = sup_row["tier"]
+    sup_late_rate = sup_row["late_rate"]
+
+    base_risk = float(sup_late_rate)
+
+    # 1. Shipping Mode Impact
+    mode_impact = 0.0
+    if sim_mode == "Expedited Air": mode_impact = -0.15
+    elif sim_mode == "Air Freight": mode_impact = -0.08
+    elif sim_mode == "Express Ground": mode_impact = -0.02
+    elif sim_mode == "Standard Ground": mode_impact = +0.08
+    elif sim_mode == "Sea Freight": mode_impact = +0.18
+
+    # 2. Seasonality / Month Impact (Peak Season: Oct-Jan)
+    season_impact = 0.0
+    if sim_month in [10, 11, 12, 1]: season_impact = +0.14
+    elif sim_month in [5, 6, 7]: season_impact = -0.04
+
+    # 3. Supplier Tier Impact
+    tier_impact = 0.0
+    if sup_tier == "Tier 3": tier_impact = +0.10
+    elif sup_tier == "Tier 1": tier_impact = -0.06
+
+    # 4. Quantity Impact (Volume Risk)
+    qty_impact = 0.0
+    if sim_qty > 2000: qty_impact = +0.12
+    elif sim_qty > 1000: qty_impact = +0.06
+    elif sim_qty < 100: qty_impact = -0.04
+
+    # 5. Category Impact
+    cat_impact = 0.0
+    if sim_category in ["Electronics", "Machinery", "Raw Materials"]: cat_impact = +0.05
+    elif sim_category in ["Office Supplies", "Packaging"]: cat_impact = -0.04
+
+    # 6. Total Order Cost Impact
+    total_order_cost = sim_qty * sim_unit_price
+    cost_impact = 0.0
+    if total_order_cost > 1000000: cost_impact = +0.06
+
+    prob = float(np.clip(base_risk + mode_impact + season_impact + tier_impact + qty_impact + cat_impact + cost_impact, 0.04, 0.96))
+
+    threshold = float(model_data.get("optimal_threshold", 0.35))
+    pred_late = prob >= threshold
+
+    # Calculate estimated delay duration
+    if pred_late:
+        delay_multiplier = 1.6 if sim_mode == "Sea Freight" else (1.2 if sim_mode == "Standard Ground" else 0.8)
+        est_days = round(max(1.2, prob * 10.0 * delay_multiplier), 1)
+    else:
+        est_days = 0.0
 
     res1, res2, res3 = st.columns(3)
     res1.markdown(f"""
     <div class="metric-card">
         <div class="metric-label">Predicted Risk Status</div>
         <div class="metric-value" style="color:{RED if pred_late else GREEN};">{'⚠️ LATE RISK' if pred_late else '✅ ON TIME'}</div>
+        <div class="metric-badge" style="background:{RED_BG if pred_late else GREEN_BG}; color:{RED if pred_late else GREEN};">
+            {'Threshold Exceeded (>= {:.1f}%)'.format(threshold*100) if pred_late else 'Within Safe SLA Limit'}
+        </div>
     </div>
     """, unsafe_allow_html=True)
+
     res2.markdown(f"""
     <div class="metric-card">
         <div class="metric-label">Delay Probability</div>
         <div class="metric-value">{prob*100:.1f}%</div>
+        <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">Order Value: ₹{total_order_cost:,.0f}</div>
     </div>
     """, unsafe_allow_html=True)
+
     res3.markdown(f"""
     <div class="metric-card">
         <div class="metric-label">Estimated Delay Duration</div>
-        <div class="metric-value">{round(prob * 8, 1) if pred_late else 0} days</div>
+        <div class="metric-value">{est_days} days</div>
+        <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">Mode: {sim_mode}</div>
     </div>
     """, unsafe_allow_html=True)
 

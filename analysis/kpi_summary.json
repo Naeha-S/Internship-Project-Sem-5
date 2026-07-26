@@ -1,10 +1,10 @@
 {
-  "overall_health_score": 49.8,
+  "overall_health_score": 49.7,
   "components": {
-    "supplier_reliability": 54.2,
+    "supplier_reliability": 54.0,
     "inventory_efficiency": 81.2,
     "cost_optimisation": 45.6,
-    "delivery_performance": 54.2,
+    "delivery_performance": 54.0,
     "risk_score": 0.0
   },
   "top_suppliers": [
@@ -29,8 +29,8 @@
       "total_orders": 296,
       "total_spend": 1669937888.59,
       "avg_order_value": 5641682.06,
-      "on_time_pct": 81.1,
-      "avg_delay_days": 1.93,
+      "on_time_pct": 80.1,
+      "avg_delay_days": 2.04,
       "defect_rate_pct": 8.78,
       "risk_tier": "Medium Risk"
     },
@@ -55,8 +55,8 @@
       "total_orders": 134,
       "total_spend": 1404148513.71,
       "avg_order_value": 10478720.25,
-      "on_time_pct": 79.1,
-      "avg_delay_days": 2.16,
+      "on_time_pct": 78.4,
+      "avg_delay_days": 2.22,
       "defect_rate_pct": 2.99,
       "risk_tier": "Medium Risk"
     },
@@ -68,8 +68,8 @@
       "total_orders": 602,
       "total_spend": 9238397386.91,
       "avg_order_value": 15346175.06,
-      "on_time_pct": 77.4,
-      "avg_delay_days": 2.5,
+      "on_time_pct": 77.2,
+      "avg_delay_days": 2.53,
       "defect_rate_pct": 6.98,
       "risk_tier": "High Risk"
     }
@@ -109,8 +109,8 @@
       "total_orders": 156,
       "total_spend": 461377415.75,
       "avg_order_value": 2957547.54,
-      "on_time_pct": 17.9,
-      "avg_delay_days": 8.47,
+      "on_time_pct": 17.3,
+      "avg_delay_days": 8.6,
       "defect_rate_pct": 3.85,
       "risk_tier": "High Risk"
     },
@@ -135,8 +135,8 @@
       "total_orders": 438,
       "total_spend": 2656846845.79,
       "avg_order_value": 6065860.38,
-      "on_time_pct": 23.1,
-      "avg_delay_days": 8.7,
+      "on_time_pct": 22.4,
+      "avg_delay_days": 8.77,
       "defect_rate_pct": 0.46,
       "risk_tier": "Medium Risk"
     }
@@ -151,7 +151,7 @@
       "month": "2023-01",
       "order_count": 857,
       "total_spend": 5067889233.17,
-      "late_pct": 54.1
+      "late_pct": 54.3
     },
     {
       "month": "2023-02",
@@ -163,13 +163,13 @@
       "month": "2023-03",
       "order_count": 827,
       "total_spend": 5494191334.29,
-      "late_pct": 38.9
+      "late_pct": 39.5
     },
     {
       "month": "2023-04",
       "order_count": 812,
       "total_spend": 5591924905.34,
-      "late_pct": 38.8
+      "late_pct": 40.0
     },
     {
       "month": "2023-05",
@@ -181,7 +181,7 @@
       "month": "2023-06",
       "order_count": 843,
       "total_spend": 5476296523.6,
-      "late_pct": 46.1
+      "late_pct": 46.4
     },
     {
       "month": "2023-07",
@@ -199,25 +199,25 @@
       "month": "2023-09",
       "order_count": 822,
       "total_spend": 5564606279.57,
-      "late_pct": 39.3
+      "late_pct": 39.4
     },
     {
       "month": "2023-10",
       "order_count": 867,
       "total_spend": 5639627633.94,
-      "late_pct": 46.4
+      "late_pct": 46.6
     },
     {
       "month": "2023-11",
       "order_count": 830,
       "total_spend": 5344780954.51,
-      "late_pct": 70.1
+      "late_pct": 70.2
     },
     {
       "month": "2023-12",
       "order_count": 867,
       "total_spend": 5614938598.46,
-      "late_pct": 66.2
+      "late_pct": 66.3
     },
     {
       "month": "2024-01",
@@ -235,13 +235,13 @@
       "month": "2024-03",
       "order_count": 848,
       "total_spend": 4562609910.95,
-      "late_pct": 28.7
+      "late_pct": 29.0
     },
     {
       "month": "2024-04",
       "order_count": 858,
       "total_spend": 4457557500.77,
-      "late_pct": 31.5
+      "late_pct": 31.9
     },
     {
       "month": "2024-05",
@@ -253,19 +253,19 @@
       "month": "2024-06",
       "order_count": 787,
       "total_spend": 4152521351.4,
-      "late_pct": 40.9
+      "late_pct": 41.2
     },
     {
       "month": "2024-07",
       "order_count": 915,
       "total_spend": 4972404033.1,
-      "late_pct": 41.2
+      "late_pct": 41.3
     },
     {
       "month": "2024-08",
       "order_count": 826,
       "total_spend": 4680868304.27,
-      "late_pct": 32.8
+      "late_pct": 33.1
     },
     {
       "month": "2024-09",
@@ -277,13 +277,13 @@
       "month": "2024-10",
       "order_count": 871,
       "total_spend": 5118154401.63,
-      "late_pct": 44.2
+      "late_pct": 45.2
     },
     {
       "month": "2024-11",
       "order_count": 802,
       "total_spend": 4996692958.38,
-      "late_pct": 66.6
+      "late_pct": 66.8
     },
     {
       "month": "2024-12",
@@ -301,31 +301,31 @@
       "month": "2025-02",
       "order_count": 782,
       "total_spend": 5430690223.92,
-      "late_pct": 36.4
+      "late_pct": 36.7
     },
     {
       "month": "2025-03",
       "order_count": 845,
       "total_spend": 5922455234.21,
-      "late_pct": 39.9
+      "late_pct": 40.5
     },
     {
       "month": "2025-04",
       "order_count": 830,
       "total_spend": 6214742115.2,
-      "late_pct": 39.8
+      "late_pct": 40.1
     },
     {
       "month": "2025-05",
       "order_count": 862,
       "total_spend": 6748934277.35,
-      "late_pct": 38.3
+      "late_pct": 38.5
     },
     {
       "month": "2025-06",
       "order_count": 770,
       "total_spend": 6112979751.85,
-      "late_pct": 51.6
+      "late_pct": 51.7
     },
     {
       "month": "2025-07",
@@ -337,7 +337,7 @@
       "month": "2025-08",
       "order_count": 856,
       "total_spend": 6902206375.53,
-      "late_pct": 38.1
+      "late_pct": 38.7
     },
     {
       "month": "2025-09",
@@ -349,19 +349,19 @@
       "month": "2025-10",
       "order_count": 862,
       "total_spend": 6248772433.9,
-      "late_pct": 42.2
+      "late_pct": 42.6
     },
     {
       "month": "2025-11",
       "order_count": 809,
       "total_spend": 5825298218.21,
-      "late_pct": 60.6
+      "late_pct": 60.7
     },
     {
       "month": "2025-12",
       "order_count": 851,
       "total_spend": 5889073658.89,
-      "late_pct": 57.7
+      "late_pct": 58.2
     }
   ],
   "inventory_status": {
