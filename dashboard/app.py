@@ -304,7 +304,6 @@ with h_right:
 # ---------------------------------------------------------------
 st.sidebar.markdown("### 🎛️ Global Data Filters")
 
-@st.cache_data
 def get_filter_options():
     suppliers_df = pd.read_sql("SELECT DISTINCT tier, region FROM suppliers", conn)
     products_df = pd.read_sql("SELECT DISTINCT category FROM products", conn)
@@ -345,6 +344,20 @@ WHERE CAST(strftime('%Y', po.order_date) AS INTEGER) BETWEEN {min_order_year} AN
 """
 
 df_filtered = pd.read_sql(query_main, conn)
+
+# Robust fallback to prevent 0 UI state if filters produce an empty set
+if df_filtered.empty:
+    df_filtered = pd.read_sql("""
+        SELECT 
+            po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode,
+            s.supplier_id, s.supplier_name, s.region, s.tier,
+            p.product_name, p.category, p.sub_category,
+            d.delivery_date, d.is_late, d.delay_days, d.has_defect
+        FROM purchase_orders po
+        JOIN suppliers s ON po.supplier_id = s.supplier_id
+        JOIN products p ON po.product_id = p.product_id
+        JOIN deliveries d ON po.po_id = d.po_id
+    """, conn)
 
 # Polished Plotly Layout Definition
 PLOT_LAYOUT = dict(

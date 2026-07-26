@@ -412,6 +412,48 @@ inventory["months_of_cover"] = np.where(
 )
 
 # ---------------------------------------------------------------
+# KAGGLE DATASET INTEGRATION
+# ---------------------------------------------------------------
+def load_and_integrate_kaggle_data():
+    """
+    Downloads and integrates real Kaggle Supply Chain & DataCo datasets.
+    Creates data/kaggle_supply_chain.csv and data/kaggle_dataco_sample.csv.
+    """
+    kaggle_dir = os.path.join(OUT, "kaggle_raw")
+    dataco_dir = os.path.join(OUT, "kaggle_dataco")
+    os.makedirs(kaggle_dir, exist_ok=True)
+    os.makedirs(dataco_dir, exist_ok=True)
+
+    try:
+        from kaggle.api.kaggle_api_extended import KaggleApi
+        api = KaggleApi()
+        api.authenticate()
+
+        sc_file = os.path.join(kaggle_dir, "supply_chain_data.csv")
+        if not os.path.exists(sc_file):
+            print("Downloading Kaggle Supply Chain Analysis dataset...")
+            api.dataset_download_files('harshsingh2209/supply-chain-analysis', path=kaggle_dir, unzip=True)
+
+        dataco_file = os.path.join(dataco_dir, "DataCoSupplyChainDataset.csv")
+        if not os.path.exists(dataco_file):
+            print("Downloading Kaggle DataCo Smart Supply Chain dataset...")
+            api.dataset_download_files('shashwatwork/dataco-smart-supply-chain-for-big-data-analysis', path=dataco_dir, unzip=True)
+
+        if os.path.exists(sc_file):
+            df_sc = pd.read_csv(sc_file)
+            df_sc.to_csv(os.path.join(OUT, "kaggle_supply_chain.csv"), index=False)
+            print(f"[OK] Integrated Kaggle Supply Chain dataset: {len(df_sc):,} records")
+
+        if os.path.exists(dataco_file):
+            df_dc = pd.read_csv(dataco_file, encoding="latin-1", nrows=10000)
+            df_dc.to_csv(os.path.join(OUT, "kaggle_dataco_sample.csv"), index=False)
+            print(f"[OK] Integrated Kaggle DataCo dataset: {len(df_dc):,} benchmark records")
+    except Exception as e:
+        print(f"Kaggle integration status: {e}")
+
+load_and_integrate_kaggle_data()
+
+# ---------------------------------------------------------------
 # EXPORT
 # ---------------------------------------------------------------
 suppliers_public = suppliers.drop(columns=[c for c in suppliers.columns if c.startswith("_")])
@@ -422,7 +464,8 @@ purchase_orders.to_csv(f"{OUT}/purchase_orders.csv", index=False)
 deliveries.to_csv(f"{OUT}/deliveries.csv", index=False)
 inventory.to_csv(f"{OUT}/inventory.csv", index=False)
 
-print(f"Expanded dataset generated in {OUT}")
+print(f"\nExpanded dataset generated in {OUT}")
 print(f"Suppliers: {len(suppliers_public)} corporate entities")
 print(f"Products: {len(products)} technical SKUs")
 print(f"Orders: {len(purchase_orders):,} (Late Rate: {deliveries['is_late'].mean():.1%})")
+

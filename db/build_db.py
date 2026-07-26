@@ -26,6 +26,14 @@ for t in tables:
          ["delivery_date"] if t == "deliveries" else [])])
     df.to_sql(t, conn, index=False, if_exists="replace")
 
+# Optionally load Kaggle benchmark datasets if available
+for kt in ["kaggle_supply_chain", "kaggle_dataco_sample"]:
+    kpath = os.path.join(DATA, f"{kt}.csv")
+    if os.path.exists(kpath):
+        df_k = pd.read_csv(kpath, encoding="latin-1" if "dataco" in kt else "utf-8")
+        df_k.to_sql(kt, conn, index=False, if_exists="replace")
+        print(f"[OK] Loaded Kaggle table '{kt}' ({len(df_k):,} rows) into procurement.db")
+
 conn.execute("DROP INDEX IF EXISTS idx_po_supplier")
 conn.execute("DROP INDEX IF EXISTS idx_po_product")
 conn.execute("DROP INDEX IF EXISTS idx_del_po")
