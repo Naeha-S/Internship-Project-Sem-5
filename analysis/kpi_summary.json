@@ -7,6 +7,25 @@
     "delivery_performance": 55.0,
     "risk_score": 0.0
   },
+  "risk_scoring_methodology": {
+    "formula": "Points: [<75% On-Time: +2, <85% On-Time: +1, Defect >5%: +2, Defect >2%: +1, Delay >3d: +1, Tier 3: +1, Import: +0.5]",
+    "thresholds": "High Risk >= 4.0, Medium Risk >= 2.0, Low Risk < 2.0",
+    "axis_breakdown": {
+      "reliability_risk_count": 78,
+      "quality_risk_count": 58
+    }
+  },
+  "inventory_exposure": {
+    "total_products": 200,
+    "healthy_skus": 150,
+    "understocked_skus": 50,
+    "understocked_high_risk_skus": 36,
+    "understocked_high_risk_pct": 72.0,
+    "high_risk_supplier_spend": 36752881502.4,
+    "high_risk_spend_share_pct": 72.1,
+    "reliability_risk_suppliers": 78,
+    "quality_risk_suppliers": 58
+  },
   "top_suppliers": [
     {
       "supplier_id": "SUP1021",
@@ -19,7 +38,12 @@
       "on_time_pct": 79.8,
       "avg_delay_days": 2.45,
       "defect_rate_pct": 4.67,
-      "risk_tier": "Medium Risk"
+      "risk_points": 2.0,
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 16.7
     },
     {
       "supplier_id": "SUP1019",
@@ -32,7 +56,12 @@
       "on_time_pct": 78.5,
       "avg_delay_days": 2.3,
       "defect_rate_pct": 1.9,
-      "risk_tier": "Low Risk"
+      "risk_points": 1.0,
+      "risk_tier": "Low Risk",
+      "primary_risk_axis": "Reliability Risk (Delivery SLA)",
+      "is_reliability_risk": true,
+      "is_quality_risk": false,
+      "latest_pct_change": 31.8
     },
     {
       "supplier_id": "SUP1043",
@@ -45,7 +74,12 @@
       "on_time_pct": 76.4,
       "avg_delay_days": 2.67,
       "defect_rate_pct": 1.3,
-      "risk_tier": "Low Risk"
+      "risk_points": 1.0,
+      "risk_tier": "Low Risk",
+      "primary_risk_axis": "Reliability Risk (Delivery SLA)",
+      "is_reliability_risk": true,
+      "is_quality_risk": false,
+      "latest_pct_change": 35.5
     },
     {
       "supplier_id": "SUP1003",
@@ -58,7 +92,12 @@
       "on_time_pct": 76.1,
       "avg_delay_days": 2.75,
       "defect_rate_pct": 2.52,
-      "risk_tier": "Medium Risk"
+      "risk_points": 3.0,
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 41.7
     },
     {
       "supplier_id": "SUP1026",
@@ -71,7 +110,12 @@
       "on_time_pct": 75.6,
       "avg_delay_days": 2.74,
       "defect_rate_pct": 18.21,
-      "risk_tier": "Medium Risk"
+      "risk_points": 3.0,
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 41.0
     }
   ],
   "bottom_suppliers": [
@@ -86,7 +130,12 @@
       "on_time_pct": 11.7,
       "avg_delay_days": 10.09,
       "defect_rate_pct": 9.29,
-      "risk_tier": "High Risk"
+      "risk_points": 5.5,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 20.9
     },
     {
       "supplier_id": "SUP1042",
@@ -99,7 +148,12 @@
       "on_time_pct": 19.9,
       "avg_delay_days": 8.63,
       "defect_rate_pct": 5.24,
-      "risk_tier": "High Risk"
+      "risk_points": 5.5,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 12.0
     },
     {
       "supplier_id": "SUP1080",
@@ -112,7 +166,12 @@
       "on_time_pct": 21.8,
       "avg_delay_days": 9.65,
       "defect_rate_pct": 12.1,
-      "risk_tier": "High Risk"
+      "risk_points": 5.5,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 27.4
     },
     {
       "supplier_id": "SUP1055",
@@ -125,7 +184,12 @@
       "on_time_pct": 25.4,
       "avg_delay_days": 8.15,
       "defect_rate_pct": 2.12,
-      "risk_tier": "High Risk"
+      "risk_points": 5.0,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 41.8
     },
     {
       "supplier_id": "SUP1064",
@@ -138,7 +202,104 @@
       "on_time_pct": 29.8,
       "avg_delay_days": 7.57,
       "defect_rate_pct": 2.34,
-      "risk_tier": "High Risk"
+      "risk_points": 4.0,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 51.6
+    }
+  ],
+  "worst_quality_suppliers": [
+    {
+      "supplier_id": "SUP1026",
+      "supplier_name": "Pinnacle Precision Castings",
+      "region": "West India",
+      "tier": "Tier 2",
+      "total_orders": 291,
+      "total_spend": 159309090.59,
+      "avg_order_value": 547453.92,
+      "on_time_pct": 75.6,
+      "avg_delay_days": 2.74,
+      "defect_rate_pct": 18.21,
+      "risk_points": 3.0,
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 41.0
+    },
+    {
+      "supplier_id": "SUP1095",
+      "supplier_name": "Hyundai Heavy Industries",
+      "region": "East India",
+      "tier": "Tier 2",
+      "total_orders": 292,
+      "total_spend": 916138383.48,
+      "avg_order_value": 3137460.22,
+      "on_time_pct": 63.0,
+      "avg_delay_days": 4.13,
+      "defect_rate_pct": 15.75,
+      "risk_points": 5.0,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 52.2
+    },
+    {
+      "supplier_id": "SUP1008",
+      "supplier_name": "Nordic Polymer Materials",
+      "region": "South India",
+      "tier": "Tier 2",
+      "total_orders": 451,
+      "total_spend": 364168546.17,
+      "avg_order_value": 807469.06,
+      "on_time_pct": 47.0,
+      "avg_delay_days": 5.68,
+      "defect_rate_pct": 13.53,
+      "risk_points": 5.0,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 12.1
+    },
+    {
+      "supplier_id": "SUP1015",
+      "supplier_name": "Atlas Heavy Machinery Supplies",
+      "region": "Import - Europe",
+      "tier": "Tier 2",
+      "total_orders": 609,
+      "total_spend": 741679615.61,
+      "avg_order_value": 1217864.72,
+      "on_time_pct": 54.5,
+      "avg_delay_days": 5.2,
+      "defect_rate_pct": 12.64,
+      "risk_points": 5.5,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 20.9
+    },
+    {
+      "supplier_id": "SUP1080",
+      "supplier_name": "Wipro Infrastructure Eng",
+      "region": "Import - North America",
+      "tier": "Tier 2",
+      "total_orders": 124,
+      "total_spend": 165861927.59,
+      "avg_order_value": 1337596.19,
+      "on_time_pct": 21.8,
+      "avg_delay_days": 9.65,
+      "defect_rate_pct": 12.1,
+      "risk_points": 5.5,
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Dual Risk (Reliability + Quality)",
+      "is_reliability_risk": true,
+      "is_quality_risk": true,
+      "latest_pct_change": 27.4
     }
   ],
   "risk_distribution": {
@@ -682,7 +843,7 @@
       "latest_pct_change": -2.7
     }
   ],
-  "narrative_example": "Komatsu Earthmoving Parts (Tier: Tier 2) has an on-time delivery rate of 11.7%, the lowest among active suppliers, with an average delay of 10.09 days across 420 orders (\u20b9671,105,591 total spend). Consider shifting high-priority orders to Shanghai Industrial Silicon (Tier: Tier 1), which maintains a 79.8% on-time rate with an average order value of \u20b91,871,062.",
+  "narrative_example": "Delivery reliability and quality failures stem from distinct supplier cohorts. Komatsu Earthmoving Parts (Tier: Tier 2) is the weakest SLA performer with a 11.7% on-time rate and 10.09 avg delay days. Conversely, Pinnacle Precision Castings represents a Quality Risk axis with a 18.21% defect rate despite decent timelines. Crucially, 36 of the 50 understocked SKUs (72.0%) are primary-sourced from High-Risk suppliers, requiring urgent dual-sourcing.",
   "total_spend": 50994069712.08,
   "total_orders": 30000
 }
