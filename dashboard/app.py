@@ -1471,7 +1471,7 @@ with tab4:
                     st.metric("Est. Delay Days", f"{res_b['est_days']} Days")
                     st.metric("Expected Financial Exposure", f"₹{res_b['exp_risk_cost']/1e3:.1f} K")
 
-    # 4. REALLOCATION SIMULATOR SECTION
+    # 4. REALLOCATION SIMULATOR SECTION WITH SENSITIVITY ANALYSIS & SCENARIO STORAGE
     st.markdown(f"""
     <div class="section-divider">
         <div class="section-divider-line"></div>
@@ -1486,34 +1486,68 @@ with tab4:
     </div>
     """, unsafe_allow_html=True)
 
-    sup_details_df = pd.read_sql("""
-        SELECT s.supplier_id, s.supplier_name, s.tier, s.region,
-               COUNT(po.po_id) AS total_pos,
-               AVG(po.unit_price) AS avg_unit_price,
-               AVG(po.order_cost) AS avg_po_value,
-               COALESCE(AVG(d.is_late), 0.20) AS late_rate
-        FROM suppliers s
-        LEFT JOIN purchase_orders po ON s.supplier_id = po.supplier_id
-        LEFT JOIN deliveries d ON po.po_id = d.po_id
-        GROUP BY s.supplier_id
-    """, conn)
+    @st.cache_data(ttl=300)
+    def get_reallocation_supplier_details():
+        conn = get_db_connection()
+        sql = """
+            SELECT s.supplier_id, s.supplier_name, s.tier, s.region,
+                   COUNT(po.po_id) AS total_pos,
+                   COALESCE(AVG(po.unit_price), 500.0) AS avg_unit_price,
+                   COALESCE(AVG(po.order_cost), 150000.0) AS avg_po_value,
+                   COALESCE(AVG(d.is_late), 0.20) AS late_rate
+            FROM suppliers s
+            LEFT JOIN purchase_orders po ON s.supplier_id = po.supplier_id
+            LEFT JOIN deliveries d ON po.po_id = d.po_id
+            GROUP BY s.supplier_id
+        """
+        return pd.read_sql(sql, conn)
 
+    sup_details_df = get_reallocation_supplier_details().copy()
     sup_list = sorted(sup_details_df["supplier_name"].tolist())
 
     col_sim_src, col_sim_tgt, col_sim_vol = st.columns(3, gap="medium")
     with col_sim_src:
-        src_sup_name = st.selectbox("Source Supplier (Shift Volume FROM)", options=sup_list, index=0)
+        src_sup_name = st.selectbox("Source Supplier (Shift Volume FROM)", options=sup_list, index=0, key="realloc_src")
     with col_sim_tgt:
-        tgt_sup_name = st.selectbox("Destination Supplier (Shift Volume TO)", options=sup_list, index=min(1, len(sup_list)-1))
+        tgt_sup_name = st.selectbox("Destination Supplier (Shift Volume TO)", options=sup_list, index=min(1, len(sup_list)-1), key="realloc_tgt")
     with col_sim_vol:
-        shift_po_count = st.slider("Volume to Reassign (Number of POs)", min_value=10, max_value=2000, value=250, step=10)
+        shift_po_count = st.slider("Volume to Reassign (Number of POs)", min_value=10, max_value=2000, value=250, step=10, key="realloc_vol")
 
-    src_row = sup_details_df[sup_details_df["supplier_name"] == src_sup_name].iloc[0]
-    tgt_row = sup_details_df[sup_details_df["supplier_name"] == tgt_sup_name].iloc[0]
+    col_sim_cap, col_sim_crit = st.columns(2, gap="medium")
+    with col_sim_cap:
+        cap_thresh_pct = st.slider("Target Capacity Strain Threshold (%)", min_value=10.0, max_value=80.0, value=30.0, step=5.0, key="realloc_cap_thresh")
+    with col_sim_crit:
+        crit_weight_label = st.selectbox(
+            "Product Category Criticality Multiplier",
+            [
+                "Standard Components (Base - 1.0x / ₹50k Penalty)",
+                "Electronics & Tech (Critical - 1.5x / ₹75k Penalty)",
+                "Raw Materials & Metals (High - 1.2x / ₹60k Penalty)",
+                "Packaging & Consumables (Low - 0.8x / ₹40k Penalty)"
+            ],
+            index=0,
+            key="realloc_crit"
+        )
 
-    if src_sup_name == tgt_sup_name:
+    crit_multiplier_map = {
+        "Standard Components (Base - 1.0x / ₹50k Penalty)": 1.0,
+        "Electronics & Tech (Critical - 1.5x / ₹75k Penalty)": 1.5,
+        "Raw Materials & Metals (High - 1.2x / ₹60k Penalty)": 1.2,
+        "Packaging & Consumables (Low - 0.8x / ₹40k Penalty)": 0.8
+    }
+    cost_fn_base = 50000.0 * crit_multiplier_map[crit_weight_label]
+
+    src_matches = sup_details_df[sup_details_df["supplier_name"] == src_sup_name]
+    tgt_matches = sup_details_df[sup_details_df["supplier_name"] == tgt_sup_name]
+
+    if src_matches.empty or tgt_matches.empty:
+        st.warning("Selected supplier metadata unavailable.")
+    elif src_sup_name == tgt_sup_name:
         st.warning("Source and destination supplier are the same — reallocation has no effect. Please choose two different suppliers.")
     else:
+        src_row = src_matches.iloc[0]
+        tgt_row = tgt_matches.iloc[0]
+
         src_base_pos = max(src_row["total_pos"], 1)
         tgt_base_pos = max(tgt_row["total_pos"], 1)
 
@@ -1525,9 +1559,9 @@ with tab4:
 
         # 1. Capacity Constraint Evaluation
         capacity_expansion_pct = (shift_po_count / tgt_base_pos) * 100.0
-        capacity_strained = capacity_expansion_pct > 30.0
+        capacity_strained = capacity_expansion_pct > cap_thresh_pct
 
-        capacity_penalty = (capacity_expansion_pct - 30.0) * 0.003 if capacity_strained else 0.0
+        capacity_penalty = (capacity_expansion_pct - cap_thresh_pct) * 0.003 if capacity_strained else 0.0
         effective_tgt_late_rate = min(0.95, tgt_late_rate + capacity_penalty)
 
         # 2. Late Deliveries Prevented
@@ -1541,7 +1575,7 @@ with tab4:
         net_price_cost_delta = shift_po_count * avg_po_val * (price_pct_delta / 100.0)
 
         # 4. Stockout Savings vs Price Premium Reconciliation
-        fn_stockout_savings = net_late_pos_prevented * 50000.0
+        fn_stockout_savings = net_late_pos_prevented * cost_fn_base
         net_financial_tradeoff = fn_stockout_savings - net_price_cost_delta
 
         sim_m1, sim_m2, sim_m3, sim_m4 = st.columns(4, gap="medium")
@@ -1565,7 +1599,7 @@ with tab4:
         <div class="metric-card metric-card-stripe" style="border-left-color:{RED if capacity_strained else GREEN};">
             <div class="metric-label">Target Capacity Expansion</div>
             <div class="metric-value" style="color:{RED if capacity_strained else GREEN};">{capacity_expansion_pct:.1f}%</div>
-            <div class="metric-badge" style="background:{RED_BG if capacity_strained else GREEN_BG}; color:{RED if capacity_strained else GREEN};">{'Capacity Strained' if capacity_strained else 'Within Capacity'}</div>
+            <div class="metric-badge" style="background:{RED_BG if capacity_strained else GREEN_BG}; color:{RED if capacity_strained else GREEN};">{'Cap Strained (&gt;{:.0f}%)'.format(cap_thresh_pct) if capacity_strained else 'Within Capacity'}</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1576,6 +1610,57 @@ with tab4:
             <div class="metric-badge" style="background:{GREEN_BG if net_financial_tradeoff > 0 else RED_BG}; color:{GREEN if net_financial_tradeoff > 0 else RED};">{'Recommended' if net_financial_tradeoff > 0 else 'Not Cost-Effective'}</div>
         </div>
         """, unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div style="background:rgba(108,142,245,0.06); border:1px solid rgba(108,142,245,0.18); border-left:3px solid {ACCENT};
+                    border-radius:8px; padding:10px 16px; margin-top:12px; margin-bottom:16px; font-size:0.80rem; color:{TEXT_MUTED};">
+            ℹ️ <b>Stockout Cost Methodology</b>: Stockout penalty is calculated at <b>₹{cost_fn_base:,.0f} per late PO</b> based on the ML model's COST_FN training constant weighted by <b>{crit_weight_label.split(' ')[0]}</b> criticality.
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Sensitivity Analysis Line Chart (Volume Shift vs Net Benefit)
+        v_range = np.linspace(10, 2000, 50)
+        sens_data = []
+        for v in v_range:
+            v_exp_pct = (v / tgt_base_pos) * 100.0
+            v_pen = (v_exp_pct - cap_thresh_pct) * 0.003 if v_exp_pct > cap_thresh_pct else 0.0
+            v_tgt_late = min(0.95, tgt_late_rate + v_pen)
+            v_late_prevented = round((v * src_late_rate) - (v * v_tgt_late))
+            v_price_delta = v * avg_po_val * (price_pct_delta / 100.0)
+            v_net_benefit = (v_late_prevented * cost_fn_base) - v_price_delta
+            sens_data.append({"volume_shift_pos": v, "net_benefit_inr": v_net_benefit / 1e5})
+
+        sens_df = pd.DataFrame(sens_data)
+        fig_sens = px.line(
+            sens_df, x="volume_shift_pos", y="net_benefit_inr",
+            title=f"Sensitivity Curve: Volume Shift vs Net Financial Benefit (₹ Lakhs) — {src_sup_name} → {tgt_sup_name}",
+            labels={"volume_shift_pos": "Reassigned PO Volume", "net_benefit_inr": "Net Benefit (₹ Lakhs)"},
+            color_discrete_sequence=[ACCENT]
+        )
+        fig_sens.add_hline(y=0.0, line_dash="dash", line_color=RED, opacity=0.6)
+        fig_sens.update_layout(**PLOT_LAYOUT, height=280)
+        st.plotly_chart(fig_sens, use_container_width=True, config=PLOTLY_CONFIG)
+
+        # Save Scenario Button
+        if st.button("💾 Save Current Reallocation Scenario to Comparison Table", key="save_realloc_scenario_btn"):
+            scenarios = st.session_state.get("realloc_scenarios", [])
+            scenarios.append({
+                "Timestamp": time.strftime("%H:%M:%S"),
+                "Source": src_sup_name,
+                "Destination": tgt_sup_name,
+                "POs Shifted": shift_po_count,
+                "Capacity Expansion %": f"{capacity_expansion_pct:.1f}%",
+                "Late POs Prevented": net_late_pos_prevented,
+                "Price Delta (₹ L)": f"{net_price_cost_delta/1e5:.2f}",
+                "Net Benefit (₹ L)": f"{net_financial_tradeoff/1e5:.2f}"
+            })
+            st.session_state["realloc_scenarios"] = scenarios
+            st.success("Scenario saved successfully!")
+
+        scenarios = st.session_state.get("realloc_scenarios", [])
+        if scenarios:
+            st.markdown("<div style='font-size:0.85rem; font-weight:700; color:#3b82f6; margin-top:12px;'>Saved Reallocation Comparison Table:</div>", unsafe_allow_html=True)
+            st.dataframe(pd.DataFrame(scenarios), use_container_width=True)
 
 # ---------------------------------------------------------------
 # TAB 5: PRODUCTION SQL ANALYTICS STUDIO & WORKBENCH
