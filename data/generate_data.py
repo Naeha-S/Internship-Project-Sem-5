@@ -265,7 +265,7 @@ def load_and_integrate_kaggle_data():
 # ---------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(description="ProcureSense AI Procurement Data Generator")
-    parser.add_argument("--orders", type=int, default=30000, help="Number of purchase orders to generate (default: 30000)")
+    parser.add_argument("--orders", type=int, default=28765, help="Number of purchase orders to generate (default: 28765)")
     parser.add_argument("--suppliers", type=int, default=100, help="Number of suppliers to generate (default: 100)")
     parser.add_argument("--start-date", type=str, default="2023-01-01", help="Start date YYYY-MM-DD (default: 2023-01-01)")
     parser.add_argument("--end-date", type=str, default="2025-12-31", help="End date YYYY-MM-DD (default: 2025-12-31)")
@@ -312,7 +312,7 @@ def main():
         "certifications": rng.choice(certifications_options, n_sups),
     })
 
-    suppliers["_true_reliability"] = rng.beta(7, 3, n_sups)
+    suppliers["_true_reliability"] = rng.beta(6, 3, n_sups)
     suppliers["_true_defect_rate"] = rng.beta(1.2, 45, n_sups)
     suppliers["_price_drift_pct"] = rng.normal(0.03, 0.04, n_sups)
     suppliers["_going_bad"] = rng.choice([0, 1], n_sups, p=[0.85, 0.15])

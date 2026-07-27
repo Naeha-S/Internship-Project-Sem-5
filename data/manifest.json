@@ -1,8 +1,8 @@
 {
   "dataset_version": "v4.0",
-  "generated_at": "2026-07-27T14:01:43.762922",
+  "generated_at": "2026-07-27T14:07:03.780862",
   "parameters": {
-    "n_orders": 30000,
+    "n_orders": 28765,
     "n_suppliers": 100,
     "start_date": "2023-01-01",
     "end_date": "2025-12-31",
@@ -16,8 +16,8 @@
   "row_counts": {
     "suppliers": 98,
     "products": 200,
-    "purchase_orders": 30000,
-    "deliveries": 30000,
+    "purchase_orders": 28765,
+    "deliveries": 28765,
     "inventory": 200
   },
   "files_written": [

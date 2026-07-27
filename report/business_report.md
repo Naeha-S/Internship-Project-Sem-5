@@ -8,7 +8,7 @@
 
 ### Overall Procurement Health Score: **49.1 / 100**
 
-Across 30,000 purchase orders spanning 78 active corporate suppliers (out of 98 total registered catalog suppliers), 200 technical product SKUs, and ₹50,967 Cr+ in tracked expenditure, the platform evaluates the operational health score at **49.1 / 100**.
+Across 28,765 purchase orders spanning 78 active corporate suppliers (out of 98 total registered catalog suppliers), 200 technical product SKUs, and ₹50,967 Cr+ in tracked expenditure, the platform evaluates the operational health score at **49.1 / 100**.
 
 ```mermaid
 pie title Active Supplier Operational Risk Tier Distribution (Percentile-Calibrated)
