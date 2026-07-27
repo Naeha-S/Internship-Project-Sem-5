@@ -23,6 +23,12 @@ pie title Active Supplier Operational Risk Tier Distribution (Percentile-Calibra
 3. **Severe Dynamic ROP & Single-Source Exposure**: **63 of the 185 dynamically understocked SKUs (34.1%)** breach safety stock thresholds due to supplier delay inflation, with **65 SKUs exposed to single-source dependency risk**.
 4. **Spend Concentration (HHI: 243.2)**: Herfindahl-Hirschman Index evaluates market concentration at **243.2** (unconcentrated/healthy vendor distribution), with Top 5 suppliers representing **14.8% of spend**.
 
+> **AI Narrative Insight Audit**:
+> - **Market Concentration & Spend Exposure**: Multi-factor risk scoring evaluates overall market concentration at HHI **243.2** (Unconcentrated). However, **₹1,571.9 Cr (30.8%)** of total spend remains tied to High-Risk suppliers.
+> - **Reliability Bottleneck**: **Komatsu Earthmoving Parts** (Tier 2) represents critical SLA exposure with an on-time fulfillment rate of only **11.9%**.
+> - **Performance Decay Trajectory**: **Silicon Valley Micro Hardware** exhibits severe monthly SLA deterioration with a delay trend slope of **+0.1992 days/month**.
+> - **Dynamic ROP & Single-Source Vulnerability**: Dynamic ROP calculations flag **63 of 185 understocked SKUs (34.1%)** as primary-sourced from High-Risk suppliers, with **65 SKUs** exposed to single-source dependency risk.
+
 ---
 
 ## 1. Transparent Procurement Health Score Breakdown

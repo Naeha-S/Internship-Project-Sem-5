@@ -1,27 +1,24 @@
 """
-generate_data.py (v3 — Expanded & Enriched Dataset)
----------------------------------------------------
+generate_data.py (v4 — Parameterized, Multi-Sourcing & OU Stochastic Macro Signals)
+----------------------------------------------------------------------------------
 Generates synthetic but highly realistic procurement data across 5 linked tables:
 suppliers, products, purchase_orders, deliveries, inventory.
 
-v3 Enhancements:
-- 100 Authentic Corporate Supplier Names (e.g. Apex Precision Components, Bharat Heavy Metallics, Pacific Rim Semiconductor)
-- Realistic international/domestic geographic assignments (India, Germany, USA, Japan, China, Taiwan)
-- Contact Emails, Ratings, Payment Terms (Net 30/60/90), ISO Certifications
-- 200 Specific Industrial Technical Product Names with SKUs and Units of Measure
-- Procurement Buyers, Incoterms (FOB, CIF, DDP), PO Numbers, Tracking Numbers, Carriers (DHL, FedEx, Maersk, Blue Dart)
-- Inspection QA Statuses (Passed Inspection, Minor Defect - Accepted, Major Defect - Rejected)
-- 30,000 Purchase Orders spanning 2023–2025
+v4 Features:
+- CLI Parameterization via argparse (--orders, --suppliers, --start-date, --end-date, --tables, --version-stamp)
+- Multi-Sourcing Support (primary_supplier_id + secondary_supplier_id split)
+- Ornstein-Uhlenbeck (OU) Mean-Reverting Stochastic Process for Crude Oil Index with real-world noise
+- Data Versioning & Manifest export (data/manifest.json)
+- Selective Table Regeneration (--tables suppliers products purchase_orders deliveries inventory)
 """
 
 import numpy as np
 import pandas as pd
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 import os
 import sys
-
-np.random.seed(42)
-rng = np.random.default_rng(42)
+import json
+import argparse
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(BASE_DIR, "data")
@@ -30,30 +27,48 @@ os.makedirs(OUT, exist_ok=True)
 # ---------------------------------------------------------------
 # HOLIDAY CALENDAR (India + Global shipping disruptions)
 # ---------------------------------------------------------------
-try:
-    import holidays
-    _india_holidays = holidays.India(years=range(2023, 2026))
-    def is_holiday(d):
-        return int(d in _india_holidays or d.weekday() == 6)  # Sunday or holiday
-except ImportError:
-    def is_holiday(d):
-        return int(d.weekday() == 6)
+def get_holiday_checker(start_yr, end_yr):
+    try:
+        import holidays
+        _india_holidays = holidays.India(years=range(start_yr, end_yr + 1))
+        def is_holiday(d):
+            return int(d in _india_holidays or d.weekday() == 6)
+        return is_holiday
+    except ImportError:
+        def is_holiday(d):
+            return int(d.weekday() == 6)
+        return is_holiday
 
 # ---------------------------------------------------------------
-# MACRO SIGNALS
+# MACRO SIGNALS: ORNSTEIN-UHLENBECK STOCHASTIC PROCESS
 # ---------------------------------------------------------------
-_start_ref = date(2023, 1, 1)
-def crude_oil_index(d):
-    """Proxy for freight cost pressure (0.8 – 1.2 range)."""
-    days_elapsed = (d - _start_ref).days
-    return round(1.0 + 0.15 * np.sin(days_elapsed / 120) + 0.05 * np.sin(days_elapsed / 45), 4)
+def generate_crude_oil_map(start_d, end_d, rng):
+    """
+    Simulates crude oil freight cost index (0.8 – 1.25 range) using an
+    Ornstein-Uhlenbeck mean-reverting stochastic process with seasonal trend.
+    """
+    total_days = (end_d - start_d).days + 1
+    dt = 1.0
+    theta = 0.03   # Mean-reversion speed
+    sigma = 0.012  # Stochastic volatility
+    ou_val = 0.0
+    
+    oil_map = {}
+    for t in range(total_days):
+        cur_date = start_d + timedelta(days=t)
+        seasonal = 1.0 + 0.12 * np.sin(t / 120.0) + 0.04 * np.sin(t / 45.0)
+        dW = rng.normal(0, np.sqrt(dt))
+        ou_val += theta * (0.0 - ou_val) * dt + sigma * dW
+        ou_val = np.clip(ou_val, -0.2, 0.2)
+        oil_map[cur_date] = round(float(seasonal + ou_val), 4)
+    return oil_map
 
 def container_shortage_flag(d):
     """Simulates Q4 container shortage peaks."""
-    return int(d.month in (10, 11, 12) and d.year in (2023, 2024))
+    return int(d.month in (10, 11, 12))
 
 # ---------------------------------------------------------------
-# 1. AUTHENTIC SUPPLIERS (100 Companies)
+# 1. AUTHENTIC SUPPLIERS CATALOG
 # ---------------------------------------------------------------
 REAL_SUPPLIER_NAMES = [
     "Apex Precision Components Ltd", "Bharat Heavy Metallics", "Pacific Rim Semiconductor Corp",
@@ -101,42 +116,6 @@ region_country_map = {
     "Import - North America": "USA"
 }
 
-regions = list(region_country_map.keys())
-tiers = ["Tier 1", "Tier 2", "Tier 3"]
-payment_terms_options = ["Net 30", "Net 60", "Net 90", "2/10 Net 30", "Immediate / CIA"]
-certifications_options = ["ISO 9001", "ISO 14001", "IATF 16949", "AS9100", "ISO 45001"]
-
-N_SUPPLIERS = len(REAL_SUPPLIER_NAMES)
-
-assigned_regions = rng.choice(regions, N_SUPPLIERS)
-assigned_countries = [region_country_map[r] for r in assigned_regions]
-
-def generate_email(name):
-    clean = "".join(c for c in name.split()[0] if c.isalnum()).lower()
-    return f"procurement@{clean}corp.com"
-
-suppliers = pd.DataFrame({
-    "supplier_id": [f"SUP{1000+i}" for i in range(N_SUPPLIERS)],
-    "supplier_name": REAL_SUPPLIER_NAMES,
-    "contact_email": [generate_email(n) for n in REAL_SUPPLIER_NAMES],
-    "country": assigned_countries,
-    "region": assigned_regions,
-    "tier": rng.choice(tiers, N_SUPPLIERS, p=[0.25, 0.50, 0.25]),
-    "onboarded_year": rng.choice([2018, 2019, 2020, 2021, 2022, 2023], N_SUPPLIERS),
-    "rating": np.round(rng.uniform(3.2, 4.9, N_SUPPLIERS), 1),
-    "payment_terms": rng.choice(payment_terms_options, N_SUPPLIERS, p=[0.5, 0.3, 0.1, 0.05, 0.05]),
-    "certifications": rng.choice(certifications_options, N_SUPPLIERS),
-})
-
-# Latent traits
-suppliers["_true_reliability"] = rng.beta(7, 2, N_SUPPLIERS)
-suppliers["_true_defect_rate"] = rng.beta(1.5, 25, N_SUPPLIERS)
-suppliers["_price_drift_pct"] = rng.normal(0.05, 0.06, N_SUPPLIERS)
-suppliers["_going_bad"] = rng.choice([0, 1], N_SUPPLIERS, p=[0.85, 0.15])
-
-# ---------------------------------------------------------------
-# 2. DETAILED PRODUCTS & TECHNICAL CATALOG
-# ---------------------------------------------------------------
 PRODUCT_CATALOG = {
     ("Raw Metals", "Steel"): (
         ["Cold-Rolled Steel Sheet 2mm", "Hot-Rolled Structural I-Beam", "Stainless Steel Pipe 304",
@@ -243,182 +222,12 @@ PRODUCT_CATALOG = {
     )
 }
 
-N_PRODUCTS = 200
-product_list = []
-catalog_keys = list(PRODUCT_CATALOG.keys())
+def generate_email(name, sup_id):
+    clean = "".join(c for c in name.split()[0] if c.isalnum()).lower()
+    return f"procurement@{clean}-{sup_id.lower()}.com"
 
-for i in range(N_PRODUCTS):
-    cat, sub_cat = catalog_keys[i % len(catalog_keys)]
-    names_list, uom, price_range = PRODUCT_CATALOG[(cat, sub_cat)]
-    base_name = rng.choice(names_list)
-    product_name = f"{base_name} (v{rng.integers(1, 4)})" if i >= len(catalog_keys) else base_name
-    sku = f"SKU-{cat[:3].upper()}-{2000+i}"
-
-    product_list.append({
-        "product_id": f"PRD{2000+i}",
-        "sku": sku,
-        "product_name": product_name,
-        "category": cat,
-        "sub_category": sub_cat,
-        "unit_of_measure": uom,
-        "unit_cost_base": np.round(rng.uniform(price_range[0], price_range[1]), 2),
-        "primary_supplier_id": rng.choice(suppliers["supplier_id"]),
-        "reorder_level": int(rng.integers(20, 1000)),
-        "lead_time_days_base": int(rng.integers(2, 30)),
-    })
-
-products = pd.DataFrame(product_list)
-
-# ---------------------------------------------------------------
-# 3. PURCHASE ORDERS & DELIVERIES (30,000 Orders)
-# ---------------------------------------------------------------
-N_ORDERS = 30000
-start_date = date(2023, 1, 1)
-end_date = date(2025, 12, 31)
-date_range_days = (end_date - start_date).days
-
-buyer_names = ["Ananya Sharma", "Rahul Verma", "Sarah Jenkins", "Michael Chang", "Priya Nair", "David Miller", "Vikram Patel", "Elena Rostova"]
-incoterms_options = ["FOB", "CIF", "DDP", "EXW", "FCA", "DAP"]
-shipping_modes = ["Expedited Air", "Air Freight", "Express Ground", "Standard Ground", "Sea Freight"]
-carrier_options = ["DHL Express", "FedEx Supply Chain", "Maersk Line", "Blue Dart Cargo", "DB Schenker Logistics", "Kuehne+Nagel"]
-
-order_dates = [start_date + timedelta(days=int(d)) for d in rng.integers(0, date_range_days, N_ORDERS)]
-order_products = rng.choice(products["product_id"], N_ORDERS)
-
-prod_lookup = products.set_index("product_id")
-sup_lookup = suppliers.set_index("supplier_id")
-
-po_rows = []
-del_rows = []
-
-for i in range(N_ORDERS):
-    pid = order_products[i]
-    prod = prod_lookup.loc[pid]
-    sup_id = prod["primary_supplier_id"]
-    sup = sup_lookup.loc[sup_id]
-
-    odate = order_dates[i]
-    quantity = int(rng.integers(5, 2000))
-    ship_mode = rng.choice(shipping_modes, p=[0.10, 0.20, 0.25, 0.30, 0.15])
-    buyer = rng.choice(buyer_names)
-    incoterm = rng.choice(incoterms_options)
-
-    # Signals
-    oil_idx = crude_oil_index(odate)
-    is_hol = is_holiday(odate)
-    cont_short = container_shortage_flag(odate)
-
-    # Price drift
-    years_since_onboard = max(odate.year - sup["onboarded_year"], 0.5)
-    drift_factor = (1 + sup["_price_drift_pct"]) ** years_since_onboard * oil_idx
-    if sup["_going_bad"] and odate > date(2024, 6, 1):
-        drift_factor *= 1.2
-
-    unit_price = round(prod["unit_cost_base"] * drift_factor * rng.normal(1.0, 0.03), 2)
-    order_cost = round(unit_price * quantity, 2)
-
-    # Delay factors
-    month = odate.month
-    seasonal_bump = 0.2 if month in (11, 12, 1) else (0.1 if month in (6, 7) else 0.0)
-    ship_bump = 0.18 if ship_mode == "Sea Freight" else (0.08 if ship_mode == "Standard Ground" else (-0.10 if "Air" in ship_mode else 0.0))
-    region_bump = 0.10 if "Import" in sup["region"] else 0.0
-    oil_bump = (oil_idx - 1.0) * 0.3
-    container_bump = 0.12 * cont_short
-    holiday_bump = 0.05 * is_hol
-
-    base_rel = sup["_true_reliability"]
-    if sup["_going_bad"] and odate > date(2024, 6, 1):
-        base_rel -= 0.3
-    base_rel = np.clip(base_rel, 0.05, 0.99)
-
-    delay_prob = np.clip(
-        (1 - base_rel) + seasonal_bump + ship_bump + region_bump
-        + oil_bump + container_bump + holiday_bump
-        + (quantity > 1000) * 0.05,
-        0.01, 0.98
-    )
-    is_late = rng.random() < delay_prob
-
-    planned_lead = prod["lead_time_days_base"] + (10 if "Import" in sup["region"] else 0)
-    if is_late:
-        delay_days = int(rng.integers(1, 20) + seasonal_bump * 15)
-    else:
-        delay_days = int(rng.integers(-3, 1))
-
-    actual_lead = max(planned_lead + delay_days, 1)
-    delivery_date = odate + timedelta(days=int(actual_lead))
-    defect = rng.random() < sup["_true_defect_rate"]
-
-    po_id = f"PO{50000+i}"
-    po_num = f"PO-{odate.year}-{10000+i}"
-    trk_num = f"TRK-{rng.integers(10000000, 99999999)}"
-    carrier = rng.choice(carrier_options)
-
-    if defect:
-        inspection_status = rng.choice(["Major Defect - Rejected", "Minor Defect - Accepted"], p=[0.6, 0.4])
-    else:
-        inspection_status = "Passed Inspection"
-
-    po_rows.append({
-        "po_id": po_id,
-        "po_number": po_num,
-        "buyer_name": buyer,
-        "incoterms": incoterm,
-        "order_date": odate,
-        "product_id": pid,
-        "supplier_id": sup_id,
-        "quantity": quantity,
-        "unit_price": unit_price,
-        "order_cost": order_cost,
-        "expected_delivery_date": odate + timedelta(days=int(planned_lead)),
-        "priority": rng.choice(["Standard", "Rush", "Urgent", "Critical"], p=[0.5, 0.3, 0.15, 0.05]),
-        "shipping_mode": ship_mode,
-        "crude_oil_index": oil_idx,
-        "is_holiday_order": is_hol,
-        "container_shortage_flag": cont_short,
-    })
-
-    del_rows.append({
-        "po_id": po_id,
-        "tracking_number": trk_num,
-        "carrier": carrier,
-        "delivery_date": delivery_date,
-        "planned_lead_days": planned_lead,
-        "actual_lead_days": actual_lead,
-        "is_late": bool(is_late),
-        "delay_days": max(delay_days, 0),
-        "has_defect": bool(defect),
-        "inspection_status": inspection_status,
-        "status": "Delivered",
-    })
-
-purchase_orders = pd.DataFrame(po_rows)
-deliveries = pd.DataFrame(del_rows)
-
-# ---------------------------------------------------------------
-# 4. INVENTORY
-# ---------------------------------------------------------------
-inventory = pd.DataFrame({
-    "product_id": products["product_id"],
-    "warehouse": rng.choice(["WH-North (Delhi)", "WH-South (Chennai)", "WH-East (Kolkata)", "WH-West (Mumbai)", "WH-Central (Nagpur)"], N_PRODUCTS),
-    "current_stock": rng.integers(0, 2000, N_PRODUCTS),
-    "reorder_level": products["reorder_level"].values,
-    "avg_monthly_demand": (purchase_orders.groupby("product_id")["quantity"].sum().reindex(products["product_id"]).fillna(0) / 36).values.round(1),
-})
-inventory["months_of_cover"] = np.where(
-    inventory["avg_monthly_demand"] > 0,
-    (inventory["current_stock"] / inventory["avg_monthly_demand"]).round(1),
-    np.inf
-)
-
-# ---------------------------------------------------------------
-# KAGGLE DATASET INTEGRATION
-# ---------------------------------------------------------------
 def load_and_integrate_kaggle_data():
-    """
-    Downloads and integrates real Kaggle Supply Chain & DataCo datasets.
-    Creates data/kaggle_supply_chain.csv and data/kaggle_dataco_sample.csv.
-    """
+    """Optionally downloads and integrates Kaggle datasets."""
     kaggle_dir = os.path.join(OUT, "kaggle_raw")
     dataco_dir = os.path.join(OUT, "kaggle_dataco")
     os.makedirs(kaggle_dir, exist_ok=True)
@@ -451,21 +260,292 @@ def load_and_integrate_kaggle_data():
     except Exception as e:
         print(f"Kaggle integration status: {e}")
 
-load_and_integrate_kaggle_data()
-
 # ---------------------------------------------------------------
-# EXPORT
+# MAIN GENERATOR FUNCTION
 # ---------------------------------------------------------------
-suppliers_public = suppliers.drop(columns=[c for c in suppliers.columns if c.startswith("_")])
-suppliers.to_csv(f"{OUT}/_ground_truth_supplier_traits.csv", index=False)
-suppliers_public.to_csv(f"{OUT}/suppliers.csv", index=False)
-products.to_csv(f"{OUT}/products.csv", index=False)
-purchase_orders.to_csv(f"{OUT}/purchase_orders.csv", index=False)
-deliveries.to_csv(f"{OUT}/deliveries.csv", index=False)
-inventory.to_csv(f"{OUT}/inventory.csv", index=False)
+def main():
+    parser = argparse.ArgumentParser(description="ProcureSense AI Procurement Data Generator")
+    parser.add_argument("--orders", type=int, default=30000, help="Number of purchase orders to generate (default: 30000)")
+    parser.add_argument("--suppliers", type=int, default=100, help="Number of suppliers to generate (default: 100)")
+    parser.add_argument("--start-date", type=str, default="2023-01-01", help="Start date YYYY-MM-DD (default: 2023-01-01)")
+    parser.add_argument("--end-date", type=str, default="2025-12-31", help="End date YYYY-MM-DD (default: 2025-12-31)")
+    parser.add_argument("--tables", nargs="+", default=["all"], help="Tables to generate: all, suppliers, products, purchase_orders, deliveries, inventory")
+    parser.add_argument("--version-stamp", action="store_true", help="Generate timestamped files and write manifest.json")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed (default: 42)")
 
-print(f"\nExpanded dataset generated in {OUT}")
-print(f"Suppliers: {len(suppliers_public)} corporate entities")
-print(f"Products: {len(products)} technical SKUs")
-print(f"Orders: {len(purchase_orders):,} (Late Rate: {deliveries['is_late'].mean():.1%})")
+    args = parser.parse_args()
 
+    rng = np.random.default_rng(args.seed)
+    start_date = datetime.strptime(args.start_date, "%Y-%m-%d").date()
+    end_date = datetime.strptime(args.end_date, "%Y-%m-%d").date()
+    date_range_days = (end_date - start_date).days
+    deterioration_start_date = start_date + timedelta(days=int(date_range_days * 0.5))
+
+    is_holiday_fn = get_holiday_checker(start_date.year, end_date.year)
+    oil_map = generate_crude_oil_map(start_date, end_date, rng)
+
+    tables_to_gen = set(args.tables)
+    gen_all = "all" in tables_to_gen
+
+    # 1. SUPPLIERS
+    n_sups = min(args.suppliers, len(REAL_SUPPLIER_NAMES))
+    supplier_names_selected = REAL_SUPPLIER_NAMES[:n_sups]
+    regions = list(region_country_map.keys())
+    tiers = ["Tier 1", "Tier 2", "Tier 3"]
+    payment_terms_options = ["Net 30", "Net 60", "Net 90", "2/10 Net 30", "Immediate / CIA"]
+    certifications_options = ["ISO 9001", "ISO 14001", "IATF 16949", "AS9100", "ISO 45001"]
+
+    assigned_regions = rng.choice(regions, n_sups)
+    assigned_countries = [region_country_map[r] for r in assigned_regions]
+    sup_ids = [f"SUP{1000+i}" for i in range(n_sups)]
+
+    suppliers = pd.DataFrame({
+        "supplier_id": sup_ids,
+        "supplier_name": supplier_names_selected,
+        "contact_email": [generate_email(supplier_names_selected[i], sup_ids[i]) for i in range(n_sups)],
+        "country": assigned_countries,
+        "region": assigned_regions,
+        "tier": rng.choice(tiers, n_sups, p=[0.25, 0.50, 0.25]),
+        "onboarded_year": rng.choice([2018, 2019, 2020, 2021, 2022, 2023], n_sups),
+        "rating": np.round(rng.uniform(3.2, 4.9, n_sups), 1),
+        "payment_terms": rng.choice(payment_terms_options, n_sups, p=[0.5, 0.3, 0.1, 0.05, 0.05]),
+        "certifications": rng.choice(certifications_options, n_sups),
+    })
+
+    suppliers["_true_reliability"] = rng.beta(7, 2, n_sups)
+    suppliers["_true_defect_rate"] = rng.beta(1.5, 25, n_sups)
+    suppliers["_price_drift_pct"] = rng.normal(0.05, 0.06, n_sups)
+    suppliers["_going_bad"] = rng.choice([0, 1], n_sups, p=[0.85, 0.15])
+
+    # 2. PRODUCTS & MULTI-SOURCING ASSIGNMENTS
+    n_prods = 200
+    product_list = []
+    catalog_keys = list(PRODUCT_CATALOG.keys())
+
+    for i in range(n_prods):
+        cat, sub_cat = catalog_keys[i % len(catalog_keys)]
+        names_list, uom, price_range = PRODUCT_CATALOG[(cat, sub_cat)]
+        base_name = rng.choice(names_list)
+        product_name = f"{base_name} (v{rng.integers(1, 4)})" if i >= len(catalog_keys) else base_name
+        sku = f"SKU-{cat[:3].upper()}-{2000+i}"
+
+        active_sup_ids = suppliers["supplier_id"].iloc[:78]
+        p_sup = rng.choice(active_sup_ids)
+        s_sup_candidates = [s for s in active_sup_ids if s != p_sup]
+        s_sup = rng.choice(s_sup_candidates)
+
+        product_list.append({
+            "product_id": f"PRD{2000+i}",
+            "sku": sku,
+            "product_name": product_name,
+            "category": cat,
+            "sub_category": sub_cat,
+            "unit_of_measure": uom,
+            "unit_cost_base": np.round(rng.uniform(price_range[0], price_range[1]), 2),
+            "primary_supplier_id": p_sup,
+            "secondary_supplier_id": s_sup,
+            "reorder_level": int(rng.integers(20, 1000)),
+            "lead_time_days_base": int(rng.integers(2, 30)),
+        })
+
+    products = pd.DataFrame(product_list)
+
+    # 3. PURCHASE ORDERS & DELIVERIES
+    n_orders = args.orders
+    buyer_names = ["Ananya Sharma", "Rahul Verma", "Sarah Jenkins", "Michael Chang", "Priya Nair", "David Miller", "Vikram Patel", "Elena Rostova"]
+    incoterms_options = ["FOB", "CIF", "DDP", "EXW", "FCA", "DAP"]
+    shipping_modes = ["Expedited Air", "Air Freight", "Express Ground", "Standard Ground", "Sea Freight"]
+    carrier_options = ["DHL Express", "FedEx Supply Chain", "Maersk Line", "Blue Dart Cargo", "DB Schenker Logistics", "Kuehne+Nagel"]
+
+    order_dates = [start_date + timedelta(days=int(d)) for d in rng.integers(0, date_range_days, n_orders)]
+    order_products = rng.choice(products["product_id"], n_orders)
+
+    prod_lookup = products.set_index("product_id")
+    sup_lookup = suppliers.set_index("supplier_id")
+
+    po_rows = []
+    del_rows = []
+
+    for i in range(n_orders):
+        pid = order_products[i]
+        prod = prod_lookup.loc[pid]
+        
+        # Multi-sourcing allocation: 85% primary, 15% secondary supplier
+        use_secondary = rng.random() < 0.15
+        sup_id = prod["secondary_supplier_id"] if use_secondary else prod["primary_supplier_id"]
+        sup = sup_lookup.loc[sup_id]
+
+        odate = order_dates[i]
+        quantity = int(rng.integers(5, 2000))
+        ship_mode = rng.choice(shipping_modes, p=[0.10, 0.20, 0.25, 0.30, 0.15])
+        buyer = rng.choice(buyer_names)
+        incoterm = rng.choice(incoterms_options)
+
+        oil_idx = oil_map.get(odate, 1.0)
+        is_hol = is_holiday_fn(odate)
+        cont_short = container_shortage_flag(odate)
+
+        years_since_onboard = max(odate.year - sup["onboarded_year"], 0.5)
+        drift_factor = (1 + sup["_price_drift_pct"]) ** years_since_onboard * oil_idx
+        if sup["_going_bad"] and odate > deterioration_start_date:
+            drift_factor *= 1.2
+
+        unit_price = round(prod["unit_cost_base"] * drift_factor * rng.normal(1.0, 0.03), 2)
+        order_cost = round(unit_price * quantity, 2)
+
+        month = odate.month
+        seasonal_bump = 0.2 if month in (11, 12, 1) else (0.1 if month in (6, 7) else 0.0)
+        ship_bump = 0.18 if ship_mode == "Sea Freight" else (0.08 if ship_mode == "Standard Ground" else (-0.10 if "Air" in ship_mode else 0.0))
+        region_bump = 0.10 if "Import" in sup["region"] else 0.0
+        oil_bump = (oil_idx - 1.0) * 0.3
+        container_bump = 0.12 * cont_short
+        holiday_bump = 0.05 * is_hol
+
+        base_rel = sup["_true_reliability"]
+        if sup["_going_bad"] and odate > deterioration_start_date:
+            base_rel -= 0.3
+        base_rel = np.clip(base_rel, 0.05, 0.99)
+
+        delay_prob = np.clip(
+            (1 - base_rel) + seasonal_bump + ship_bump + region_bump
+            + oil_bump + container_bump + holiday_bump
+            + (quantity > 1000) * 0.05,
+            0.01, 0.98
+        )
+        is_late = rng.random() < delay_prob
+
+        planned_lead = prod["lead_time_days_base"] + (10 if "Import" in sup["region"] else 0)
+        if is_late:
+            delay_days = int(rng.integers(1, 20) + seasonal_bump * 15)
+        else:
+            delay_days = int(rng.integers(-3, 1))
+
+        actual_lead = max(planned_lead + delay_days, 1)
+        delivery_date = odate + timedelta(days=int(actual_lead))
+        defect = rng.random() < sup["_true_defect_rate"]
+
+        po_id = f"PO{50000+i}"
+        po_num = f"PO-{odate.year}-{10000+i}"
+        trk_num = f"TRK-{rng.integers(10000000, 99999999)}"
+        carrier = rng.choice(carrier_options)
+
+        if defect:
+            inspection_status = rng.choice(["Major Defect - Rejected", "Minor Defect - Accepted"], p=[0.6, 0.4])
+        else:
+            inspection_status = "Passed Inspection"
+
+        delivery_status = "In Transit" if delivery_date > end_date else "Delivered"
+
+        po_rows.append({
+            "po_id": po_id,
+            "po_number": po_num,
+            "buyer_name": buyer,
+            "incoterms": incoterm,
+            "order_date": odate,
+            "product_id": pid,
+            "supplier_id": sup_id,
+            "quantity": quantity,
+            "unit_price": unit_price,
+            "order_cost": order_cost,
+            "expected_delivery_date": odate + timedelta(days=int(planned_lead)),
+            "priority": rng.choice(["Standard", "Rush", "Urgent", "Critical"], p=[0.5, 0.3, 0.15, 0.05]),
+            "shipping_mode": ship_mode,
+            "crude_oil_index": oil_idx,
+            "is_holiday_order": is_hol,
+            "container_shortage_flag": cont_short,
+        })
+
+        del_rows.append({
+            "po_id": po_id,
+            "tracking_number": trk_num,
+            "carrier": carrier,
+            "delivery_date": delivery_date,
+            "planned_lead_days": planned_lead,
+            "actual_lead_days": actual_lead,
+            "is_late": bool(is_late),
+            "delay_days": max(delay_days, 0),
+            "has_defect": bool(defect),
+            "inspection_status": inspection_status,
+            "status": delivery_status,
+        })
+
+    purchase_orders = pd.DataFrame(po_rows)
+    deliveries = pd.DataFrame(del_rows)
+
+    # 4. INVENTORY
+    inventory = pd.DataFrame({
+        "product_id": products["product_id"],
+        "warehouse": rng.choice(["WH-North (Delhi)", "WH-South (Chennai)", "WH-East (Kolkata)", "WH-West (Mumbai)", "WH-Central (Nagpur)"], n_prods),
+        "current_stock": rng.integers(0, 2000, n_prods),
+        "reorder_level": products["reorder_level"].values,
+        "avg_monthly_demand": (purchase_orders.groupby("product_id")["quantity"].sum().reindex(products["product_id"]).fillna(0) / 36).values.round(1),
+    })
+    inventory["months_of_cover"] = np.where(
+        inventory["avg_monthly_demand"] > 0,
+        (inventory["current_stock"] / inventory["avg_monthly_demand"]).round(1),
+        999.0
+    )
+
+    load_and_integrate_kaggle_data()
+
+    # 5. EXPORT & MANIFEST
+    timestamp_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+    suppliers_public = suppliers.drop(columns=[c for c in suppliers.columns if c.startswith("_")])
+
+    files_written = []
+    row_counts = {}
+
+    def write_csv(df, name):
+        p_primary = os.path.join(OUT, f"{name}.csv")
+        df.to_csv(p_primary, index=False)
+        files_written.append(p_primary)
+        row_counts[name] = len(df)
+        if args.version_stamp:
+            p_stamped = os.path.join(OUT, f"{name}_{timestamp_str}.csv")
+            df.to_csv(p_stamped, index=False)
+            files_written.append(p_stamped)
+
+    if gen_all or "suppliers" in tables_to_gen:
+        suppliers.to_csv(os.path.join(OUT, "_ground_truth_supplier_traits.csv"), index=False)
+        write_csv(suppliers_public, "suppliers")
+
+    if gen_all or "products" in tables_to_gen:
+        write_csv(products, "products")
+
+    if gen_all or "purchase_orders" in tables_to_gen:
+        write_csv(purchase_orders, "purchase_orders")
+
+    if gen_all or "deliveries" in tables_to_gen:
+        write_csv(deliveries, "deliveries")
+
+    if gen_all or "inventory" in tables_to_gen:
+        write_csv(inventory, "inventory")
+
+    manifest = {
+        "dataset_version": "v4.0",
+        "generated_at": datetime.now().isoformat(),
+        "parameters": {
+            "n_orders": args.orders,
+            "n_suppliers": args.suppliers,
+            "start_date": args.start_date,
+            "end_date": args.end_date,
+            "tables_requested": args.tables,
+            "random_seed": args.seed
+        },
+        "macro_signal_engine": "Ornstein-Uhlenbeck Stochastic Process + Seasonal Sine Wave",
+        "multi_sourcing_policy": "85% Primary Supplier / 15% Secondary Backup Supplier Allocation",
+        "row_counts": row_counts,
+        "files_written": files_written
+    }
+
+    with open(os.path.join(OUT, "manifest.json"), "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2)
+
+    print(f"\n[OK] Procurement dataset generated successfully in {OUT}")
+    print(f"  • Suppliers: {len(suppliers_public)} entities")
+    print(f"  • Products: {len(products)} technical SKUs (Multi-Sourced)")
+    print(f"  • Orders: {len(purchase_orders):,} POs (Date range: {args.start_date} to {args.end_date})")
+    print(f"  • Manifest written to {os.path.join(OUT, 'manifest.json')}")
+
+if __name__ == "__main__":
+    main()

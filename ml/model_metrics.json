@@ -1,589 +1,282 @@
 {
-  "version": "v5",
-  "cost_optimal_model_name": "Logistic Regression",
-  "cost_optimal_expected_cost_inr": 84640000.0,
-  "cost_optimal_recall": 0.684,
-  "cost_optimal_roc_auc": 0.701,
   "champion_model_name": "Random Forest Classifier",
-  "champion_roc_auc": 0.714,
-  "champion_accuracy": 0.654,
-  "champion_fpr": 0.283,
-  "cost_matrix": {
-    "fn_stockout_penalty_inr": 50000.0,
-    "fp_expedite_cost_inr": 5000.0
-  },
+  "champion_roc_auc": 0.705,
+  "champion_accuracy": 0.645,
+  "cost_optimal_model_name": "Logistic Regression",
+  "cost_optimal_expected_cost_inr": 26285000.0,
   "mathematical_reconciliation": {
-    "fn_savings_inr": 7050000.0,
-    "fp_penalty_inr": 1560000.0,
-    "net_risk_reduction_inr": 5490000.0
+    "fn_savings_inr": 232500000.0,
+    "fp_penalty_inr": 25785000.0,
+    "net_risk_reduction_inr": 206715000.0
   },
-  "model_evaluations_apples_to_apples": [
+  "model_comparison": [
     {
       "model_name": "1. Naive Majority Baseline",
       "roc_auc": 0.5,
-      "pr_auc": 0.471,
+      "pr_auc": 0.468,
       "default_thresh_0.5": {
-        "accuracy": 0.529,
+        "accuracy": 0.532,
         "precision": 0.0,
         "recall": 0.0,
         "f1_score": 0.0,
         "false_positive_rate": 0.0,
-        "expected_cost_inr": 234150000.0,
+        "expected_cost_inr": 233000000.0,
         "confusion_matrix": [
           [
-            5261,
+            5293,
             0
           ],
           [
-            4683,
+            4660,
             0
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.471,
-        "precision": 0.471,
+        "accuracy": 0.468,
+        "precision": 0.468,
         "recall": 1.0,
-        "f1_score": 0.64,
+        "f1_score": 0.638,
         "false_positive_rate": 1.0,
-        "expected_cost_inr": 26305000.0,
+        "expected_cost_inr": 26465000.0,
         "confusion_matrix": [
           [
             0,
-            5261
+            5293
           ],
           [
             0,
-            4683
+            4660
           ]
         ]
       }
     },
     {
       "model_name": "2. Supplier Historical Heuristic",
-      "roc_auc": 0.68,
-      "pr_auc": 0.651,
+      "roc_auc": 0.636,
+      "pr_auc": 0.597,
       "default_thresh_0.5": {
-        "accuracy": 0.622,
-        "precision": 0.665,
-        "recall": 0.4,
-        "f1_score": 0.5,
-        "false_positive_rate": 0.18,
-        "expected_cost_inr": 145130000.0,
+        "accuracy": 0.592,
+        "precision": 0.616,
+        "recall": 0.342,
+        "f1_score": 0.44,
+        "false_positive_rate": 0.187,
+        "expected_cost_inr": 158310000.0,
         "confusion_matrix": [
           [
-            4315,
-            946
+            4301,
+            992
           ],
           [
-            2808,
-            1875
+            3067,
+            1593
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.471,
-        "precision": 0.471,
+        "accuracy": 0.468,
+        "precision": 0.468,
         "recall": 1.0,
-        "f1_score": 0.64,
+        "f1_score": 0.638,
         "false_positive_rate": 1.0,
-        "expected_cost_inr": 26305000.0,
+        "expected_cost_inr": 26465000.0,
         "confusion_matrix": [
           [
             0,
-            5261
+            5293
           ],
           [
             0,
-            4683
+            4660
           ]
         ]
       }
     },
     {
       "model_name": "3. Logistic Regression",
-      "roc_auc": 0.701,
-      "pr_auc": 0.672,
+      "roc_auc": 0.708,
+      "pr_auc": 0.68,
       "default_thresh_0.5": {
-        "accuracy": 0.638,
-        "precision": 0.602,
-        "recall": 0.684,
+        "accuracy": 0.647,
+        "precision": 0.612,
+        "recall": 0.669,
         "f1_score": 0.64,
-        "false_positive_rate": 0.403,
-        "expected_cost_inr": 84640000.0,
+        "false_positive_rate": 0.373,
+        "expected_cost_inr": 86920000.0,
         "confusion_matrix": [
           [
-            3143,
-            2118
+            3319,
+            1974
           ],
           [
-            1481,
-            3202
+            1541,
+            3119
           ]
         ]
       },
       "cost_optimal": {
-        "optimal_threshold": 0.12,
-        "accuracy": 0.477,
+        "optimal_threshold": 0.14,
+        "accuracy": 0.481,
         "precision": 0.474,
-        "recall": 0.999,
+        "recall": 0.998,
         "f1_score": 0.643,
-        "false_positive_rate": 0.987,
-        "expected_cost_inr": 26120000.0,
+        "false_positive_rate": 0.974,
+        "expected_cost_inr": 26285000.0,
         "confusion_matrix": [
           [
-            67,
-            5194
+            136,
+            5157
           ],
           [
-            3,
-            4680
+            10,
+            4650
           ]
         ]
       }
     },
     {
-      "model_name": "4. Random Forest Classifier",
-      "roc_auc": 0.714,
-      "pr_auc": 0.688,
+      "model_name": "4. Random Forest Classifier (Champion)",
+      "roc_auc": 0.705,
+      "pr_auc": 0.678,
       "default_thresh_0.5": {
-        "accuracy": 0.654,
-        "precision": 0.647,
-        "recall": 0.583,
-        "f1_score": 0.614,
-        "false_positive_rate": 0.283,
-        "expected_cost_inr": 104995000.0,
+        "accuracy": 0.645,
+        "precision": 0.667,
+        "recall": 0.483,
+        "f1_score": 0.56,
+        "false_positive_rate": 0.212,
+        "expected_cost_inr": 126170000.0,
         "confusion_matrix": [
           [
-            3772,
-            1489
+            4169,
+            1124
           ],
           [
-            1951,
-            2732
-          ]
-        ]
-      },
-      "cost_optimal": {
-        "optimal_threshold": 0.12,
-        "accuracy": 0.479,
-        "precision": 0.475,
-        "recall": 0.999,
-        "f1_score": 0.644,
-        "false_positive_rate": 0.983,
-        "expected_cost_inr": 26060000.0,
-        "confusion_matrix": [
-          [
-            89,
-            5172
-          ],
-          [
-            4,
-            4679
-          ]
-        ]
-      }
-    },
-    {
-      "model_name": "5. XGBoost Classifier",
-      "roc_auc": 0.717,
-      "pr_auc": 0.696,
-      "default_thresh_0.5": {
-        "accuracy": 0.653,
-        "precision": 0.624,
-        "recall": 0.666,
-        "f1_score": 0.644,
-        "false_positive_rate": 0.358,
-        "expected_cost_inr": 87705000.0,
-        "confusion_matrix": [
-          [
-            3380,
-            1881
-          ],
-          [
-            1566,
-            3117
+            2411,
+            2249
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.489,
-        "precision": 0.48,
-        "recall": 0.995,
-        "f1_score": 0.647,
-        "false_positive_rate": 0.961,
-        "expected_cost_inr": 26385000.0,
+        "accuracy": 0.485,
+        "precision": 0.476,
+        "recall": 0.996,
+        "f1_score": 0.644,
+        "false_positive_rate": 0.965,
+        "expected_cost_inr": 26530000.0,
         "confusion_matrix": [
           [
-            204,
-            5057
+            187,
+            5106
           ],
           [
-            22,
-            4661
+            20,
+            4640
           ]
         ]
       }
     },
     {
-      "model_name": "6. Soft-Voting Ensemble",
-      "roc_auc": 0.714,
-      "pr_auc": 0.69,
+      "model_name": "5. Tuned XGBoost Classifier",
+      "roc_auc": 0.711,
+      "pr_auc": 0.683,
       "default_thresh_0.5": {
-        "accuracy": 0.652,
-        "precision": 0.625,
-        "recall": 0.653,
-        "f1_score": 0.639,
-        "false_positive_rate": 0.349,
-        "expected_cost_inr": 90335000.0,
+        "accuracy": 0.651,
+        "precision": 0.665,
+        "recall": 0.514,
+        "f1_score": 0.579,
+        "false_positive_rate": 0.228,
+        "expected_cost_inr": 119390000.0,
         "confusion_matrix": [
           [
-            3424,
-            1837
+            4085,
+            1208
           ],
           [
-            1623,
-            3060
+            2267,
+            2393
           ]
         ]
       },
       "cost_optimal": {
-        "optimal_threshold": 0.11,
-        "accuracy": 0.479,
-        "precision": 0.475,
-        "recall": 0.999,
-        "f1_score": 0.644,
-        "false_positive_rate": 0.984,
-        "expected_cost_inr": 26045000.0,
+        "optimal_threshold": 0.1,
+        "accuracy": 0.492,
+        "precision": 0.479,
+        "recall": 0.992,
+        "f1_score": 0.646,
+        "false_positive_rate": 0.949,
+        "expected_cost_inr": 27005000.0,
         "confusion_matrix": [
           [
-            82,
-            5179
+            272,
+            5021
           ],
           [
-            3,
-            4680
+            38,
+            4622
+          ]
+        ]
+      },
+      "is_xgb_available": true
+    },
+    {
+      "model_name": "6. Soft-Voting Ensemble (LR + RF + XGB)",
+      "roc_auc": 0.711,
+      "pr_auc": 0.684,
+      "default_thresh_0.5": {
+        "accuracy": 0.654,
+        "precision": 0.654,
+        "recall": 0.556,
+        "f1_score": 0.601,
+        "false_positive_rate": 0.259,
+        "expected_cost_inr": 110405000.0,
+        "confusion_matrix": [
+          [
+            3922,
+            1371
+          ],
+          [
+            2071,
+            2589
+          ]
+        ]
+      },
+      "cost_optimal": {
+        "optimal_threshold": 0.1,
+        "accuracy": 0.479,
+        "precision": 0.473,
+        "recall": 0.998,
+        "f1_score": 0.642,
+        "false_positive_rate": 0.977,
+        "expected_cost_inr": 26410000.0,
+        "confusion_matrix": [
+          [
+            121,
+            5172
+          ],
+          [
+            11,
+            4649
           ]
         ]
       }
     }
   ],
-  "walk_forward_validation_2025": [
-    {
-      "quarter": "2025 Q1",
-      "train_size": 20056,
-      "test_size": 2482,
-      "roc_auc": 0.723,
-      "pr_auc": 0.656,
-      "accuracy": 0.669
-    },
-    {
-      "quarter": "2025 Q2",
-      "train_size": 22538,
-      "test_size": 2477,
-      "roc_auc": 0.728,
-      "pr_auc": 0.694,
-      "accuracy": 0.671
-    },
-    {
-      "quarter": "2025 Q3",
-      "train_size": 25015,
-      "test_size": 2456,
-      "roc_auc": 0.711,
-      "pr_auc": 0.683,
-      "accuracy": 0.66
-    },
-    {
-      "quarter": "2025 Q4",
-      "train_size": 27471,
-      "test_size": 2529,
-      "roc_auc": 0.725,
-      "pr_auc": 0.742,
-      "accuracy": 0.628
-    }
-  ],
-  "calibration_curve_brier_scores": {
-    "Random Forest Classifier": {
-      "brier_score_loss": 0.2142,
-      "mean_predicted_prob": [
-        0.086,
-        0.158,
-        0.257,
-        0.352,
-        0.449,
-        0.549,
-        0.644,
-        0.743,
-        0.837,
-        0.914
-      ],
-      "fraction_of_positives": [
-        0.051,
-        0.124,
-        0.252,
-        0.345,
-        0.462,
-        0.558,
-        0.66,
-        0.779,
-        0.882,
-        0.971
-      ]
-    },
-    "Logistic Regression": {
-      "brier_score_loss": 0.2236,
-      "mean_predicted_prob": [
-        0.093,
-        0.159,
-        0.253,
-        0.351,
-        0.451,
-        0.551,
-        0.651,
-        0.748,
-        0.847,
-        0.933
-      ],
-      "fraction_of_positives": [
-        0.059,
-        0.136,
-        0.259,
-        0.329,
-        0.437,
-        0.484,
-        0.562,
-        0.621,
-        0.707,
-        0.889
-      ]
-    },
-    "XGBoost Classifier": {
-      "brier_score_loss": 0.215,
-      "mean_predicted_prob": [
-        0.079,
-        0.154,
-        0.255,
-        0.351,
-        0.45,
-        0.549,
-        0.649,
-        0.747,
-        0.846,
-        0.935
-      ],
-      "fraction_of_positives": [
-        0.097,
-        0.156,
-        0.267,
-        0.345,
-        0.421,
-        0.504,
-        0.576,
-        0.677,
-        0.762,
-        0.936
-      ]
-    },
-    "Supplier Heuristic": {
-      "brier_score_loss": 0.2265,
-      "mean_predicted_prob": [
-        0.249,
-        0.343,
-        0.443,
-        0.54,
-        0.621,
-        0.764,
-        0.834
-      ],
-      "fraction_of_positives": [
-        0.248,
-        0.354,
-        0.512,
-        0.599,
-        0.683,
-        0.78,
-        0.949
-      ]
-    }
-  },
-  "per_supplier_risk_tier_evaluation": [
-    {
-      "risk_tier": "High Risk",
-      "sample_size": 3013,
-      "late_rate": 0.672,
-      "roc_auc": 0.666,
-      "accuracy": 0.679,
-      "precision": 0.712,
-      "recall": 0.878
-    },
-    {
-      "risk_tier": "Medium Risk",
-      "sample_size": 4515,
-      "late_rate": 0.447,
-      "roc_auc": 0.633,
-      "accuracy": 0.601,
-      "precision": 0.572,
-      "recall": 0.425
-    },
-    {
-      "risk_tier": "Low Risk",
-      "sample_size": 2416,
-      "late_rate": 0.265,
-      "roc_auc": 0.66,
-      "accuracy": 0.721,
-      "precision": 0.429,
-      "recall": 0.151
-    }
-  ],
-  "feature_importance": [
-    {
-      "feature": "sup_ewm_ontime",
-      "mean_abs_shap": 0.07432818446562953
-    },
-    {
-      "feature": "sup_ewm_delay",
-      "mean_abs_shap": 0.06203129619299952
-    },
-    {
-      "feature": "ship_region_te",
-      "mean_abs_shap": 0.05341153782034687
-    },
-    {
-      "feature": "sup_month_te",
-      "mean_abs_shap": 0.05173541958984223
-    },
-    {
-      "feature": "supplier_health_index",
-      "mean_abs_shap": 0.04830832502321089
-    },
-    {
-      "feature": "sup_rolling_ontime",
-      "mean_abs_shap": 0.04687295581991395
-    },
-    {
-      "feature": "sup_rolling_delay",
-      "mean_abs_shap": 0.04209405995638654
-    },
-    {
-      "feature": "shipping_mode_code",
-      "mean_abs_shap": 0.03747729981856595
-    },
-    {
-      "feature": "crude_oil_index",
-      "mean_abs_shap": 0.03719837563626402
-    },
-    {
-      "feature": "supplier_id_te",
-      "mean_abs_shap": 0.036914574719948294
-    },
-    {
-      "feature": "sup_concurrent_po_30d",
-      "mean_abs_shap": 0.035865645932891606
-    },
-    {
-      "feature": "quantity",
-      "mean_abs_shap": 0.035748620964870186
-    },
-    {
-      "feature": "order_qty_vs_sup_mean",
-      "mean_abs_shap": 0.035512630288507506
-    },
-    {
-      "feature": "order_cost",
-      "mean_abs_shap": 0.03496495009075995
-    },
-    {
-      "feature": "order_month",
-      "mean_abs_shap": 0.034703082663489586
-    },
-    {
-      "feature": "product_id_te",
-      "mean_abs_shap": 0.034380109425644186
-    },
-    {
-      "feature": "logistics_stress_index",
-      "mean_abs_shap": 0.033727886991148745
-    },
-    {
-      "feature": "sup_category_te",
-      "mean_abs_shap": 0.03362992353140319
-    },
-    {
-      "feature": "unit_price",
-      "mean_abs_shap": 0.03318957729065056
-    },
-    {
-      "feature": "sup_rolling_defect",
-      "mean_abs_shap": 0.030941345757227682
-    },
-    {
-      "feature": "unit_cost_base",
-      "mean_abs_shap": 0.020088855940569104
-    },
-    {
-      "feature": "sub_category_code",
-      "mean_abs_shap": 0.017778519556377104
-    },
-    {
-      "feature": "order_day_of_week",
-      "mean_abs_shap": 0.01720717779421503
-    },
-    {
-      "feature": "lead_time_days_base",
-      "mean_abs_shap": 0.016811722745286552
-    },
-    {
-      "feature": "is_peak_season",
-      "mean_abs_shap": 0.016646998058409274
-    },
-    {
-      "feature": "order_quarter",
-      "mean_abs_shap": 0.015322721597596659
-    },
-    {
-      "feature": "container_shortage_flag",
-      "mean_abs_shap": 0.012531590956141963
-    },
-    {
-      "feature": "category_code",
-      "mean_abs_shap": 0.01203572852487263
-    },
-    {
-      "feature": "supplier_age_years",
-      "mean_abs_shap": 0.010553604180226038
-    },
-    {
-      "feature": "priority_code",
-      "mean_abs_shap": 0.010143912185051064
-    },
-    {
-      "feature": "region_code",
-      "mean_abs_shap": 0.00968466327353799
-    },
-    {
-      "feature": "tier_code",
-      "mean_abs_shap": 0.004869778042832503
-    },
-    {
-      "feature": "is_holiday_order",
-      "mean_abs_shap": 0.003288925165183194
-    }
-  ],
-  "winning_model_selection": {
-    "cost_optimal_winner": {
+  "executive_summary": {
+    "cost_optimal": {
       "model_name": "Logistic Regression",
-      "expected_risk_cost_inr": 84640000.0,
-      "roc_auc": 0.701,
-      "recall": 0.684
+      "expected_risk_cost_inr": 26285000.0,
+      "optimal_threshold": 0.14,
+      "roc_auc": 0.708,
+      "recall": 0.998
     },
     "roc_auc_champion": {
       "model_name": "Random Forest Classifier",
-      "roc_auc": 0.714,
-      "accuracy": 0.654,
-      "fpr": 0.283
+      "roc_auc": 0.705,
+      "accuracy": 0.645,
+      "fpr": 0.212
     }
   }
 }

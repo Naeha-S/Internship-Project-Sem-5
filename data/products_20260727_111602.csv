@@ -1,0 +1,201 @@
+product_id,sku,product_name,category,sub_category,unit_of_measure,unit_cost_base,primary_supplier_id,secondary_supplier_id,reorder_level,lead_time_days_base
+PRD2000,SKU-RAW-2000,Stainless Steel Pipe 304,Raw Metals,Steel,Kg,173.02,SUP1002,SUP1028,839,22
+PRD2001,SKU-RAW-2001,Aircraft Aluminum 6061-T6 Bar,Raw Metals,Aluminum,Kg,455.99,SUP1034,SUP1000,869,11
+PRD2002,SKU-RAW-2002,Oxygen-Free Copper Wire Spool,Raw Metals,Copper,Spools,963.32,SUP1016,SUP1020,462,25
+PRD2003,SKU-ELE-2003,Tri-Axis MEMS Accelerometer Module,Electronics,Sensors,Units,3058.15,SUP1062,SUP1087,865,5
+PRD2004,SKU-ELE-2004,8-Channel Relay Driver Controller Board,Electronics,Microcontrollers,Units,767.42,SUP1028,SUP1072,915,12
+PRD2005,SKU-ELE-2005,Gold-Plated Circular Aviation Plug,Electronics,Connectors,Packs,1144.99,SUP1091,SUP1092,447,13
+PRD2006,SKU-PAC-2006,Kraft Paper Buffer Roll 100m,Packaging,Cardboard,Boxes,269.87,SUP1065,SUP1050,467,15
+PRD2007,SKU-PAC-2007,Industrial Stretch Film Wrap 500mm,Packaging,Plastic Wrap,Packs,312.18,SUP1009,SUP1014,807,8
+PRD2008,SKU-PAC-2008,Heat-Treated Export Pine Wood Pallet,Packaging,Pallets,Pallets,2910.95,SUP1065,SUP1005,364,27
+PRD2009,SKU-FAS-2009,Titanium Alloy Torx Screws,Fasteners & Hardware,Screws,Boxes,666.05,SUP1051,SUP1047,104,9
+PRD2010,SKU-FAS-2010,High-Strength Anchor Bolts M16x200,Fasteners & Hardware,Bolts,Boxes,955.32,SUP1048,SUP1029,213,17
+PRD2011,SKU-FAS-2011,Vibration Isolation Rubber Mount,Fasteners & Hardware,Brackets,Units,579.55,SUP1089,SUP1087,911,28
+PRD2012,SKU-CHE-2012,Isopropanol Alcohol Degreaser 20L,Chemicals,Solvents,Liters,1079.64,SUP1022,SUP1057,933,6
+PRD2013,SKU-CHE-2013,Structural Polyurethane Adhesive Sealant,Chemicals,Adhesives,Units,1375.22,SUP1069,SUP1054,78,10
+PRD2014,SKU-CHE-2014,Food-Grade Gear Oil Synthetic 220,Chemicals,Lubricants,Liters,1581.0,SUP1023,SUP1097,100,25
+PRD2015,SKU-TEX-2015,Non-Woven Polypropylene Filter Cloth,Textiles,Fabric,Meters,1218.0,SUP1053,SUP1062,201,14
+PRD2016,SKU-TEX-2016,High-Tensile Bonded Nylon Sewing Thread,Textiles,Thread,Spools,711.0,SUP1045,SUP1060,225,12
+PRD2017,SKU-TEX-2017,Thermal Transfer Barcode Label Roll,Textiles,Labels,Packs,350.39,SUP1069,SUP1070,992,18
+PRD2018,SKU-RUB-2018,Viton High-Temp O-Ring Seal Kit,Rubber & Plastics,O-Rings,Packs,1243.73,SUP1084,SUP1025,305,11
+PRD2019,SKU-RUB-2019,Compressed Fiber Steam Gasket Joint,Rubber & Plastics,Gaskets,Units,860.91,SUP1090,SUP1077,186,25
+PRD2020,SKU-RUB-2020,Reinforced Flexible PVC Braided Tubing,Rubber & Plastics,Tubing,Meters,806.94,SUP1097,SUP1017,431,13
+PRD2021,SKU-TOO-2021,Diamond Core Drilling Bit 50mm,Tools & Equipment,Drills,Units,6970.38,SUP1006,SUP1044,224,13
+PRD2022,SKU-TOO-2022,Tungsten Carbide Circular Saw 355mm,Tools & Equipment,Saws,Units,1087.62,SUP1055,SUP1052,123,10
+PRD2023,SKU-TOO-2023,Heavy Hydraulic Cable Crimper Tool,Tools & Equipment,Hand Tools,Units,3780.01,SUP1067,SUP1038,574,8
+PRD2024,SKU-RAW-2024,Hot-Rolled Structural I-Beam (v2),Raw Metals,Steel,Kg,418.55,SUP1055,SUP1079,615,3
+PRD2025,SKU-RAW-2025,High-Purity Aluminum Ingot (v2),Raw Metals,Aluminum,Kg,545.57,SUP1038,SUP1046,575,14
+PRD2026,SKU-RAW-2026,Bare Copper Busbar 50x6mm (v2),Raw Metals,Copper,Spools,1214.8,SUP1048,SUP1045,242,16
+PRD2027,SKU-ELE-2027,Precision Temperature Sensor Probe PT100 (v2),Electronics,Sensors,Units,3444.44,SUP1076,SUP1080,84,11
+PRD2028,SKU-ELE-2028,FPGA Programmable Logic Array Board (v3),Electronics,Microcontrollers,Units,1196.12,SUP1057,SUP1083,104,18
+PRD2029,SKU-ELE-2029,DIN-Rail Terminal Block Assembly (v1),Electronics,Connectors,Packs,351.25,SUP1076,SUP1071,747,20
+PRD2030,SKU-PAC-2030,Double-Wall Corrugated Box 50x40x30 (v1),Packaging,Cardboard,Boxes,333.31,SUP1047,SUP1050,400,12
+PRD2031,SKU-PAC-2031,Industrial Stretch Film Wrap 500mm (v3),Packaging,Plastic Wrap,Packs,425.56,SUP1023,SUP1096,195,6
+PRD2032,SKU-PAC-2032,Heat-Treated Export Pine Wood Pallet (v3),Packaging,Pallets,Pallets,1652.92,SUP1053,SUP1003,937,26
+PRD2033,SKU-FAS-2033,Titanium Alloy Torx Screws (v3),Fasteners & Hardware,Screws,Boxes,354.17,SUP1065,SUP1051,735,24
+PRD2034,SKU-FAS-2034,Galvanized Hex Head Structural Bolts M12 (v3),Fasteners & Hardware,Bolts,Boxes,988.18,SUP1002,SUP1046,324,8
+PRD2035,SKU-FAS-2035,Adjustable Mounting Rail Bracket (v1),Fasteners & Hardware,Brackets,Units,633.9,SUP1054,SUP1063,92,8
+PRD2036,SKU-CHE-2036,Industrial Solvent Acetone 99.5% (v1),Chemicals,Solvents,Liters,1565.75,SUP1081,SUP1013,962,8
+PRD2037,SKU-CHE-2037,High-Bond Two-Part Epoxy Resin 5L (v2),Chemicals,Adhesives,Units,357.39,SUP1051,SUP1097,434,17
+PRD2038,SKU-CHE-2038,High-Temp Lithium Grease 18kg (v2),Chemicals,Lubricants,Liters,1210.84,SUP1090,SUP1078,674,13
+PRD2039,SKU-TEX-2039,Heavy Canvas Tarpaulin Waterproof 600GSM (v1),Textiles,Fabric,Meters,1758.65,SUP1024,SUP1072,321,5
+PRD2040,SKU-TEX-2040,High-Tensile Bonded Nylon Sewing Thread (v2),Textiles,Thread,Spools,67.13,SUP1050,SUP1087,713,10
+PRD2041,SKU-TEX-2041,Thermal Transfer Barcode Label Roll (v2),Textiles,Labels,Packs,147.9,SUP1003,SUP1033,601,14
+PRD2042,SKU-RUB-2042,Silicone Food-Grade Sealing Ring 50mm (v1),Rubber & Plastics,O-Rings,Packs,1012.84,SUP1005,SUP1052,111,18
+PRD2043,SKU-RUB-2043,Compressed Fiber Steam Gasket Joint (v1),Rubber & Plastics,Gaskets,Units,292.97,SUP1029,SUP1082,228,23
+PRD2044,SKU-RUB-2044,Pneumatic Polyurethane Air Line Hose (v2),Rubber & Plastics,Tubing,Meters,241.83,SUP1046,SUP1076,778,7
+PRD2045,SKU-TOO-2045,Diamond Core Drilling Bit 50mm (v2),Tools & Equipment,Drills,Units,1883.41,SUP1097,SUP1003,54,22
+PRD2046,SKU-TOO-2046,Tungsten Carbide Circular Saw 355mm (v3),Tools & Equipment,Saws,Units,3725.95,SUP1010,SUP1007,417,24
+PRD2047,SKU-TOO-2047,Heavy Hydraulic Cable Crimper Tool (v3),Tools & Equipment,Hand Tools,Units,6146.59,SUP1049,SUP1068,575,16
+PRD2048,SKU-RAW-2048,Stainless Steel Pipe 304 (v2),Raw Metals,Steel,Kg,180.16,SUP1073,SUP1090,595,10
+PRD2049,SKU-RAW-2049,Aircraft Aluminum 6061-T6 Bar (v1),Raw Metals,Aluminum,Kg,455.99,SUP1057,SUP1092,106,20
+PRD2050,SKU-RAW-2050,Oxygen-Free Copper Wire Spool (v3),Raw Metals,Copper,Spools,626.5,SUP1080,SUP1097,313,24
+PRD2051,SKU-ELE-2051,Digital Pressure Transducer 0-10 Bar (v3),Electronics,Sensors,Units,3479.48,SUP1015,SUP1004,610,11
+PRD2052,SKU-ELE-2052,FPGA Programmable Logic Array Board (v2),Electronics,Microcontrollers,Units,1899.49,SUP1054,SUP1049,537,5
+PRD2053,SKU-ELE-2053,Gold-Plated Circular Aviation Plug (v1),Electronics,Connectors,Packs,796.14,SUP1077,SUP1010,236,11
+PRD2054,SKU-PAC-2054,Heavy-Duty Shipping Container Carton (v1),Packaging,Cardboard,Boxes,248.23,SUP1074,SUP1067,719,17
+PRD2055,SKU-PAC-2055,Anti-Static ESD Bubble Wrap Roll (v3),Packaging,Plastic Wrap,Packs,408.6,SUP1044,SUP1037,715,4
+PRD2056,SKU-PAC-2056,HDPE Molded Plastic Shipping Pallet (v3),Packaging,Pallets,Pallets,2808.83,SUP1021,SUP1096,100,18
+PRD2057,SKU-FAS-2057,Stainless Steel Self-Tapping Screws (v2),Fasteners & Hardware,Screws,Boxes,590.38,SUP1083,SUP1034,758,23
+PRD2058,SKU-FAS-2058,Galvanized Hex Head Structural Bolts M12 (v3),Fasteners & Hardware,Bolts,Boxes,123.76,SUP1000,SUP1048,462,18
+PRD2059,SKU-FAS-2059,Adjustable Mounting Rail Bracket (v1),Fasteners & Hardware,Brackets,Units,264.05,SUP1027,SUP1023,580,22
+PRD2060,SKU-CHE-2060,Trichloroethylene Metal Cleaning Fluid (v1),Chemicals,Solvents,Liters,195.54,SUP1088,SUP1016,217,26
+PRD2061,SKU-CHE-2061,High-Bond Two-Part Epoxy Resin 5L (v3),Chemicals,Adhesives,Units,407.14,SUP1041,SUP1003,486,17
+PRD2062,SKU-CHE-2062,High-Temp Lithium Grease 18kg (v1),Chemicals,Lubricants,Liters,1418.66,SUP1075,SUP1057,126,27
+PRD2063,SKU-TEX-2063,Non-Woven Polypropylene Filter Cloth (v1),Textiles,Fabric,Meters,260.81,SUP1066,SUP1065,880,28
+PRD2064,SKU-TEX-2064,Polyester Core-Spun Thread Spool (v3),Textiles,Thread,Spools,430.19,SUP1091,SUP1071,260,8
+PRD2065,SKU-TEX-2065,Tamper-Evident Security Seal Stickers (v3),Textiles,Labels,Packs,127.11,SUP1051,SUP1072,863,14
+PRD2066,SKU-RUB-2066,NBR Nitrile Rubber Hydraulic O-Rings (v2),Rubber & Plastics,O-Rings,Packs,982.67,SUP1019,SUP1081,366,20
+PRD2067,SKU-RUB-2067,Compressed Fiber Steam Gasket Joint (v2),Rubber & Plastics,Gaskets,Units,521.19,SUP1048,SUP1026,619,3
+PRD2068,SKU-RUB-2068,Reinforced Flexible PVC Braided Tubing (v3),Rubber & Plastics,Tubing,Meters,457.56,SUP1037,SUP1043,763,8
+PRD2069,SKU-TOO-2069,Diamond Core Drilling Bit 50mm (v1),Tools & Equipment,Drills,Units,1936.01,SUP1036,SUP1058,595,3
+PRD2070,SKU-TOO-2070,Bi-Metal Bandsaw Blade 27mm (v3),Tools & Equipment,Saws,Units,1708.55,SUP1070,SUP1036,291,14
+PRD2071,SKU-TOO-2071,Adjustable Torque Wrench 1/2-Inch 40-200Nm (v3),Tools & Equipment,Hand Tools,Units,6855.41,SUP1040,SUP1031,288,28
+PRD2072,SKU-RAW-2072,Stainless Steel Pipe 304 (v2),Raw Metals,Steel,Kg,374.34,SUP1093,SUP1041,26,14
+PRD2073,SKU-RAW-2073,Cast Aluminum Housing Enclosure (v2),Raw Metals,Aluminum,Kg,388.39,SUP1067,SUP1050,533,4
+PRD2074,SKU-RAW-2074,Bare Copper Busbar 50x6mm (v2),Raw Metals,Copper,Spools,974.62,SUP1081,SUP1012,658,17
+PRD2075,SKU-ELE-2075,Digital Pressure Transducer 0-10 Bar (v3),Electronics,Sensors,Units,2929.05,SUP1021,SUP1003,892,14
+PRD2076,SKU-ELE-2076,STM32 ARM Cortex-M4 Microcontroller IC (v1),Electronics,Microcontrollers,Units,964.37,SUP1042,SUP1024,883,8
+PRD2077,SKU-ELE-2077,Heavy-Duty Industrial Connector 16-Pin (v1),Electronics,Connectors,Packs,674.88,SUP1014,SUP1039,546,2
+PRD2078,SKU-PAC-2078,Double-Wall Corrugated Box 50x40x30 (v1),Packaging,Cardboard,Boxes,203.64,SUP1019,SUP1009,322,11
+PRD2079,SKU-PAC-2079,Anti-Static ESD Bubble Wrap Roll (v2),Packaging,Plastic Wrap,Packs,55.54,SUP1032,SUP1021,502,28
+PRD2080,SKU-PAC-2080,HDPE Molded Plastic Shipping Pallet (v1),Packaging,Pallets,Pallets,1023.69,SUP1069,SUP1012,885,29
+PRD2081,SKU-FAS-2081,Stainless Steel Self-Tapping Screws (v2),Fasteners & Hardware,Screws,Boxes,839.23,SUP1063,SUP1059,738,4
+PRD2082,SKU-FAS-2082,Galvanized Hex Head Structural Bolts M12 (v3),Fasteners & Hardware,Bolts,Boxes,707.99,SUP1039,SUP1019,571,13
+PRD2083,SKU-FAS-2083,Heavy-Duty L-Shape Steel Corner Bracket (v2),Fasteners & Hardware,Brackets,Units,160.81,SUP1042,SUP1091,438,29
+PRD2084,SKU-CHE-2084,Isopropanol Alcohol Degreaser 20L (v2),Chemicals,Solvents,Liters,1746.08,SUP1065,SUP1062,601,3
+PRD2085,SKU-CHE-2085,Structural Polyurethane Adhesive Sealant (v3),Chemicals,Adhesives,Units,2489.54,SUP1038,SUP1056,874,6
+PRD2086,SKU-CHE-2086,High-Temp Lithium Grease 18kg (v2),Chemicals,Lubricants,Liters,1475.37,SUP1014,SUP1066,343,6
+PRD2087,SKU-TEX-2087,Non-Woven Polypropylene Filter Cloth (v1),Textiles,Fabric,Meters,220.67,SUP1025,SUP1083,292,21
+PRD2088,SKU-TEX-2088,Polyester Core-Spun Thread Spool (v3),Textiles,Thread,Spools,191.42,SUP1054,SUP1000,138,20
+PRD2089,SKU-TEX-2089,Woven Polyester Fabric Care Tag Labels (v1),Textiles,Labels,Packs,318.86,SUP1016,SUP1058,423,18
+PRD2090,SKU-RUB-2090,NBR Nitrile Rubber Hydraulic O-Rings (v2),Rubber & Plastics,O-Rings,Packs,864.47,SUP1033,SUP1068,585,7
+PRD2091,SKU-RUB-2091,Compressed Fiber Steam Gasket Joint (v2),Rubber & Plastics,Gaskets,Units,863.53,SUP1070,SUP1086,791,15
+PRD2092,SKU-RUB-2092,Pneumatic Polyurethane Air Line Hose (v1),Rubber & Plastics,Tubing,Meters,277.5,SUP1069,SUP1008,663,2
+PRD2093,SKU-TOO-2093,Solid Carbide Twist Drill Bit 10mm (v3),Tools & Equipment,Drills,Units,6157.85,SUP1081,SUP1021,990,6
+PRD2094,SKU-TOO-2094,Tungsten Carbide Circular Saw 355mm (v1),Tools & Equipment,Saws,Units,1484.11,SUP1072,SUP1040,547,24
+PRD2095,SKU-TOO-2095,Adjustable Torque Wrench 1/2-Inch 40-200Nm (v3),Tools & Equipment,Hand Tools,Units,1747.73,SUP1063,SUP1085,111,23
+PRD2096,SKU-RAW-2096,Hot-Rolled Structural I-Beam (v1),Raw Metals,Steel,Kg,305.36,SUP1045,SUP1089,212,11
+PRD2097,SKU-RAW-2097,High-Purity Aluminum Ingot (v1),Raw Metals,Aluminum,Kg,351.41,SUP1051,SUP1001,687,27
+PRD2098,SKU-RAW-2098,Oxygen-Free Copper Wire Spool (v3),Raw Metals,Copper,Spools,541.07,SUP1064,SUP1095,748,18
+PRD2099,SKU-ELE-2099,Precision Temperature Sensor Probe PT100 (v1),Electronics,Sensors,Units,1679.89,SUP1090,SUP1052,841,9
+PRD2100,SKU-ELE-2100,STM32 ARM Cortex-M4 Microcontroller IC (v2),Electronics,Microcontrollers,Units,3285.66,SUP1097,SUP1017,215,20
+PRD2101,SKU-ELE-2101,Gold-Plated Circular Aviation Plug (v1),Electronics,Connectors,Packs,648.88,SUP1025,SUP1091,412,24
+PRD2102,SKU-PAC-2102,Double-Wall Corrugated Box 50x40x30 (v2),Packaging,Cardboard,Boxes,257.74,SUP1066,SUP1069,619,26
+PRD2103,SKU-PAC-2103,Industrial Stretch Film Wrap 500mm (v2),Packaging,Plastic Wrap,Packs,88.29,SUP1081,SUP1026,723,18
+PRD2104,SKU-PAC-2104,Euro-Spec Heavy Wooden Cargo Pallet (v1),Packaging,Pallets,Pallets,804.8,SUP1073,SUP1023,964,17
+PRD2105,SKU-FAS-2105,Titanium Alloy Torx Screws (v1),Fasteners & Hardware,Screws,Boxes,680.6,SUP1020,SUP1060,929,25
+PRD2106,SKU-FAS-2106,High-Strength Anchor Bolts M16x200 (v1),Fasteners & Hardware,Bolts,Boxes,645.53,SUP1089,SUP1053,68,15
+PRD2107,SKU-FAS-2107,Vibration Isolation Rubber Mount (v2),Fasteners & Hardware,Brackets,Units,638.06,SUP1013,SUP1021,757,4
+PRD2108,SKU-CHE-2108,Isopropanol Alcohol Degreaser 20L (v3),Chemicals,Solvents,Liters,531.36,SUP1062,SUP1057,295,22
+PRD2109,SKU-CHE-2109,High-Bond Two-Part Epoxy Resin 5L (v1),Chemicals,Adhesives,Units,2137.15,SUP1038,SUP1076,543,5
+PRD2110,SKU-CHE-2110,Synthetic Hydraulic Fluid ISO VG 46 (v1),Chemicals,Lubricants,Liters,1047.49,SUP1074,SUP1072,331,26
+PRD2111,SKU-TEX-2111,Heavy Canvas Tarpaulin Waterproof 600GSM (v3),Textiles,Fabric,Meters,721.14,SUP1043,SUP1068,878,21
+PRD2112,SKU-TEX-2112,Polyester Core-Spun Thread Spool (v3),Textiles,Thread,Spools,321.04,SUP1024,SUP1008,447,8
+PRD2113,SKU-TEX-2113,Woven Polyester Fabric Care Tag Labels (v2),Textiles,Labels,Packs,231.81,SUP1034,SUP1073,130,17
+PRD2114,SKU-RUB-2114,Viton High-Temp O-Ring Seal Kit (v1),Rubber & Plastics,O-Rings,Packs,432.35,SUP1040,SUP1013,852,26
+PRD2115,SKU-RUB-2115,Spiral Wound Graphite Pipe Flange Gasket (v2),Rubber & Plastics,Gaskets,Units,1006.29,SUP1062,SUP1036,390,3
+PRD2116,SKU-RUB-2116,PTFE Chemical Resistant Hose 1/2-Inch (v1),Rubber & Plastics,Tubing,Meters,966.39,SUP1037,SUP1022,146,21
+PRD2117,SKU-TOO-2117,Diamond Core Drilling Bit 50mm (v2),Tools & Equipment,Drills,Units,1586.25,SUP1089,SUP1000,585,19
+PRD2118,SKU-TOO-2118,Abrasive Metal Cut-Off Wheel 14-Inch (v2),Tools & Equipment,Saws,Units,3254.19,SUP1023,SUP1090,456,14
+PRD2119,SKU-TOO-2119,Insulated Screwdriver Set 1000V (v3),Tools & Equipment,Hand Tools,Units,4345.29,SUP1020,SUP1095,328,19
+PRD2120,SKU-RAW-2120,Galvanized Steel Roofing Sheet (v3),Raw Metals,Steel,Kg,415.97,SUP1077,SUP1024,498,4
+PRD2121,SKU-RAW-2121,Cast Aluminum Housing Enclosure (v2),Raw Metals,Aluminum,Kg,545.74,SUP1002,SUP1076,867,15
+PRD2122,SKU-RAW-2122,Bare Copper Busbar 50x6mm (v2),Raw Metals,Copper,Spools,701.8,SUP1019,SUP1014,514,9
+PRD2123,SKU-ELE-2123,Digital Pressure Transducer 0-10 Bar (v2),Electronics,Sensors,Units,1364.57,SUP1078,SUP1042,181,26
+PRD2124,SKU-ELE-2124,ESP32 Dual-Core Wi-Fi/BT SoC (v2),Electronics,Microcontrollers,Units,2892.22,SUP1006,SUP1044,658,7
+PRD2125,SKU-ELE-2125,Heavy-Duty Industrial Connector 16-Pin (v3),Electronics,Connectors,Packs,103.13,SUP1006,SUP1044,540,28
+PRD2126,SKU-PAC-2126,Double-Wall Corrugated Box 50x40x30 (v3),Packaging,Cardboard,Boxes,307.45,SUP1052,SUP1071,31,27
+PRD2127,SKU-PAC-2127,Anti-Static ESD Bubble Wrap Roll (v2),Packaging,Plastic Wrap,Packs,309.83,SUP1000,SUP1060,777,9
+PRD2128,SKU-PAC-2128,Euro-Spec Heavy Wooden Cargo Pallet (v1),Packaging,Pallets,Pallets,2331.25,SUP1022,SUP1011,316,23
+PRD2129,SKU-FAS-2129,Titanium Alloy Torx Screws (v3),Fasteners & Hardware,Screws,Boxes,206.26,SUP1052,SUP1030,475,14
+PRD2130,SKU-FAS-2130,Carriage Bolt & Flange Nut Set (v2),Fasteners & Hardware,Bolts,Boxes,969.82,SUP1078,SUP1090,186,27
+PRD2131,SKU-FAS-2131,Heavy-Duty L-Shape Steel Corner Bracket (v3),Fasteners & Hardware,Brackets,Units,342.66,SUP1038,SUP1094,903,3
+PRD2132,SKU-CHE-2132,Industrial Solvent Acetone 99.5% (v1),Chemicals,Solvents,Liters,552.91,SUP1031,SUP1038,175,6
+PRD2133,SKU-CHE-2133,Anaerobic Threadlocking Compound 250ml (v3),Chemicals,Adhesives,Units,3274.89,SUP1021,SUP1018,712,23
+PRD2134,SKU-CHE-2134,Synthetic Hydraulic Fluid ISO VG 46 (v2),Chemicals,Lubricants,Liters,1148.46,SUP1005,SUP1066,716,20
+PRD2135,SKU-TEX-2135,Heavy Canvas Tarpaulin Waterproof 600GSM (v1),Textiles,Fabric,Meters,768.68,SUP1002,SUP1091,687,9
+PRD2136,SKU-TEX-2136,Heat-Resistant Nomex Industrial Thread (v3),Textiles,Thread,Spools,419.27,SUP1058,SUP1064,485,19
+PRD2137,SKU-TEX-2137,Thermal Transfer Barcode Label Roll (v1),Textiles,Labels,Packs,147.3,SUP1074,SUP1065,997,9
+PRD2138,SKU-RUB-2138,NBR Nitrile Rubber Hydraulic O-Rings (v1),Rubber & Plastics,O-Rings,Packs,517.25,SUP1090,SUP1032,795,14
+PRD2139,SKU-RUB-2139,Spiral Wound Graphite Pipe Flange Gasket (v1),Rubber & Plastics,Gaskets,Units,718.42,SUP1066,SUP1018,267,5
+PRD2140,SKU-RUB-2140,PTFE Chemical Resistant Hose 1/2-Inch (v3),Rubber & Plastics,Tubing,Meters,446.92,SUP1071,SUP1092,249,27
+PRD2141,SKU-TOO-2141,Industrial Rotary Hammer Drill 1100W (v1),Tools & Equipment,Drills,Units,5479.92,SUP1067,SUP1004,515,23
+PRD2142,SKU-TOO-2142,Tungsten Carbide Circular Saw 355mm (v3),Tools & Equipment,Saws,Units,3303.17,SUP1055,SUP1005,57,12
+PRD2143,SKU-TOO-2143,Adjustable Torque Wrench 1/2-Inch 40-200Nm (v1),Tools & Equipment,Hand Tools,Units,8866.33,SUP1058,SUP1016,89,3
+PRD2144,SKU-RAW-2144,Hot-Rolled Structural I-Beam (v3),Raw Metals,Steel,Kg,370.52,SUP1039,SUP1063,86,21
+PRD2145,SKU-RAW-2145,Aircraft Aluminum 6061-T6 Bar (v3),Raw Metals,Aluminum,Kg,220.44,SUP1029,SUP1017,181,18
+PRD2146,SKU-RAW-2146,Bare Copper Busbar 50x6mm (v2),Raw Metals,Copper,Spools,660.59,SUP1079,SUP1012,493,11
+PRD2147,SKU-ELE-2147,Precision Temperature Sensor Probe PT100 (v1),Electronics,Sensors,Units,4151.51,SUP1083,SUP1005,476,10
+PRD2148,SKU-ELE-2148,FPGA Programmable Logic Array Board (v3),Electronics,Microcontrollers,Units,1123.82,SUP1011,SUP1094,73,22
+PRD2149,SKU-ELE-2149,Heavy-Duty Industrial Connector 16-Pin (v2),Electronics,Connectors,Packs,192.25,SUP1006,SUP1067,85,7
+PRD2150,SKU-PAC-2150,Printed Product Packaging Sleeve (v1),Packaging,Cardboard,Boxes,345.64,SUP1078,SUP1058,665,20
+PRD2151,SKU-PAC-2151,Industrial Stretch Film Wrap 500mm (v3),Packaging,Plastic Wrap,Packs,339.94,SUP1054,SUP1096,354,3
+PRD2152,SKU-PAC-2152,Euro-Spec Heavy Wooden Cargo Pallet (v3),Packaging,Pallets,Pallets,661.13,SUP1072,SUP1035,56,16
+PRD2153,SKU-FAS-2153,Stainless Steel Self-Tapping Screws (v3),Fasteners & Hardware,Screws,Boxes,438.13,SUP1074,SUP1024,829,6
+PRD2154,SKU-FAS-2154,High-Strength Anchor Bolts M16x200 (v1),Fasteners & Hardware,Bolts,Boxes,816.09,SUP1097,SUP1007,163,26
+PRD2155,SKU-FAS-2155,Heavy-Duty L-Shape Steel Corner Bracket (v1),Fasteners & Hardware,Brackets,Units,187.14,SUP1056,SUP1027,615,2
+PRD2156,SKU-CHE-2156,Industrial Solvent Acetone 99.5% (v2),Chemicals,Solvents,Liters,1208.43,SUP1047,SUP1068,764,12
+PRD2157,SKU-CHE-2157,High-Bond Two-Part Epoxy Resin 5L (v2),Chemicals,Adhesives,Units,795.26,SUP1056,SUP1009,577,28
+PRD2158,SKU-CHE-2158,High-Temp Lithium Grease 18kg (v3),Chemicals,Lubricants,Liters,2681.7,SUP1030,SUP1090,746,20
+PRD2159,SKU-TEX-2159,Heavy Canvas Tarpaulin Waterproof 600GSM (v3),Textiles,Fabric,Meters,157.41,SUP1083,SUP1040,248,3
+PRD2160,SKU-TEX-2160,High-Tensile Bonded Nylon Sewing Thread (v1),Textiles,Thread,Spools,341.09,SUP1096,SUP1009,190,21
+PRD2161,SKU-TEX-2161,Tamper-Evident Security Seal Stickers (v3),Textiles,Labels,Packs,95.77,SUP1095,SUP1057,855,22
+PRD2162,SKU-RUB-2162,Viton High-Temp O-Ring Seal Kit (v2),Rubber & Plastics,O-Rings,Packs,450.38,SUP1059,SUP1001,93,11
+PRD2163,SKU-RUB-2163,Compressed Fiber Steam Gasket Joint (v1),Rubber & Plastics,Gaskets,Units,971.51,SUP1052,SUP1079,302,21
+PRD2164,SKU-RUB-2164,Reinforced Flexible PVC Braided Tubing (v1),Rubber & Plastics,Tubing,Meters,679.77,SUP1077,SUP1079,476,7
+PRD2165,SKU-TOO-2165,Solid Carbide Twist Drill Bit 10mm (v2),Tools & Equipment,Drills,Units,3435.29,SUP1033,SUP1047,253,5
+PRD2166,SKU-TOO-2166,Bi-Metal Bandsaw Blade 27mm (v2),Tools & Equipment,Saws,Units,840.3,SUP1035,SUP1009,35,5
+PRD2167,SKU-TOO-2167,Insulated Screwdriver Set 1000V (v3),Tools & Equipment,Hand Tools,Units,3451.48,SUP1023,SUP1028,722,11
+PRD2168,SKU-RAW-2168,High-Tensile Carbon Steel Rod (v3),Raw Metals,Steel,Kg,425.75,SUP1092,SUP1054,790,10
+PRD2169,SKU-RAW-2169,Aircraft Aluminum 6061-T6 Bar (v1),Raw Metals,Aluminum,Kg,403.13,SUP1086,SUP1053,296,24
+PRD2170,SKU-RAW-2170,Beryllium Copper Contact Strip (v3),Raw Metals,Copper,Spools,1759.9,SUP1029,SUP1046,521,17
+PRD2171,SKU-ELE-2171,Optical Infrared Proximity Sensor (v1),Electronics,Sensors,Units,504.84,SUP1092,SUP1047,290,24
+PRD2172,SKU-ELE-2172,STM32 ARM Cortex-M4 Microcontroller IC (v1),Electronics,Microcontrollers,Units,3922.4,SUP1079,SUP1029,211,3
+PRD2173,SKU-ELE-2173,Heavy-Duty Industrial Connector 16-Pin (v1),Electronics,Connectors,Packs,165.03,SUP1015,SUP1068,34,15
+PRD2174,SKU-PAC-2174,Kraft Paper Buffer Roll 100m (v2),Packaging,Cardboard,Boxes,86.35,SUP1006,SUP1023,978,23
+PRD2175,SKU-PAC-2175,Anti-Static ESD Bubble Wrap Roll (v3),Packaging,Plastic Wrap,Packs,462.46,SUP1031,SUP1013,326,18
+PRD2176,SKU-PAC-2176,Euro-Spec Heavy Wooden Cargo Pallet (v2),Packaging,Pallets,Pallets,2445.5,SUP1067,SUP1069,563,24
+PRD2177,SKU-FAS-2177,Grade 8.8 M8 Socket Head Cap Screws (v2),Fasteners & Hardware,Screws,Boxes,302.3,SUP1040,SUP1052,955,4
+PRD2178,SKU-FAS-2178,Galvanized Hex Head Structural Bolts M12 (v2),Fasteners & Hardware,Bolts,Boxes,346.66,SUP1046,SUP1003,120,4
+PRD2179,SKU-FAS-2179,Heavy-Duty L-Shape Steel Corner Bracket (v1),Fasteners & Hardware,Brackets,Units,436.37,SUP1082,SUP1061,153,13
+PRD2180,SKU-CHE-2180,Industrial Solvent Acetone 99.5% (v1),Chemicals,Solvents,Liters,712.61,SUP1012,SUP1043,627,22
+PRD2181,SKU-CHE-2181,Anaerobic Threadlocking Compound 250ml (v2),Chemicals,Adhesives,Units,1819.9,SUP1053,SUP1047,29,29
+PRD2182,SKU-CHE-2182,High-Temp Lithium Grease 18kg (v3),Chemicals,Lubricants,Liters,1535.56,SUP1093,SUP1048,149,2
+PRD2183,SKU-TEX-2183,Industrial Grade Kevlar Aramid Weave (v3),Textiles,Fabric,Meters,674.68,SUP1046,SUP1030,873,29
+PRD2184,SKU-TEX-2184,High-Tensile Bonded Nylon Sewing Thread (v3),Textiles,Thread,Spools,113.58,SUP1032,SUP1004,221,2
+PRD2185,SKU-TEX-2185,Woven Polyester Fabric Care Tag Labels (v2),Textiles,Labels,Packs,422.36,SUP1031,SUP1006,809,28
+PRD2186,SKU-RUB-2186,NBR Nitrile Rubber Hydraulic O-Rings (v2),Rubber & Plastics,O-Rings,Packs,465.3,SUP1077,SUP1059,495,3
+PRD2187,SKU-RUB-2187,Spiral Wound Graphite Pipe Flange Gasket (v3),Rubber & Plastics,Gaskets,Units,189.25,SUP1085,SUP1009,795,10
+PRD2188,SKU-RUB-2188,Reinforced Flexible PVC Braided Tubing (v1),Rubber & Plastics,Tubing,Meters,708.14,SUP1095,SUP1042,158,24
+PRD2189,SKU-TOO-2189,Industrial Rotary Hammer Drill 1100W (v2),Tools & Equipment,Drills,Units,3197.14,SUP1019,SUP1083,110,25
+PRD2190,SKU-TOO-2190,Abrasive Metal Cut-Off Wheel 14-Inch (v2),Tools & Equipment,Saws,Units,3975.47,SUP1056,SUP1021,493,9
+PRD2191,SKU-TOO-2191,Heavy Hydraulic Cable Crimper Tool (v1),Tools & Equipment,Hand Tools,Units,3548.51,SUP1007,SUP1024,203,11
+PRD2192,SKU-RAW-2192,Stainless Steel Pipe 304 (v2),Raw Metals,Steel,Kg,237.7,SUP1055,SUP1086,904,16
+PRD2193,SKU-RAW-2193,Aircraft Aluminum 6061-T6 Bar (v2),Raw Metals,Aluminum,Kg,303.53,SUP1072,SUP1080,208,4
+PRD2194,SKU-RAW-2194,Beryllium Copper Contact Strip (v2),Raw Metals,Copper,Spools,1513.74,SUP1044,SUP1066,154,18
+PRD2195,SKU-ELE-2195,Ultrasonic Distance Sensor 24V (v3),Electronics,Sensors,Units,486.4,SUP1032,SUP1039,534,5
+PRD2196,SKU-ELE-2196,8-Channel Relay Driver Controller Board (v1),Electronics,Microcontrollers,Units,3460.15,SUP1002,SUP1032,313,11
+PRD2197,SKU-ELE-2197,DIN-Rail Terminal Block Assembly (v2),Electronics,Connectors,Packs,840.91,SUP1091,SUP1046,190,20
+PRD2198,SKU-PAC-2198,Kraft Paper Buffer Roll 100m (v1),Packaging,Cardboard,Boxes,215.17,SUP1017,SUP1034,866,18
+PRD2199,SKU-PAC-2199,Industrial Stretch Film Wrap 500mm (v1),Packaging,Plastic Wrap,Packs,346.91,SUP1067,SUP1032,342,20

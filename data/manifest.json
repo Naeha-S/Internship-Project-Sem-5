@@ -1,0 +1,30 @@
+{
+  "dataset_version": "v4.0",
+  "generated_at": "2026-07-27T13:04:57.896005",
+  "parameters": {
+    "n_orders": 30000,
+    "n_suppliers": 100,
+    "start_date": "2023-01-01",
+    "end_date": "2025-12-31",
+    "tables_requested": [
+      "all"
+    ],
+    "random_seed": 42
+  },
+  "macro_signal_engine": "Ornstein-Uhlenbeck Stochastic Process + Seasonal Sine Wave",
+  "multi_sourcing_policy": "85% Primary Supplier / 15% Secondary Backup Supplier Allocation",
+  "row_counts": {
+    "suppliers": 98,
+    "products": 200,
+    "purchase_orders": 30000,
+    "deliveries": 30000,
+    "inventory": 200
+  },
+  "files_written": [
+    "C:\\Users\\NAEHA\\Desktop\\Internship Project\\data\\suppliers.csv",
+    "C:\\Users\\NAEHA\\Desktop\\Internship Project\\data\\products.csv",
+    "C:\\Users\\NAEHA\\Desktop\\Internship Project\\data\\purchase_orders.csv",
+    "C:\\Users\\NAEHA\\Desktop\\Internship Project\\data\\deliveries.csv",
+    "C:\\Users\\NAEHA\\Desktop\\Internship Project\\data\\inventory.csv"
+  ]
+}

@@ -1,99 +1,99 @@
 supplier_id,supplier_name,contact_email,country,region,tier,onboarded_year,rating,payment_terms,certifications,_true_reliability,_true_defect_rate,_price_drift_pct,_going_bad
-SUP1000,Apex Precision Components Ltd,procurement@apexcorp.com,India,North India,Tier 1,2021,4.2,Net 90,IATF 16949,0.8730499479718541,0.03574402816679875,-0.0027705777195365516,1
-SUP1001,Bharat Heavy Metallics,procurement@bharatcorp.com,Germany,Import - Europe,Tier 1,2021,4.7,2/10 Net 30,IATF 16949,0.9528747866305862,0.026195700017081547,0.18689797263656371,0
-SUP1002,Pacific Rim Semiconductor Corp,procurement@pacificcorp.com,China,Import - China,Tier 1,2023,3.5,Immediate / CIA,ISO 9001,0.7420832648660637,0.062387739864527676,0.0678506642711333,0
-SUP1003,Mahindra Industrial Logistics,procurement@mahindracorp.com,India,West India,Tier 3,2020,3.7,Net 90,AS9100,0.8976006965351543,0.01828402448944496,0.10320554326428431,0
-SUP1004,Vanguard Chemical Solutions,procurement@vanguardcorp.com,India,West India,Tier 2,2019,4.5,Net 60,IATF 16949,0.7810569217470864,0.037046324969672174,0.02065535191286458,0
-SUP1005,Shenzhen Microelectronics Co,procurement@shenzhencorp.com,Germany,Import - Europe,Tier 2,2018,4.9,Net 60,ISO 9001,0.8583076045824369,0.07803623132094244,0.03884259936883707,0
-SUP1006,Bavaria Automotive Forgings,procurement@bavariacorp.com,India,North India,Tier 3,2020,4.1,Net 60,ISO 9001,0.7339488918311645,0.022354166970921744,0.007186761117778703,0
-SUP1007,Global Freight Networks,procurement@globalcorp.com,China,Import - China,Tier 2,2022,3.4,Net 30,IATF 16949,0.5277678124909084,0.11257340968690425,-0.10910250009515211,0
-SUP1008,Nordic Polymer Materials,procurement@nordiccorp.com,India,South India,Tier 2,2018,3.2,Net 60,AS9100,0.6631646672471757,0.14431680848172013,-0.032680556610871964,0
-SUP1009,Tata Alloy & Steel Corp,procurement@tatacorp.com,India,North India,Tier 1,2023,3.6,Net 60,ISO 45001,0.782244611024874,0.2984736057951528,-0.058637120798823675,0
-SUP1010,Zenith Electronics Mfg,procurement@zenithcorp.com,Vietnam,Import - SE Asia,Tier 1,2021,3.4,Net 90,IATF 16949,0.8479257549693358,0.027011740341335223,-0.08498702667709644,1
-SUP1011,Reliance Industrial Polymers,procurement@reliancecorp.com,USA,Import - North America,Tier 2,2018,4.4,Net 30,ISO 14001,0.626431730353279,0.05361117025873982,-0.021721538457886158,0
-SUP1012,Orion Aerospace Materials,procurement@orioncorp.com,China,Import - China,Tier 2,2019,3.4,Net 30,ISO 45001,0.8515485793834278,0.015942805318113783,0.12949734076289784,0
-SUP1013,Kyoto Precision Instruments,procurement@kyotocorp.com,Germany,Import - Europe,Tier 2,2021,4.1,Net 60,IATF 16949,0.7086627074843385,0.029581517464775685,0.047333829937738735,0
-SUP1014,Hindustan Fasteners & Hardware,procurement@hindustancorp.com,China,Import - China,Tier 3,2019,4.4,Net 30,ISO 14001,0.772194610812323,0.02403067857421268,0.12743382573927045,0
-SUP1015,Atlas Heavy Machinery Supplies,procurement@atlascorp.com,Germany,Import - Europe,Tier 2,2018,4.2,Net 30,IATF 16949,0.8124245529151225,0.11519687193250387,0.07465895461405252,0
-SUP1016,DynaFlex Rubber & Elastomers,procurement@dynaflexcorp.com,Vietnam,Import - SE Asia,Tier 2,2021,3.5,Net 30,ISO 9001,0.8597214275135654,0.04557136153678546,0.09695352954290956,0
-SUP1017,Evergreen Shipping Lines,procurement@evergreencorp.com,India,South India,Tier 2,2022,4.6,Net 30,ISO 14001,0.7054738440691629,0.06805716426353552,-0.0040538197182745025,0
-SUP1018,Sterling Chemical Synthetics,procurement@sterlingcorp.com,Germany,Import - Europe,Tier 2,2018,4.4,Net 30,IATF 16949,0.8209054314726324,0.010699210166224469,0.08143705725156025,0
-SUP1019,Alpha Tool & Die Works,procurement@alphacorp.com,India,West India,Tier 1,2019,4.5,Net 30,ISO 45001,0.9394500608524285,0.020644817317491987,0.09372285404446076,0
-SUP1020,Kavita Packaging Solutions,procurement@kavitacorp.com,Vietnam,Import - SE Asia,Tier 2,2019,3.4,Net 30,AS9100,0.9233934484537906,0.0385877487077011,0.015401162465978425,0
-SUP1021,Shanghai Industrial Silicon,procurement@shanghaicorp.com,India,East India,Tier 1,2021,3.4,Net 30,AS9100,0.9352437727043817,0.062079062937247444,0.08357242223696998,0
-SUP1022,Stuttgart Auto Components,procurement@stuttgartcorp.com,India,South India,Tier 2,2022,4.8,Net 30,IATF 16949,0.6536405814320103,0.04465782613084732,0.08397126551448997,0
-SUP1023,Larsen Structural Engineers,procurement@larsencorp.com,USA,Import - North America,Tier 3,2022,3.9,Net 60,ISO 9001,0.768588077024433,0.03620534590884943,0.017026842732195034,0
-SUP1024,Vertex Microchip Fab,procurement@vertexcorp.com,Germany,Import - Europe,Tier 1,2023,3.7,Net 30,ISO 14001,0.9295836413912425,0.01883514185492608,-0.017366105936259688,0
-SUP1025,Deccan Mining & Metals,procurement@deccancorp.com,China,Import - China,Tier 1,2022,4.0,2/10 Net 30,ISO 45001,0.7182285640506701,0.07382070364839939,-0.021047699913896337,0
-SUP1026,Pinnacle Precision Castings,procurement@pinnaclecorp.com,India,West India,Tier 2,2019,4.3,2/10 Net 30,ISO 9001,0.8467170138144461,0.12641699079516716,0.05519033251528771,0
-SUP1027,Matrix Logistics & Forwarding,procurement@matrixcorp.com,Germany,Import - Europe,Tier 2,2018,4.8,Net 30,ISO 45001,0.8337004439139998,0.051697734220632806,0.0696205921273589,1
-SUP1028,Kalyani Forge & Foundry,procurement@kalyanicorp.com,Vietnam,Import - SE Asia,Tier 2,2021,3.7,Net 30,AS9100,0.7610053614342249,0.040482466679713634,0.002448450172525138,0
-SUP1029,Tokyo Electronic Wire Ltd,procurement@tokyocorp.com,India,West India,Tier 2,2023,4.8,Net 60,ISO 14001,0.8799727434276816,0.036556860718038243,0.05159512047956592,0
-SUP1030,Aegis Defense Equipment,procurement@aegiscorp.com,India,West India,Tier 3,2023,3.2,Net 90,AS9100,0.8433929737682531,0.07334759319605359,0.08423222216830913,1
-SUP1031,Sonata Acoustic Sensors,procurement@sonatacorp.com,India,South India,Tier 2,2019,4.1,Net 60,ISO 45001,0.7233495095270172,0.0887280756828676,0.08709144287991805,0
-SUP1032,Indus Valley Packaging,procurement@induscorp.com,India,North India,Tier 2,2019,4.3,Net 90,ISO 9001,0.7876116815489502,0.06380877983316881,0.1431128072073493,0
-SUP1033,BlueStar Refrigeration Gear,procurement@bluestarcorp.com,Vietnam,Import - SE Asia,Tier 3,2018,3.4,Net 60,ISO 9001,0.8809514904501063,0.055641746466782556,0.1266188499318826,1
-SUP1034,Taiwan Semiconductor Foundry,procurement@taiwancorp.com,USA,Import - North America,Tier 1,2018,3.4,Net 60,AS9100,0.7837796143516365,0.004394552506889436,-0.010077485965392638,0
-SUP1035,Ganga Hydraulics & Valves,procurement@gangacorp.com,India,North India,Tier 1,2021,3.9,Net 30,ISO 45001,0.7890883742392654,0.024205193193063017,0.15101517257228136,0
-SUP1036,Titanium Tech Aerospace,procurement@titaniumcorp.com,Germany,Import - Europe,Tier 1,2021,4.8,Net 60,ISO 9001,0.8632328288695827,0.03349951909299826,0.01814140972665712,0
-SUP1037,Continental Rubber Works,procurement@continentalcorp.com,Germany,Import - Europe,Tier 2,2020,4.2,Net 30,AS9100,0.9524056098747051,0.015452624725590622,0.11269236874726565,0
-SUP1038,Godrej Material Handling,procurement@godrejcorp.com,India,East India,Tier 2,2019,4.8,Net 60,ISO 9001,0.7929073276527794,0.029927259480093563,0.05407919756306533,0
-SUP1039,Hanover Precision Bearings,procurement@hanovercorp.com,China,Import - China,Tier 1,2022,4.6,Net 90,AS9100,0.8875522114852764,0.03325118680121715,0.025271037292581948,1
-SUP1040,Nippon Steel Logistics,procurement@nipponcorp.com,India,South India,Tier 2,2020,4.0,Net 30,AS9100,0.6818851403542826,0.012460897564248128,-0.058461811586495965,1
-SUP1041,Shree Ram Textiles & Weaving,procurement@shreecorp.com,Germany,Import - Europe,Tier 1,2022,4.5,Net 60,ISO 9001,0.6714993577393282,0.007630652499669922,0.03970612938701911,0
-SUP1042,AeroTech Composite Systems,procurement@aerotechcorp.com,China,Import - China,Tier 2,2023,3.2,Net 30,AS9100,0.429164883449538,0.051150440386152525,-0.04356299411833653,0
-SUP1043,Bengal Chemical Reagents,procurement@bengalcorp.com,India,East India,Tier 2,2019,3.4,Net 60,ISO 45001,0.9185146867644581,0.009068191352518105,0.10803795415056634,0
-SUP1044,Silicon Valley Micro Hardware,procurement@siliconcorp.com,India,North India,Tier 2,2019,4.6,Net 30,ISO 45001,0.7302704818789678,0.0642504966324262,0.14100755942835488,1
-SUP1045,Prabhat Fastener Industries,procurement@prabhatcorp.com,USA,Import - North America,Tier 2,2023,4.6,2/10 Net 30,ISO 9001,0.6739562635873682,0.03539282491896642,0.002185340642198587,0
-SUP1046,Krupp Heavy Metallics GmbH,procurement@kruppcorp.com,India,West India,Tier 2,2021,3.6,Net 30,ISO 14001,0.6432707106159585,0.05114181979963588,0.06811824455115627,1
-SUP1047,Gujarat Petrochem Synthetics,procurement@gujaratcorp.com,USA,Import - North America,Tier 2,2019,4.1,Immediate / CIA,ISO 14001,0.8295091597611223,0.03039856093760913,0.00647650867952148,0
-SUP1048,OmniVision Optoelectronics,procurement@omnivisioncorp.com,China,Import - China,Tier 1,2021,4.2,Net 90,IATF 16949,0.8142056242825493,0.0668610320036109,0.01229091619179263,0
-SUP1049,Ashok Leyland Logistics,procurement@ashokcorp.com,Germany,Import - Europe,Tier 1,2021,4.7,Net 60,ISO 9001,0.8973902178828443,0.012272539465066158,0.09646968223192229,0
-SUP1050,Samsung Component Solutions,procurement@samsungcorp.com,Germany,Import - Europe,Tier 3,2023,4.2,Net 60,ISO 45001,0.7328630652618489,0.014345648882736449,0.047687704289395255,0
-SUP1051,Delta Power Electronics,procurement@deltacorp.com,India,South India,Tier 3,2019,3.9,Net 60,AS9100,0.8699519756570069,0.030821430923612572,0.15437888251586068,0
-SUP1052,Jindal Stainless & Alloy,procurement@jindalcorp.com,India,East India,Tier 2,2023,3.8,2/10 Net 30,ISO 45001,0.4775458545550214,0.09652937721629816,0.02106605127782474,0
-SUP1053,Yokohama Industrial Polymers,procurement@yokohamacorp.com,India,West India,Tier 2,2023,3.9,Net 30,ISO 9001,0.8139324018290587,0.001655208518541812,0.10996017994846935,1
-SUP1054,Swastik Cardboard & Packaging,procurement@swastikcorp.com,India,West India,Tier 3,2019,4.3,Net 60,ISO 9001,0.7096054298290211,0.11794446290800098,0.05584480477746692,0
-SUP1055,Federal Mogul Auto Parts,procurement@federalcorp.com,India,North India,Tier 3,2018,4.7,Net 30,ISO 45001,0.3699260659981068,0.022377532960864244,0.097746680584654,0
-SUP1056,Kirloskar Pumps & Compressors,procurement@kirloskarcorp.com,Vietnam,Import - SE Asia,Tier 2,2021,4.0,Net 60,ISO 14001,0.6921973123811463,0.100972805528566,0.0231705405602032,0
-SUP1057,Toshiba Memory Systems,procurement@toshibacorp.com,India,South India,Tier 2,2018,3.6,Net 30,AS9100,0.6734873879669474,0.09045637457203429,0.04702646974690504,0
-SUP1058,Siemens Industrial Automation,procurement@siemenscorp.com,China,Import - China,Tier 2,2019,3.6,Net 60,ISO 45001,0.7218679632368111,0.0323974135370219,0.043070067242063914,1
-SUP1059,Sundaram Fasteners Ltd,procurement@sundaramcorp.com,China,Import - China,Tier 1,2020,4.5,Net 60,ISO 9001,0.9143413965799072,0.01073982738234207,-0.00016342689074722722,0
-SUP1060,Dow Petrochemical Corp,procurement@dowcorp.com,USA,Import - North America,Tier 3,2023,4.6,Net 30,ISO 9001,0.9719489563136219,0.00864807998481842,0.08972489207490517,0
-SUP1061,Murata Manufacturing Co,procurement@muratacorp.com,China,Import - China,Tier 2,2023,3.4,Net 60,ISO 9001,0.7462227604276365,0.05153508239284592,0.08901494033470185,0
-SUP1062,Thermax Boilers & Heat Systems,procurement@thermaxcorp.com,India,East India,Tier 1,2018,3.3,Net 60,ISO 9001,0.7538903833051469,0.03311231533976283,0.08561328169433399,1
-SUP1063,Bosch Mobility Electronics,procurement@boschcorp.com,USA,Import - North America,Tier 2,2023,4.2,Net 60,ISO 9001,0.9077976932723466,0.010622547004515353,0.14221793923505868,0
-SUP1064,Hindalco Aluminum Extrusions,procurement@hindalcocorp.com,India,West India,Tier 2,2018,3.4,Net 30,ISO 45001,0.5634930458337939,0.039436460017979964,0.13696068807417822,1
-SUP1065,Schneider Electric Gear,procurement@schneidercorp.com,India,East India,Tier 1,2022,4.6,Net 60,AS9100,0.7228706120330743,0.01340720489363147,0.02750331860905188,0
-SUP1066,Texas Instrument Distributors,procurement@texascorp.com,USA,Import - North America,Tier 3,2023,3.7,2/10 Net 30,ISO 45001,0.8996604441120609,0.024148560248401903,0.0723831391060507,0
-SUP1067,SKF Precision Bearings,procurement@skfcorp.com,India,East India,Tier 3,2023,3.4,Net 30,ISO 45001,0.886574709494626,0.06312024737612341,0.012583958644507245,1
-SUP1068,NTPC Equipment Supplies,procurement@ntpccorp.com,India,North India,Tier 2,2019,4.8,Net 30,ISO 45001,0.6997598658784682,0.007583923875991483,0.05140131896687333,0
-SUP1069,Hitachi Industrial Machinery,procurement@hitachicorp.com,India,West India,Tier 2,2023,3.5,Net 30,ISO 14001,0.9779022595623944,0.021518258470826678,0.014015033052868123,1
-SUP1070,Caterpillar Heavy Logistics,procurement@caterpillarcorp.com,Germany,Import - Europe,Tier 2,2018,3.7,Net 60,ISO 14001,0.5624992654082477,0.038715999139515324,0.14720421854816307,0
-SUP1071,TVS Auto Accessories,procurement@tvscorp.com,India,South India,Tier 2,2021,3.5,Net 30,ISO 45001,0.5593962478854703,0.0998311123099762,0.07182188902057778,0
-SUP1072,3M Industrial Science,procurement@3mcorp.com,India,West India,Tier 2,2020,3.4,Net 60,ISO 14001,0.7663515595447769,0.06048577932429567,0.036918252313734676,0
-SUP1073,BASF Chemical Solutions,procurement@basfcorp.com,India,South India,Tier 1,2019,3.2,Net 60,ISO 9001,0.9100201564535129,0.01695884319890899,0.12161711431138261,0
-SUP1074,L&T Heavy Engineering,procurement@ltcorp.com,China,Import - China,Tier 2,2018,3.3,Net 30,AS9100,0.9455528515097846,0.036784857304311226,-0.08023692458772468,1
-SUP1075,Eaton Hydraulic Systems,procurement@eatoncorp.com,India,West India,Tier 1,2022,3.5,Net 90,ISO 45001,0.7896199572014103,0.05188663485534452,-0.07084615569191738,1
-SUP1076,Parker Hannifin Pneumatics,procurement@parkercorp.com,India,East India,Tier 2,2020,3.3,Net 60,ISO 45001,0.7607064956043931,0.015613589960628895,0.09775031931318644,0
-SUP1077,Panasonic Battery Industrial,procurement@panasoniccorp.com,India,South India,Tier 2,2021,4.2,Net 30,ISO 45001,0.9268894223491496,0.038305750687636406,0.05362810688704209,0
-SUP1078,Honeywell Control Systems,procurement@honeywellcorp.com,Vietnam,Import - SE Asia,Tier 1,2020,4.4,Net 30,ISO 9001,0.7608583605854013,0.06364363579191816,0.06502677801564564,0
-SUP1079,Cummins Engine Components,procurement@cumminscorp.com,China,Import - China,Tier 1,2020,3.9,Net 30,AS9100,0.719729308484786,0.02734844086192992,-0.029583766199112918,0
-SUP1080,Wipro Infrastructure Eng,procurement@wiprocorp.com,USA,Import - North America,Tier 2,2023,3.7,Net 30,ISO 45001,0.4980829687930514,0.11360142215033224,0.04860597734897803,0
-SUP1081,ABB Automation Systems,procurement@abbcorp.com,India,West India,Tier 1,2018,4.1,Net 30,AS9100,0.7082043479034266,0.07309365117568267,0.17021056462408052,0
-SUP1082,Emerson Industrial Motion,procurement@emersoncorp.com,India,South India,Tier 3,2022,4.7,2/10 Net 30,ISO 45001,0.9101181615211155,0.023258498329102435,0.09945197718775178,0
-SUP1083,Danfoss Climate Solutions,procurement@danfosscorp.com,Germany,Import - Europe,Tier 2,2022,4.6,Net 30,ISO 45001,0.9090858581015812,0.02581770197485433,0.06018239270856873,0
-SUP1084,Rockwell Automation Gear,procurement@rockwellcorp.com,China,Import - China,Tier 2,2020,3.3,Net 30,IATF 16949,0.943904025892735,0.10379872284844138,0.023656765393703743,0
-SUP1085,Festo Pneumatic Automation,procurement@festocorp.com,China,Import - China,Tier 2,2019,3.5,Net 60,ISO 9001,0.6868391901154066,0.03792732285088961,0.026325628887836374,0
-SUP1086,Molex Interconnect Systems,procurement@molexcorp.com,India,North India,Tier 1,2018,3.6,Net 60,IATF 16949,0.8032959254370627,0.008983129349205452,-0.07775187335200105,1
-SUP1087,TE Connectivity Products,procurement@tecorp.com,India,East India,Tier 3,2023,3.6,2/10 Net 30,ISO 14001,0.9322622892725946,0.00857587696993344,0.06545842525526964,0
-SUP1088,Kyocera Electronic Ceramics,procurement@kyoceracorp.com,Germany,Import - Europe,Tier 2,2023,4.2,Net 60,ISO 9001,0.8580623602893869,0.16100418316961193,0.10072898650891124,0
-SUP1089,Amphenol Cable Systems,procurement@amphenolcorp.com,Germany,Import - Europe,Tier 3,2019,3.9,Net 30,ISO 9001,0.9157695395179692,0.004030518681282144,-0.0445371596302369,0
-SUP1090,Yaskawa Electric Drives,procurement@yaskawacorp.com,India,West India,Tier 1,2018,3.3,Net 30,AS9100,0.8099234113096694,0.005918402634459905,0.010314986461591041,0
-SUP1091,Fanuc Robotics Supplies,procurement@fanuccorp.com,Germany,Import - Europe,Tier 2,2018,3.8,Immediate / CIA,IATF 16949,0.8811655983880281,0.054419411471217496,-0.01944787793400532,1
-SUP1092,Mitsubishi Heavy Industries,procurement@mitsubishicorp.com,Germany,Import - Europe,Tier 2,2018,4.1,Net 60,IATF 16949,0.9158091404907844,0.09749957148305521,-0.007921071688525808,0
-SUP1093,Kawasaki Heavy Machinery,procurement@kawasakicorp.com,India,West India,Tier 3,2022,3.4,Immediate / CIA,AS9100,0.6705120392602351,0.06283976275749217,0.053208897609314014,0
-SUP1094,Komatsu Earthmoving Parts,procurement@komatsucorp.com,USA,Import - North America,Tier 2,2023,4.6,Net 30,IATF 16949,0.47831857202398304,0.08421104774962547,-0.07506412929930846,1
-SUP1095,Hyundai Heavy Industries,procurement@hyundaicorp.com,India,East India,Tier 2,2018,3.3,Net 90,AS9100,0.9239898724568693,0.19165551503569977,0.08685622630142384,1
-SUP1096,Doosan Industrial Equipment,procurement@doosancorp.com,India,South India,Tier 2,2022,4.8,Net 60,ISO 9001,0.6583519183191089,0.015704325929685625,0.09523130419602094,0
-SUP1097,SANY Heavy Machinery,procurement@sanycorp.com,China,Import - China,Tier 2,2019,3.4,Net 30,ISO 45001,0.830981369365801,0.04703368860598528,0.03493384471778525,0
+SUP1000,Apex Precision Components Ltd,procurement@apex-sup1000.com,India,North India,Tier 1,2018,3.7,Net 30,ISO 9001,0.8521234442998217,0.024124397483846042,0.06564526304847003,0
+SUP1001,Bharat Heavy Metallics,procurement@bharat-sup1001.com,India,North India,Tier 1,2021,3.5,Net 30,AS9100,0.7914697229748627,0.16781488425347815,0.04798379360263148,0
+SUP1002,Pacific Rim Semiconductor Corp,procurement@pacific-sup1002.com,China,Import - China,Tier 1,2021,4.5,Net 60,ISO 45001,0.8226668789676372,0.019399099477599293,0.02050755043057006,0
+SUP1003,Mahindra Industrial Logistics,procurement@mahindra-sup1003.com,China,Import - China,Tier 1,2020,4.0,Net 30,ISO 9001,0.6826884331055484,0.002431927694148259,0.05507967684396583,0
+SUP1004,Vanguard Chemical Solutions,procurement@vanguard-sup1004.com,India,North India,Tier 3,2022,4.1,2/10 Net 30,AS9100,0.8004507802800486,0.011924489283512116,0.21604615352193557,0
+SUP1005,Shenzhen Microelectronics Co,procurement@shenzhen-sup1005.com,USA,Import - North America,Tier 2,2020,4.8,Net 60,ISO 14001,0.642791514903687,0.06311084927251435,0.10007153284214346,0
+SUP1006,Bavaria Automotive Forgings,procurement@bavaria-sup1006.com,India,East India,Tier 3,2020,4.8,Net 30,AS9100,0.7725578532805203,0.019096373831410562,0.11296991635179914,0
+SUP1007,Global Freight Networks,procurement@global-sup1007.com,India,East India,Tier 1,2020,4.7,Net 30,IATF 16949,0.8088636241706941,0.02880477213709105,0.10063621349320134,0
+SUP1008,Nordic Polymer Materials,procurement@nordic-sup1008.com,India,East India,Tier 2,2022,3.5,Net 30,ISO 45001,0.9539211809594915,0.033104964002633276,0.13876772863113157,1
+SUP1009,Tata Alloy & Steel Corp,procurement@tata-sup1009.com,India,West India,Tier 2,2021,4.2,Immediate / CIA,ISO 9001,0.7874997712965142,0.0358906872144565,0.03859569962595531,0
+SUP1010,Zenith Electronics Mfg,procurement@zenith-sup1010.com,India,South India,Tier 2,2020,4.7,Net 30,ISO 14001,0.5364065825580152,0.02476822185378518,-0.07328567846051762,0
+SUP1011,Reliance Industrial Polymers,procurement@reliance-sup1011.com,India,West India,Tier 3,2023,3.8,Net 60,ISO 14001,0.8372939702568305,0.07905528129811001,0.03868483201963942,1
+SUP1012,Orion Aerospace Materials,procurement@orion-sup1012.com,India,South India,Tier 3,2022,3.4,2/10 Net 30,ISO 14001,0.938622076361755,0.07482079315183408,0.0987041425997901,1
+SUP1013,Kyoto Precision Instruments,procurement@kyoto-sup1013.com,India,North India,Tier 3,2023,4.6,Immediate / CIA,ISO 14001,0.8915087014098979,0.03785862055047078,-0.008188023706904413,0
+SUP1014,Hindustan Fasteners & Hardware,procurement@hindustan-sup1014.com,India,East India,Tier 1,2022,4.0,Net 30,ISO 14001,0.8037144308212755,0.027260341065164145,0.03941804297064018,0
+SUP1015,Atlas Heavy Machinery Supplies,procurement@atlas-sup1015.com,China,Import - China,Tier 1,2020,4.2,Net 30,ISO 9001,0.7985543085293707,0.058802057321293656,0.008493815419861217,0
+SUP1016,DynaFlex Rubber & Elastomers,procurement@dynaflex-sup1016.com,Germany,Import - Europe,Tier 2,2022,4.9,Net 30,AS9100,0.5428348094186446,0.06355342617778546,0.14012175511058783,0
+SUP1017,Evergreen Shipping Lines,procurement@evergreen-sup1017.com,India,East India,Tier 2,2019,4.2,Net 30,IATF 16949,0.46907393001050224,0.20556499873471423,0.09496742092439382,0
+SUP1018,Sterling Chemical Synthetics,procurement@sterling-sup1018.com,India,East India,Tier 2,2019,3.9,Net 30,ISO 45001,0.8549612135866972,0.045447517368322046,0.08909243723863755,0
+SUP1019,Alpha Tool & Die Works,procurement@alpha-sup1019.com,Germany,Import - Europe,Tier 2,2020,3.8,Net 60,AS9100,0.7732316656543123,0.011725512370633226,0.08729607878725829,0
+SUP1020,Kavita Packaging Solutions,procurement@kavita-sup1020.com,China,Import - China,Tier 2,2023,3.9,2/10 Net 30,ISO 9001,0.9685561861329545,0.14963277688582216,0.047765044846872384,1
+SUP1021,Shanghai Industrial Silicon,procurement@shanghai-sup1021.com,Germany,Import - Europe,Tier 3,2021,3.4,Net 60,ISO 9001,0.7389576190055266,0.05889235328300363,0.06185337695165021,0
+SUP1022,Stuttgart Auto Components,procurement@stuttgart-sup1022.com,USA,Import - North America,Tier 2,2020,4.6,Net 60,IATF 16949,0.7390241093609401,0.07754339277770174,-0.021111074831939053,0
+SUP1023,Larsen Structural Engineers,procurement@larsen-sup1023.com,Germany,Import - Europe,Tier 1,2020,4.6,Net 30,IATF 16949,0.7702914147378381,0.05707575636186314,-0.08118651872503406,0
+SUP1024,Vertex Microchip Fab,procurement@vertex-sup1024.com,USA,Import - North America,Tier 1,2019,3.7,Net 90,ISO 14001,0.7425315939530632,0.03139686369704461,0.05900486782070145,1
+SUP1025,Deccan Mining & Metals,procurement@deccan-sup1025.com,India,West India,Tier 2,2021,3.7,Net 60,AS9100,0.7514805083477318,0.026906514670233504,0.06943941537632867,1
+SUP1026,Pinnacle Precision Castings,procurement@pinnacle-sup1026.com,India,West India,Tier 2,2020,4.7,Net 90,IATF 16949,0.7190918588612616,0.09066121347860837,0.12255587410552266,0
+SUP1027,Matrix Logistics & Forwarding,procurement@matrix-sup1027.com,India,East India,Tier 2,2021,3.2,2/10 Net 30,AS9100,0.9347431745576633,0.0880783313750732,0.14428014896494207,0
+SUP1028,Kalyani Forge & Foundry,procurement@kalyani-sup1028.com,India,South India,Tier 2,2020,4.1,Net 30,ISO 9001,0.814793139780603,0.014070814209463938,0.1441999090999368,0
+SUP1029,Tokyo Electronic Wire Ltd,procurement@tokyo-sup1029.com,China,Import - China,Tier 3,2019,4.0,Net 30,ISO 45001,0.688757830992323,0.016783014121191587,-0.009881415597632663,0
+SUP1030,Aegis Defense Equipment,procurement@aegis-sup1030.com,China,Import - China,Tier 3,2023,4.4,Net 30,ISO 14001,0.7323412662034753,0.052104097763565706,0.028864097903013846,0
+SUP1031,Sonata Acoustic Sensors,procurement@sonata-sup1031.com,Germany,Import - Europe,Tier 2,2020,3.5,Net 30,IATF 16949,0.5557058483156438,0.03349749460486502,0.07882005775288278,0
+SUP1032,Indus Valley Packaging,procurement@indus-sup1032.com,India,South India,Tier 2,2018,4.3,2/10 Net 30,IATF 16949,0.6321966212450085,0.06031975061134202,0.20191428066453065,0
+SUP1033,BlueStar Refrigeration Gear,procurement@bluestar-sup1033.com,India,West India,Tier 2,2020,3.8,Net 30,ISO 45001,0.7791961575766186,0.08513073273525913,0.13880595222283496,0
+SUP1034,Taiwan Semiconductor Foundry,procurement@taiwan-sup1034.com,India,South India,Tier 2,2021,4.3,Net 60,ISO 14001,0.7770605370469867,0.049320578205830294,0.11716382971990282,0
+SUP1035,Ganga Hydraulics & Valves,procurement@ganga-sup1035.com,USA,Import - North America,Tier 2,2018,3.3,Net 60,ISO 14001,0.6490625645434587,0.04776595717992795,0.026732722667042567,0
+SUP1036,Titanium Tech Aerospace,procurement@titanium-sup1036.com,India,East India,Tier 2,2019,4.0,Net 30,ISO 14001,0.9283439232396746,0.001632043041255111,-0.002991977869307466,0
+SUP1037,Continental Rubber Works,procurement@continental-sup1037.com,India,South India,Tier 2,2018,4.1,Net 30,ISO 14001,0.8470715767036683,0.010244440915240639,0.09733447300299436,0
+SUP1038,Godrej Material Handling,procurement@godrej-sup1038.com,Vietnam,Import - SE Asia,Tier 1,2021,3.6,Net 60,ISO 9001,0.7827526863829851,0.046914753078641416,-0.016039675854061602,0
+SUP1039,Hanover Precision Bearings,procurement@hanover-sup1039.com,USA,Import - North America,Tier 1,2022,3.4,Net 60,ISO 9001,0.784890637766233,0.05203822854388316,0.03569381894118184,0
+SUP1040,Nippon Steel Logistics,procurement@nippon-sup1040.com,USA,Import - North America,Tier 1,2023,3.5,Net 30,ISO 14001,0.7049251819911181,0.04167102106291311,0.04311332305988465,0
+SUP1041,Shree Ram Textiles & Weaving,procurement@shree-sup1041.com,India,North India,Tier 3,2020,3.8,Net 30,IATF 16949,0.884398789840246,0.06444417270972358,0.14557472534736848,0
+SUP1042,AeroTech Composite Systems,procurement@aerotech-sup1042.com,India,East India,Tier 2,2023,3.4,Net 60,ISO 14001,0.9809373809402938,0.026813397103922533,0.02871816182241935,1
+SUP1043,Bengal Chemical Reagents,procurement@bengal-sup1043.com,India,South India,Tier 1,2019,4.8,Net 30,ISO 14001,0.8641878516185335,0.018392460902547255,-0.09635497831435692,0
+SUP1044,Silicon Valley Micro Hardware,procurement@silicon-sup1044.com,India,East India,Tier 3,2022,3.9,2/10 Net 30,AS9100,0.9816453047357148,0.08280514079467285,0.0802666788597481,1
+SUP1045,Prabhat Fastener Industries,procurement@prabhat-sup1045.com,Vietnam,Import - SE Asia,Tier 2,2021,4.6,Net 30,ISO 14001,0.7765456498221299,0.0457903995310895,0.008058688813764418,1
+SUP1046,Krupp Heavy Metallics GmbH,procurement@krupp-sup1046.com,India,East India,Tier 2,2022,4.9,Net 30,ISO 45001,0.9202894996904347,0.08245882172136099,0.05255786146626481,0
+SUP1047,Gujarat Petrochem Synthetics,procurement@gujarat-sup1047.com,India,North India,Tier 3,2022,3.3,Net 30,AS9100,0.3965017218995779,0.02955048040406705,0.044797717949472585,0
+SUP1048,OmniVision Optoelectronics,procurement@omnivision-sup1048.com,Vietnam,Import - SE Asia,Tier 1,2021,4.3,Net 60,ISO 9001,0.8658428446368015,0.06276924417049319,0.03357776025093391,0
+SUP1049,Ashok Leyland Logistics,procurement@ashok-sup1049.com,India,North India,Tier 1,2019,4.7,Net 60,ISO 14001,0.8060851590231258,0.03703523810290274,0.09742043490708224,0
+SUP1050,Samsung Component Solutions,procurement@samsung-sup1050.com,India,South India,Tier 2,2021,4.3,Net 30,ISO 9001,0.5330287780405671,0.052509224992932375,-0.04197189270116243,0
+SUP1051,Delta Power Electronics,procurement@delta-sup1051.com,India,North India,Tier 1,2022,3.9,Immediate / CIA,ISO 14001,0.7732810763565797,0.025559867213777974,0.01897914650273839,0
+SUP1052,Jindal Stainless & Alloy,procurement@jindal-sup1052.com,India,North India,Tier 2,2023,3.9,Net 30,ISO 14001,0.958934981395116,0.026378983483978997,0.09104227478704288,1
+SUP1053,Yokohama Industrial Polymers,procurement@yokohama-sup1053.com,India,West India,Tier 1,2023,3.3,Net 30,ISO 9001,0.6977175489298075,0.03240953250111446,0.013154913479337914,0
+SUP1054,Swastik Cardboard & Packaging,procurement@swastik-sup1054.com,Germany,Import - Europe,Tier 1,2019,4.1,Net 30,ISO 9001,0.9034328131131258,0.017902300480660986,-0.046528402556198306,0
+SUP1055,Federal Mogul Auto Parts,procurement@federal-sup1055.com,Germany,Import - Europe,Tier 1,2021,4.9,Net 30,IATF 16949,0.6698417945956937,0.05256892228929916,0.09011332059540415,0
+SUP1056,Kirloskar Pumps & Compressors,procurement@kirloskar-sup1056.com,India,North India,Tier 2,2018,4.8,Net 60,AS9100,0.8911514402115179,0.02127062371100694,0.11738567782649234,0
+SUP1057,Toshiba Memory Systems,procurement@toshiba-sup1057.com,India,North India,Tier 1,2022,3.3,Net 30,ISO 14001,0.8834200286164592,0.04493662189240665,0.04730028754141962,0
+SUP1058,Siemens Industrial Automation,procurement@siemens-sup1058.com,India,East India,Tier 1,2023,4.4,Net 60,ISO 45001,0.6769181412773783,0.025315284911645888,-0.06765073590817194,0
+SUP1059,Sundaram Fasteners Ltd,procurement@sundaram-sup1059.com,China,Import - China,Tier 3,2018,3.7,Net 30,ISO 14001,0.9286306271376782,0.03201175206584787,0.09235818480192898,0
+SUP1060,Dow Petrochemical Corp,procurement@dow-sup1060.com,China,Import - China,Tier 2,2021,4.7,Immediate / CIA,ISO 45001,0.5790961438501486,0.059800000045455964,-0.04959327288518127,0
+SUP1061,Murata Manufacturing Co,procurement@murata-sup1061.com,Germany,Import - Europe,Tier 2,2023,3.3,Net 30,ISO 14001,0.7925296870925338,0.24231565460117485,0.06852795661088995,0
+SUP1062,Thermax Boilers & Heat Systems,procurement@thermax-sup1062.com,India,East India,Tier 1,2023,4.8,Net 90,IATF 16949,0.862008118097003,0.0047843508849588845,-0.003247829484529584,0
+SUP1063,Bosch Mobility Electronics,procurement@bosch-sup1063.com,India,South India,Tier 2,2020,4.6,Net 30,AS9100,0.5403263873240154,0.148592019239997,-0.01959035714601791,0
+SUP1064,Hindalco Aluminum Extrusions,procurement@hindalco-sup1064.com,India,North India,Tier 2,2018,3.4,Net 30,ISO 9001,0.49937035851871936,0.014891952339981172,0.02348539897521859,1
+SUP1065,Schneider Electric Gear,procurement@schneider-sup1065.com,India,South India,Tier 2,2023,3.3,Net 90,ISO 45001,0.8355860470541218,0.03994746578903844,0.039002146614364415,0
+SUP1066,Texas Instrument Distributors,procurement@texas-sup1066.com,India,North India,Tier 1,2023,4.6,Net 60,ISO 14001,0.7980852351355061,0.026188211433151743,0.011347504976813111,0
+SUP1067,SKF Precision Bearings,procurement@skf-sup1067.com,Germany,Import - Europe,Tier 3,2021,3.5,Net 60,IATF 16949,0.7078765793476227,0.10963583733731848,0.08532219669290904,0
+SUP1068,NTPC Equipment Supplies,procurement@ntpc-sup1068.com,India,East India,Tier 3,2023,4.1,Net 30,AS9100,0.7727183933026848,0.06366940568842246,0.023235837292469978,0
+SUP1069,Hitachi Industrial Machinery,procurement@hitachi-sup1069.com,Germany,Import - Europe,Tier 1,2018,4.8,Net 60,AS9100,0.9796659190327203,0.1341086119275549,0.10881145230030931,0
+SUP1070,Caterpillar Heavy Logistics,procurement@caterpillar-sup1070.com,Vietnam,Import - SE Asia,Tier 1,2021,4.2,Net 90,ISO 9001,0.8538000656160742,0.0517978877010451,0.06687038993860878,0
+SUP1071,TVS Auto Accessories,procurement@tvs-sup1071.com,Vietnam,Import - SE Asia,Tier 1,2018,3.9,Net 60,ISO 45001,0.8739695356653868,0.04815549040997377,0.00814656760422152,1
+SUP1072,3M Industrial Science,procurement@3m-sup1072.com,India,West India,Tier 2,2023,4.0,Net 30,AS9100,0.7700349009229864,0.013058335691421546,-0.0019563930299371507,0
+SUP1073,BASF Chemical Solutions,procurement@basf-sup1073.com,Germany,Import - Europe,Tier 1,2022,3.3,Net 60,ISO 45001,0.8602382389478521,0.16787788099187512,-0.04884977794284631,0
+SUP1074,L&T Heavy Engineering,procurement@lt-sup1074.com,India,North India,Tier 3,2023,4.8,Net 60,IATF 16949,0.7508856494011072,0.012399742081190473,0.06744399067200935,0
+SUP1075,Eaton Hydraulic Systems,procurement@eaton-sup1075.com,India,North India,Tier 3,2021,3.7,Immediate / CIA,AS9100,0.8358364380012483,0.052140331745538414,0.028724747164918518,0
+SUP1076,Parker Hannifin Pneumatics,procurement@parker-sup1076.com,India,West India,Tier 3,2018,3.5,Net 30,IATF 16949,0.7324239926085406,0.14285775807107182,-0.09233173168381086,0
+SUP1077,Panasonic Battery Industrial,procurement@panasonic-sup1077.com,India,West India,Tier 2,2018,3.7,Net 30,ISO 45001,0.9517713681598644,0.09193651166674448,0.017857107633835995,0
+SUP1078,Honeywell Control Systems,procurement@honeywell-sup1078.com,Vietnam,Import - SE Asia,Tier 3,2020,4.8,Net 90,ISO 45001,0.6095820566553597,0.05284733482736293,-0.004062041755297119,0
+SUP1079,Cummins Engine Components,procurement@cummins-sup1079.com,China,Import - China,Tier 1,2022,3.4,Net 60,ISO 45001,0.7299730629993755,0.0638780198952729,0.14454065553023962,0
+SUP1080,Wipro Infrastructure Eng,procurement@wipro-sup1080.com,Vietnam,Import - SE Asia,Tier 2,2018,4.7,Net 60,IATF 16949,0.5962158489101955,0.04882403121778243,-0.05216671671359857,0
+SUP1081,ABB Automation Systems,procurement@abb-sup1081.com,India,East India,Tier 2,2023,4.4,Net 30,AS9100,0.8551245164581687,0.0008685572863198041,-0.036481047984043224,0
+SUP1082,Emerson Industrial Motion,procurement@emerson-sup1082.com,India,East India,Tier 3,2019,4.6,Net 30,ISO 14001,0.8374567631117161,0.059586139474990134,0.11659817858634199,0
+SUP1083,Danfoss Climate Solutions,procurement@danfoss-sup1083.com,Germany,Import - Europe,Tier 2,2020,4.9,Net 60,IATF 16949,0.8116961235523675,0.056618425048638225,0.1314057894478378,0
+SUP1084,Rockwell Automation Gear,procurement@rockwell-sup1084.com,India,South India,Tier 3,2019,4.6,Net 30,AS9100,0.9060716279422042,0.0649467303425453,0.005301023676461514,0
+SUP1085,Festo Pneumatic Automation,procurement@festo-sup1085.com,Vietnam,Import - SE Asia,Tier 1,2020,4.8,Net 30,ISO 9001,0.36095427007198105,0.020950693591942283,0.01207485063146535,0
+SUP1086,Molex Interconnect Systems,procurement@molex-sup1086.com,Vietnam,Import - SE Asia,Tier 3,2020,3.4,Net 60,AS9100,0.4356443616908762,0.09431850788548721,0.08697412379319877,0
+SUP1087,TE Connectivity Products,procurement@te-sup1087.com,Germany,Import - Europe,Tier 2,2018,4.6,Net 60,ISO 9001,0.7730336679021629,0.06562898977100444,-0.08962598781671861,1
+SUP1088,Kyocera Electronic Ceramics,procurement@kyocera-sup1088.com,China,Import - China,Tier 2,2021,4.1,Net 90,IATF 16949,0.7444282187752475,0.05231286167514404,-0.06167162107033336,0
+SUP1089,Amphenol Cable Systems,procurement@amphenol-sup1089.com,India,West India,Tier 3,2022,4.1,Net 30,IATF 16949,0.9708841891307893,0.06864170212775306,0.033155995948957295,0
+SUP1090,Yaskawa Electric Drives,procurement@yaskawa-sup1090.com,India,East India,Tier 2,2023,4.7,Net 30,IATF 16949,0.6942963936551269,0.030417911499667227,0.14299343396774755,0
+SUP1091,Fanuc Robotics Supplies,procurement@fanuc-sup1091.com,India,East India,Tier 2,2019,4.9,Immediate / CIA,IATF 16949,0.5511002962901163,0.043362081282181865,0.02385619470999563,0
+SUP1092,Mitsubishi Heavy Industries,procurement@mitsubishi-sup1092.com,India,West India,Tier 2,2023,4.4,Net 30,IATF 16949,0.917165648232849,0.09910432587989938,0.05605620750410928,0
+SUP1093,Kawasaki Heavy Machinery,procurement@kawasaki-sup1093.com,India,South India,Tier 1,2023,4.0,Net 30,IATF 16949,0.7545748938823955,0.10982824811954743,0.11802735635384072,0
+SUP1094,Komatsu Earthmoving Parts,procurement@komatsu-sup1094.com,China,Import - China,Tier 2,2023,4.0,Net 30,IATF 16949,0.7053513367740443,0.02297698378244819,0.17641308399668876,0
+SUP1095,Hyundai Heavy Industries,procurement@hyundai-sup1095.com,India,South India,Tier 1,2020,3.9,Net 60,IATF 16949,0.512802273857962,0.051792109445133655,0.015389091611101254,1
+SUP1096,Doosan Industrial Equipment,procurement@doosan-sup1096.com,China,Import - China,Tier 1,2023,3.8,Net 90,AS9100,0.9477695151826895,0.0014174347608457297,0.04898979657599444,0
+SUP1097,SANY Heavy Machinery,procurement@sany-sup1097.com,Germany,Import - Europe,Tier 3,2021,3.9,Net 60,IATF 16949,0.609288329496161,0.06232757224114807,0.15932331328057053,1

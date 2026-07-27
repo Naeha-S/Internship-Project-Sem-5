@@ -40,6 +40,7 @@ DB_PATH = os.path.join(BASE_DIR, "db", "procurement.db")
 KPI_PATH = os.path.join(BASE_DIR, "analysis", "kpi_summary.json")
 MODEL_PATH = os.path.join(BASE_DIR, "ml", "model_metrics.json")
 LOGO_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
+CSS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "style.css")
 
 @st.cache_data
 def get_logo_base64():
@@ -67,14 +68,20 @@ def load_model_metrics():
 
 @st.cache_resource
 def get_db_connection():
-    return sqlite3.connect(DB_PATH, check_same_thread=False)
+    try:
+        conn = sqlite3.connect(DB_PATH, check_same_thread=False)
+        conn.execute("SELECT 1;")
+        return conn
+    except Exception as e:
+        st.error(f"⚠️ Database Connection Error: Unable to access SQLite database at `{DB_PATH}`. Details: {e}")
+        st.stop()
 
 conn = get_db_connection()
 kpi_data = load_kpi_summary()
 model_data = load_model_metrics()
 
 # ---------------------------------------------------------------
-# 3. Dynamic CSS Styling & Visual Refinements
+# 3. Dynamic CSS Styling & External Stylesheet Loading
 # ---------------------------------------------------------------
 # --- Colour System v2: Deep Navy-Slate + Periwinkle-Indigo ---
 BG          = "#080b14"
@@ -96,269 +103,9 @@ RED_BG      = "rgba(245,96,74,0.12)"
 AMBER       = "#F5A623"
 AMBER_BG    = "rgba(245,166,35,0.12)"
 
-st.markdown(f"""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    
-    html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"], .main, .block-container {{
-        background-color: {BG} !important;
-        color: {TEXT} !important;
-        font-family: 'Inter', -apple-system, sans-serif !important;
-    }}
-
-    .block-container {{
-        padding: 2.0rem 2.5rem 5rem !important;
-        max-width: 1600px !important;
-    }}
-
-    #MainMenu, footer, [data-testid="stDecoration"], .stDeployButton {{
-        display: none !important;
-    }}
-
-    /* ─── Sidebar ─────────────────────────────────────────── */
-    [data-testid="stSidebar"] {{
-        background-color: #090d1a !important;
-        border-right: 1px solid {BORDER} !important;
-        width: 300px !important;
-    }}
-    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {{
-        margin-bottom: 1.15rem !important;
-    }}
-    .sidebar-rule {{
-        height: 1px;
-        background: {BORDER};
-        margin: 14px 0 18px;
-    }}
-
-    /* Multiselect chips */
-    span[data-baseweb="tag"] {{
-        background: rgba(108,142,245,0.10) !important;
-        border: 1px solid rgba(108,142,245,0.28) !important;
-        border-radius: 6px !important;
-        padding: 1px 8px !important;
-        color: {TEXT} !important;
-        font-size: 0.76rem !important;
-    }}
-
-    /* ─── Header ──────────────────────────────────────────── */
-    .brand-header {{
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(135deg, {CARD_BG} 0%, #121d38 50%, {CARD_BG} 100%);
-        border: 1px solid {BORDER};
-        border-top: 2px solid transparent;
-        border-image: linear-gradient(90deg, {ACCENT}, {GREEN}) 1;
-        border-radius: 14px;
-        padding: 20px 28px;
-        margin-bottom: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-    }}
-    .brand-header::before {{
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236C8EF5' fill-opacity='0.03'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        pointer-events: none;
-    }}
-    .brand-title {{
-        font-size: 22px;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-        color: {TEXT};
-    }}
-    .brand-title span {{
-        color: {GOLD};
-    }}
-    .brand-sub {{
-        font-size: 13px;
-        color: {TEXT_MUTED};
-        margin-top: 4px;
-        letter-spacing: 0.01em;
-    }}
-    .status-pill {{
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(16,217,140,0.08);
-        border: 1px solid rgba(16,217,140,0.22);
-        border-radius: 20px;
-        padding: 6px 15px;
-        font-size: 0.74rem;
-        font-weight: 600;
-        color: {GREEN};
-        white-space: nowrap;
-    }}
-    .status-dot {{
-        width: 8px; height: 8px;
-        background: {GREEN};
-        border-radius: 50%;
-        animation: pulse-dot 2s infinite;
-    }}
-    @keyframes pulse-dot {{
-        0%, 100% {{ opacity: 1; transform: scale(1); }}
-        50%         {{ opacity: 0.55; transform: scale(0.8); }}
-    }}
-
-    /* ─── KPI Metric Cards ────────────────────────────────── */
-    .metric-card {{
-        background: {CARD_BG};
-        border: 1px solid {BORDER};
-        border-radius: 12px;
-        padding: 1.35rem 1.6rem;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.22);
-        transition: transform 0.18s cubic-bezier(0.4,0,0.2,1),
-                    border-color 0.18s ease,
-                    box-shadow 0.18s ease;
-        height: 100%;
-    }}
-    .metric-card:hover {{
-        transform: translateY(-3px);
-        border-color: {BORDER_HOV};
-        box-shadow: 0 10px 28px rgba(0,0,0,0.38), 0 0 0 1px rgba(108,142,245,0.08);
-    }}
-    .metric-card-stripe {{
-        border-left: 3px solid;
-    }}
-    .metric-label {{
-        font-size: 0.72rem;
-        color: {TEXT_MUTED};
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-    }}
-    .metric-value {{
-        font-size: 2.1rem;
-        font-weight: 700;
-        color: {TEXT};
-        margin-top: 6px;
-        letter-spacing: -0.04em;
-        line-height: 1.1;
-    }}
-    .metric-unit {{
-        font-size: 1.05rem;
-        font-weight: 400;
-        color: {TEXT_DIM};
-        margin-left: 3px;
-    }}
-    .metric-badge {{
-        font-size: 0.74rem;
-        font-weight: 600;
-        margin-top: 11px;
-        padding: 4px 10px;
-        border-radius: 6px;
-        display: inline-block;
-    }}
-
-    /* ─── Upgraded Modern Navbar Tabs (Spacious & Glowing) ─── */
-    [data-baseweb="tab-list"] {{
-        gap: 12px !important;
-        background: rgba(13, 17, 32, 0.95) !important;
-        border: 1px solid {BORDER} !important;
-        border-radius: 14px !important;
-        padding: 8px 12px !important;
-        margin-bottom: 34px !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: space-between !important;
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.40) !important;
-    }}
-    button[data-baseweb="tab"] {{
-        background: transparent !important;
-        color: {TEXT_MUTED} !important;
-        font-size: 0.96rem !important;
-        font-weight: 600 !important;
-        padding: 0.80rem 1.60rem !important;
-        border: 1px solid transparent !important;
-        border-radius: 10px !important;
-        transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        letter-spacing: -0.01em !important;
-        flex: 1 1 auto !important;
-        text-align: center !important;
-    }}
-    button[data-baseweb="tab"]:hover {{
-        color: #ffffff !important;
-        background: rgba(108,142,245,0.12) !important;
-        border-color: rgba(108,142,245,0.25) !important;
-        transform: translateY(-1px) !important;
-    }}
-    button[data-baseweb="tab"][aria-selected="true"] {{
-        color: #ffffff !important;
-        background: linear-gradient(135deg, rgba(108,142,245,0.30) 0%, rgba(108,142,245,0.15) 100%) !important;
-        border: 1px solid rgba(108,142,245,0.55) !important;
-        box-shadow: 0 4px 18px rgba(108,142,245,0.28) !important;
-    }}
-    [data-baseweb="tab-highlight"], [data-baseweb="tab-border"] {{
-        display: none !important;
-    }}
-
-    /* ─── Chart Containers & Toolbar Customization ──────── */
-    .chart-card {{
-        background: #0d1525;
-        border: 1px solid {BORDER};
-        border-radius: 12px;
-        padding: 1.6rem 1.8rem 1.4rem;
-        margin-bottom: 2.0rem;
-        box-shadow: 0 4px 18px rgba(0,0,0,0.22);
-        transition: border-color 0.18s ease, box-shadow 0.18s ease;
-    }}
-    .chart-card:hover {{
-        border-color: {BORDER_HOV};
-        box-shadow: 0 6px 24px rgba(0,0,0,0.30), 0 0 20px rgba(108,142,245,0.06);
-    }}
-    .chart-title {{
-        font-size: 0.94rem;
-        font-weight: 600;
-        color: {TEXT};
-        letter-spacing: -0.015em;
-        border-left: 3px solid {ACCENT};
-        padding-left: 10px;
-        margin-bottom: 4px;
-    }}
-    .chart-sub {{
-        font-size: 0.78rem;
-        color: {TEXT_DIM};
-        margin-bottom: 18px;
-        padding-left: 13px;
-    }}
-
-    /* ─── Data Tables ────────────────────────────────────── */
-    .data-table {{ width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.82rem; }}
-    .data-table th {{
-        text-align: left; padding: 0.75rem 1rem;
-        color: {TEXT_MUTED}; font-weight: 600; font-size: 0.70rem;
-        text-transform: uppercase; letter-spacing: 0.07em;
-        border-bottom: 1px solid {BORDER};
-    }}
-    .data-table td {{
-        padding: 0.72rem 1rem; color: {TEXT};
-        border-bottom: 1px solid rgba(99,120,200,0.07);
-    }}
-
-    /* ─── Responsive Layout Media Queries ───────────────── */
-    @media (max-width: 992px) {{
-        .block-container {{
-            padding: 1.25rem 1.0rem 3.5rem !important;
-        }}
-        [data-testid="stSidebar"] {{
-            width: 100% !important;
-        }}
-        .brand-header {{
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 14px !important;
-        }}
-        [data-baseweb="tab-list"] {{
-            flex-direction: column !important;
-        }}
-        button[data-baseweb="tab"] {{
-            width: 100% !important;
-        }}
-    }}
-</style>
-""", unsafe_allow_html=True)
+if os.path.exists(CSS_PATH):
+    with open(CSS_PATH, "r", encoding="utf-8") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
 # 4. Header Bar
@@ -382,19 +129,11 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
-# 5. Sidebar Control Center & Dynamic Filters
+# 5. Sidebar Control Center & Dynamic Parameterized Filters
 # ---------------------------------------------------------------
-_total_pos = pd.read_sql("SELECT COUNT(*) AS n FROM purchase_orders", conn).iloc[0]["n"]
-st.sidebar.markdown(f"""
-<div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
-    Control Center
-</div>
-<div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 14px;">
-    Filter {_total_pos:,} orders across regions, tiers, logistics, & quality
-</div>
-""", unsafe_allow_html=True)
-
+@st.cache_data(ttl=300)
 def get_filter_options():
+    conn = get_db_connection()
     suppliers_df = pd.read_sql("SELECT DISTINCT tier, region FROM suppliers", conn)
     products_df = pd.read_sql("SELECT DISTINCT category FROM products", conn)
     shipping_df = pd.read_sql("SELECT DISTINCT shipping_mode, priority FROM purchase_orders", conn)
@@ -408,12 +147,24 @@ def get_filter_options():
 
 filters = get_filter_options()
 
+st.sidebar.markdown(f"""
+<div style="font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+    Control Center
+</div>
+<div style="font-size: 0.76rem; color: #94a3b8; margin-bottom: 14px;">
+    Filter {_hdr_orders:,} orders across regions, tiers, logistics, & quality
+</div>
+""", unsafe_allow_html=True)
+
 # Sidebar Filter Preset Quick Actions
 st.sidebar.markdown("<div style='font-size:0.75rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;'>Quick Filter Presets</div>", unsafe_allow_html=True)
 c_pre1, c_pre2 = st.sidebar.columns(2)
+c_pre3, c_pre4 = st.sidebar.columns(2)
 
 preset_all = c_pre1.button("Reset All", use_container_width=True)
-preset_peak = c_pre2.button("Peak Q4", use_container_width=True)
+preset_peak = c_pre2.button("Peak Q4 Air", use_container_width=True)
+preset_import = c_pre3.button("Imports Only", use_container_width=True)
+preset_critical = c_pre4.button("High Priority", use_container_width=True)
 
 if preset_all:
     st.session_state["sel_tiers"] = filters["tiers"]
@@ -421,14 +172,25 @@ if preset_all:
     st.session_state["sel_cats"] = filters["categories"]
     st.session_state["sel_ship"] = filters["shipping_modes"]
     st.session_state["sel_prio"] = filters["priorities"]
+    st.session_state["sel_dates"] = (datetime.date(2023, 1, 1), datetime.date(2025, 12, 31))
+    st.session_state["sup_search"] = ""
     st.session_state["only_defect"] = False
 
 if preset_peak:
     st.session_state["sel_ship"] = [m for m in filters["shipping_modes"] if "Air" in m or "Express" in m]
     st.session_state["only_defect"] = False
 
+if preset_import:
+    st.session_state["sel_regions"] = [r for r in filters["regions"] if "Import" in r]
+    st.session_state["only_defect"] = False
+
+if preset_critical:
+    st.session_state["sel_prio"] = ["High", "Urgent"] if "High" in filters["priorities"] else filters["priorities"]
+    st.session_state["only_defect"] = False
+
 # Sidebar Filter Sections
 with st.sidebar.expander("Sourcing & Supplier Filters", expanded=True):
+    supplier_search = st.text_input("Supplier Search", value=st.session_state.get("sup_search", ""), placeholder="Search by name...")
     selected_tiers = st.multiselect("Commercial Tier", options=filters["tiers"], default=st.session_state.get("sel_tiers", filters["tiers"]))
     selected_regions = st.multiselect("Supplier Region", options=filters["regions"], default=st.session_state.get("sel_regions", filters["regions"]))
 
@@ -438,44 +200,88 @@ with st.sidebar.expander("Product & Logistics Filters", expanded=True):
     selected_priorities = st.multiselect("Order Priority", options=filters["priorities"], default=st.session_state.get("sel_prio", filters["priorities"]))
 
 with st.sidebar.expander("Date Window & Quality Focus", expanded=True):
-    min_order_year, max_order_year = st.slider("Order Year Window", 2023, 2025, (2023, 2025))
+    default_date_range = st.session_state.get("sel_dates", (datetime.date(2023, 1, 1), datetime.date(2025, 12, 31)))
+    date_range = st.date_input(
+        "Order Date Window",
+        value=default_date_range,
+        min_value=datetime.date(2023, 1, 1),
+        max_value=datetime.date(2025, 12, 31)
+    )
     only_defects = st.checkbox("Show Defective Orders Only", value=st.session_state.get("only_defect", False))
 
-# Build SQL IN-clause strings without nested f-strings (Python <3.12 safe)
-def _sql_in(vals):
-    """Return a SQL IN(...) fragment from a list of string values."""
-    return "(" + ",".join("'" + v.replace("'", "''") + "'" for v in vals) + ")"
+if isinstance(date_range, (tuple, list)) and len(date_range) == 2:
+    start_date, end_date = date_range[0], date_range[1]
+elif isinstance(date_range, (tuple, list)) and len(date_range) == 1:
+    start_date, end_date = date_range[0], date_range[0]
+else:
+    start_date, end_date = datetime.date(2023, 1, 1), datetime.date(2025, 12, 31)
 
-tier_where   = f"s.tier IN {_sql_in(selected_tiers)}"           if selected_tiers       else "1=1"
-region_where = f"s.region IN {_sql_in(selected_regions)}"        if selected_regions     else "1=1"
-cat_where    = f"p.category IN {_sql_in(selected_categories)}"   if selected_categories  else "1=1"
-ship_where   = f"po.shipping_mode IN {_sql_in(selected_shipping)}" if selected_shipping  else "1=1"
-prio_where   = f"po.priority IN {_sql_in(selected_priorities)}"  if selected_priorities  else "1=1"
+# Parameterized Query Function with @st.cache_data
+@st.cache_data(ttl=300)
+def get_filtered_data_param(start_d_str, end_d_str, tiers, regions, categories, shipping_modes, priorities, sup_search, defects_only):
+    conn = get_db_connection()
+    where_clauses = ["1=1"]
+    params = []
 
-query_main = f"""
-SELECT 
-    po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode, po.priority,
-    s.supplier_id, s.supplier_name, s.region, s.tier,
-    p.product_name, p.category, p.sub_category,
-    d.delivery_date, d.is_late, d.delay_days, d.has_defect
-FROM purchase_orders po
-JOIN suppliers s ON po.supplier_id = s.supplier_id
-JOIN products p ON po.product_id = p.product_id
-JOIN deliveries d ON po.po_id = d.po_id
-WHERE CAST(strftime('%Y', po.order_date) AS INTEGER) BETWEEN {min_order_year} AND {max_order_year}
-  AND {tier_where}
-  AND {region_where}
-  AND {cat_where}
-  AND {ship_where}
-  AND {prio_where}
-"""
+    if start_d_str and end_d_str:
+        where_clauses.append("date(po.order_date) BETWEEN ? AND ?")
+        params.extend([start_d_str, end_d_str])
 
-df_filtered = pd.read_sql(query_main, conn)
+    if tiers:
+        where_clauses.append(f"s.tier IN ({','.join(['?']*len(tiers))})")
+        params.extend(tiers)
 
-if only_defects:
-    df_filtered = df_filtered[df_filtered["has_defect"] == 1]
+    if regions:
+        where_clauses.append(f"s.region IN ({','.join(['?']*len(regions))})")
+        params.extend(regions)
 
-# Fallback check — warn the user rather than silently showing full data
+    if categories:
+        where_clauses.append(f"p.category IN ({','.join(['?']*len(categories))})")
+        params.extend(categories)
+
+    if shipping_modes:
+        where_clauses.append(f"po.shipping_mode IN ({','.join(['?']*len(shipping_modes))})")
+        params.extend(shipping_modes)
+
+    if priorities:
+        where_clauses.append(f"po.priority IN ({','.join(['?']*len(priorities))})")
+        params.extend(priorities)
+
+    if sup_search and sup_search.strip():
+        where_clauses.append("s.supplier_name LIKE ?")
+        params.append(f"%{sup_search.strip()}%")
+
+    if defects_only:
+        where_clauses.append("d.has_defect = 1")
+
+    sql_query = f"""
+        SELECT 
+            po.po_id, po.order_date, po.unit_price, po.quantity, po.order_cost, po.shipping_mode, po.priority,
+            s.supplier_id, s.supplier_name, s.region, s.tier,
+            p.product_name, p.category, p.sub_category,
+            d.delivery_date, d.is_late, d.delay_days, d.has_defect
+        FROM purchase_orders po
+        JOIN suppliers s ON po.supplier_id = s.supplier_id
+        JOIN products p ON po.product_id = p.product_id
+        JOIN deliveries d ON po.po_id = d.po_id
+        WHERE {" AND ".join(where_clauses)}
+    """
+    df = pd.read_sql(sql_query, conn, params=params)
+    return df
+
+df_filtered = get_filtered_data_param(
+    start_d_str=str(start_date),
+    end_d_str=str(end_date),
+    tiers=tuple(selected_tiers) if selected_tiers else (),
+    regions=tuple(selected_regions) if selected_regions else (),
+    categories=tuple(selected_categories) if selected_categories else (),
+    shipping_modes=tuple(selected_shipping) if selected_shipping else (),
+    priorities=tuple(selected_priorities) if selected_priorities else (),
+    sup_search=supplier_search,
+    defects_only=only_defects
+)
+
+# Fallback check — warn the user rather than silently showing empty UI
 if df_filtered.empty:
     st.warning(
         "No orders match this filter combination — showing all data instead. "
