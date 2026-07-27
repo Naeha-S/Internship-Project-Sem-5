@@ -1095,31 +1095,67 @@ with tab3:
 # ---------------------------------------------------------------
 # TAB 4: ML DELAY PREDICTION & EXPLAINABILITY (ML STUDIO)
 # ---------------------------------------------------------------
+@st.cache_resource
+def load_ml_model_artifact(artifact_path):
+    import joblib
+    if os.path.exists(artifact_path):
+        try:
+            return joblib.load(artifact_path)
+        except Exception:
+            return None
+    return None
+
+@st.cache_data(ttl=300)
+def get_all_suppliers_extended_stats():
+    conn = get_db_connection()
+    sql = """
+        SELECT 
+            s.supplier_id, s.supplier_name, s.tier, s.region,
+            COUNT(po.po_id) as total_pos,
+            COALESCE(AVG(d.is_late), 0.20) as late_rate,
+            COALESCE(AVG(d.has_defect), 0.03) as defect_rate,
+            COALESCE(AVG(d.delay_days), 2.5) as avg_delay_days,
+            COALESCE(AVG(po.quantity), 250.0) as mean_order_qty
+        FROM suppliers s
+        LEFT JOIN purchase_orders po ON s.supplier_id = po.supplier_id
+        LEFT JOIN deliveries d ON po.po_id = d.po_id
+        GROUP BY s.supplier_id
+    """
+    return pd.read_sql(sql, conn)
+
 with tab4:
+    # Pull dynamic ML metrics from model_data dict
+    champ_name = model_data.get("champion_model", "Random Forest Classifier").replace("1. ", "").replace("4. ", "")
+    champ_auc = model_data.get("champion_roc_auc", 0.705)
+    champ_acc = model_data.get("champion_accuracy", 0.645)
+    cost_winner_name = model_data.get("cost_optimal_model", "Logistic Regression").replace("3. ", "").replace("1. ", "")
+    cost_winner_cost = model_data.get("cost_optimal_expected_risk_cost", 26285000.0)
+    opt_threshold = model_data.get("optimal_threshold", 0.35)
+
     # 1. TOP KPI SUMMARY ROW FOR ML STUDIO
     ml_k1, ml_k2, ml_k3, ml_k4 = st.columns(4, gap="medium")
     with ml_k1:
         st.markdown(f"""
         <div class="metric-card metric-card-stripe" style="border-left-color:{GOLD};">
             <div class="metric-label">ROC-AUC Champion Engine</div>
-            <div class="metric-value" style="color:{GOLD};">Random Forest</div>
-            <div class="metric-badge" style="background:{GOLD_BG}; color:{GOLD};">ROC-AUC 0.714 &nbsp;&middot;&nbsp; Acc 65.7%</div>
+            <div class="metric-value" style="color:{GOLD};">{champ_name}</div>
+            <div class="metric-badge" style="background:{GOLD_BG}; color:{GOLD};">ROC-AUC {champ_auc:.3f} &nbsp;&middot;&nbsp; Acc {champ_acc*100:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
     with ml_k2:
         st.markdown(f"""
         <div class="metric-card metric-card-stripe" style="border-left-color:{GREEN};">
             <div class="metric-label">Cost-Optimal Winner</div>
-            <div class="metric-value" style="color:{GREEN};">Logistic Reg.</div>
-            <div class="metric-badge" style="background:{GREEN_BG}; color:{GREEN};">Expected Cost: &#8377;87.90M</div>
+            <div class="metric-value" style="color:{GREEN};">{cost_winner_name}</div>
+            <div class="metric-badge" style="background:{GREEN_BG}; color:{GREEN};">Expected Risk: &#8377;{cost_winner_cost/1e6:.2f}M</div>
         </div>
         """, unsafe_allow_html=True)
     with ml_k3:
         st.markdown(f"""
         <div class="metric-card metric-card-stripe" style="border-left-color:{ACCENT};">
-            <div class="metric-label">Decision Threshold (&tau;)</div>
-            <div class="metric-value" style="color:{ACCENT};">0.35</div>
-            <div class="metric-badge" style="background:{ACCENT_GLOW}; color:{ACCENT};">Cost-Sensitive Minima</div>
+            <div class="metric-label">Decision Cutoff Threshold (&tau;)</div>
+            <div class="metric-value" style="color:{ACCENT};">{opt_threshold:.2f}</div>
+            <div class="metric-badge" style="background:{ACCENT_GLOW}; color:{ACCENT};">Cost-Minimizing Cutoff</div>
         </div>
         """, unsafe_allow_html=True)
     with ml_k4:
@@ -1222,13 +1258,13 @@ with tab4:
                 border-radius:10px; padding:15px 20px; margin-bottom:28px;">
         <div style="font-weight:600; font-size:0.88rem; color:{TEXT}; margin-bottom:6px;">Model Evaluation Summary & Architectural Trade-off</div>
         <div style="display:flex; gap:24px; font-size:0.80rem; color:{TEXT_MUTED}; flex-wrap:wrap; line-height:1.5;">
-            <div><b>Cost-Optimal Winner</b>: Logistic Regression (Expected Cost: &#8377;87.90M, saving &#8377;147.05M vs baseline)</div>
-            <div><b>ROC-AUC Champion & Live Engine</b>: Random Forest (<span style="color:{GREEN}; font-weight:700;">ROC-AUC 0.714</span> [95% CI: 0.706–0.725], Accuracy 65.7%, FPR 32.7%)</div>
+            <div><b>Cost-Optimal Winner</b>: {cost_winner_name} (Expected Risk: &#8377;{cost_winner_cost/1e6:.2f}M)</div>
+            <div><b>ROC-AUC Champion & Live Engine</b>: {champ_name} (<span style="color:{GREEN}; font-weight:700;">ROC-AUC {champ_auc:.3f}</span>, Accuracy {champ_acc*100:.1f}%)</div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # 3. LIVE RISK SIMULATOR SECTION
+    # 3. LIVE RISK SIMULATOR SECTION WITH DUAL-SUPPLIER COMPARISON
     st.markdown(f"""
     <div class="section-divider">
         <div class="section-divider-line"></div>
@@ -1239,25 +1275,21 @@ with tab4:
         <span style="font-size:0.96rem; font-weight:600; color:{TEXT}; letter-spacing:-0.02em;">Purchase Order Delay Risk Engine</span>
     </div>
     <div style="font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:18px;">
-        Configure order parameters below. Real-time inference calls <code>model.predict_proba()</code> on serialized Random Forest engine.
+        Configure order parameters below. Real-time inference queries supplier rolling stats from DB and invokes cached <code>model.predict_proba()</code>.
     </div>
     """, unsafe_allow_html=True)
 
-    all_suppliers_df = pd.read_sql("""
-        SELECT s.supplier_id, s.supplier_name, s.tier, s.region,
-               COALESCE(AVG(d.is_late), 0.20) as late_rate
-        FROM suppliers s
-        LEFT JOIN purchase_orders po ON s.supplier_id = po.supplier_id
-        LEFT JOIN deliveries d ON po.po_id = d.po_id
-        GROUP BY s.supplier_id
-    """, conn)
-
+    all_suppliers_df = get_all_suppliers_extended_stats()
     supplier_options = sorted(all_suppliers_df["supplier_name"].tolist())
+
+    enable_compare = st.checkbox("Enable Side-by-Side Dual Supplier Benchmark Comparison", key="ml_enable_compare")
 
     with st.form(key="order_risk_simulator_form"):
         sim1, sim2 = st.columns(2, gap="medium")
         with sim1:
-            sim_supplier = st.selectbox("Supplier", options=supplier_options)
+            sim_supplier = st.selectbox("Primary Supplier A", options=supplier_options)
+            if enable_compare:
+                sim_supplier_b = st.selectbox("Comparison Supplier B", options=supplier_options, index=min(1, len(supplier_options)-1))
             sim_category = st.selectbox("Product Category", options=filters["categories"])
             sim_mode = st.selectbox("Shipping Mode", options=filters["shipping_modes"])
         with sim2:
@@ -1267,135 +1299,177 @@ with tab4:
 
         submitted = st.form_submit_button("Execute ML Inference & Risk Audit", use_container_width=True)
 
-    # Perform real-time ML inference
-    import joblib
     model_artifact_path = os.path.join(BASE_DIR, "ml", "rf_model.joblib")
+    art = load_ml_model_artifact(model_artifact_path)
 
-    total_order_cost = sim_qty * sim_unit_price
-    sup_row = all_suppliers_df[all_suppliers_df["supplier_name"] == sim_supplier].iloc[0]
-    sup_id = sup_row["supplier_id"]
-    sup_region = sup_row["region"]
-    sup_tier = sup_row["tier"]
+    # Function to run inference for a single supplier safely
+    def _run_single_inference(sup_name):
+        sup_match = all_suppliers_df[all_suppliers_df["supplier_name"] == sup_name]
+        if sup_match.empty:
+            st.warning(f"Supplier metadata for '{sup_name}' is unavailable.")
+            return None
+        sup_row = sup_match.iloc[0]
+        sup_id = sup_row["supplier_id"]
+        sup_region = sup_row["region"]
+        sup_tier = sup_row["tier"]
+        sup_mean_qty = max(float(sup_row["mean_order_qty"]), 1.0)
+        sup_avg_delay = float(sup_row["avg_delay_days"])
+        total_order_cost = sim_qty * sim_unit_price
 
-    if os.path.exists(model_artifact_path):
-        try:
-            art = joblib.load(model_artifact_path)
-            model = art["model"]
-            features = art["features"]
-            encoders = art["label_encoders"]
-            te_maps = art["te_maps"]
-            g_mean = art["global_late_mean"]
-            threshold = art["optimal_threshold"]
+        if art is not None:
+            try:
+                model = art["model"]
+                features = art["features"]
+                encoders = art["label_encoders"]
+                te_maps = art["te_maps"]
+                g_mean = art["global_late_mean"]
+                threshold = art.get("optimal_threshold", opt_threshold)
 
-            row_dict = {
-                "quantity": sim_qty,
-                "unit_price": sim_unit_price,
-                "order_cost": total_order_cost,
-                "unit_cost_base": sim_unit_price * 0.85,
-                "lead_time_days_base": 14,
-                "order_month": sim_month,
-                "order_quarter": (sim_month - 1) // 3 + 1,
-                "order_day_of_week": 2,
-                "is_peak_season": 1 if sim_month in [10, 11, 12, 1] else 0,
-                "order_qty_vs_sup_mean": round(sim_qty / 250.0, 3),
-                "sup_concurrent_po_30d": 3,
-                "sup_rolling_ontime": 1.0 - float(sup_row["late_rate"]),
-                "sup_rolling_defect": 0.03,
-                "sup_rolling_delay": 3.5,
-                "sup_ewm_ontime": 1.0 - float(sup_row["late_rate"]),
-                "sup_ewm_delay": 3.5,
-                "supplier_age_years": 5,
-                "crude_oil_index": 1.05,
-                "is_holiday_order": 0,
-                "container_shortage_flag": 1 if sim_month in [10, 11, 12] else 0,
-                "supplier_id_te": te_maps["supplier_id"].get(sup_id, g_mean),
-                "product_id_te": g_mean,
-                "sup_category_te": te_maps["sup_category"].get(f"{sup_id}_{sim_category}", g_mean),
-                "sup_month_te": te_maps["sup_month"].get(f"{sup_id}_{sim_month}", g_mean),
-                "ship_region_te": te_maps["ship_region"].get(f"{sim_mode}_{sup_region}", g_mean),
-                "logistics_stress_index": 14.0 / (3.5 + 1.0),
-                "supplier_health_index": (1.0 - float(sup_row["late_rate"])) * 0.97,
-                "priority_code": 1,
-                "shipping_mode_code": encoders["shipping_mode"].transform([sim_mode])[0] if sim_mode in encoders["shipping_mode"].classes_ else 0,
-                "category_code": encoders["category"].transform([sim_category])[0] if sim_category in encoders["category"].classes_ else 0,
-                "sub_category_code": 0,
-                "region_code": encoders["region"].transform([sup_region])[0] if sup_region in encoders["region"].classes_ else 0,
-                "tier_code": encoders["tier"].transform([sup_tier])[0] if sup_tier in encoders["tier"].classes_ else 0,
-            }
+                row_dict = {
+                    "quantity": sim_qty,
+                    "unit_price": sim_unit_price,
+                    "order_cost": total_order_cost,
+                    "unit_cost_base": sim_unit_price * 0.85,
+                    "lead_time_days_base": 14,
+                    "order_month": sim_month,
+                    "order_quarter": (sim_month - 1) // 3 + 1,
+                    "order_day_of_week": 2,
+                    "is_peak_season": 1 if sim_month in [10, 11, 12, 1] else 0,
+                    "order_qty_vs_sup_mean": round(sim_qty / sup_mean_qty, 3),
+                    "sup_concurrent_po_30d": min(int(sup_row["total_pos"]) // 12, 15),
+                    "sup_rolling_ontime": 1.0 - float(sup_row["late_rate"]),
+                    "sup_rolling_defect": float(sup_row["defect_rate"]),
+                    "sup_rolling_delay": sup_avg_delay,
+                    "sup_ewm_ontime": 1.0 - float(sup_row["late_rate"]),
+                    "sup_ewm_delay": sup_avg_delay,
+                    "supplier_age_years": 5,
+                    "crude_oil_index": 1.05,
+                    "is_holiday_order": 0,
+                    "container_shortage_flag": 1 if sim_month in [10, 11, 12] else 0,
+                    "supplier_id_te": te_maps["supplier_id"].get(sup_id, g_mean),
+                    "product_id_te": g_mean,
+                    "sup_category_te": te_maps["sup_category"].get(f"{sup_id}_{sim_category}", g_mean),
+                    "sup_month_te": te_maps["sup_month"].get(f"{sup_id}_{sim_month}", g_mean),
+                    "ship_region_te": te_maps["ship_region"].get(f"{sim_mode}_{sup_region}", g_mean),
+                    "logistics_stress_index": 14.0 / (sup_avg_delay + 1.0),
+                    "supplier_health_index": (1.0 - float(sup_row["late_rate"])) * 0.97,
+                    "priority_code": 1,
+                    "shipping_mode_code": encoders["shipping_mode"].transform([sim_mode])[0] if sim_mode in encoders["shipping_mode"].classes_ else 0,
+                    "category_code": encoders["category"].transform([sim_category])[0] if sim_category in encoders["category"].classes_ else 0,
+                    "sub_category_code": 0,
+                    "region_code": encoders["region"].transform([sup_region])[0] if sup_region in encoders["region"].classes_ else 0,
+                    "tier_code": encoders["tier"].transform([sup_tier])[0] if sup_tier in encoders["tier"].classes_ else 0,
+                }
 
-            X_sim = pd.DataFrame([row_dict])[features]
-            prob = float(model.predict_proba(X_sim)[0, 1])
-        except Exception as e:
+                X_sim = pd.DataFrame([row_dict])[features]
+                prob = float(model.predict_proba(X_sim)[0, 1])
+            except Exception as e:
+                prob = float(sup_row["late_rate"])
+                threshold = opt_threshold
+        else:
             prob = float(sup_row["late_rate"])
-            threshold = float(model_data.get("optimal_threshold", 0.35))
-    else:
-        prob = float(sup_row["late_rate"])
-        threshold = float(model_data.get("optimal_threshold", 0.35))
+            threshold = opt_threshold
 
-    pred_late = prob >= threshold
+        pred_late = prob >= threshold
+        if pred_late:
+            delay_multiplier = 1.6 if "Sea" in sim_mode else (1.2 if "Standard" in sim_mode else 0.8)
+            est_days = round(max(1.2, prob * sup_avg_delay * 2.0 * delay_multiplier), 1)
+            exp_risk_cost = prob * 50000.0  # COST_FN = INR 50,000 per unmitigated late delivery
+        else:
+            est_days = 0.0
+            exp_risk_cost = (1 - prob) * 5000.0  # COST_FP = INR 5,000 per unnecessary intervention
 
-    if pred_late:
-        delay_multiplier = 1.6 if "Sea" in sim_mode else (1.2 if "Standard" in sim_mode else 0.8)
-        est_days = round(max(1.2, prob * 10.0 * delay_multiplier), 1)
-    else:
-        est_days = 0.0
+        return {
+            "supplier_name": sup_name,
+            "sup_row": sup_row,
+            "prob": prob,
+            "threshold": threshold,
+            "pred_late": pred_late,
+            "est_days": est_days,
+            "exp_risk_cost": exp_risk_cost,
+            "total_order_cost": total_order_cost
+        }
 
-    exp_risk_cost = total_order_cost * prob * 0.15
+    res_a = _run_single_inference(sim_supplier)
 
-    res1, res2, res3, res4 = st.columns(4, gap="medium")
-    res1.markdown(f"""
-    <div class="metric-card metric-card-stripe" style="border-left-color:{RED if pred_late else GREEN};">
-        <div class="metric-label">Predicted Risk Status</div>
-        <div class="metric-value" style="color:{RED if pred_late else GREEN};">{'LATE RISK' if pred_late else 'ON TIME'}</div>
-        <div class="metric-badge" style="background:{RED_BG if pred_late else GREEN_BG}; color:{RED if pred_late else GREEN};">
-            {'Cutoff Threshold &ge; {:.0f}%'.format(threshold*100) if pred_late else 'Within Safe Limit'}
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    res2.markdown(f"""
-    <div class="metric-card metric-card-stripe" style="border-left-color:{AMBER};">
-        <div class="metric-label">Delay Probability</div>
-        <div class="metric-value" style="color:{AMBER};">{prob*100:.1f}<span class="metric-unit">%</span></div>
-        <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">Order Value: &#8377;{total_order_cost:,.0f}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    res3.markdown(f"""
-    <div class="metric-card metric-card-stripe" style="border-left-color:{ACCENT};">
-        <div class="metric-label">Estimated Delay Duration</div>
-        <div class="metric-value" style="color:{ACCENT};">{est_days} <span class="metric-unit">Days</span></div>
-        <div class="metric-badge" style="background:{ACCENT_GLOW}; color:{ACCENT};">Logistics Mode: {sim_mode}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    res4.markdown(f"""
-    <div class="metric-card metric-card-stripe" style="border-left-color:{GOLD};">
-        <div class="metric-label">Expected Financial Exposure</div>
-        <div class="metric-value" style="color:{GOLD};">&#8377;{exp_risk_cost/1e3:.1f}<span class="metric-unit"> K</span></div>
-        <div class="metric-badge" style="background:{GOLD_BG}; color:{GOLD};">Risk Cost Impact</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Local Feature Insights Box
-    st.markdown(f"""
-    <div style="background:{CARD_BG}; border:1px solid {BORDER}; border-radius:10px; padding:16px 20px; margin-top:16px; margin-bottom:28px;">
-        <div style="font-size:0.75rem; font-weight:700; color:{ACCENT}; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">
-            Local Order Risk Drivers (SHAP Local Explanation)
-        </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; font-size:0.80rem; color:{TEXT_MUTED};">
-            <div style="background:rgba(245,96,74,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {RED};">
-                <b>Seasonality Factor</b>: {('Month ' + str(sim_month) + ' (Peak Season)') if sim_month in [10,11,12,1] else ('Month ' + str(sim_month) + ' (Off-Peak)')}
+    if res_a:
+        if not enable_compare:
+            # Single Supplier Results View
+            res1, res2, res3, res4 = st.columns(4, gap="medium")
+            res1.markdown(f"""
+            <div class="metric-card metric-card-stripe" style="border-left-color:{RED if res_a['pred_late'] else GREEN};">
+                <div class="metric-label">Predicted Risk Status</div>
+                <div class="metric-value" style="color:{RED if res_a['pred_late'] else GREEN};">{'LATE RISK' if res_a['pred_late'] else 'ON TIME'}</div>
+                <div class="metric-badge" style="background:{RED_BG if res_a['pred_late'] else GREEN_BG}; color:{RED if res_a['pred_late'] else GREEN};">
+                    {'Cutoff &ge; {:.0f}%'.format(res_a['threshold']*100) if res_a['pred_late'] else 'Within Safe Limit'}
+                </div>
             </div>
-            <div style="background:rgba(16,217,140,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {GREEN};">
-                <b>Supplier Baseline</b>: {sim_supplier} (Historical Late Rate: {float(sup_row['late_rate'])*100:.1f}%)
+            """, unsafe_allow_html=True)
+
+            res2.markdown(f"""
+            <div class="metric-card metric-card-stripe" style="border-left-color:{AMBER};">
+                <div class="metric-label">Delay Probability</div>
+                <div class="metric-value" style="color:{AMBER};">{res_a['prob']*100:.1f}<span class="metric-unit">%</span></div>
+                <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">Order Value: &#8377;{res_a['total_order_cost']:,.0f}</div>
             </div>
-            <div style="background:rgba(108,142,245,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {ACCENT};">
-                <b>Logistics Route</b>: {sim_mode} ({sup_region})
+            """, unsafe_allow_html=True)
+
+            res3.markdown(f"""
+            <div class="metric-card metric-card-stripe" style="border-left-color:{ACCENT};">
+                <div class="metric-label">Estimated Delay Duration</div>
+                <div class="metric-value" style="color:{ACCENT};">{res_a['est_days']} <span class="metric-unit">Days</span></div>
+                <div class="metric-badge" style="background:{ACCENT_GLOW}; color:{ACCENT};">Logistics Mode: {sim_mode}</div>
             </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
+
+            res4.markdown(f"""
+            <div class="metric-card metric-card-stripe" style="border-left-color:{GOLD};">
+                <div class="metric-label">Expected Financial Exposure</div>
+                <div class="metric-value" style="color:{GOLD};">&#8377;{res_a['exp_risk_cost']/1e3:.1f}<span class="metric-unit"> K</span></div>
+                <div class="metric-badge" style="background:{GOLD_BG}; color:{GOLD};">Risk Cost Impact</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            # Local Feature Breakdown Box
+            st.markdown(f"""
+            <div style="background:{CARD_BG}; border:1px solid {BORDER}; border-radius:10px; padding:16px 20px; margin-top:16px; margin-bottom:28px;">
+                <div style="font-size:0.75rem; font-weight:700; color:{ACCENT}; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">
+                    Local Order Risk Drivers &amp; Real-Time Feature Audit
+                </div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:12px; font-size:0.80rem; color:{TEXT_MUTED};">
+                    <div style="background:rgba(245,96,74,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {RED};">
+                        <b>Seasonality Factor</b>: {('Month ' + str(sim_month) + ' (Peak Season)') if sim_month in [10,11,12,1] else ('Month ' + str(sim_month) + ' (Off-Peak)')}
+                    </div>
+                    <div style="background:rgba(16,217,140,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {GREEN};">
+                        <b>Supplier Baseline</b>: {sim_supplier} (Historical Late Rate: {float(res_a['sup_row']['late_rate'])*100:.1f}%)
+                    </div>
+                    <div style="background:rgba(108,142,245,0.06); padding:8px 12px; border-radius:6px; border-left:2px solid {ACCENT};">
+                        <b>Logistics Route</b>: {sim_mode} ({res_a['sup_row']['region']})
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+        else:
+            # Dual Supplier Side-by-Side Comparison
+            res_b = _run_single_inference(sim_supplier_b)
+            if res_b:
+                st.markdown("<div style='font-size:0.90rem; font-weight:700; color:#3b82f6; margin-top:10px; margin-bottom:10px;'>Side-by-Side Supplier Risk Benchmark:</div>", unsafe_allow_html=True)
+                cmp_c1, cmp_c2 = st.columns(2, gap="medium")
+
+                with cmp_c1:
+                    st.markdown(f"### Supplier A: {sim_supplier}")
+                    st.metric("Predicted Status", "LATE RISK" if res_a['pred_late'] else "ON TIME")
+                    st.metric("Delay Probability", f"{res_a['prob']*100:.1f}%")
+                    st.metric("Est. Delay Days", f"{res_a['est_days']} Days")
+                    st.metric("Expected Financial Exposure", f"₹{res_a['exp_risk_cost']/1e3:.1f} K")
+
+                with cmp_c2:
+                    st.markdown(f"### Supplier B: {sim_supplier_b}")
+                    st.metric("Predicted Status", "LATE RISK" if res_b['pred_late'] else "ON TIME")
+                    st.metric("Delay Probability", f"{res_b['prob']*100:.1f}%")
+                    st.metric("Est. Delay Days", f"{res_b['est_days']} Days")
+                    st.metric("Expected Financial Exposure", f"₹{res_b['exp_risk_cost']/1e3:.1f} K")
 
     # 4. REALLOCATION SIMULATOR SECTION
     st.markdown(f"""
