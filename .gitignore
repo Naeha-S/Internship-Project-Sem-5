@@ -20,5 +20,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Timestamped Data Backups
+# Timestamped Data & Model Backups
 data/*_2026*.csv
+ml/*_2026*.joblib
