@@ -594,44 +594,170 @@ with tab1:
     """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
-# TAB 2: SUPPLIER & REGIONAL PERFORMANCE
+# TAB 2: SUPPLIER & REGIONAL PERFORMANCE (DYNAMIC)
 # ---------------------------------------------------------------
 with tab2:
-    # CHART 5: Supplier On-Time Rate (Top & Bottom)
-    top_sup = pd.DataFrame(kpi_data.get("top_suppliers", []))
-    bot_sup = pd.DataFrame(kpi_data.get("bottom_suppliers", []))
-    comb_sup = pd.concat([top_sup, bot_sup]).drop_duplicates(subset="supplier_id").sort_values("on_time_pct")
+    if df_filtered.empty or "supplier_name" not in df_filtered.columns:
+        st.warning("No supplier data available for the selected filter combination.")
+    else:
+        # Aggregated supplier metrics from df_filtered (dynamically reactive)
+        sup_metrics = df_filtered.groupby(["supplier_id", "supplier_name", "region", "tier"]).agg(
+            total_orders=("po_id", "count"),
+            total_spend=("order_cost", "sum"),
+            late_orders=("is_late", "sum"),
+            defect_orders=("has_defect", "sum"),
+            avg_delay_days=("delay_days", "mean")
+        ).reset_index()
+        sup_metrics["on_time_pct"] = ((1.0 - (sup_metrics["late_orders"] / sup_metrics["total_orders"])) * 100.0).round(1)
+        sup_metrics["defect_rate_pct"] = ((sup_metrics["defect_orders"] / sup_metrics["total_orders"]) * 100.0).round(1)
+        sup_metrics["avg_delay_days"] = sup_metrics["avg_delay_days"].round(1)
 
-    fig_sup_rank = px.bar(
-        comb_sup, x="on_time_pct", y="supplier_name", orientation="h",
-        color="on_time_pct", color_continuous_scale=[RED, AMBER, GREEN],
-        labels={"on_time_pct": "On-Time %", "supplier_name": "Supplier"}
-    )
-    fig_sup_rank.update_layout(**PLOT_LAYOUT, height=360)
+        # 1. TOP ROW: DYNAMIC SUPPLIER RANKING & SCATTER PLOT
+        c_t2_l, c_t2_r = st.columns([52, 48], gap="medium")
 
-    st.markdown("""
-    <div class="chart-card">
-        <div class="chart-title">Supplier On-Time Delivery Ranking</div>
-        <div class="chart-sub">Reliability benchmarking across top and bottom performing suppliers</div>
-    """, unsafe_allow_html=True)
-    st.plotly_chart(fig_sup_rank, use_container_width=True, config=PLOTLY_CONFIG)
-    st.markdown("</div>", unsafe_allow_html=True)
+        with c_t2_l:
+            st.markdown("""
+            <div class="chart-card">
+                <div class="chart-title">Supplier On-Time Delivery Ranking (Dynamic)</div>
+                <div class="chart-sub">Fulfillment reliability benchmarking across filtered supplier network</div>
+            """, unsafe_allow_html=True)
+            
+            rank_view = st.radio(
+                "Filter Display Mode",
+                ["Bottom 10 (Lowest SLA)", "Top 10 (Highest SLA)", "All Filtered Suppliers"],
+                horizontal=True,
+                key="t2_rank_mode"
+            )
+            
+            if "Bottom" in rank_view:
+                chart_sup = sup_metrics.sort_values("on_time_pct", ascending=True).head(10)
+            elif "Top" in rank_view:
+                chart_sup = sup_metrics.sort_values("on_time_pct", ascending=False).head(10).sort_values("on_time_pct", ascending=True)
+            else:
+                chart_sup = sup_metrics.sort_values("on_time_pct", ascending=True)
 
-    # CHART 6: Spend Concentration by Region & Tier
-    st.markdown("""
-    <div class="chart-card">
-        <div class="chart-title">Spend Concentration by Region & Commercial Tier</div>
-        <div class="chart-sub">Stacked procurement expenditure — Tier 1 Strategic / Tier 2 Preferred / Tier 3 Tactical</div>
-    """, unsafe_allow_html=True)
-    reg_tier_spend = df_filtered.groupby(["region", "tier"])["order_cost"].sum().reset_index()
-    fig_reg_spend = px.bar(
-        reg_tier_spend, x="region", y="order_cost", color="tier", barmode="stack",
-        color_discrete_map={"Tier 1": ACCENT, "Tier 2": AMBER, "Tier 3": RED},
-        labels={"order_cost": "Total Spend (&#8377;)", "region": "Region", "tier": "Commercial Tier"}
-    )
-    fig_reg_spend.update_layout(**PLOT_LAYOUT, height=360)
-    st.plotly_chart(fig_reg_spend, use_container_width=True, config=PLOTLY_CONFIG)
-    st.markdown("</div>", unsafe_allow_html=True)
+            fig_sup_rank = px.bar(
+                chart_sup, x="on_time_pct", y="supplier_name", orientation="h",
+                color="on_time_pct", color_continuous_scale=[RED, AMBER, GREEN],
+                range_color=[40, 100],
+                labels={"on_time_pct": "On-Time %", "supplier_name": "Supplier"},
+                hover_data=["region", "tier", "total_orders", "avg_delay_days"]
+            )
+            fig_sup_rank.update_layout(**PLOT_LAYOUT, height=max(340, len(chart_sup) * 26))
+            st.plotly_chart(fig_sup_rank, use_container_width=True, config=PLOTLY_CONFIG)
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        with c_t2_r:
+            st.markdown("""
+            <div class="chart-card">
+                <div class="chart-title">Spend vs. On-Time Fulfillment Matrix</div>
+                <div class="chart-sub">Expenditure volume vs SLA performance — High Spend + Low SLA indicates risk exposure</div>
+            """, unsafe_allow_html=True)
+
+            fig_scatter = px.scatter(
+                sup_metrics, x="total_spend", y="on_time_pct",
+                size="total_orders", color="tier",
+                hover_name="supplier_name",
+                hover_data=["region", "defect_rate_pct", "avg_delay_days"],
+                color_discrete_map={"Tier 1": ACCENT, "Tier 2": AMBER, "Tier 3": RED},
+                labels={"total_spend": "Total Spend (&#8377;)", "on_time_pct": "On-Time %", "tier": "Commercial Tier"}
+            )
+            fig_scatter.add_hline(y=70.0, line_dash="dash", line_color=RED, opacity=0.6, annotation_text="Target SLA 70%")
+            fig_scatter.update_layout(**PLOT_LAYOUT, height=390)
+            st.plotly_chart(fig_scatter, use_container_width=True, config=PLOTLY_CONFIG)
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        # 2. SECOND ROW: REGION x TIER SLA HEATMAP & SPEND CONCENTRATION
+        c_t2_l2, c_t2_r2 = st.columns([50, 50], gap="medium")
+
+        with c_t2_l2:
+            st.markdown("""
+            <div class="chart-card">
+                <div class="chart-title">Region &times; Commercial Tier On-Time SLA Heatmap</div>
+                <div class="chart-sub">Average fulfillment on-time % matrix across geographic regions and tiers</div>
+            """, unsafe_allow_html=True)
+
+            reg_tier_pivot = df_filtered.groupby(["region", "tier"]).agg(
+                on_time_rate=("is_late", lambda x: ((1.0 - (x.sum()/len(x))) * 100.0))
+            ).reset_index().pivot(index="region", columns="tier", values="on_time_rate").fillna(0.0).round(1)
+
+            fig_heatmap = px.imshow(
+                reg_tier_pivot,
+                labels=dict(x="Commercial Tier", y="Region", color="On-Time %"),
+                color_continuous_scale=[RED, AMBER, GREEN],
+                text_auto=".1f",
+                aspect="auto"
+            )
+            fig_heatmap.update_layout(**PLOT_LAYOUT, height=340)
+            st.plotly_chart(fig_heatmap, use_container_width=True, config=PLOTLY_CONFIG)
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        with c_t2_r2:
+            st.markdown("""
+            <div class="chart-card">
+                <div class="chart-title">Spend Concentration by Region & Commercial Tier</div>
+                <div class="chart-sub">Stacked procurement expenditure — Tier 1 Strategic / Tier 2 Preferred / Tier 3 Tactical</div>
+            """, unsafe_allow_html=True)
+            reg_tier_spend = df_filtered.groupby(["region", "tier"])["order_cost"].sum().reset_index()
+            fig_reg_spend = px.bar(
+                reg_tier_spend, x="region", y="order_cost", color="tier", barmode="stack",
+                color_discrete_map={"Tier 1": ACCENT, "Tier 2": AMBER, "Tier 3": RED},
+                labels={"order_cost": "Total Spend (&#8377;)", "region": "Region", "tier": "Commercial Tier"}
+            )
+            fig_reg_spend.update_layout(**PLOT_LAYOUT, height=340)
+            st.plotly_chart(fig_reg_spend, use_container_width=True, config=PLOTLY_CONFIG)
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        # 3. SUPPLIER DETAIL DRILL-DOWN PANEL
+        st.markdown("""
+        <div class="chart-card">
+            <div class="chart-title">Supplier Deep-Dive Inspection Panel</div>
+            <div class="chart-sub">Drill into individual supplier performance metrics, delay trajectories, and purchase order log</div>
+        """, unsafe_allow_html=True)
+
+        sup_list = sorted(sup_metrics["supplier_name"].unique())
+        selected_sup_name = st.selectbox("Select Supplier to Inspect", options=sup_list, key="t2_sup_select")
+
+        if selected_sup_name:
+            sup_detail = sup_metrics[sup_metrics["supplier_name"] == selected_sup_name].iloc[0]
+            sup_orders = df_filtered[df_filtered["supplier_name"] == selected_sup_name].sort_values("order_date", ascending=False)
+
+            d_col1, d_col2, d_col3, d_col4, d_col5 = st.columns(5)
+            with d_col1:
+                st.metric("Total Orders", f"{sup_detail['total_orders']:,}")
+            with d_col2:
+                st.metric("Total Spend", f"₹{sup_detail['total_spend']/1e5:.1f} L")
+            with d_col3:
+                st.metric("On-Time SLA", f"{sup_detail['on_time_pct']:.1f}%")
+            with d_col4:
+                st.metric("Defect Rate", f"{sup_detail['defect_rate_pct']:.1f}%")
+            with d_col5:
+                st.metric("Avg Delay", f"{sup_detail['avg_delay_days']:.1f} days")
+
+            # Monthly Trajectory Chart for Selected Supplier
+            sup_orders_copy = sup_orders.copy()
+            sup_orders_copy["order_month_str"] = pd.to_datetime(sup_orders_copy["order_date"]).dt.to_period("M").astype(str)
+            sup_monthly = sup_orders_copy.groupby("order_month_str").agg(
+                avg_delay=("delay_days", "mean"),
+                late_rate=("is_late", lambda x: (x.sum()/len(x))*100.0)
+            ).reset_index()
+
+            if not sup_monthly.empty:
+                fig_sup_traj = px.line(
+                    sup_monthly, x="order_month_str", y="avg_delay",
+                    markers=True, title=f"Monthly Average Delay Trajectory (Days) — {selected_sup_name}",
+                    labels={"order_month_str": "Month", "avg_delay": "Avg Delay (Days)"},
+                    color_discrete_sequence=[ACCENT]
+                )
+                fig_sup_traj.update_layout(**PLOT_LAYOUT, height=260)
+                st.plotly_chart(fig_sup_traj, use_container_width=True, config=PLOTLY_CONFIG)
+
+            with st.expander(f"View Order History Log for {selected_sup_name} ({len(sup_orders)} POs)", expanded=False):
+                st.dataframe(
+                    sup_orders[["po_id", "order_date", "product_name", "category", "quantity", "unit_price", "order_cost", "shipping_mode", "priority", "is_late", "delay_days", "has_defect"]],
+                    use_container_width=True
+                )
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
 # TAB 3: INVENTORY CONTROL & STOCKOUT RISK EXPOSURE
