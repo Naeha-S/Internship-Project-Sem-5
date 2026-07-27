@@ -760,11 +760,12 @@ with tab2:
         st.markdown("</div>", unsafe_allow_html=True)
 
 # ---------------------------------------------------------------
-# TAB 3: INVENTORY CONTROL & STOCKOUT RISK EXPOSURE
+# TAB 3: INVENTORY CONTROL & STOCKOUT RISK EXPOSURE (DYNAMIC ROP)
 # ---------------------------------------------------------------
-with tab3:
-    # Load dynamic inventory & product exposure data
-    inv_full_df = pd.read_sql("""
+@st.cache_data(ttl=300)
+def get_inventory_full_data():
+    conn = get_db_connection()
+    sql = """
         SELECT 
             i.product_id,
             p.sku,
@@ -782,9 +783,9 @@ with tab3:
             s.supplier_name,
             s.tier as supplier_tier,
             s.region as supplier_region,
-            COALESCE(del_stats.late_rate, 0.20) as sup_late_rate,
-            COALESCE(del_stats.defect_rate, 0.03) as sup_defect_rate,
-            COALESCE(del_stats.avg_delay, 0.0) as sup_avg_delay
+            COALESCE(del_stats.late_rate, global_stats.avg_late_rate) as sup_late_rate,
+            COALESCE(del_stats.defect_rate, global_stats.avg_defect_rate) as sup_defect_rate,
+            COALESCE(del_stats.avg_delay, global_stats.avg_delay_days) as sup_avg_delay
         FROM inventory i
         JOIN products p ON i.product_id = p.product_id
         JOIN suppliers s ON p.primary_supplier_id = s.supplier_id
@@ -797,27 +798,62 @@ with tab3:
             JOIN deliveries d ON po.po_id = d.po_id
             GROUP BY po.supplier_id
         ) del_stats ON s.supplier_id = del_stats.supplier_id
-    """, conn)
+        CROSS JOIN (
+            SELECT AVG(is_late) as avg_late_rate, AVG(has_defect) as avg_defect_rate, AVG(delay_days) as avg_delay_days
+            FROM deliveries
+        ) global_stats
+    """
+    return pd.read_sql(sql, conn)
 
-    # Filter subset if active in df_filtered
+with tab3:
+    inv_full_df = get_inventory_full_data().copy()
+
+    # Dynamic scope filtering with explicit fallback notice
     if not df_filtered.empty and "product_name" in df_filtered.columns:
         active_prods = df_filtered["product_name"].unique()
         inv_active = inv_full_df[inv_full_df["product_name"].isin(active_prods)].copy()
         if inv_active.empty:
+            st.info("ℹ️ Filter Scope Notice: Active sidebar selection matched 0 inventory SKUs — displaying catalog-wide inventory data.")
             inv_active = inv_full_df.copy()
     else:
         inv_active = inv_full_df.copy()
 
-    # Calculate status & metrics
-    def _inv_st(r):
-        if r["avg_monthly_demand"] == 0: return "Dead Stock"
-        elif r["current_stock"] < r["reorder_level"]: return "Understocked"
-        elif r["months_of_cover"] > 6: return "Overstocked"
-        else: return "Healthy"
+    # Unified Authoritative Dynamic ROP Calculation (Matching kpi_engine.py)
+    inv_active["avg_daily_demand"] = inv_active["avg_monthly_demand"] / 30.0
+    inv_active["safety_stock"] = (inv_active["reorder_level"] * 0.35).round(1)
+    inv_active["inflated_lead_time_days"] = inv_active["lead_time_days_base"] + inv_active["sup_avg_delay"].fillna(0.0)
+    inv_active["dynamic_reorder_point"] = (inv_active["inflated_lead_time_days"] * inv_active["avg_daily_demand"] + inv_active["safety_stock"]).round(1)
 
-    inv_active["stock_status"] = inv_active.apply(_inv_st, axis=1)
+    def _dynamic_inv_status(r):
+        if r["avg_monthly_demand"] == 0:
+            return "Dead Stock"
+        elif r["current_stock"] < r["dynamic_reorder_point"]:
+            return "Understocked"
+        elif r["months_of_cover"] > 6.0:
+            return "Overstocked"
+        else:
+            return "Healthy"
+
+    inv_active["stock_status"] = inv_active.apply(_dynamic_inv_status, axis=1)
     inv_active["stock_val"] = inv_active["current_stock"] * inv_active["unit_cost_base"]
     inv_active["is_high_risk_sup"] = (inv_active["sup_late_rate"] > 0.40) | (inv_active["supplier_tier"] == "Tier 3")
+
+    # Days Until Stockout & ABC Inventory Classification
+    inv_active["days_until_stockout"] = np.where(
+        inv_active["avg_daily_demand"] > 0,
+        (inv_active["current_stock"] / inv_active["avg_daily_demand"]).round(1),
+        999.0
+    )
+
+    # ABC Classification by Stock Value
+    inv_active = inv_active.sort_values("stock_val", ascending=False).reset_index(drop=True)
+    tot_val = inv_active["stock_val"].sum()
+    if tot_val > 0:
+        inv_active["cum_val_pct"] = (inv_active["stock_val"].cumsum() / tot_val) * 100.0
+        inv_active["abc_class"] = np.where(inv_active["cum_val_pct"] <= 70.0, "Class A (Top 70%)",
+                                  np.where(inv_active["cum_val_pct"] <= 90.0, "Class B (Next 20%)", "Class C (Tail 10%)"))
+    else:
+        inv_active["abc_class"] = "Class C"
 
     total_inv_val = inv_active["stock_val"].sum()
     understocked_cnt = (inv_active["stock_status"] == "Understocked").sum()
@@ -840,9 +876,9 @@ with tab3:
         _u_bg = RED_BG if _u_color == RED else AMBER_BG
         st.markdown(f"""
         <div class="metric-card metric-card-stripe" style="border-left-color:{_u_color};">
-            <div class="metric-label">Understocked SKUs (Below ROP)</div>
+            <div class="metric-label">Understocked SKUs (Dynamic ROP)</div>
             <div class="metric-value" style="color:{_u_color};">{understocked_cnt}<span class="metric-unit"> / {total_skus_cnt}</span></div>
-            <div class="metric-badge" style="background:{_u_bg}; color:{_u_color};">{(understocked_cnt/max(total_skus_cnt,1))*100:.1f}% Below ROP</div>
+            <div class="metric-badge" style="background:{_u_bg}; color:{_u_color};">{(understocked_cnt/max(total_skus_cnt,1))*100:.1f}% Below Dynamic ROP</div>
         </div>
         """, unsafe_allow_html=True)
     with i_m3:
@@ -871,8 +907,8 @@ with tab3:
     with c_inv_l:
         st.markdown("""
         <div class="chart-card">
-            <div class="chart-title">Stock Coverage Health by Product Category</div>
-            <div class="chart-sub">Breakdown of SKUs meeting vs breaching Reorder Point (ROP) thresholds</div>
+            <div class="chart-title">Stock Coverage Health by Product Category (Dynamic ROP)</div>
+            <div class="chart-sub">Breakdown of SKUs meeting vs breaching dynamic lead-time inflated ROP thresholds</div>
         """, unsafe_allow_html=True)
         cat_health = inv_active.groupby(["category", "stock_status"])["product_id"].count().reset_index()
         fig_cat_h = px.bar(
@@ -927,7 +963,7 @@ with tab3:
             st.info("No late orders in current filter selection — box plot unavailable.")
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # CHART D (Bottom-Right): Supplier Lead Time Inflation vs Safety Stock Erosion
+    # CHART D (Bottom-Right): Contracted Lead Time vs Supplier Delay Erosion
     with c_inv_r2:
         st.markdown("""
         <div class="chart-card">
@@ -951,7 +987,7 @@ with tab3:
         st.plotly_chart(fig_scat, use_container_width=True, config=PLOTLY_CONFIG)
         st.markdown("</div>", unsafe_allow_html=True)
 
-    # 3. INTERACTIVE CRITICAL SKUs & STOCKOUT MONITOR TABLE
+    # 3. INTERACTIVE CRITICAL SKUs & STOCKOUT MONITOR TABLE WITH PAGINATION & REORDER TEMPLATE
     st.markdown(f"""
     <div class="section-divider" style="margin-top:1.8rem;">
         <div class="section-divider-line"></div>
@@ -961,11 +997,13 @@ with tab3:
     """, unsafe_allow_html=True)
 
     # Table Controls
-    col_t1, col_t2 = st.columns([3, 1])
+    col_t1, col_t2, col_t3 = st.columns([3, 2, 2])
     with col_t1:
         inv_search = st.text_input("Search SKU or Product Name", placeholder="Type product name or SKU...", key="inv_search_key")
     with col_t2:
-        inv_filter_status = st.selectbox("Stock Status Filter", ["All SKUs", "Understocked Only", "Dead Stock Only", "Healthy Only"], key="inv_filter_status_key")
+        inv_filter_status = st.selectbox("Stock Status Filter", ["All SKUs", "Understocked Only", "Dead Stock Only", "Healthy Only", "Overstocked Only"], key="inv_filter_status_key")
+    with col_t3:
+        page_size = st.selectbox("Display Limit", [25, 50, 100, 200], index=0, key="inv_page_size")
 
     inv_display = inv_active.copy()
     if inv_filter_status == "Understocked Only":
@@ -974,6 +1012,8 @@ with tab3:
         inv_display = inv_display[inv_display["stock_status"] == "Dead Stock"]
     elif inv_filter_status == "Healthy Only":
         inv_display = inv_display[inv_display["stock_status"] == "Healthy"]
+    elif inv_filter_status == "Overstocked Only":
+        inv_display = inv_display[inv_display["stock_status"] == "Overstocked"]
 
     if inv_search:
         inv_display = inv_display[
@@ -986,7 +1026,7 @@ with tab3:
         if r["stock_status"] == "Understocked" and r["is_high_risk_sup"]:
             return "Critical (High Risk Supplier)"
         elif r["stock_status"] == "Understocked":
-            return "Understocked (Below ROP)"
+            return "Understocked (Below Dynamic ROP)"
         elif r["stock_status"] == "Dead Stock":
             return "Dead Stock"
         else:
@@ -995,29 +1035,63 @@ with tab3:
     inv_display["Risk Status"] = inv_display.apply(_risk_badge, axis=1)
 
     table_df = inv_display[[
-        "sku", "product_name", "category", "current_stock", "reorder_level",
-        "months_of_cover", "supplier_name", "supplier_tier", "Risk Status"
+        "sku", "product_name", "category", "abc_class", "current_stock", "dynamic_reorder_point",
+        "days_until_stockout", "months_of_cover", "supplier_name", "supplier_tier", "Risk Status"
     ]].rename(columns={
         "sku": "SKU",
         "product_name": "Product Name",
         "category": "Category",
+        "abc_class": "ABC Class",
         "current_stock": "Current Stock",
-        "reorder_level": "ROP Level",
+        "dynamic_reorder_point": "Dynamic ROP",
+        "days_until_stockout": "Days to Stockout",
         "months_of_cover": "Months Cover",
         "supplier_name": "Primary Supplier",
         "supplier_tier": "Supplier Tier"
     }).sort_values("Current Stock", ascending=True)
 
-    st.dataframe(table_df.head(25), use_container_width=True, height=300)
+    st.dataframe(table_df.head(page_size), use_container_width=True, height=max(300, min(600, len(table_df.head(page_size)) * 32)))
 
-    # Download Button
-    csv_inv = table_df.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        label="Download Inventory Stockout Risk Audit CSV",
-        data=csv_inv,
-        file_name="inventory_stockout_risk_audit.csv",
-        mime="text/csv"
-    )
+    # Reorder Recommendation Generator & CSV Downloads
+    reorder_skus = inv_active[inv_active["stock_status"] == "Understocked"].copy()
+    reorder_skus["recommended_reorder_qty"] = np.maximum(
+        (reorder_skus["dynamic_reorder_point"] - reorder_skus["current_stock"]),
+        reorder_skus["avg_monthly_demand"]
+    ).round(0).astype(int)
+    reorder_skus["estimated_order_cost_inr"] = (reorder_skus["recommended_reorder_qty"] * reorder_skus["unit_cost_base"]).round(2)
+
+    reorder_template_csv = reorder_skus[[
+        "sku", "product_name", "category", "supplier_name", "current_stock", "dynamic_reorder_point",
+        "recommended_reorder_qty", "unit_cost_base", "estimated_order_cost_inr"
+    ]].rename(columns={
+        "sku": "SKU",
+        "product_name": "Product Name",
+        "category": "Category",
+        "supplier_name": "Supplier",
+        "current_stock": "Current Stock",
+        "dynamic_reorder_point": "Dynamic ROP",
+        "recommended_reorder_qty": "Recommended Order Qty",
+        "unit_cost_base": "Unit Cost (INR)",
+        "estimated_order_cost_inr": "Est. Total Cost (INR)"
+    }).to_csv(index=False).encode('utf-8')
+
+    d_c1, d_c2 = st.columns(2)
+    with d_c1:
+        st.download_button(
+            label=f"Download Full Inventory Audit CSV ({len(table_df)} SKUs)",
+            data=table_df.to_csv(index=False).encode('utf-8'),
+            file_name="inventory_stockout_risk_audit.csv",
+            mime="text/csv",
+            use_container_width=True
+        )
+    with d_c2:
+        st.download_button(
+            label=f"📦 Reorder Now Template CSV ({len(reorder_skus)} Understocked SKUs)",
+            data=reorder_template_csv,
+            file_name="procuresense_purchase_reorder_template.csv",
+            mime="text/csv",
+            use_container_width=True
+        )
 # ---------------------------------------------------------------
 # TAB 4: ML DELAY PREDICTION & EXPLAINABILITY (ML STUDIO)
 # ---------------------------------------------------------------
