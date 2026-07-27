@@ -1,6 +1,6 @@
 {
-  "latest_model_file": "rf_model_20260727_130547.joblib",
-  "timestamp": "20260727_130547",
+  "latest_model_file": "rf_model_20260727_131721.joblib",
+  "timestamp": "20260727_131721",
   "champion_model_name": "Random Forest Classifier",
   "roc_auc": 0.705,
   "cost_optimal_threshold": 0.1,
