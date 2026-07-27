@@ -1506,6 +1506,28 @@ with tab4:
 # ---------------------------------------------------------------
 # TAB 5: PRODUCTION SQL ANALYTICS STUDIO & WORKBENCH
 # ---------------------------------------------------------------
+import time
+import re
+
+DESTRUCTIVE_SQL_KEYWORDS = re.compile(
+    r"\b(DROP|DELETE|INSERT|UPDATE|TRUNCATE|ALTER|REPLACE|ATTACH|DETACH|VACUUM|CREATE)\b",
+    re.IGNORECASE
+)
+
+@st.cache_data(ttl=300)
+def get_dynamic_db_schema():
+    conn = get_db_connection()
+    tables_df = pd.read_sql("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'", conn)
+    schema_info = {}
+    for tbl in tables_df["name"]:
+        info_df = pd.read_sql(f"PRAGMA table_info('{tbl}')", conn)
+        cols_formatted = []
+        for _, r in info_df.iterrows():
+            pk_suffix = " (PK)" if r["pk"] == 1 else ""
+            cols_formatted.append((r["name"], f"{r['type']}{pk_suffix}"))
+        schema_info[tbl] = cols_formatted
+    return schema_info
+
 with tab5:
     # 1. TOP KPI SUMMARY ROW FOR SQL STUDIO
     sql_k1, sql_k2, sql_k3, sql_k4 = st.columns(4, gap="medium")
@@ -1530,7 +1552,7 @@ with tab5:
         <div class="metric-card metric-card-stripe" style="border-left-color:{ACCENT};">
             <div class="metric-label">SQL Engine</div>
             <div class="metric-value" style="color:{ACCENT};">SQLite 3.x</div>
-            <div class="metric-badge" style="background:{ACCENT_GLOW}; color:{ACCENT};">procurement.db Engine</div>
+            <div class="metric-badge" style="background:{ACCENT_GLOW}; color:{ACCENT};">Read-Only Sanitized Studio</div>
         </div>
         """, unsafe_allow_html=True)
     with sql_k4:
@@ -1538,7 +1560,7 @@ with tab5:
         <div class="metric-card metric-card-stripe" style="border-left-color:{AMBER};">
             <div class="metric-label">Analytics Features</div>
             <div class="metric-value" style="color:{AMBER};">Dynamic</div>
-            <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">Live Execution &amp; Export</div>
+            <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">PRAGMA Inspector &amp; Plan</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -1575,8 +1597,7 @@ SELECT
         ), 2
     ) AS cumulative_category_spend
 FROM MonthlyCategorySpend
-ORDER BY category, order_month
-LIMIT 20;"""
+ORDER BY category, order_month;"""
         },
         "Query 2: Regional Supplier SLA Ranking": {
             "tag": "Performance Ranking",
@@ -1611,8 +1632,7 @@ SELECT
         ORDER BY on_time_pct DESC, avg_delay_days ASC
     ) AS regional_rank
 FROM SupplierMetrics
-ORDER BY region, regional_rank
-LIMIT 20;"""
+ORDER BY region, regional_rank;"""
         },
         "Query 3: Year-over-Year Unit Price Drift": {
             "tag": "Price Inflation OLS",
@@ -1650,8 +1670,7 @@ SELECT
     ROUND(100.0 * (avg_unit_price - prior_year_price) / prior_year_price, 2) AS yoy_price_change_pct
 FROM PriceDrift
 WHERE prior_year_price IS NOT NULL
-ORDER BY yoy_price_change_pct DESC
-LIMIT 20;"""
+ORDER BY yoy_price_change_pct DESC;"""
         },
         "Query 4: Lead Time Variance & Reliability Cohorts": {
             "tag": "Logistics SLA Cohorts",
@@ -1695,8 +1714,7 @@ ORDER BY mean_delay_days DESC;"""
     END AS stock_status
 FROM inventory i
 JOIN products p ON i.product_id = p.product_id
-ORDER BY i.months_of_cover ASC
-LIMIT 20;"""
+ORDER BY i.months_of_cover ASC;"""
         },
         "Query 6: Quality Defect Rate & Spend Exposure": {
             "tag": "Quality Rejection Loss",
@@ -1717,8 +1735,7 @@ JOIN deliveries d ON po.po_id = d.po_id
 JOIN products p ON po.product_id = p.product_id
 GROUP BY p.category, p.sub_category
 HAVING defective_orders > 0
-ORDER BY defective_spend_exposure DESC
-LIMIT 20;"""
+ORDER BY defective_spend_exposure DESC;"""
         },
         "Query 7: Predictive ML Feature Engineering": {
             "tag": "Feature Extraction",
@@ -1742,8 +1759,7 @@ LIMIT 20;"""
 FROM purchase_orders po
 JOIN suppliers s ON po.supplier_id = s.supplier_id
 JOIN deliveries d ON po.po_id = d.po_id
-ORDER BY po.order_date ASC
-LIMIT 20;"""
+ORDER BY po.order_date ASC;"""
         },
         "Query 8: Supplier Spend Pareto 80/20 Analysis": {
             "tag": "Pareto 80/20 Rule",
@@ -1786,8 +1802,7 @@ SELECT
         ELSE 'Class C (Tail Spend)'
     END AS pareto_class
 FROM SpendWithTotal
-ORDER BY total_spend DESC
-LIMIT 20;"""
+ORDER BY total_spend DESC;"""
         },
         "Query 9: Monthly Order Volume MoM Growth": {
             "tag": "Time-Series MoM Growth",
@@ -1823,8 +1838,7 @@ SELECT
     late_rate_pct,
     ROUND(late_rate_pct - prior_month_late_rate, 1) AS late_rate_change_pts
 FROM MoMStats
-ORDER BY order_month
-LIMIT 20;"""
+ORDER BY order_month;"""
         },
         "Query 10: Fulfillment Bottleneck & Delay Severity": {
             "tag": "Delay Severity Bucket",
@@ -1849,24 +1863,18 @@ ORDER BY severe_delays_gt7d DESC;"""
         }
     }
 
-    # Interactive Database Schema Inspector
-    with st.expander("Database Schema & Column Inspector", expanded=False):
-        st.markdown("<div style='font-size:0.80rem; color:#94a3b8; margin-bottom:12px;'>Inspect tables, column names, and data types in procurement.db:</div>", unsafe_allow_html=True)
-        schema_cols = st.columns(5)
-        tables_info = {
-            "purchase_orders": [("po_id", "TEXT (PK)"), ("order_date", "TEXT"), ("supplier_id", "TEXT (FK)"), ("product_id", "TEXT (FK)"), ("unit_price", "REAL"), ("quantity", "INT"), ("order_cost", "REAL"), ("shipping_mode", "TEXT"), ("priority", "TEXT")],
-            "suppliers": [("supplier_id", "TEXT (PK)"), ("supplier_name", "TEXT"), ("region", "TEXT"), ("tier", "TEXT"), ("contract_start_date", "TEXT")],
-            "products": [("product_id", "TEXT (PK)"), ("sku", "TEXT"), ("product_name", "TEXT"), ("category", "TEXT"), ("sub_category", "TEXT"), ("unit_cost_base", "REAL"), ("lead_time_days_base", "INT")],
-            "deliveries": [("delivery_id", "TEXT (PK)"), ("po_id", "TEXT (FK)"), ("delivery_date", "TEXT"), ("is_late", "INT"), ("delay_days", "REAL"), ("has_defect", "INT")],
-            "inventory": [("product_id", "TEXT (PK)"), ("warehouse", "TEXT"), ("current_stock", "INT"), ("reorder_level", "INT"), ("avg_monthly_demand", "REAL"), ("months_of_cover", "REAL")]
-        }
-        for idx, (tbl, cols) in enumerate(tables_info.items()):
-            with schema_cols[idx]:
+    # Dynamic Database Schema Inspector using PRAGMA table_info
+    dynamic_schema = get_dynamic_db_schema()
+    with st.expander("Database Schema & Dynamic PRAGMA Inspector", expanded=False):
+        st.markdown("<div style='font-size:0.80rem; color:#94a3b8; margin-bottom:12px;'>Dynamically inspecting tables, columns, data types, and primary keys in procurement.db:</div>", unsafe_allow_html=True)
+        schema_cols = st.columns(len(dynamic_schema))
+        for idx, (tbl, cols) in enumerate(dynamic_schema.items()):
+            with schema_cols[idx % len(schema_cols)]:
                 st.markdown(f"<div style='font-weight:700; font-size:0.82rem; color:{ACCENT}; margin-bottom:6px;'>{tbl}</div>", unsafe_allow_html=True)
                 for cname, ctype in cols:
                     st.markdown(f"<div style='font-size:0.73rem; color:{TEXT_MUTED}; font-family:monospace;'>• <b>{cname}</b> <span style='color:{TEXT_DIM};'>({ctype})</span></div>", unsafe_allow_html=True)
 
-    selected_query_name = st.selectbox("Select Portfolio SQL Query to Inspect & Execute:", list(queries_meta.keys()))
+    selected_query_name = st.selectbox("Select Portfolio SQL Query to Inspect & Execute:", list(queries_meta.keys()), key="sql_query_select")
     q_info = queries_meta[selected_query_name]
 
     # Query Info Card
@@ -1892,98 +1900,158 @@ ORDER BY severe_delays_gt7d DESC;"""
     snip_c1, snip_c2, snip_c3, snip_c4, snip_c5, snip_c6 = st.columns(6)
     
     if snip_c1.button("SELECT *", use_container_width=True):
-        st.session_state["active_sql_script"] = "SELECT * FROM purchase_orders LIMIT 15;"
+        st.session_state["active_sql_script"] = "SELECT * FROM purchase_orders LIMIT 100;"
     if snip_c2.button("JOIN Tables", use_container_width=True):
-        st.session_state["active_sql_script"] = "SELECT po.po_id, s.supplier_name, p.product_name, d.delay_days\nFROM purchase_orders po\nJOIN suppliers s ON po.supplier_id = s.supplier_id\nJOIN products p ON po.product_id = p.product_id\nJOIN deliveries d ON po.po_id = d.po_id\nLIMIT 25;"
+        st.session_state["active_sql_script"] = "SELECT po.po_id, s.supplier_name, p.product_name, d.delay_days\nFROM purchase_orders po\nJOIN suppliers s ON po.supplier_id = s.supplier_id\nJOIN products p ON po.product_id = p.product_id\nJOIN deliveries d ON po.po_id = d.po_id\nLIMIT 100;"
     if snip_c3.button("GROUP Spend", use_container_width=True):
         st.session_state["active_sql_script"] = "SELECT p.category, SUM(po.order_cost) AS total_spend, COUNT(po.po_id) AS po_count\nFROM purchase_orders po\nJOIN products p ON po.product_id = p.product_id\nGROUP BY p.category\nORDER BY total_spend DESC;"
     if snip_c4.button("Window Rank", use_container_width=True):
-        st.session_state["active_sql_script"] = "SELECT supplier_name, region,\n       DENSE_RANK() OVER (PARTITION BY region ORDER BY on_time_pct DESC) AS regional_rank\nFROM (\n  SELECT s.supplier_name, s.region, ROUND(100.0 * AVG(1 - d.is_late), 1) AS on_time_pct\n  FROM suppliers s JOIN purchase_orders po ON s.supplier_id = po.supplier_id\n  JOIN deliveries d ON po.po_id = d.po_id\n  GROUP BY s.supplier_id\n)\nLIMIT 20;"
+        st.session_state["active_sql_script"] = "SELECT supplier_name, region,\n       DENSE_RANK() OVER (PARTITION BY region ORDER BY on_time_pct DESC) AS regional_rank\nFROM (\n  SELECT s.supplier_name, s.region, ROUND(100.0 * AVG(1 - d.is_late), 1) AS on_time_pct\n  FROM suppliers s JOIN purchase_orders po ON s.supplier_id = po.supplier_id\n  JOIN deliveries d ON po.po_id = d.po_id\n  GROUP BY s.supplier_id\n);"
     if snip_c5.button("Defects Loss", use_container_width=True):
         st.session_state["active_sql_script"] = "SELECT s.supplier_name, COUNT(po.po_id) AS total_pos,\n       SUM(d.has_defect) AS defective_pos,\n       ROUND(100.0 * SUM(d.has_defect) / COUNT(po.po_id), 2) AS defect_rate_pct\nFROM suppliers s JOIN purchase_orders po ON s.supplier_id = po.supplier_id\nJOIN deliveries d ON po.po_id = d.po_id\nGROUP BY s.supplier_id HAVING defective_pos > 0\nORDER BY defect_rate_pct DESC;"
     if snip_c6.button("Reset Query", use_container_width=True):
         st.session_state["active_sql_script"] = q_info["sql"]
 
-    # Editable SQL Code Area
+    # Controls: Configurable Limit
+    col_edt1, col_edt2 = st.columns([3, 1])
+    with col_edt2:
+        row_limit = st.number_input("Result Row Limit", min_value=10, max_value=5000, value=100, step=50, key="sql_limit_input")
+
     default_sql_val = st.session_state.get("active_sql_script", q_info["sql"])
-    user_sql = st.text_area("SQL Script Editor (Edit or Run Custom SQL):", value=default_sql_val, height=230)
+    user_sql = st.text_area("SQL Script Editor (Edit or Run Custom SQL):", value=default_sql_val, height=230, key="sql_text_area")
 
-    c_exec1, c_exec2 = st.columns([1, 4])
+    c_exec1, c_exec2, c_exec3 = st.columns([1, 1, 2])
     with c_exec1:
-        run_btn = st.button("Execute Query Live", use_container_width=True)
+        run_btn = st.button("Execute Query Live", use_container_width=True, type="primary")
+    with c_exec2:
+        plan_btn = st.button("EXPLAIN Query Plan", use_container_width=True)
 
-    if run_btn or "sql_run_df" in st.session_state:
-        import time
-        t_start = time.time()
-        try:
-            res_df = pd.read_sql(user_sql, conn)
-            t_elapsed = (time.time() - t_start) * 1000.0
+    # Check Destructive SQL Violation
+    destructive_match = DESTRUCTIVE_SQL_KEYWORDS.search(user_sql)
 
-            st.markdown(f"""
-            <div style="background:rgba(16,217,140,0.06); border:1px solid rgba(16,217,140,0.22); border-radius:8px; padding:10px 16px; margin-top:14px; margin-bottom:14px; font-size:0.82rem; color:{GREEN}; display:flex; align-items:center; justify-content:space-between;">
-                <div><b>Query Executed Successfully</b> &nbsp;&middot;&nbsp; <b>{len(res_df):,} Rows Returned</b> &nbsp;&middot;&nbsp; <b>{len(res_df.columns)} Columns</b></div>
-                <div>Execution Latency: <b style="color:{GOLD};">{t_elapsed:.1f} ms</b></div>
-            </div>
-            """, unsafe_allow_html=True)
+    if plan_btn:
+        if destructive_match:
+            st.error(f"⚠️ Security Violation: Cannot EXPLAIN query containing modification keyword '{destructive_match.group(0)}'.")
+        else:
+            try:
+                plan_sql = f"EXPLAIN QUERY PLAN {user_sql.strip().rstrip(';')}"
+                plan_df = pd.read_sql(plan_sql, conn)
+                st.markdown("<div style='font-size:0.82rem; font-weight:700; color:#3b82f6; margin-top:10px;'>SQLite Query Execution Plan:</div>", unsafe_allow_html=True)
+                st.dataframe(plan_df, use_container_width=True)
+            except Exception as pe:
+                st.error(f"Query Plan Execution Error: {pe}")
 
-            res_tab1, res_tab2, res_tab3 = st.tabs(["Interactive Data Table", "Auto-Generated Visualizer", "Raw JSON View"])
-            
-            with res_tab1:
-                st.dataframe(res_df, use_container_width=True, height=350)
-
-            with res_tab2:
-                # Auto-generate chart from query results
-                num_cols = res_df.select_dtypes(include=[np.number]).columns.tolist()
-                cat_cols = res_df.select_dtypes(include=["object", "category", "string"]).columns.tolist()
-                
-                if len(cat_cols) >= 1 and len(num_cols) >= 1:
-                    chart_x = cat_cols[0]
-                    chart_y = num_cols[0]
-                    st.markdown(f"<div style='font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:8px;'>Auto-plotted Bar Chart: <b>{chart_y}</b> by <b>{chart_x}</b></div>", unsafe_allow_html=True)
-                    fig_auto = px.bar(
-                        res_df.head(25), x=chart_x, y=chart_y,
-                        color=chart_y, color_continuous_scale=[ACCENT, GOLD, GREEN],
-                        labels={chart_x: chart_x.replace("_", " ").title(), chart_y: chart_y.replace("_", " ").title()}
-                    )
-                    fig_auto.update_layout(**PLOT_LAYOUT, height=350)
-                    st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
-                elif len(num_cols) >= 2:
-                    chart_x = num_cols[0]
-                    chart_y = num_cols[1]
-                    st.markdown(f"<div style='font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:8px;'>Auto-plotted Scatter Plot: <b>{chart_y}</b> vs <b>{chart_x}</b></div>", unsafe_allow_html=True)
-                    fig_auto = px.scatter(
-                        res_df.head(50), x=chart_x, y=chart_y,
-                        color=chart_y, color_continuous_scale=[AMBER, GREEN]
-                    )
-                    fig_auto.update_layout(**PLOT_LAYOUT, height=350)
-                    st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
+    if run_btn:
+        if destructive_match:
+            st.error(f"⚠️ Security Violation: Destructive statement detected ('{destructive_match.group(0)}'). Only read-only SELECT queries are permitted in SQL Analytics Studio.")
+        else:
+            t_start = time.time()
+            try:
+                # Apply configurable row limit if not already present
+                clean_sql = user_sql.strip().rstrip(";")
+                if "LIMIT" not in clean_sql.upper():
+                    exec_sql = f"{clean_sql} LIMIT {int(row_limit)};"
                 else:
-                    st.info("Auto-visualizer requires at least one numeric and one categorical column in query output.")
+                    exec_sql = f"{clean_sql};"
 
-            with res_tab3:
-                st.json(res_df.head(50).to_dict(orient="records"))
+                res_df = pd.read_sql(exec_sql, conn)
+                t_elapsed = (time.time() - t_start) * 1000.0
 
-            dl_col1, dl_col2 = st.columns(2)
-            with dl_col1:
-                csv_data = res_df.to_csv(index=False).encode('utf-8')
-                st.download_button(
-                    label="Download Result CSV",
-                    data=csv_data,
-                    file_name=f"{selected_query_name.replace(' ', '_').lower()}.csv",
-                    mime="text/csv",
-                    use_container_width=True
+                # Persist in session state
+                st.session_state["sql_run_df"] = res_df
+                st.session_state["sql_t_elapsed"] = t_elapsed
+                st.session_state["active_sql_script"] = user_sql
+
+                # Add to query history
+                history = st.session_state.get("sql_history", [])
+                history.insert(0, {"time": time.strftime("%H:%M:%S"), "query": user_sql, "rows": len(res_df)})
+                st.session_state["sql_history"] = history[:5]
+
+            except Exception as e:
+                st.error(f"SQL Execution Error: {str(e)}")
+                st.session_state.pop("sql_run_df", None)
+
+    # Render persisted query results
+    if "sql_run_df" in st.session_state and st.session_state["sql_run_df"] is not None:
+        res_df = st.session_state["sql_run_df"]
+        t_elapsed = st.session_state.get("sql_t_elapsed", 0.0)
+
+        st.markdown(f"""
+        <div style="background:rgba(16,217,140,0.06); border:1px solid rgba(16,217,140,0.22); border-radius:8px; padding:10px 16px; margin-top:14px; margin-bottom:14px; font-size:0.82rem; color:{GREEN}; display:flex; align-items:center; justify-content:space-between;">
+            <div><b>Query Executed Successfully</b> &nbsp;&middot;&nbsp; <b>{len(res_df):,} Rows Returned</b> &nbsp;&middot;&nbsp; <b>{len(res_df.columns)} Columns</b></div>
+            <div>Execution Latency: <b style="color:{GOLD};">{t_elapsed:.1f} ms</b></div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        res_tab1, res_tab2, res_tab3, res_tab4 = st.tabs(["Interactive Data Table", "Smart Auto-Visualizer", "Raw JSON View", "Query Execution History"])
+        
+        with res_tab1:
+            st.dataframe(res_df, use_container_width=True, height=350)
+
+        with res_tab2:
+            # Smart Auto-Visualizer: Filter out ID columns
+            id_cols = {"po_id", "supplier_id", "product_id", "delivery_id"}
+            all_cols = res_df.columns.tolist()
+            non_id_cols = [c for c in all_cols if c.lower() not in id_cols]
+
+            num_cols = res_df[non_id_cols].select_dtypes(include=[np.number]).columns.tolist() if non_id_cols else []
+            cat_cols = res_df[non_id_cols].select_dtypes(include=["object", "category", "string"]).columns.tolist() if non_id_cols else []
+
+            if len(cat_cols) >= 1 and len(num_cols) >= 1:
+                chart_x = cat_cols[0]
+                chart_y = num_cols[0]
+                st.markdown(f"<div style='font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:8px;'>Smart Plot: Bar Chart of <b>{chart_y}</b> by <b>{chart_x}</b></div>", unsafe_allow_html=True)
+                fig_auto = px.bar(
+                    res_df.head(30), x=chart_x, y=chart_y,
+                    color=chart_y, color_continuous_scale=[ACCENT, GOLD, GREEN],
+                    labels={chart_x: chart_x.replace("_", " ").title(), chart_y: chart_y.replace("_", " ").title()}
                 )
-            with dl_col2:
-                json_data = res_df.to_json(orient="records", indent=2).encode('utf-8')
-                st.download_button(
-                    label="Download Result JSON",
-                    data=json_data,
-                    file_name=f"{selected_query_name.replace(' ', '_').lower()}.json",
-                    mime="application/json",
-                    use_container_width=True
+                fig_auto.update_layout(**PLOT_LAYOUT, height=350)
+                st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
+            elif len(num_cols) >= 2:
+                chart_x = num_cols[0]
+                chart_y = num_cols[1]
+                st.markdown(f"<div style='font-size:0.80rem; color:{TEXT_MUTED}; margin-bottom:8px;'>Smart Plot: Scatter Plot of <b>{chart_y}</b> vs <b>{chart_x}</b></div>", unsafe_allow_html=True)
+                fig_auto = px.scatter(
+                    res_df.head(50), x=chart_x, y=chart_y,
+                    color=chart_y, color_continuous_scale=[AMBER, GREEN]
                 )
-        except Exception as e:
-            st.error(f"SQL Execution Error: {str(e)}")
+                fig_auto.update_layout(**PLOT_LAYOUT, height=350)
+                st.plotly_chart(fig_auto, use_container_width=True, config=PLOTLY_CONFIG)
+            else:
+                st.info("Smart visualizer requires at least one numeric and one descriptive category column in query output.")
+
+        with res_tab3:
+            st.json(res_df.head(50).to_dict(orient="records"))
+
+        with res_tab4:
+            history = st.session_state.get("sql_history", [])
+            if history:
+                st.markdown("<div style='font-size:0.80rem; color:#94a3b8; margin-bottom:8px;'>Last 5 Executed Queries:</div>", unsafe_allow_html=True)
+                for h_idx, item in enumerate(history):
+                    st.markdown(f"**[{item['time']}]** `{item['rows']} rows` — `{item['query'][:80]}...`")
+            else:
+                st.info("No query execution history recorded in this session.")
+
+        dl_col1, dl_col2 = st.columns(2)
+        with dl_col1:
+            csv_data = res_df.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label="Download Result CSV",
+                data=csv_data,
+                file_name=f"{selected_query_name.replace(' ', '_').lower()}.csv",
+                mime="text/csv",
+                use_container_width=True
+            )
+        with dl_col2:
+            json_data = res_df.to_json(orient="records", indent=2).encode('utf-8')
+            st.download_button(
+                label="Download Result JSON",
+                data=json_data,
+                file_name=f"{selected_query_name.replace(' ', '_').lower()}.json",
+                mime="application/json",
+                use_container_width=True
+            )
 
 # Footer
 st.markdown(f"""
