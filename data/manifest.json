@@ -1,6 +1,6 @@
 {
   "dataset_version": "v4.0",
-  "generated_at": "2026-07-27T13:55:44.359060",
+  "generated_at": "2026-07-27T14:01:43.762922",
   "parameters": {
     "n_orders": 30000,
     "n_suppliers": 100,

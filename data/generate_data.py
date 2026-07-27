@@ -312,9 +312,9 @@ def main():
         "certifications": rng.choice(certifications_options, n_sups),
     })
 
-    suppliers["_true_reliability"] = rng.beta(7, 2, n_sups)
-    suppliers["_true_defect_rate"] = rng.beta(1.5, 25, n_sups)
-    suppliers["_price_drift_pct"] = rng.normal(0.05, 0.06, n_sups)
+    suppliers["_true_reliability"] = rng.beta(7, 3, n_sups)
+    suppliers["_true_defect_rate"] = rng.beta(1.2, 45, n_sups)
+    suppliers["_price_drift_pct"] = rng.normal(0.03, 0.04, n_sups)
     suppliers["_going_bad"] = rng.choice([0, 1], n_sups, p=[0.85, 0.15])
 
     # 2. PRODUCTS & MULTI-SOURCING ASSIGNMENTS
@@ -344,8 +344,8 @@ def main():
             "unit_cost_base": np.round(rng.uniform(price_range[0], price_range[1]), 2),
             "primary_supplier_id": p_sup,
             "secondary_supplier_id": s_sup,
-            "reorder_level": int(rng.integers(20, 1000)),
-            "lead_time_days_base": int(rng.integers(2, 30)),
+            "reorder_level": int(rng.integers(300, 1800)),
+            "lead_time_days_base": int(rng.integers(2, 20)),
         })
 
     products = pd.DataFrame(product_list)
@@ -376,7 +376,7 @@ def main():
         sup = sup_lookup.loc[sup_id]
 
         odate = order_dates[i]
-        quantity = int(rng.integers(5, 2000))
+        quantity = int(rng.integers(5, 1500))
         ship_mode = rng.choice(shipping_modes, p=[0.10, 0.20, 0.25, 0.30, 0.15])
         buyer = rng.choice(buyer_names)
         incoterm = rng.choice(incoterms_options)
@@ -390,35 +390,35 @@ def main():
         if sup["_going_bad"] and odate > deterioration_start_date:
             drift_factor *= 1.2
 
-        unit_price = round(prod["unit_cost_base"] * drift_factor * rng.normal(1.0, 0.03), 2)
+        unit_price = round(prod["unit_cost_base"] * drift_factor * rng.normal(1.0, 0.02), 2)
         order_cost = round(unit_price * quantity, 2)
 
         month = odate.month
-        seasonal_bump = 0.2 if month in (11, 12, 1) else (0.1 if month in (6, 7) else 0.0)
-        ship_bump = 0.18 if ship_mode == "Sea Freight" else (0.08 if ship_mode == "Standard Ground" else (-0.10 if "Air" in ship_mode else 0.0))
-        region_bump = 0.10 if "Import" in sup["region"] else 0.0
-        oil_bump = (oil_idx - 1.0) * 0.3
-        container_bump = 0.12 * cont_short
-        holiday_bump = 0.05 * is_hol
+        seasonal_bump = 0.15 if month in (11, 12, 1) else (0.08 if month in (6, 7) else 0.0)
+        ship_bump = 0.14 if ship_mode == "Sea Freight" else (0.07 if ship_mode == "Standard Ground" else (-0.08 if "Air" in ship_mode else 0.0))
+        region_bump = 0.08 if "Import" in sup["region"] else 0.0
+        oil_bump = (oil_idx - 1.0) * 0.2
+        container_bump = 0.10 * cont_short
+        holiday_bump = 0.04 * is_hol
 
         base_rel = sup["_true_reliability"]
         if sup["_going_bad"] and odate > deterioration_start_date:
-            base_rel -= 0.3
-        base_rel = np.clip(base_rel, 0.05, 0.99)
+            base_rel -= 0.25
+        base_rel = np.clip(base_rel, 0.08, 0.98)
 
         delay_prob = np.clip(
             (1 - base_rel) + seasonal_bump + ship_bump + region_bump
             + oil_bump + container_bump + holiday_bump
-            + (quantity > 1000) * 0.05,
-            0.01, 0.98
+            + (quantity > 900) * 0.04,
+            0.01, 0.95
         )
         is_late = rng.random() < delay_prob
 
-        planned_lead = prod["lead_time_days_base"] + (10 if "Import" in sup["region"] else 0)
+        planned_lead = prod["lead_time_days_base"] + (5 if "Import" in sup["region"] else 0)
         if is_late:
-            delay_days = int(rng.integers(1, 20) + seasonal_bump * 15)
+            delay_days = int(rng.integers(1, 12) + seasonal_bump * 10)
         else:
-            delay_days = int(rng.integers(-3, 1))
+            delay_days = int(rng.integers(-2, 1))
 
         actual_lead = max(planned_lead + delay_days, 1)
         delivery_date = odate + timedelta(days=int(actual_lead))
@@ -476,7 +476,7 @@ def main():
     inventory = pd.DataFrame({
         "product_id": products["product_id"],
         "warehouse": rng.choice(["WH-North (Delhi)", "WH-South (Chennai)", "WH-East (Kolkata)", "WH-West (Mumbai)", "WH-Central (Nagpur)"], n_prods),
-        "current_stock": rng.integers(0, 2000, n_prods),
+        "current_stock": rng.integers(800, 6000, n_prods),
         "reorder_level": products["reorder_level"].values,
         "avg_monthly_demand": (purchase_orders.groupby("product_id")["quantity"].sum().reindex(products["product_id"]).fillna(0) / 36).values.round(1),
     })

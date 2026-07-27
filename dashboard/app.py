@@ -890,10 +890,11 @@ with tab3:
         </div>
         """, unsafe_allow_html=True)
     with i_m4:
+        _def_val_str = f"&#8377;{defect_spend_val/1e7:.2f}<span class=\"metric-unit\"> Cr</span>" if defect_spend_val >= 1e7 else f"&#8377;{defect_spend_val/1e5:.1f}<span class=\"metric-unit\"> L</span>"
         st.markdown(f"""
         <div class="metric-card metric-card-stripe" style="border-left-color:{AMBER};">
             <div class="metric-label">Defective Quality Exposure</div>
-            <div class="metric-value" style="color:{AMBER};">&#8377;{defect_spend_val/1e5:.1f}<span class="metric-unit"> L</span></div>
+            <div class="metric-value" style="color:{AMBER};">{_def_val_str}</div>
             <div class="metric-badge" style="background:{AMBER_BG}; color:{AMBER};">Quality Loss</div>
         </div>
         """, unsafe_allow_html=True)

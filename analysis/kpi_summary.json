@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-27T13:55:47.579946",
-  "overall_health_score": 50.8,
+  "generated_at": "2026-07-27T14:01:46.856772",
+  "overall_health_score": 60.3,
   "health_score_weights": {
     "reliability": 0.25,
     "inventory": 0.2,
@@ -9,1139 +9,1139 @@
     "risk": 0.15
   },
   "components": {
-    "supplier_reliability": 56.5,
-    "inventory_efficiency": 31.0,
-    "cost_optimisation": 90.9,
-    "delivery_performance": 57.1,
-    "risk_score": 5.8
+    "supplier_reliability": 53.0,
+    "inventory_efficiency": 87.6,
+    "cost_optimisation": 92.3,
+    "delivery_performance": 53.3,
+    "risk_score": 2.6
   },
   "composite_risk_scoring_formula": {
     "equation": "Composite Risk Index = 0.35 * C_late + 0.25 * C_defect + 0.20 * C_price_vol + 0.20 * C_delay_trend_slope",
     "percentile_thresholds": "High Risk (Top 30% riskiest), Medium Risk (Middle 45%), Low Risk (Bottom 25%)"
   },
   "spend_concentration_hhi": {
-    "hhi_score": 255.2,
+    "hhi_score": 222.2,
     "hhi_classification": "Unconcentrated (Healthy Competition)",
-    "top_5_spend_share_pct": 25.5,
-    "top_10_spend_share_pct": 37.8
+    "top_5_spend_share_pct": 19.5,
+    "top_10_spend_share_pct": 35.2
   },
   "price_ols_inflation_trend": [
     {
-      "supplier_id": "SUP1004",
-      "supplier_name": "Vanguard Chemical Solutions",
-      "ols_price_slope_inr_per_yr": 429.5,
-      "annualized_inflation_trend_pct": 26.0
-    },
-    {
-      "supplier_id": "SUP1000",
-      "supplier_name": "Apex Precision Components Ltd",
-      "ols_price_slope_inr_per_yr": 121.21,
-      "annualized_inflation_trend_pct": 25.5
-    },
-    {
-      "supplier_id": "SUP1044",
-      "supplier_name": "Silicon Valley Micro Hardware",
-      "ols_price_slope_inr_per_yr": 267.58,
-      "annualized_inflation_trend_pct": 24.8
-    },
-    {
-      "supplier_id": "SUP1026",
-      "supplier_name": "Pinnacle Precision Castings",
-      "ols_price_slope_inr_per_yr": 551.72,
-      "annualized_inflation_trend_pct": 22.8
-    },
-    {
-      "supplier_id": "SUP1052",
-      "supplier_name": "Jindal Stainless & Alloy",
-      "ols_price_slope_inr_per_yr": 188.56,
-      "annualized_inflation_trend_pct": 21.3
-    },
-    {
-      "supplier_id": "SUP1008",
-      "supplier_name": "Nordic Polymer Materials",
-      "ols_price_slope_inr_per_yr": 1058.54,
-      "annualized_inflation_trend_pct": 20.7
-    },
-    {
-      "supplier_id": "SUP1032",
-      "supplier_name": "Indus Valley Packaging",
-      "ols_price_slope_inr_per_yr": 1249.76,
-      "annualized_inflation_trend_pct": 20.4
-    },
-    {
-      "supplier_id": "SUP1024",
-      "supplier_name": "Vertex Microchip Fab",
-      "ols_price_slope_inr_per_yr": 702.36,
-      "annualized_inflation_trend_pct": 16.0
-    },
-    {
-      "supplier_id": "SUP1025",
-      "supplier_name": "Deccan Mining & Metals",
-      "ols_price_slope_inr_per_yr": 85.43,
-      "annualized_inflation_trend_pct": 15.3
-    },
-    {
-      "supplier_id": "SUP1028",
-      "supplier_name": "Kalyani Forge & Foundry",
-      "ols_price_slope_inr_per_yr": 355.13,
-      "annualized_inflation_trend_pct": 14.8
-    },
-    {
-      "supplier_id": "SUP1002",
-      "supplier_name": "Pacific Rim Semiconductor Corp",
-      "ols_price_slope_inr_per_yr": 84.92,
-      "annualized_inflation_trend_pct": 14.6
-    },
-    {
-      "supplier_id": "SUP1011",
-      "supplier_name": "Reliance Industrial Polymers",
-      "ols_price_slope_inr_per_yr": 175.0,
-      "annualized_inflation_trend_pct": 14.2
-    },
-    {
-      "supplier_id": "SUP1055",
-      "supplier_name": "Federal Mogul Auto Parts",
-      "ols_price_slope_inr_per_yr": 146.18,
-      "annualized_inflation_trend_pct": 14.1
-    },
-    {
-      "supplier_id": "SUP1016",
-      "supplier_name": "DynaFlex Rubber & Elastomers",
-      "ols_price_slope_inr_per_yr": 424.22,
-      "annualized_inflation_trend_pct": 13.8
-    },
-    {
-      "supplier_id": "SUP1020",
-      "supplier_name": "Kavita Packaging Solutions",
-      "ols_price_slope_inr_per_yr": 114.8,
-      "annualized_inflation_trend_pct": 13.7
-    },
-    {
-      "supplier_id": "SUP1045",
-      "supplier_name": "Prabhat Fastener Industries",
-      "ols_price_slope_inr_per_yr": 279.39,
-      "annualized_inflation_trend_pct": 13.1
-    },
-    {
       "supplier_id": "SUP1012",
       "supplier_name": "Orion Aerospace Materials",
-      "ols_price_slope_inr_per_yr": 237.64,
-      "annualized_inflation_trend_pct": 13.0
+      "ols_price_slope_inr_per_yr": 842.08,
+      "annualized_inflation_trend_pct": 24.0
     },
     {
       "supplier_id": "SUP1056",
       "supplier_name": "Kirloskar Pumps & Compressors",
-      "ols_price_slope_inr_per_yr": 267.58,
-      "annualized_inflation_trend_pct": 12.9
-    },
-    {
-      "supplier_id": "SUP1041",
-      "supplier_name": "Shree Ram Textiles & Weaving",
-      "ols_price_slope_inr_per_yr": 137.01,
-      "annualized_inflation_trend_pct": 12.7
-    },
-    {
-      "supplier_id": "SUP1042",
-      "supplier_name": "AeroTech Composite Systems",
-      "ols_price_slope_inr_per_yr": 147.4,
-      "annualized_inflation_trend_pct": 12.6
-    },
-    {
-      "supplier_id": "SUP1018",
-      "supplier_name": "Sterling Chemical Synthetics",
-      "ols_price_slope_inr_per_yr": 376.91,
-      "annualized_inflation_trend_pct": 12.4
-    },
-    {
-      "supplier_id": "SUP1071",
-      "supplier_name": "TVS Auto Accessories",
-      "ols_price_slope_inr_per_yr": 122.17,
-      "annualized_inflation_trend_pct": 12.0
-    },
-    {
-      "supplier_id": "SUP1033",
-      "supplier_name": "BlueStar Refrigeration Gear",
-      "ols_price_slope_inr_per_yr": 167.37,
-      "annualized_inflation_trend_pct": 11.5
-    },
-    {
-      "supplier_id": "SUP1064",
-      "supplier_name": "Hindalco Aluminum Extrusions",
-      "ols_price_slope_inr_per_yr": 115.84,
-      "annualized_inflation_trend_pct": 11.4
-    },
-    {
-      "supplier_id": "SUP1037",
-      "supplier_name": "Continental Rubber Works",
-      "ols_price_slope_inr_per_yr": 142.01,
-      "annualized_inflation_trend_pct": 10.9
-    },
-    {
-      "supplier_id": "SUP1019",
-      "supplier_name": "Alpha Tool & Die Works",
-      "ols_price_slope_inr_per_yr": 119.27,
-      "annualized_inflation_trend_pct": 9.7
-    },
-    {
-      "supplier_id": "SUP1027",
-      "supplier_name": "Matrix Logistics & Forwarding",
-      "ols_price_slope_inr_per_yr": 50.84,
-      "annualized_inflation_trend_pct": 9.6
-    },
-    {
-      "supplier_id": "SUP1021",
-      "supplier_name": "Shanghai Industrial Silicon",
-      "ols_price_slope_inr_per_yr": 25.61,
-      "annualized_inflation_trend_pct": 8.7
-    },
-    {
-      "supplier_id": "SUP1074",
-      "supplier_name": "L&T Heavy Engineering",
-      "ols_price_slope_inr_per_yr": 76.42,
-      "annualized_inflation_trend_pct": 7.5
-    },
-    {
-      "supplier_id": "SUP1076",
-      "supplier_name": "Parker Hannifin Pneumatics",
-      "ols_price_slope_inr_per_yr": 18.15,
-      "annualized_inflation_trend_pct": 7.1
-    },
-    {
-      "supplier_id": "SUP1017",
-      "supplier_name": "Evergreen Shipping Lines",
-      "ols_price_slope_inr_per_yr": 264.86,
-      "annualized_inflation_trend_pct": 6.6
-    },
-    {
-      "supplier_id": "SUP1031",
-      "supplier_name": "Sonata Acoustic Sensors",
-      "ols_price_slope_inr_per_yr": 48.11,
-      "annualized_inflation_trend_pct": 6.4
-    },
-    {
-      "supplier_id": "SUP1059",
-      "supplier_name": "Sundaram Fasteners Ltd",
-      "ols_price_slope_inr_per_yr": 71.26,
-      "annualized_inflation_trend_pct": 6.3
-    },
-    {
-      "supplier_id": "SUP1046",
-      "supplier_name": "Krupp Heavy Metallics GmbH",
-      "ols_price_slope_inr_per_yr": 188.82,
-      "annualized_inflation_trend_pct": 6.0
-    },
-    {
-      "supplier_id": "SUP1007",
-      "supplier_name": "Global Freight Networks",
-      "ols_price_slope_inr_per_yr": 35.97,
-      "annualized_inflation_trend_pct": 5.9
-    },
-    {
-      "supplier_id": "SUP1048",
-      "supplier_name": "OmniVision Optoelectronics",
-      "ols_price_slope_inr_per_yr": 36.37,
-      "annualized_inflation_trend_pct": 5.6
-    },
-    {
-      "supplier_id": "SUP1034",
-      "supplier_name": "Taiwan Semiconductor Foundry",
-      "ols_price_slope_inr_per_yr": 29.2,
-      "annualized_inflation_trend_pct": 5.6
-    },
-    {
-      "supplier_id": "SUP1072",
-      "supplier_name": "3M Industrial Science",
-      "ols_price_slope_inr_per_yr": 67.33,
-      "annualized_inflation_trend_pct": 5.6
-    },
-    {
-      "supplier_id": "SUP1001",
-      "supplier_name": "Bharat Heavy Metallics",
-      "ols_price_slope_inr_per_yr": 89.77,
-      "annualized_inflation_trend_pct": 5.5
-    },
-    {
-      "supplier_id": "SUP1003",
-      "supplier_name": "Mahindra Industrial Logistics",
-      "ols_price_slope_inr_per_yr": 175.91,
-      "annualized_inflation_trend_pct": 5.3
-    },
-    {
-      "supplier_id": "SUP1070",
-      "supplier_name": "Caterpillar Heavy Logistics",
-      "ols_price_slope_inr_per_yr": 12.12,
-      "annualized_inflation_trend_pct": 5.0
-    },
-    {
-      "supplier_id": "SUP1005",
-      "supplier_name": "Shenzhen Microelectronics Co",
-      "ols_price_slope_inr_per_yr": 178.99,
-      "annualized_inflation_trend_pct": 4.9
-    },
-    {
-      "supplier_id": "SUP1039",
-      "supplier_name": "Hanover Precision Bearings",
-      "ols_price_slope_inr_per_yr": 274.81,
-      "annualized_inflation_trend_pct": 4.6
-    },
-    {
-      "supplier_id": "SUP1047",
-      "supplier_name": "Gujarat Petrochem Synthetics",
-      "ols_price_slope_inr_per_yr": 22.02,
-      "annualized_inflation_trend_pct": 4.4
-    },
-    {
-      "supplier_id": "SUP1006",
-      "supplier_name": "Bavaria Automotive Forgings",
-      "ols_price_slope_inr_per_yr": 200.65,
-      "annualized_inflation_trend_pct": 4.4
-    },
-    {
-      "supplier_id": "SUP1036",
-      "supplier_name": "Titanium Tech Aerospace",
-      "ols_price_slope_inr_per_yr": 19.81,
-      "annualized_inflation_trend_pct": 4.3
-    },
-    {
-      "supplier_id": "SUP1067",
-      "supplier_name": "SKF Precision Bearings",
-      "ols_price_slope_inr_per_yr": 36.66,
-      "annualized_inflation_trend_pct": 4.2
-    },
-    {
-      "supplier_id": "SUP1062",
-      "supplier_name": "Thermax Boilers & Heat Systems",
-      "ols_price_slope_inr_per_yr": 28.28,
-      "annualized_inflation_trend_pct": 3.3
-    },
-    {
-      "supplier_id": "SUP1061",
-      "supplier_name": "Murata Manufacturing Co",
-      "ols_price_slope_inr_per_yr": 21.18,
-      "annualized_inflation_trend_pct": 2.1
-    },
-    {
-      "supplier_id": "SUP1075",
-      "supplier_name": "Eaton Hydraulic Systems",
-      "ols_price_slope_inr_per_yr": 14.35,
-      "annualized_inflation_trend_pct": 1.9
-    },
-    {
-      "supplier_id": "SUP1030",
-      "supplier_name": "Aegis Defense Equipment",
-      "ols_price_slope_inr_per_yr": 24.68,
-      "annualized_inflation_trend_pct": 1.6
-    },
-    {
-      "supplier_id": "SUP1040",
-      "supplier_name": "Nippon Steel Logistics",
-      "ols_price_slope_inr_per_yr": 3.51,
-      "annualized_inflation_trend_pct": 1.6
+      "ols_price_slope_inr_per_yr": 574.61,
+      "annualized_inflation_trend_pct": 23.3
     },
     {
       "supplier_id": "SUP1009",
       "supplier_name": "Tata Alloy & Steel Corp",
-      "ols_price_slope_inr_per_yr": 15.56,
-      "annualized_inflation_trend_pct": 1.3
+      "ols_price_slope_inr_per_yr": 136.47,
+      "annualized_inflation_trend_pct": 22.4
     },
     {
-      "supplier_id": "SUP1077",
-      "supplier_name": "Panasonic Battery Industrial",
-      "ols_price_slope_inr_per_yr": 19.17,
-      "annualized_inflation_trend_pct": 1.0
+      "supplier_id": "SUP1024",
+      "supplier_name": "Vertex Microchip Fab",
+      "ols_price_slope_inr_per_yr": 378.37,
+      "annualized_inflation_trend_pct": 20.9
+    },
+    {
+      "supplier_id": "SUP1036",
+      "supplier_name": "Titanium Tech Aerospace",
+      "ols_price_slope_inr_per_yr": 428.45,
+      "annualized_inflation_trend_pct": 19.8
     },
     {
       "supplier_id": "SUP1029",
       "supplier_name": "Tokyo Electronic Wire Ltd",
-      "ols_price_slope_inr_per_yr": 1.31,
-      "annualized_inflation_trend_pct": 0.2
+      "ols_price_slope_inr_per_yr": 956.4,
+      "annualized_inflation_trend_pct": 19.3
     },
     {
-      "supplier_id": "SUP1050",
-      "supplier_name": "Samsung Component Solutions",
-      "ols_price_slope_inr_per_yr": -2.28,
-      "annualized_inflation_trend_pct": -0.2
+      "supplier_id": "SUP1076",
+      "supplier_name": "Parker Hannifin Pneumatics",
+      "ols_price_slope_inr_per_yr": 114.37,
+      "annualized_inflation_trend_pct": 18.7
     },
     {
-      "supplier_id": "SUP1065",
-      "supplier_name": "Schneider Electric Gear",
-      "ols_price_slope_inr_per_yr": -12.12,
-      "annualized_inflation_trend_pct": -0.5
+      "supplier_id": "SUP1046",
+      "supplier_name": "Krupp Heavy Metallics GmbH",
+      "ols_price_slope_inr_per_yr": 123.88,
+      "annualized_inflation_trend_pct": 17.0
     },
     {
-      "supplier_id": "SUP1066",
-      "supplier_name": "Texas Instrument Distributors",
-      "ols_price_slope_inr_per_yr": -17.85,
-      "annualized_inflation_trend_pct": -1.1
+      "supplier_id": "SUP1001",
+      "supplier_name": "Bharat Heavy Metallics",
+      "ols_price_slope_inr_per_yr": 159.36,
+      "annualized_inflation_trend_pct": 16.6
     },
     {
-      "supplier_id": "SUP1049",
-      "supplier_name": "Ashok Leyland Logistics",
-      "ols_price_slope_inr_per_yr": -38.16,
-      "annualized_inflation_trend_pct": -1.6
+      "supplier_id": "SUP1037",
+      "supplier_name": "Continental Rubber Works",
+      "ols_price_slope_inr_per_yr": 250.52,
+      "annualized_inflation_trend_pct": 15.9
     },
     {
-      "supplier_id": "SUP1015",
-      "supplier_name": "Atlas Heavy Machinery Supplies",
-      "ols_price_slope_inr_per_yr": -26.72,
-      "annualized_inflation_trend_pct": -1.9
+      "supplier_id": "SUP1008",
+      "supplier_name": "Nordic Polymer Materials",
+      "ols_price_slope_inr_per_yr": 1307.6,
+      "annualized_inflation_trend_pct": 15.0
     },
     {
-      "supplier_id": "SUP1053",
-      "supplier_name": "Yokohama Industrial Polymers",
-      "ols_price_slope_inr_per_yr": -42.0,
-      "annualized_inflation_trend_pct": -2.2
-    },
-    {
-      "supplier_id": "SUP1063",
-      "supplier_name": "Bosch Mobility Electronics",
-      "ols_price_slope_inr_per_yr": -44.84,
-      "annualized_inflation_trend_pct": -2.4
-    },
-    {
-      "supplier_id": "SUP1057",
-      "supplier_name": "Toshiba Memory Systems",
-      "ols_price_slope_inr_per_yr": -15.6,
-      "annualized_inflation_trend_pct": -2.8
-    },
-    {
-      "supplier_id": "SUP1051",
-      "supplier_name": "Delta Power Electronics",
-      "ols_price_slope_inr_per_yr": -80.58,
-      "annualized_inflation_trend_pct": -5.2
-    },
-    {
-      "supplier_id": "SUP1060",
-      "supplier_name": "Dow Petrochemical Corp",
-      "ols_price_slope_inr_per_yr": -97.15,
-      "annualized_inflation_trend_pct": -5.3
-    },
-    {
-      "supplier_id": "SUP1035",
-      "supplier_name": "Ganga Hydraulics & Valves",
-      "ols_price_slope_inr_per_yr": -87.42,
-      "annualized_inflation_trend_pct": -5.7
-    },
-    {
-      "supplier_id": "SUP1058",
-      "supplier_name": "Siemens Industrial Automation",
-      "ols_price_slope_inr_per_yr": -50.4,
-      "annualized_inflation_trend_pct": -6.4
-    },
-    {
-      "supplier_id": "SUP1073",
-      "supplier_name": "BASF Chemical Solutions",
-      "ols_price_slope_inr_per_yr": -54.9,
-      "annualized_inflation_trend_pct": -9.1
-    },
-    {
-      "supplier_id": "SUP1038",
-      "supplier_name": "Godrej Material Handling",
-      "ols_price_slope_inr_per_yr": -92.29,
-      "annualized_inflation_trend_pct": -9.2
-    },
-    {
-      "supplier_id": "SUP1054",
-      "supplier_name": "Swastik Cardboard & Packaging",
-      "ols_price_slope_inr_per_yr": -125.91,
-      "annualized_inflation_trend_pct": -10.4
+      "supplier_id": "SUP1048",
+      "supplier_name": "OmniVision Optoelectronics",
+      "ols_price_slope_inr_per_yr": 244.87,
+      "annualized_inflation_trend_pct": 13.9
     },
     {
       "supplier_id": "SUP1068",
       "supplier_name": "NTPC Equipment Supplies",
-      "ols_price_slope_inr_per_yr": -68.47,
-      "annualized_inflation_trend_pct": -10.4
+      "ols_price_slope_inr_per_yr": 119.77,
+      "annualized_inflation_trend_pct": 13.5
+    },
+    {
+      "supplier_id": "SUP1032",
+      "supplier_name": "Indus Valley Packaging",
+      "ols_price_slope_inr_per_yr": 139.12,
+      "annualized_inflation_trend_pct": 13.2
+    },
+    {
+      "supplier_id": "SUP1034",
+      "supplier_name": "Taiwan Semiconductor Foundry",
+      "ols_price_slope_inr_per_yr": 146.06,
+      "annualized_inflation_trend_pct": 13.0
+    },
+    {
+      "supplier_id": "SUP1016",
+      "supplier_name": "DynaFlex Rubber & Elastomers",
+      "ols_price_slope_inr_per_yr": 93.93,
+      "annualized_inflation_trend_pct": 12.8
+    },
+    {
+      "supplier_id": "SUP1011",
+      "supplier_name": "Reliance Industrial Polymers",
+      "ols_price_slope_inr_per_yr": 88.88,
+      "annualized_inflation_trend_pct": 12.3
+    },
+    {
+      "supplier_id": "SUP1066",
+      "supplier_name": "Texas Instrument Distributors",
+      "ols_price_slope_inr_per_yr": 226.54,
+      "annualized_inflation_trend_pct": 11.9
+    },
+    {
+      "supplier_id": "SUP1030",
+      "supplier_name": "Aegis Defense Equipment",
+      "ols_price_slope_inr_per_yr": 165.6,
+      "annualized_inflation_trend_pct": 10.2
+    },
+    {
+      "supplier_id": "SUP1044",
+      "supplier_name": "Silicon Valley Micro Hardware",
+      "ols_price_slope_inr_per_yr": 76.25,
+      "annualized_inflation_trend_pct": 9.4
+    },
+    {
+      "supplier_id": "SUP1063",
+      "supplier_name": "Bosch Mobility Electronics",
+      "ols_price_slope_inr_per_yr": 141.34,
+      "annualized_inflation_trend_pct": 9.2
+    },
+    {
+      "supplier_id": "SUP1060",
+      "supplier_name": "Dow Petrochemical Corp",
+      "ols_price_slope_inr_per_yr": 209.24,
+      "annualized_inflation_trend_pct": 9.0
+    },
+    {
+      "supplier_id": "SUP1015",
+      "supplier_name": "Atlas Heavy Machinery Supplies",
+      "ols_price_slope_inr_per_yr": 131.44,
+      "annualized_inflation_trend_pct": 8.5
+    },
+    {
+      "supplier_id": "SUP1020",
+      "supplier_name": "Kavita Packaging Solutions",
+      "ols_price_slope_inr_per_yr": 17.89,
+      "annualized_inflation_trend_pct": 7.4
+    },
+    {
+      "supplier_id": "SUP1028",
+      "supplier_name": "Kalyani Forge & Foundry",
+      "ols_price_slope_inr_per_yr": 137.16,
+      "annualized_inflation_trend_pct": 7.2
+    },
+    {
+      "supplier_id": "SUP1050",
+      "supplier_name": "Samsung Component Solutions",
+      "ols_price_slope_inr_per_yr": 55.42,
+      "annualized_inflation_trend_pct": 7.1
+    },
+    {
+      "supplier_id": "SUP1071",
+      "supplier_name": "TVS Auto Accessories",
+      "ols_price_slope_inr_per_yr": 65.33,
+      "annualized_inflation_trend_pct": 7.0
     },
     {
       "supplier_id": "SUP1010",
       "supplier_name": "Zenith Electronics Mfg",
-      "ols_price_slope_inr_per_yr": -56.3,
-      "annualized_inflation_trend_pct": -10.8
+      "ols_price_slope_inr_per_yr": 107.3,
+      "annualized_inflation_trend_pct": 6.4
     },
     {
-      "supplier_id": "SUP1014",
-      "supplier_name": "Hindustan Fasteners & Hardware",
-      "ols_price_slope_inr_per_yr": -192.11,
-      "annualized_inflation_trend_pct": -11.0
+      "supplier_id": "SUP1067",
+      "supplier_name": "SKF Precision Bearings",
+      "ols_price_slope_inr_per_yr": 10.73,
+      "annualized_inflation_trend_pct": 6.4
     },
     {
-      "supplier_id": "SUP1023",
-      "supplier_name": "Larsen Structural Engineers",
-      "ols_price_slope_inr_per_yr": -68.89,
-      "annualized_inflation_trend_pct": -11.3
-    },
-    {
-      "supplier_id": "SUP1022",
-      "supplier_name": "Stuttgart Auto Components",
-      "ols_price_slope_inr_per_yr": -179.42,
-      "annualized_inflation_trend_pct": -11.6
-    },
-    {
-      "supplier_id": "SUP1043",
-      "supplier_name": "Bengal Chemical Reagents",
-      "ols_price_slope_inr_per_yr": -87.99,
-      "annualized_inflation_trend_pct": -14.1
+      "supplier_id": "SUP1018",
+      "supplier_name": "Sterling Chemical Synthetics",
+      "ols_price_slope_inr_per_yr": 124.69,
+      "annualized_inflation_trend_pct": 5.3
     },
     {
       "supplier_id": "SUP1013",
       "supplier_name": "Kyoto Precision Instruments",
-      "ols_price_slope_inr_per_yr": -232.57,
-      "annualized_inflation_trend_pct": -24.3
+      "ols_price_slope_inr_per_yr": 32.57,
+      "annualized_inflation_trend_pct": 5.0
+    },
+    {
+      "supplier_id": "SUP1074",
+      "supplier_name": "L&T Heavy Engineering",
+      "ols_price_slope_inr_per_yr": 42.89,
+      "annualized_inflation_trend_pct": 4.5
+    },
+    {
+      "supplier_id": "SUP1051",
+      "supplier_name": "Delta Power Electronics",
+      "ols_price_slope_inr_per_yr": 27.85,
+      "annualized_inflation_trend_pct": 4.5
+    },
+    {
+      "supplier_id": "SUP1022",
+      "supplier_name": "Stuttgart Auto Components",
+      "ols_price_slope_inr_per_yr": 27.19,
+      "annualized_inflation_trend_pct": 4.3
+    },
+    {
+      "supplier_id": "SUP1038",
+      "supplier_name": "Godrej Material Handling",
+      "ols_price_slope_inr_per_yr": 72.76,
+      "annualized_inflation_trend_pct": 4.2
+    },
+    {
+      "supplier_id": "SUP1021",
+      "supplier_name": "Shanghai Industrial Silicon",
+      "ols_price_slope_inr_per_yr": 33.22,
+      "annualized_inflation_trend_pct": 3.9
+    },
+    {
+      "supplier_id": "SUP1075",
+      "supplier_name": "Eaton Hydraulic Systems",
+      "ols_price_slope_inr_per_yr": 158.11,
+      "annualized_inflation_trend_pct": 3.8
+    },
+    {
+      "supplier_id": "SUP1049",
+      "supplier_name": "Ashok Leyland Logistics",
+      "ols_price_slope_inr_per_yr": 64.06,
+      "annualized_inflation_trend_pct": 3.6
+    },
+    {
+      "supplier_id": "SUP1053",
+      "supplier_name": "Yokohama Industrial Polymers",
+      "ols_price_slope_inr_per_yr": 33.21,
+      "annualized_inflation_trend_pct": 3.2
+    },
+    {
+      "supplier_id": "SUP1005",
+      "supplier_name": "Shenzhen Microelectronics Co",
+      "ols_price_slope_inr_per_yr": 38.25,
+      "annualized_inflation_trend_pct": 3.1
+    },
+    {
+      "supplier_id": "SUP1041",
+      "supplier_name": "Shree Ram Textiles & Weaving",
+      "ols_price_slope_inr_per_yr": 19.43,
+      "annualized_inflation_trend_pct": 2.4
+    },
+    {
+      "supplier_id": "SUP1026",
+      "supplier_name": "Pinnacle Precision Castings",
+      "ols_price_slope_inr_per_yr": 14.46,
+      "annualized_inflation_trend_pct": 1.7
+    },
+    {
+      "supplier_id": "SUP1040",
+      "supplier_name": "Nippon Steel Logistics",
+      "ols_price_slope_inr_per_yr": 7.27,
+      "annualized_inflation_trend_pct": 1.6
+    },
+    {
+      "supplier_id": "SUP1006",
+      "supplier_name": "Bavaria Automotive Forgings",
+      "ols_price_slope_inr_per_yr": 20.76,
+      "annualized_inflation_trend_pct": 1.6
+    },
+    {
+      "supplier_id": "SUP1035",
+      "supplier_name": "Ganga Hydraulics & Valves",
+      "ols_price_slope_inr_per_yr": 47.88,
+      "annualized_inflation_trend_pct": 1.6
+    },
+    {
+      "supplier_id": "SUP1002",
+      "supplier_name": "Pacific Rim Semiconductor Corp",
+      "ols_price_slope_inr_per_yr": 20.58,
+      "annualized_inflation_trend_pct": 1.5
+    },
+    {
+      "supplier_id": "SUP1073",
+      "supplier_name": "BASF Chemical Solutions",
+      "ols_price_slope_inr_per_yr": 12.97,
+      "annualized_inflation_trend_pct": 1.5
     },
     {
       "supplier_id": "SUP1069",
       "supplier_name": "Hitachi Industrial Machinery",
-      "ols_price_slope_inr_per_yr": -582.2,
-      "annualized_inflation_trend_pct": -35.1
+      "ols_price_slope_inr_per_yr": 6.56,
+      "annualized_inflation_trend_pct": 1.4
+    },
+    {
+      "supplier_id": "SUP1065",
+      "supplier_name": "Schneider Electric Gear",
+      "ols_price_slope_inr_per_yr": 18.97,
+      "annualized_inflation_trend_pct": 1.0
+    },
+    {
+      "supplier_id": "SUP1000",
+      "supplier_name": "Apex Precision Components Ltd",
+      "ols_price_slope_inr_per_yr": 13.59,
+      "annualized_inflation_trend_pct": 1.0
+    },
+    {
+      "supplier_id": "SUP1042",
+      "supplier_name": "AeroTech Composite Systems",
+      "ols_price_slope_inr_per_yr": 6.53,
+      "annualized_inflation_trend_pct": 1.0
+    },
+    {
+      "supplier_id": "SUP1045",
+      "supplier_name": "Prabhat Fastener Industries",
+      "ols_price_slope_inr_per_yr": 29.56,
+      "annualized_inflation_trend_pct": 0.8
+    },
+    {
+      "supplier_id": "SUP1039",
+      "supplier_name": "Hanover Precision Bearings",
+      "ols_price_slope_inr_per_yr": 1.22,
+      "annualized_inflation_trend_pct": 0.3
+    },
+    {
+      "supplier_id": "SUP1031",
+      "supplier_name": "Sonata Acoustic Sensors",
+      "ols_price_slope_inr_per_yr": 1.04,
+      "annualized_inflation_trend_pct": 0.1
+    },
+    {
+      "supplier_id": "SUP1070",
+      "supplier_name": "Caterpillar Heavy Logistics",
+      "ols_price_slope_inr_per_yr": 0.22,
+      "annualized_inflation_trend_pct": 0.0
+    },
+    {
+      "supplier_id": "SUP1052",
+      "supplier_name": "Jindal Stainless & Alloy",
+      "ols_price_slope_inr_per_yr": -1.42,
+      "annualized_inflation_trend_pct": -0.1
+    },
+    {
+      "supplier_id": "SUP1017",
+      "supplier_name": "Evergreen Shipping Lines",
+      "ols_price_slope_inr_per_yr": -10.77,
+      "annualized_inflation_trend_pct": -0.4
+    },
+    {
+      "supplier_id": "SUP1057",
+      "supplier_name": "Toshiba Memory Systems",
+      "ols_price_slope_inr_per_yr": -14.57,
+      "annualized_inflation_trend_pct": -1.1
+    },
+    {
+      "supplier_id": "SUP1055",
+      "supplier_name": "Federal Mogul Auto Parts",
+      "ols_price_slope_inr_per_yr": -14.54,
+      "annualized_inflation_trend_pct": -1.5
+    },
+    {
+      "supplier_id": "SUP1072",
+      "supplier_name": "3M Industrial Science",
+      "ols_price_slope_inr_per_yr": -25.57,
+      "annualized_inflation_trend_pct": -2.2
+    },
+    {
+      "supplier_id": "SUP1064",
+      "supplier_name": "Hindalco Aluminum Extrusions",
+      "ols_price_slope_inr_per_yr": -33.94,
+      "annualized_inflation_trend_pct": -2.5
+    },
+    {
+      "supplier_id": "SUP1059",
+      "supplier_name": "Sundaram Fasteners Ltd",
+      "ols_price_slope_inr_per_yr": -51.92,
+      "annualized_inflation_trend_pct": -2.8
+    },
+    {
+      "supplier_id": "SUP1027",
+      "supplier_name": "Matrix Logistics & Forwarding",
+      "ols_price_slope_inr_per_yr": -48.33,
+      "annualized_inflation_trend_pct": -3.1
+    },
+    {
+      "supplier_id": "SUP1019",
+      "supplier_name": "Alpha Tool & Die Works",
+      "ols_price_slope_inr_per_yr": -10.97,
+      "annualized_inflation_trend_pct": -3.2
+    },
+    {
+      "supplier_id": "SUP1043",
+      "supplier_name": "Bengal Chemical Reagents",
+      "ols_price_slope_inr_per_yr": -80.2,
+      "annualized_inflation_trend_pct": -4.0
+    },
+    {
+      "supplier_id": "SUP1023",
+      "supplier_name": "Larsen Structural Engineers",
+      "ols_price_slope_inr_per_yr": -78.36,
+      "annualized_inflation_trend_pct": -4.0
+    },
+    {
+      "supplier_id": "SUP1058",
+      "supplier_name": "Siemens Industrial Automation",
+      "ols_price_slope_inr_per_yr": -84.73,
+      "annualized_inflation_trend_pct": -4.8
+    },
+    {
+      "supplier_id": "SUP1025",
+      "supplier_name": "Deccan Mining & Metals",
+      "ols_price_slope_inr_per_yr": -73.82,
+      "annualized_inflation_trend_pct": -5.1
+    },
+    {
+      "supplier_id": "SUP1077",
+      "supplier_name": "Panasonic Battery Industrial",
+      "ols_price_slope_inr_per_yr": -34.09,
+      "annualized_inflation_trend_pct": -5.1
+    },
+    {
+      "supplier_id": "SUP1062",
+      "supplier_name": "Thermax Boilers & Heat Systems",
+      "ols_price_slope_inr_per_yr": -52.4,
+      "annualized_inflation_trend_pct": -5.7
+    },
+    {
+      "supplier_id": "SUP1061",
+      "supplier_name": "Murata Manufacturing Co",
+      "ols_price_slope_inr_per_yr": -113.87,
+      "annualized_inflation_trend_pct": -6.2
+    },
+    {
+      "supplier_id": "SUP1007",
+      "supplier_name": "Global Freight Networks",
+      "ols_price_slope_inr_per_yr": -36.09,
+      "annualized_inflation_trend_pct": -6.3
+    },
+    {
+      "supplier_id": "SUP1054",
+      "supplier_name": "Swastik Cardboard & Packaging",
+      "ols_price_slope_inr_per_yr": -23.52,
+      "annualized_inflation_trend_pct": -6.5
+    },
+    {
+      "supplier_id": "SUP1047",
+      "supplier_name": "Gujarat Petrochem Synthetics",
+      "ols_price_slope_inr_per_yr": -30.16,
+      "annualized_inflation_trend_pct": -8.1
+    },
+    {
+      "supplier_id": "SUP1014",
+      "supplier_name": "Hindustan Fasteners & Hardware",
+      "ols_price_slope_inr_per_yr": -43.98,
+      "annualized_inflation_trend_pct": -9.3
+    },
+    {
+      "supplier_id": "SUP1004",
+      "supplier_name": "Vanguard Chemical Solutions",
+      "ols_price_slope_inr_per_yr": -156.49,
+      "annualized_inflation_trend_pct": -11.4
+    },
+    {
+      "supplier_id": "SUP1003",
+      "supplier_name": "Mahindra Industrial Logistics",
+      "ols_price_slope_inr_per_yr": -448.85,
+      "annualized_inflation_trend_pct": -24.7
+    },
+    {
+      "supplier_id": "SUP1033",
+      "supplier_name": "BlueStar Refrigeration Gear",
+      "ols_price_slope_inr_per_yr": -223.49,
+      "annualized_inflation_trend_pct": -36.5
     }
   ],
   "inventory_exposure": {
     "total_products": 200,
-    "healthy_skus": 16,
-    "understocked_skus": 184,
-    "understocked_high_risk_skus": 57,
-    "understocked_high_risk_pct": 31.0,
-    "single_source_dependent_skus": 62,
-    "single_source_high_risk_skus": 62,
-    "high_risk_supplier_spend": 17869457893.43,
-    "high_risk_spend_share_pct": 38.3
+    "healthy_skus": 167,
+    "understocked_skus": 33,
+    "understocked_high_risk_skus": 12,
+    "understocked_high_risk_pct": 36.4,
+    "single_source_dependent_skus": 61,
+    "single_source_high_risk_skus": 61,
+    "high_risk_supplier_spend": 11215453418.64,
+    "high_risk_spend_share_pct": 33.2
   },
   "top_suppliers": [
     {
-      "supplier_id": "SUP1036",
-      "supplier_name": "Titanium Tech Aerospace",
+      "supplier_id": "SUP1042",
+      "supplier_name": "AeroTech Composite Systems",
       "region": "East India",
       "tier": "Tier 2",
-      "total_orders": 495,
-      "total_spend": 236649080.22,
-      "avg_order_value": 478078.95,
-      "on_time_pct": 77.2,
-      "avg_delay_days": 2.67,
-      "defect_rate_pct": 0.2,
-      "delay_trend_slope": -0.0034,
-      "price_volatility_cv": 0.167,
-      "composite_risk_index": 18.5,
+      "total_orders": 654,
+      "total_spend": 313010588.0,
+      "avg_order_value": 478609.46,
+      "on_time_pct": 82.0,
+      "avg_delay_days": 1.19,
+      "defect_rate_pct": 3.36,
+      "delay_trend_slope": -0.0042,
+      "price_volatility_cv": 0.1885,
+      "composite_risk_index": 12.3,
       "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
       "risk_tier": "Low Risk",
       "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 19.81,
-      "annualized_inflation_trend_pct": 4.3
+      "ols_price_slope_inr_per_yr": 6.53,
+      "annualized_inflation_trend_pct": 1.0
     },
     {
       "supplier_id": "SUP1077",
       "supplier_name": "Panasonic Battery Industrial",
       "region": "West India",
       "tier": "Tier 2",
-      "total_orders": 602,
-      "total_spend": 1151736170.61,
-      "avg_order_value": 1913183.01,
-      "on_time_pct": 78.4,
-      "avg_delay_days": 2.47,
-      "defect_rate_pct": 6.98,
-      "delay_trend_slope": 0.0238,
-      "price_volatility_cv": 0.1381,
-      "composite_risk_index": 20.5,
+      "total_orders": 504,
+      "total_spend": 268471866.35,
+      "avg_order_value": 532682.27,
+      "on_time_pct": 73.4,
+      "avg_delay_days": 1.82,
+      "defect_rate_pct": 0.2,
+      "delay_trend_slope": -0.0021,
+      "price_volatility_cv": 0.1557,
+      "composite_risk_index": 14.0,
       "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
       "risk_tier": "Low Risk",
       "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 19.17,
-      "annualized_inflation_trend_pct": 1.0
+      "ols_price_slope_inr_per_yr": -34.09,
+      "annualized_inflation_trend_pct": -5.1
+    },
+    {
+      "supplier_id": "SUP1052",
+      "supplier_name": "Jindal Stainless & Alloy",
+      "region": "North India",
+      "tier": "Tier 2",
+      "total_orders": 601,
+      "total_spend": 610517871.19,
+      "avg_order_value": 1015836.72,
+      "on_time_pct": 78.9,
+      "avg_delay_days": 1.27,
+      "defect_rate_pct": 1.33,
+      "delay_trend_slope": 0.0052,
+      "price_volatility_cv": 0.2239,
+      "composite_risk_index": 14.2,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "Low Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": -1.42,
+      "annualized_inflation_trend_pct": -0.1
+    },
+    {
+      "supplier_id": "SUP1013",
+      "supplier_name": "Kyoto Precision Instruments",
+      "region": "North India",
+      "tier": "Tier 3",
+      "total_orders": 259,
+      "total_spend": 134969372.56,
+      "avg_order_value": 521117.27,
+      "on_time_pct": 72.2,
+      "avg_delay_days": 1.63,
+      "defect_rate_pct": 1.16,
+      "delay_trend_slope": -0.0034,
+      "price_volatility_cv": 0.194,
+      "composite_risk_index": 15.4,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "Low Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 32.57,
+      "annualized_inflation_trend_pct": 5.0
+    },
+    {
+      "supplier_id": "SUP1008",
+      "supplier_name": "Nordic Polymer Materials",
+      "region": "East India",
+      "tier": "Tier 2",
+      "total_orders": 164,
+      "total_spend": 1152351621.16,
+      "avg_order_value": 7026534.28,
+      "on_time_pct": 74.4,
+      "avg_delay_days": 1.76,
+      "defect_rate_pct": 0.61,
+      "delay_trend_slope": 0.0047,
+      "price_volatility_cv": 0.2464,
+      "composite_risk_index": 16.0,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "Low Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 1307.6,
+      "annualized_inflation_trend_pct": 15.0
+    }
+  ],
+  "bottom_suppliers": [
+    {
+      "supplier_id": "SUP1048",
+      "supplier_name": "OmniVision Optoelectronics",
+      "region": "Import - SE Asia",
+      "tier": "Tier 1",
+      "total_orders": 37,
+      "total_spend": 47460688.54,
+      "avg_order_value": 1282721.31,
+      "on_time_pct": 45.9,
+      "avg_delay_days": 3.7,
+      "defect_rate_pct": 0.0,
+      "delay_trend_slope": 0.2677,
+      "price_volatility_cv": 0.4624,
+      "composite_risk_index": 46.0,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 244.87,
+      "annualized_inflation_trend_pct": 13.9
+    },
+    {
+      "supplier_id": "SUP1003",
+      "supplier_name": "Mahindra Industrial Logistics",
+      "region": "Import - China",
+      "tier": "Tier 1",
+      "total_orders": 86,
+      "total_spend": 106433739.71,
+      "avg_order_value": 1237601.62,
+      "on_time_pct": 32.6,
+      "avg_delay_days": 3.9,
+      "defect_rate_pct": 6.98,
+      "delay_trend_slope": 0.0434,
+      "price_volatility_cv": 0.8008,
+      "composite_risk_index": 45.3,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": -448.85,
+      "annualized_inflation_trend_pct": -24.7
+    },
+    {
+      "supplier_id": "SUP1016",
+      "supplier_name": "DynaFlex Rubber & Elastomers",
+      "region": "Import - Europe",
+      "tier": "Tier 2",
+      "total_orders": 264,
+      "total_spend": 143471913.41,
+      "avg_order_value": 543454.22,
+      "on_time_pct": 19.7,
+      "avg_delay_days": 4.98,
+      "defect_rate_pct": 3.03,
+      "delay_trend_slope": 0.063,
+      "price_volatility_cv": 0.2049,
+      "composite_risk_index": 38.5,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 93.93,
+      "annualized_inflation_trend_pct": 12.8
+    },
+    {
+      "supplier_id": "SUP1033",
+      "supplier_name": "BlueStar Refrigeration Gear",
+      "region": "West India",
+      "tier": "Tier 2",
+      "total_orders": 142,
+      "total_spend": 68648146.07,
+      "avg_order_value": 483437.65,
+      "on_time_pct": 62.0,
+      "avg_delay_days": 2.24,
+      "defect_rate_pct": 4.23,
+      "delay_trend_slope": 0.0048,
+      "price_volatility_cv": 1.1299,
+      "composite_risk_index": 38.3,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Price Volatility Risk",
+      "ols_price_slope_inr_per_yr": -223.49,
+      "annualized_inflation_trend_pct": -36.5
+    },
+    {
+      "supplier_id": "SUP1029",
+      "supplier_name": "Tokyo Electronic Wire Ltd",
+      "region": "Import - China",
+      "tier": "Tier 3",
+      "total_orders": 437,
+      "total_spend": 1679048912.27,
+      "avg_order_value": 3842217.19,
+      "on_time_pct": 28.8,
+      "avg_delay_days": 4.5,
+      "defect_rate_pct": 0.92,
+      "delay_trend_slope": 0.0766,
+      "price_volatility_cv": 0.2632,
+      "composite_risk_index": 36.7,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 956.4,
+      "annualized_inflation_trend_pct": 19.3
+    }
+  ],
+  "worst_quality_suppliers": [
+    {
+      "supplier_id": "SUP1062",
+      "supplier_name": "Thermax Boilers & Heat Systems",
+      "region": "East India",
+      "tier": "Tier 1",
+      "total_orders": 534,
+      "total_spend": 372810561.87,
+      "avg_order_value": 698147.12,
+      "on_time_pct": 68.2,
+      "avg_delay_days": 2.09,
+      "defect_rate_pct": 12.73,
+      "delay_trend_slope": 0.0226,
+      "price_volatility_cv": 0.1702,
+      "composite_risk_index": 20.8,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "Low Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": -52.4,
+      "annualized_inflation_trend_pct": -5.7
+    },
+    {
+      "supplier_id": "SUP1005",
+      "supplier_name": "Shenzhen Microelectronics Co",
+      "region": "Import - North America",
+      "tier": "Tier 2",
+      "total_orders": 582,
+      "total_spend": 530332565.42,
+      "avg_order_value": 911224.34,
+      "on_time_pct": 36.3,
+      "avg_delay_days": 4.06,
+      "defect_rate_pct": 7.9,
+      "delay_trend_slope": -0.0021,
+      "price_volatility_cv": 0.276,
+      "composite_risk_index": 31.3,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 38.25,
+      "annualized_inflation_trend_pct": 3.1
+    },
+    {
+      "supplier_id": "SUP1019",
+      "supplier_name": "Alpha Tool & Die Works",
+      "region": "Import - Europe",
+      "tier": "Tier 2",
+      "total_orders": 475,
+      "total_spend": 120552116.25,
+      "avg_order_value": 253793.93,
+      "on_time_pct": 47.6,
+      "avg_delay_days": 3.45,
+      "defect_rate_pct": 7.16,
+      "delay_trend_slope": 0.0078,
+      "price_volatility_cv": 0.2192,
+      "composite_risk_index": 26.6,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": -10.97,
+      "annualized_inflation_trend_pct": -3.2
+    },
+    {
+      "supplier_id": "SUP1003",
+      "supplier_name": "Mahindra Industrial Logistics",
+      "region": "Import - China",
+      "tier": "Tier 1",
+      "total_orders": 86,
+      "total_spend": 106433739.71,
+      "avg_order_value": 1237601.62,
+      "on_time_pct": 32.6,
+      "avg_delay_days": 3.9,
+      "defect_rate_pct": 6.98,
+      "delay_trend_slope": 0.0434,
+      "price_volatility_cv": 0.8008,
+      "composite_risk_index": 45.3,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": -448.85,
+      "annualized_inflation_trend_pct": -24.7
+    },
+    {
+      "supplier_id": "SUP1011",
+      "supplier_name": "Reliance Industrial Polymers",
+      "region": "West India",
+      "tier": "Tier 3",
+      "total_orders": 282,
+      "total_spend": 167482753.35,
+      "avg_order_value": 593910.47,
+      "on_time_pct": 62.8,
+      "avg_delay_days": 2.45,
+      "defect_rate_pct": 6.74,
+      "delay_trend_slope": 0.0131,
+      "price_volatility_cv": 0.3022,
+      "composite_risk_index": 23.1,
+      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 88.88,
+      "annualized_inflation_trend_pct": 12.3
+    }
+  ],
+  "worst_trend_suppliers": [
+    {
+      "supplier_id": "SUP1048",
+      "supplier_name": "OmniVision Optoelectronics",
+      "region": "Import - SE Asia",
+      "tier": "Tier 1",
+      "total_orders": 37,
+      "total_spend": 47460688.54,
+      "avg_order_value": 1282721.31,
+      "on_time_pct": 45.9,
+      "avg_delay_days": 3.7,
+      "defect_rate_pct": 0.0,
+      "delay_trend_slope": 0.2677,
+      "price_volatility_cv": 0.4624,
+      "composite_risk_index": 46.0,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 244.87,
+      "annualized_inflation_trend_pct": 13.9
+    },
+    {
+      "supplier_id": "SUP1068",
+      "supplier_name": "NTPC Equipment Supplies",
+      "region": "East India",
+      "tier": "Tier 3",
+      "total_orders": 172,
+      "total_spend": 112581509.36,
+      "avg_order_value": 654543.66,
+      "on_time_pct": 66.3,
+      "avg_delay_days": 2.26,
+      "defect_rate_pct": 1.74,
+      "delay_trend_slope": 0.1187,
+      "price_volatility_cv": 0.1969,
+      "composite_risk_index": 25.1,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "Medium Risk",
+      "primary_risk_axis": "Reliability Risk (Late Delivery)",
+      "ols_price_slope_inr_per_yr": 119.77,
+      "annualized_inflation_trend_pct": 13.5
     },
     {
       "supplier_id": "SUP1075",
       "supplier_name": "Eaton Hydraulic Systems",
       "region": "North India",
       "tier": "Tier 3",
-      "total_orders": 201,
-      "total_spend": 154710936.72,
-      "avg_order_value": 769706.15,
-      "on_time_pct": 68.2,
-      "avg_delay_days": 3.81,
-      "defect_rate_pct": 3.98,
-      "delay_trend_slope": -0.0256,
-      "price_volatility_cv": 0.1806,
-      "composite_risk_index": 21.7,
-      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
-      "risk_tier": "Low Risk",
+      "total_orders": 206,
+      "total_spend": 655905469.65,
+      "avg_order_value": 3184007.13,
+      "on_time_pct": 51.9,
+      "avg_delay_days": 3.16,
+      "defect_rate_pct": 0.97,
+      "delay_trend_slope": 0.111,
+      "price_volatility_cv": 0.3184,
+      "composite_risk_index": 31.8,
+      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
+      "risk_tier": "High Risk",
       "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 14.35,
-      "annualized_inflation_trend_pct": 1.9
+      "ols_price_slope_inr_per_yr": 158.11,
+      "annualized_inflation_trend_pct": 3.8
     },
     {
-      "supplier_id": "SUP1041",
-      "supplier_name": "Shree Ram Textiles & Weaving",
+      "supplier_id": "SUP1049",
+      "supplier_name": "Ashok Leyland Logistics",
       "region": "North India",
-      "tier": "Tier 3",
-      "total_orders": 311,
-      "total_spend": 353075058.59,
-      "avg_order_value": 1135289.58,
-      "on_time_pct": 73.6,
-      "avg_delay_days": 3.37,
-      "defect_rate_pct": 8.68,
-      "delay_trend_slope": -0.0429,
-      "price_volatility_cv": 0.2564,
-      "composite_risk_index": 21.9,
-      "trajectory_direction": "\ud83d\udcc8 Improving (Delay Declining)",
-      "risk_tier": "Low Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 137.01,
-      "annualized_inflation_trend_pct": 12.7
-    },
-    {
-      "supplier_id": "SUP1059",
-      "supplier_name": "Sundaram Fasteners Ltd",
-      "region": "Import - China",
-      "tier": "Tier 3",
-      "total_orders": 619,
-      "total_spend": 674482416.96,
-      "avg_order_value": 1089632.34,
-      "on_time_pct": 70.1,
-      "avg_delay_days": 3.33,
-      "defect_rate_pct": 3.23,
-      "delay_trend_slope": -0.0183,
-      "price_volatility_cv": 0.2076,
-      "composite_risk_index": 21.9,
-      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
-      "risk_tier": "Low Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 71.26,
-      "annualized_inflation_trend_pct": 6.3
-    }
-  ],
-  "bottom_suppliers": [
-    {
-      "supplier_id": "SUP1022",
-      "supplier_name": "Stuttgart Auto Components",
-      "region": "Import - North America",
-      "tier": "Tier 2",
-      "total_orders": 53,
-      "total_spend": 72977139.01,
-      "avg_order_value": 1376927.15,
-      "on_time_pct": 54.7,
-      "avg_delay_days": 5.55,
-      "defect_rate_pct": 7.55,
-      "delay_trend_slope": 0.1823,
-      "price_volatility_cv": 0.8359,
-      "composite_risk_index": 55.6,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Price Volatility Risk",
-      "ols_price_slope_inr_per_yr": -179.42,
-      "annualized_inflation_trend_pct": -11.6
-    },
-    {
-      "supplier_id": "SUP1060",
-      "supplier_name": "Dow Petrochemical Corp",
-      "region": "Import - China",
-      "tier": "Tier 2",
-      "total_orders": 19,
-      "total_spend": 28205842.64,
-      "avg_order_value": 1484518.03,
-      "on_time_pct": 21.1,
-      "avg_delay_days": 6.32,
-      "defect_rate_pct": 15.79,
-      "delay_trend_slope": 0.2,
-      "price_volatility_cv": 0.115,
-      "composite_risk_index": 51.9,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": -97.15,
-      "annualized_inflation_trend_pct": -5.3
-    },
-    {
-      "supplier_id": "SUP1076",
-      "supplier_name": "Parker Hannifin Pneumatics",
-      "region": "West India",
-      "tier": "Tier 3",
-      "total_orders": 326,
-      "total_spend": 76655624.03,
-      "avg_order_value": 235139.95,
-      "on_time_pct": 58.0,
-      "avg_delay_days": 4.98,
-      "defect_rate_pct": 13.19,
-      "delay_trend_slope": 0.0635,
-      "price_volatility_cv": 0.7422,
-      "composite_risk_index": 46.9,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Price Volatility Risk",
-      "ols_price_slope_inr_per_yr": 18.15,
-      "annualized_inflation_trend_pct": 7.1
-    },
-    {
-      "supplier_id": "SUP1064",
-      "supplier_name": "Hindalco Aluminum Extrusions",
-      "region": "North India",
-      "tier": "Tier 2",
-      "total_orders": 284,
-      "total_spend": 290728867.46,
-      "avg_order_value": 1023693.2,
-      "on_time_pct": 23.2,
-      "avg_delay_days": 8.55,
-      "defect_rate_pct": 1.41,
-      "delay_trend_slope": 0.0738,
-      "price_volatility_cv": 0.343,
-      "composite_risk_index": 46.5,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 115.84,
-      "annualized_inflation_trend_pct": 11.4
-    },
-    {
-      "supplier_id": "SUP1024",
-      "supplier_name": "Vertex Microchip Fab",
-      "region": "Import - North America",
       "tier": "Tier 1",
-      "total_orders": 191,
-      "total_spend": 852492077.35,
-      "avg_order_value": 4463309.31,
-      "on_time_pct": 37.2,
-      "avg_delay_days": 6.86,
-      "defect_rate_pct": 2.62,
-      "delay_trend_slope": 0.0983,
-      "price_volatility_cv": 0.3986,
-      "composite_risk_index": 44.6,
+      "total_orders": 298,
+      "total_spend": 408188346.0,
+      "avg_order_value": 1369759.55,
+      "on_time_pct": 46.0,
+      "avg_delay_days": 3.23,
+      "defect_rate_pct": 3.36,
+      "delay_trend_slope": 0.0923,
+      "price_volatility_cv": 0.3215,
+      "composite_risk_index": 33.4,
       "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
       "risk_tier": "High Risk",
       "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 702.36,
-      "annualized_inflation_trend_pct": 16.0
-    }
-  ],
-  "worst_quality_suppliers": [
-    {
-      "supplier_id": "SUP1061",
-      "supplier_name": "Murata Manufacturing Co",
-      "region": "Import - Europe",
-      "tier": "Tier 2",
-      "total_orders": 818,
-      "total_spend": 839180324.53,
-      "avg_order_value": 1025892.82,
-      "on_time_pct": 55.4,
-      "avg_delay_days": 4.7,
-      "defect_rate_pct": 24.21,
-      "delay_trend_slope": 0.0371,
-      "price_volatility_cv": 0.3192,
-      "composite_risk_index": 38.2,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 21.18,
-      "annualized_inflation_trend_pct": 2.1
+      "ols_price_slope_inr_per_yr": 64.06,
+      "annualized_inflation_trend_pct": 3.6
     },
     {
-      "supplier_id": "SUP1017",
-      "supplier_name": "Evergreen Shipping Lines",
-      "region": "East India",
-      "tier": "Tier 2",
-      "total_orders": 753,
-      "total_spend": 3152611625.03,
-      "avg_order_value": 4186735.23,
-      "on_time_pct": 33.7,
-      "avg_delay_days": 7.22,
-      "defect_rate_pct": 23.11,
-      "delay_trend_slope": 0.0279,
-      "price_volatility_cv": 0.1612,
-      "composite_risk_index": 41.0,
-      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 264.86,
-      "annualized_inflation_trend_pct": 6.6
-    },
-    {
-      "supplier_id": "SUP1063",
-      "supplier_name": "Bosch Mobility Electronics",
+      "supplier_id": "SUP1012",
+      "supplier_name": "Orion Aerospace Materials",
       "region": "South India",
-      "tier": "Tier 2",
-      "total_orders": 330,
-      "total_spend": 635620922.46,
-      "avg_order_value": 1926124.01,
-      "on_time_pct": 40.6,
-      "avg_delay_days": 6.56,
-      "defect_rate_pct": 18.18,
-      "delay_trend_slope": 0.0549,
-      "price_volatility_cv": 0.3113,
-      "composite_risk_index": 42.7,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": -44.84,
-      "annualized_inflation_trend_pct": -2.4
-    },
-    {
-      "supplier_id": "SUP1001",
-      "supplier_name": "Bharat Heavy Metallics",
-      "region": "North India",
-      "tier": "Tier 1",
-      "total_orders": 577,
-      "total_spend": 910036913.07,
-      "avg_order_value": 1577187.02,
-      "on_time_pct": 62.4,
-      "avg_delay_days": 4.26,
-      "defect_rate_pct": 16.98,
-      "delay_trend_slope": -0.0049,
-      "price_volatility_cv": 0.233,
-      "composite_risk_index": 29.4,
-      "trajectory_direction": "\u27a1\ufe0f Stable Fulfillment",
-      "risk_tier": "Medium Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 89.77,
-      "annualized_inflation_trend_pct": 5.5
-    },
-    {
-      "supplier_id": "SUP1073",
-      "supplier_name": "BASF Chemical Solutions",
-      "region": "Import - Europe",
-      "tier": "Tier 1",
-      "total_orders": 471,
-      "total_spend": 292367049.99,
-      "avg_order_value": 620736.84,
-      "on_time_pct": 61.8,
-      "avg_delay_days": 4.54,
-      "defect_rate_pct": 16.35,
-      "delay_trend_slope": 0.071,
-      "price_volatility_cv": 0.1821,
-      "composite_risk_index": 32.4,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "Medium Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": -54.9,
-      "annualized_inflation_trend_pct": -9.1
-    }
-  ],
-  "worst_trend_suppliers": [
-    {
-      "supplier_id": "SUP1060",
-      "supplier_name": "Dow Petrochemical Corp",
-      "region": "Import - China",
-      "tier": "Tier 2",
-      "total_orders": 19,
-      "total_spend": 28205842.64,
-      "avg_order_value": 1484518.03,
-      "on_time_pct": 21.1,
-      "avg_delay_days": 6.32,
-      "defect_rate_pct": 15.79,
-      "delay_trend_slope": 0.2,
-      "price_volatility_cv": 0.115,
-      "composite_risk_index": 51.9,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": -97.15,
-      "annualized_inflation_trend_pct": -5.3
-    },
-    {
-      "supplier_id": "SUP1025",
-      "supplier_name": "Deccan Mining & Metals",
-      "region": "West India",
-      "tier": "Tier 2",
-      "total_orders": 683,
-      "total_spend": 370815661.7,
-      "avg_order_value": 542921.91,
-      "on_time_pct": 44.2,
-      "avg_delay_days": 6.22,
-      "defect_rate_pct": 1.76,
-      "delay_trend_slope": 0.1912,
-      "price_volatility_cv": 0.1902,
-      "composite_risk_index": 41.8,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 85.43,
-      "annualized_inflation_trend_pct": 15.3
-    },
-    {
-      "supplier_id": "SUP1022",
-      "supplier_name": "Stuttgart Auto Components",
-      "region": "Import - North America",
-      "tier": "Tier 2",
-      "total_orders": 53,
-      "total_spend": 72977139.01,
-      "avg_order_value": 1376927.15,
-      "on_time_pct": 54.7,
-      "avg_delay_days": 5.55,
-      "defect_rate_pct": 7.55,
-      "delay_trend_slope": 0.1823,
-      "price_volatility_cv": 0.8359,
-      "composite_risk_index": 55.6,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
-      "primary_risk_axis": "Price Volatility Risk",
-      "ols_price_slope_inr_per_yr": -179.42,
-      "annualized_inflation_trend_pct": -11.6
-    },
-    {
-      "supplier_id": "SUP1042",
-      "supplier_name": "AeroTech Composite Systems",
-      "region": "East India",
-      "tier": "Tier 2",
-      "total_orders": 847,
-      "total_spend": 979251252.31,
-      "avg_order_value": 1156140.79,
-      "on_time_pct": 66.8,
-      "avg_delay_days": 3.85,
-      "defect_rate_pct": 2.36,
-      "delay_trend_slope": 0.1819,
-      "price_volatility_cv": 0.1955,
-      "composite_risk_index": 33.6,
-      "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "Medium Risk",
-      "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 147.4,
-      "annualized_inflation_trend_pct": 12.6
-    },
-    {
-      "supplier_id": "SUP1044",
-      "supplier_name": "Silicon Valley Micro Hardware",
-      "region": "East India",
       "tier": "Tier 3",
-      "total_orders": 301,
-      "total_spend": 336954203.68,
-      "avg_order_value": 1119449.18,
-      "on_time_pct": 68.4,
-      "avg_delay_days": 3.42,
-      "defect_rate_pct": 7.97,
-      "delay_trend_slope": 0.1807,
-      "price_volatility_cv": 0.3468,
-      "composite_risk_index": 38.3,
+      "total_orders": 315,
+      "total_spend": 841385772.34,
+      "avg_order_value": 2671065.94,
+      "on_time_pct": 61.9,
+      "avg_delay_days": 2.36,
+      "defect_rate_pct": 3.17,
+      "delay_trend_slope": 0.0882,
+      "price_volatility_cv": 0.3956,
+      "composite_risk_index": 29.0,
       "trajectory_direction": "\ud83d\udcc9 Deteriorating (Delay Escalating)",
-      "risk_tier": "High Risk",
+      "risk_tier": "Medium Risk",
       "primary_risk_axis": "Reliability Risk (Late Delivery)",
-      "ols_price_slope_inr_per_yr": 267.58,
-      "annualized_inflation_trend_pct": 24.8
+      "ols_price_slope_inr_per_yr": 842.08,
+      "annualized_inflation_trend_pct": 24.0
     }
   ],
   "risk_distribution": {
-    "Medium Risk": 34,
-    "High Risk": 24,
+    "Medium Risk": 32,
+    "High Risk": 26,
     "Low Risk": 20
   },
   "monthly_trend": [
     {
       "month": "2023-01",
       "order_count": 870,
-      "total_spend": 1303182888.53,
-      "late_pct": 48.3
+      "total_spend": 892423657.93,
+      "late_pct": 49.3
     },
     {
       "month": "2023-02",
       "order_count": 782,
-      "total_spend": 1271423100.75,
-      "late_pct": 34.7
+      "total_spend": 898625217.03,
+      "late_pct": 39.5
     },
     {
       "month": "2023-03",
       "order_count": 822,
-      "total_spend": 1272680130.03,
-      "late_pct": 34.7
+      "total_spend": 927182080.22,
+      "late_pct": 38.7
     },
     {
       "month": "2023-04",
       "order_count": 799,
-      "total_spend": 1160146706.52,
-      "late_pct": 30.4
+      "total_spend": 880091911.7,
+      "late_pct": 37.7
     },
     {
       "month": "2023-05",
-      "order_count": 828,
-      "total_spend": 1219960361.39,
-      "late_pct": 33.7
+      "order_count": 829,
+      "total_spend": 931680808.87,
+      "late_pct": 37.0
     },
     {
       "month": "2023-06",
-      "order_count": 839,
-      "total_spend": 1403684495.63,
-      "late_pct": 43.7
+      "order_count": 838,
+      "total_spend": 1070377058.4,
+      "late_pct": 44.7
     },
     {
       "month": "2023-07",
       "order_count": 821,
-      "total_spend": 1235740530.31,
-      "late_pct": 42.4
+      "total_spend": 896842968.52,
+      "late_pct": 48.2
     },
     {
       "month": "2023-08",
-      "order_count": 885,
-      "total_spend": 1414932830.83,
-      "late_pct": 33.6
+      "order_count": 884,
+      "total_spend": 1114176855.67,
+      "late_pct": 39.4
     },
     {
       "month": "2023-09",
       "order_count": 834,
-      "total_spend": 1309332854.2,
-      "late_pct": 29.7
+      "total_spend": 972007453.86,
+      "late_pct": 40.0
     },
     {
       "month": "2023-10",
       "order_count": 859,
-      "total_spend": 1410606855.45,
-      "late_pct": 47.4
+      "total_spend": 1002814826.61,
+      "late_pct": 50.6
     },
     {
       "month": "2023-11",
       "order_count": 811,
-      "total_spend": 1183060932.33,
-      "late_pct": 65.4
+      "total_spend": 835610696.47,
+      "late_pct": 67.3
     },
     {
       "month": "2023-12",
-      "order_count": 843,
-      "total_spend": 1431590217.22,
-      "late_pct": 65.2
+      "order_count": 846,
+      "total_spend": 1009526356.58,
+      "late_pct": 60.9
     },
     {
       "month": "2024-01",
       "order_count": 873,
-      "total_spend": 1399263620.64,
-      "late_pct": 50.7
+      "total_spend": 1024282733.84,
+      "late_pct": 53.8
     },
     {
       "month": "2024-02",
-      "order_count": 746,
-      "total_spend": 1060572990.68,
-      "late_pct": 27.7
+      "order_count": 744,
+      "total_spend": 785010589.0,
+      "late_pct": 34.4
     },
     {
       "month": "2024-03",
       "order_count": 850,
-      "total_spend": 1129735732.43,
-      "late_pct": 24.4
+      "total_spend": 787000177.42,
+      "late_pct": 35.9
     },
     {
       "month": "2024-04",
       "order_count": 874,
-      "total_spend": 1182828512.9,
-      "late_pct": 26.8
+      "total_spend": 795772243.12,
+      "late_pct": 34.7
     },
     {
       "month": "2024-05",
       "order_count": 801,
-      "total_spend": 950676919.71,
-      "late_pct": 28.2
+      "total_spend": 744137903.42,
+      "late_pct": 33.0
     },
     {
       "month": "2024-06",
       "order_count": 785,
-      "total_spend": 955947089.96,
-      "late_pct": 34.4
+      "total_spend": 751412654.7,
+      "late_pct": 39.4
     },
     {
       "month": "2024-07",
-      "order_count": 903,
-      "total_spend": 1092040623.5,
-      "late_pct": 38.8
+      "order_count": 901,
+      "total_spend": 877482681.08,
+      "late_pct": 47.1
     },
     {
       "month": "2024-08",
       "order_count": 825,
-      "total_spend": 1001820865.34,
-      "late_pct": 29.7
+      "total_spend": 808693210.56,
+      "late_pct": 39.2
     },
     {
       "month": "2024-09",
       "order_count": 807,
-      "total_spend": 1094585655.71,
-      "late_pct": 33.3
+      "total_spend": 798009876.29,
+      "late_pct": 38.5
     },
     {
       "month": "2024-10",
-      "order_count": 865,
-      "total_spend": 1135573652.74,
-      "late_pct": 44.9
+      "order_count": 866,
+      "total_spend": 877731515.31,
+      "late_pct": 49.7
     },
     {
       "month": "2024-11",
       "order_count": 819,
-      "total_spend": 1183838110.35,
-      "late_pct": 66.1
+      "total_spend": 833242979.62,
+      "late_pct": 65.1
     },
     {
       "month": "2024-12",
       "order_count": 906,
-      "total_spend": 1092111281.51,
-      "late_pct": 63.8
+      "total_spend": 836063060.99,
+      "late_pct": 64.0
     },
     {
       "month": "2025-01",
-      "order_count": 854,
-      "total_spend": 1384437232.34,
-      "late_pct": 53.2
+      "order_count": 856,
+      "total_spend": 837280758.19,
+      "late_pct": 50.9
     },
     {
       "month": "2025-02",
       "order_count": 777,
-      "total_spend": 1369163474.29,
-      "late_pct": 35.8
+      "total_spend": 938274379.96,
+      "late_pct": 42.6
     },
     {
       "month": "2025-03",
       "order_count": 858,
-      "total_spend": 1474059974.24,
-      "late_pct": 35.5
+      "total_spend": 1052329600.05,
+      "late_pct": 42.2
     },
     {
       "month": "2025-04",
       "order_count": 810,
-      "total_spend": 1372872250.85,
-      "late_pct": 38.4
+      "total_spend": 1008436838.59,
+      "late_pct": 43.3
     },
     {
       "month": "2025-05",
       "order_count": 879,
-      "total_spend": 1577615997.13,
-      "late_pct": 38.3
+      "total_spend": 1147121897.18,
+      "late_pct": 41.8
     },
     {
       "month": "2025-06",
       "order_count": 774,
-      "total_spend": 1523671713.35,
-      "late_pct": 49.1
+      "total_spend": 1047412976.58,
+      "late_pct": 49.4
     },
     {
       "month": "2025-07",
       "order_count": 810,
-      "total_spend": 1564864779.89,
-      "late_pct": 50.7
+      "total_spend": 1048988825.68,
+      "late_pct": 51.0
     },
     {
       "month": "2025-08",
       "order_count": 860,
-      "total_spend": 1613264654.18,
-      "late_pct": 39.8
+      "total_spend": 1207493618.35,
+      "late_pct": 42.9
     },
     {
       "month": "2025-09",
       "order_count": 778,
-      "total_spend": 1284973288.66,
-      "late_pct": 40.2
+      "total_spend": 890577848.32,
+      "late_pct": 41.0
     },
     {
       "month": "2025-10",
       "order_count": 859,
-      "total_spend": 1660232944.83,
-      "late_pct": 49.0
+      "total_spend": 1067812216.5,
+      "late_pct": 51.8
     },
     {
       "month": "2025-11",
       "order_count": 834,
-      "total_spend": 1453657583.6,
-      "late_pct": 64.6
+      "total_spend": 1056834242.64,
+      "late_pct": 65.7
     },
     {
       "month": "2025-12",
-      "order_count": 860,
-      "total_spend": 1445920464.46,
-      "late_pct": 66.2
+      "order_count": 859,
+      "total_spend": 1148914538.44,
+      "late_pct": 66.8
     }
   ],
   "inventory_status": {
-    "Understocked": 184,
-    "Healthy": 16
+    "Healthy": 167,
+    "Understocked": 33
   },
-  "narrative_example": "<b>Executive Operational Summary &amp; Supply Chain Risk Audit</b><br><br>\u2022 <b>Market Concentration &amp; Spend Exposure</b>: Multi-factor risk scoring evaluates overall market concentration at HHI <b>255.2</b> (Unconcentrated (Healthy Competition)). However, <b>&#8377;1786.9 Cr (38.3%)</b> of total spend remains tied to High-Risk suppliers.<br>\u2022 <b>Reliability Bottleneck</b>: <b>Dow Petrochemical Corp</b> (Tier 2) represents critical SLA exposure with an on-time fulfillment rate of only <b>21.1%</b>.<br>\u2022 <b>Performance Decay Trajectory</b>: <b>Dow Petrochemical Corp</b> exhibits severe monthly SLA deterioration with a delay trend slope of <b>+0.2000 days/month</b>.<br>\u2022 <b>Dynamic ROP &amp; Single-Source Vulnerability</b>: Dynamic ROP calculations flag <b>57 of 184 understocked SKUs (31.0%)</b> as primary-sourced from High-Risk suppliers, with <b>62 SKUs</b> exposed to single-source dependency risk.",
-  "total_spend": 46620071316.48,
+  "narrative_example": "<b>Executive Operational Summary &amp; Supply Chain Risk Audit</b><br><br>\u2022 <b>Market Concentration &amp; Spend Exposure</b>: Multi-factor risk scoring evaluates overall market concentration at HHI <b>222.2</b> (Unconcentrated (Healthy Competition)). However, <b>&#8377;1121.5 Cr (33.2%)</b> of total spend remains tied to High-Risk suppliers.<br>\u2022 <b>Reliability Bottleneck</b>: <b>DynaFlex Rubber &amp; Elastomers</b> (Tier 2) represents critical SLA exposure with an on-time fulfillment rate of only <b>19.7%</b>.<br>\u2022 <b>Performance Decay Trajectory</b>: <b>OmniVision Optoelectronics</b> exhibits severe monthly SLA deterioration with a delay trend slope of <b>+0.2677 days/month</b>.<br>\u2022 <b>Dynamic ROP &amp; Single-Source Vulnerability</b>: Dynamic ROP calculations flag <b>12 of 33 understocked SKUs (36.4%)</b> as primary-sourced from High-Risk suppliers, with <b>61 SKUs</b> exposed to single-source dependency risk.",
+  "total_spend": 33801677257.69,
   "total_orders": 30000
 }
