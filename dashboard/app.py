@@ -1298,13 +1298,33 @@ with tab4:
             sim_qty = st.number_input("Order Quantity", min_value=1, max_value=10000, value=250, step=50)
             sim_unit_price = st.number_input("Unit Price (&#8377;)", min_value=1.0, max_value=100000.0, value=750.0, step=50.0)
 
+        st.markdown("<div style='margin-top:10px; margin-bottom:4px; font-weight:600; font-size:0.85rem; color:#cbd5e1;'>Risk Classification Decision Cutoff Threshold (&tau;)</div>", unsafe_allow_html=True)
+        thresh_col1, thresh_col2 = st.columns([1.2, 1], gap="medium")
+        with thresh_col1:
+            thresh_preset = st.radio(
+                "Threshold Mode",
+                options=["Standard Classification (50%)", "Cost-Optimal Risk Cutoff (10%)", "Custom Threshold"],
+                index=0,
+                horizontal=True,
+                help="Standard (50%): Flags >50% probability as Late Risk. Cost-Optimal (10%): Financial risk-averse alert."
+            )
+        with thresh_col2:
+            if thresh_preset == "Standard Classification (50%)":
+                selected_threshold = 0.50
+                st.caption("Standard binary classification cutoff (Prob &ge; 50% &rarr; LATE RISK)")
+            elif thresh_preset == "Cost-Optimal Risk Cutoff (10%)":
+                selected_threshold = 0.10
+                st.caption("Financial risk-averse cutoff (Prob &ge; 10% &rarr; LATE RISK)")
+            else:
+                selected_threshold = st.slider("Custom Risk Cutoff Threshold (&tau;)", 0.10, 0.90, 0.40, 0.05)
+
         submitted = st.form_submit_button("Execute ML Inference & Risk Audit", use_container_width=True)
 
     model_artifact_path = os.path.join(BASE_DIR, "ml", "rf_model.joblib")
     art = load_ml_model_artifact(model_artifact_path)
 
     # Function to run inference for a single supplier safely
-    def _run_single_inference(sup_name):
+    def _run_single_inference(sup_name, target_threshold=0.50):
         sup_match = all_suppliers_df[all_suppliers_df["supplier_name"] == sup_name]
         if sup_match.empty:
             st.warning(f"Supplier metadata for '{sup_name}' is unavailable.")
@@ -1324,7 +1344,7 @@ with tab4:
                 encoders = art["label_encoders"]
                 te_maps = art["te_maps"]
                 g_mean = art["global_late_mean"]
-                threshold = art.get("optimal_threshold", opt_threshold)
+                threshold = target_threshold
 
                 row_dict = {
                     "quantity": sim_qty,
@@ -1347,10 +1367,10 @@ with tab4:
                     "crude_oil_index": 1.05,
                     "is_holiday_order": 0,
                     "container_shortage_flag": 1 if sim_month in [10, 11, 12] else 0,
-                    "supplier_id_te": te_maps["supplier_id"].get(sup_id, g_mean),
+                    "supplier_id_te": te_maps["supplier_id"].get(sup_id, te_maps["supplier_id"].get(str(sup_id), g_mean)),
                     "product_id_te": g_mean,
-                    "sup_category_te": te_maps["sup_category"].get(f"{sup_id}_{sim_category}", g_mean),
-                    "sup_month_te": te_maps["sup_month"].get(f"{sup_id}_{sim_month}", g_mean),
+                    "sup_category_te": te_maps["sup_category"].get(f"{sup_id}_{sim_category}", te_maps["sup_category"].get(f"{str(sup_id)}_{sim_category}", g_mean)),
+                    "sup_month_te": te_maps["sup_month"].get(f"{sup_id}_{sim_month}", te_maps["sup_month"].get(f"{str(sup_id)}_{sim_month}", g_mean)),
                     "ship_region_te": te_maps["ship_region"].get(f"{sim_mode}_{sup_region}", g_mean),
                     "logistics_stress_index": 14.0 / (sup_avg_delay + 1.0),
                     "supplier_health_index": (1.0 - float(sup_row["late_rate"])) * 0.97,
@@ -1366,10 +1386,10 @@ with tab4:
                 prob = float(model.predict_proba(X_sim)[0, 1])
             except Exception as e:
                 prob = float(sup_row["late_rate"])
-                threshold = opt_threshold
+                threshold = target_threshold
         else:
             prob = float(sup_row["late_rate"])
-            threshold = opt_threshold
+            threshold = target_threshold
 
         pred_late = prob >= threshold
         if pred_late:
@@ -1391,7 +1411,7 @@ with tab4:
             "total_order_cost": total_order_cost
         }
 
-    res_a = _run_single_inference(sim_supplier)
+    res_a = _run_single_inference(sim_supplier, selected_threshold)
 
     if res_a:
         if not enable_compare:
@@ -1453,7 +1473,7 @@ with tab4:
 
         else:
             # Dual Supplier Side-by-Side Comparison
-            res_b = _run_single_inference(sim_supplier_b)
+            res_b = _run_single_inference(sim_supplier_b, selected_threshold)
             if res_b:
                 st.markdown("<div style='font-size:0.90rem; font-weight:700; color:#3b82f6; margin-top:10px; margin-bottom:10px;'>Side-by-Side Supplier Risk Benchmark:</div>", unsafe_allow_html=True)
                 cmp_c1, cmp_c2 = st.columns(2, gap="medium")

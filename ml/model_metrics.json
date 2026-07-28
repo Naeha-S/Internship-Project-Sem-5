@@ -1,95 +1,95 @@
 {
   "champion_model_name": "Random Forest Classifier",
-  "champion_roc_auc": 0.705,
-  "champion_accuracy": 0.643,
+  "champion_roc_auc": 0.706,
+  "champion_accuracy": 0.645,
   "cost_optimal_model_name": "Logistic Regression",
-  "cost_optimal_expected_cost_inr": 22435000.0,
+  "cost_optimal_expected_cost_inr": 22470000.0,
   "mathematical_reconciliation": {
-    "fn_savings_inr": 252200000.0,
-    "fp_penalty_inr": 22435000.0,
-    "net_risk_reduction_inr": 229765000.0
+    "fn_savings_inr": 251650000.0,
+    "fp_penalty_inr": 22470000.0,
+    "net_risk_reduction_inr": 229180000.0
   },
   "model_comparison": [
     {
       "model_name": "1. Naive Majority Baseline",
       "roc_auc": 0.5,
-      "pr_auc": 0.528,
+      "pr_auc": 0.527,
       "default_thresh_0.5": {
-        "accuracy": 0.472,
+        "accuracy": 0.473,
         "precision": 0.0,
         "recall": 0.0,
         "f1_score": 0.0,
         "false_positive_rate": 0.0,
-        "expected_cost_inr": 252200000.0,
+        "expected_cost_inr": 251650000.0,
         "confusion_matrix": [
           [
-            4508,
+            4519,
             0
           ],
           [
-            5044,
+            5033,
             0
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.528,
-        "precision": 0.528,
+        "accuracy": 0.527,
+        "precision": 0.527,
         "recall": 1.0,
-        "f1_score": 0.691,
+        "f1_score": 0.69,
         "false_positive_rate": 1.0,
-        "expected_cost_inr": 22540000.0,
+        "expected_cost_inr": 22595000.0,
         "confusion_matrix": [
           [
             0,
-            4508
+            4519
           ],
           [
             0,
-            5044
+            5033
           ]
         ]
       }
     },
     {
       "model_name": "2. Supplier Historical Heuristic",
-      "roc_auc": 0.677,
-      "pr_auc": 0.686,
+      "roc_auc": 0.676,
+      "pr_auc": 0.685,
       "default_thresh_0.5": {
         "accuracy": 0.622,
-        "precision": 0.657,
+        "precision": 0.656,
         "recall": 0.593,
         "f1_score": 0.623,
         "false_positive_rate": 0.346,
-        "expected_cost_inr": 110490000.0,
+        "expected_cost_inr": 110270000.0,
         "confusion_matrix": [
           [
-            2950,
-            1558
+            2955,
+            1564
           ],
           [
-            2054,
-            2990
+            2049,
+            2984
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.528,
-        "precision": 0.528,
+        "accuracy": 0.527,
+        "precision": 0.527,
         "recall": 1.0,
-        "f1_score": 0.691,
+        "f1_score": 0.69,
         "false_positive_rate": 1.0,
-        "expected_cost_inr": 22540000.0,
+        "expected_cost_inr": 22595000.0,
         "confusion_matrix": [
           [
             0,
-            4508
+            4519
           ],
           [
             0,
-            5044
+            5033
           ]
         ]
       }
@@ -100,122 +100,122 @@
       "pr_auc": 0.729,
       "default_thresh_0.5": {
         "accuracy": 0.652,
-        "precision": 0.671,
-        "recall": 0.668,
-        "f1_score": 0.67,
-        "false_positive_rate": 0.367,
-        "expected_cost_inr": 91920000.0,
+        "precision": 0.663,
+        "recall": 0.689,
+        "f1_score": 0.676,
+        "false_positive_rate": 0.39,
+        "expected_cost_inr": 87010000.0,
         "confusion_matrix": [
           [
-            2854,
-            1654
+            2757,
+            1762
           ],
           [
-            1673,
-            3371
+            1564,
+            3469
           ]
         ]
       },
       "cost_optimal": {
-        "optimal_threshold": 0.1,
+        "optimal_threshold": 0.11,
         "accuracy": 0.53,
-        "precision": 0.529,
+        "precision": 0.528,
         "recall": 1.0,
-        "f1_score": 0.692,
-        "false_positive_rate": 0.995,
-        "expected_cost_inr": 22435000.0,
+        "f1_score": 0.691,
+        "false_positive_rate": 0.994,
+        "expected_cost_inr": 22470000.0,
         "confusion_matrix": [
           [
-            21,
-            4487
+            25,
+            4494
           ],
           [
             0,
-            5044
+            5033
           ]
         ]
       }
     },
     {
       "model_name": "4. Random Forest Classifier (Champion)",
-      "roc_auc": 0.705,
-      "pr_auc": 0.724,
+      "roc_auc": 0.706,
+      "pr_auc": 0.726,
       "default_thresh_0.5": {
-        "accuracy": 0.643,
-        "precision": 0.673,
-        "recall": 0.631,
-        "f1_score": 0.651,
-        "false_positive_rate": 0.344,
-        "expected_cost_inr": 100745000.0,
+        "accuracy": 0.645,
+        "precision": 0.68,
+        "recall": 0.615,
+        "f1_score": 0.646,
+        "false_positive_rate": 0.322,
+        "expected_cost_inr": 104270000.0,
         "confusion_matrix": [
           [
-            2959,
-            1549
+            3065,
+            1454
           ],
           [
-            1860,
-            3184
+            1940,
+            3093
           ]
         ]
       },
       "cost_optimal": {
         "optimal_threshold": 0.1,
-        "accuracy": 0.539,
-        "precision": 0.534,
-        "recall": 0.998,
-        "f1_score": 0.696,
-        "false_positive_rate": 0.975,
-        "expected_cost_inr": 22380000.0,
+        "accuracy": 0.535,
+        "precision": 0.531,
+        "recall": 0.999,
+        "f1_score": 0.693,
+        "false_positive_rate": 0.982,
+        "expected_cost_inr": 22495000.0,
         "confusion_matrix": [
           [
-            112,
-            4396
+            80,
+            4439
           ],
           [
-            8,
-            5036
+            6,
+            5027
           ]
         ]
       }
     },
     {
       "model_name": "5. Tuned XGBoost Classifier",
-      "roc_auc": 0.709,
-      "pr_auc": 0.728,
+      "roc_auc": 0.705,
+      "pr_auc": 0.725,
       "default_thresh_0.5": {
-        "accuracy": 0.647,
-        "precision": 0.674,
-        "recall": 0.643,
-        "f1_score": 0.658,
-        "false_positive_rate": 0.348,
-        "expected_cost_inr": 97945000.0,
+        "accuracy": 0.646,
+        "precision": 0.673,
+        "recall": 0.637,
+        "f1_score": 0.654,
+        "false_positive_rate": 0.344,
+        "expected_cost_inr": 99225000.0,
         "confusion_matrix": [
           [
-            2939,
-            1569
+            2964,
+            1555
           ],
           [
-            1802,
-            3242
+            1829,
+            3204
           ]
         ]
       },
       "cost_optimal": {
-        "optimal_threshold": 0.1,
-        "accuracy": 0.539,
+        "optimal_threshold": 0.11,
+        "accuracy": 0.541,
         "precision": 0.534,
-        "recall": 0.999,
+        "recall": 0.998,
         "f1_score": 0.696,
-        "false_positive_rate": 0.976,
-        "expected_cost_inr": 22340000.0,
+        "false_positive_rate": 0.969,
+        "expected_cost_inr": 22395000.0,
         "confusion_matrix": [
           [
-            110,
-            4398
+            140,
+            4379
           ],
           [
-            7,
-            5037
+            10,
+            5023
           ]
         ]
       },
@@ -226,39 +226,39 @@
       "roc_auc": 0.71,
       "pr_auc": 0.73,
       "default_thresh_0.5": {
-        "accuracy": 0.646,
-        "precision": 0.671,
-        "recall": 0.646,
-        "f1_score": 0.659,
-        "false_positive_rate": 0.354,
-        "expected_cost_inr": 97185000.0,
+        "accuracy": 0.648,
+        "precision": 0.673,
+        "recall": 0.644,
+        "f1_score": 0.658,
+        "false_positive_rate": 0.348,
+        "expected_cost_inr": 97370000.0,
         "confusion_matrix": [
           [
-            2911,
-            1597
+            2945,
+            1574
           ],
           [
-            1784,
-            3260
+            1790,
+            3243
           ]
         ]
       },
       "cost_optimal": {
-        "optimal_threshold": 0.11,
-        "accuracy": 0.538,
-        "precision": 0.533,
+        "optimal_threshold": 0.12,
+        "accuracy": 0.537,
+        "precision": 0.532,
         "recall": 0.999,
         "f1_score": 0.695,
-        "false_positive_rate": 0.978,
-        "expected_cost_inr": 22400000.0,
+        "false_positive_rate": 0.977,
+        "expected_cost_inr": 22420000.0,
         "confusion_matrix": [
           [
-            98,
-            4410
+            105,
+            4414
           ],
           [
             7,
-            5037
+            5026
           ]
         ]
       }
@@ -267,16 +267,16 @@
   "executive_summary": {
     "cost_optimal": {
       "model_name": "Logistic Regression",
-      "expected_risk_cost_inr": 22435000.0,
-      "optimal_threshold": 0.1,
+      "expected_risk_cost_inr": 22470000.0,
+      "optimal_threshold": 0.11,
       "roc_auc": 0.709,
       "recall": 1.0
     },
     "roc_auc_champion": {
       "model_name": "Random Forest Classifier",
-      "roc_auc": 0.705,
-      "accuracy": 0.643,
-      "fpr": 0.344
+      "roc_auc": 0.706,
+      "accuracy": 0.645,
+      "fpr": 0.322
     }
   }
 }

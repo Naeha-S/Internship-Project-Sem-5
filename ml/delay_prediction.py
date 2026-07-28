@@ -401,6 +401,14 @@ def train_and_evaluate_ml_pipeline(db_path=DB_PATH, out_dir=OUT_DIR, verbose=Tru
         "optimal_threshold": float(res_m4["cost_optimal"]["optimal_threshold"])
     }
 
+    # Clean up older timestamped model artifacts to prevent disk clutter
+    import glob
+    for old_file in glob.glob(os.path.join(out_dir, "rf_model_*.joblib")):
+        try:
+            os.remove(old_file)
+        except Exception:
+            pass
+
     # Model Versioning & Compressed Joblib Serialisation (compress=3)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     versioned_filename = f"rf_model_{timestamp}.joblib"
